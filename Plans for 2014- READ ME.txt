@@ -1,0 +1,11 @@
+1. Most methods should be placed in their own c header files, so that we can easily #include them. This will mean we no longer have to copy methods across files whenever we want a new program.
+
+2. Configurations, such as default servo positions, motor scales, debug options, and joystick positions should all be placed as constants in configuration classes. Provided they are not static, we can use #include to access them. This will mean there is only one number to edit whenever a configuration needs to be changed, such as a servo position if the servo is reattached, or a default joystick position if the joysticks are acting up and reading +-30 as default, or a speed limit if Seraphina is driving again.
+
+3. Git must be used for everything. Everything. Everything.
+
+...except for Grimshaw, who can use his outdated methods of copying to flash drives, and then making commits from the school's laptop. If he comes up with a better solution that does not violate the "git must be used for everything" rule, and Pranav and Zach agree, he may use it.
+
+If anyone needs help using git, ask me (Zach).
+
+Git is love. Git is life. Resistance is futile.
