@@ -1,0 +1,1 @@
+Place text files in this folder that detial stuff we did in the meeting that day, or over a specific period of time. The goal of this is that things can be copied into the engineering notebook. A sample has been done for Saturday, 10/4/14
