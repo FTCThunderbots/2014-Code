@@ -15,7 +15,6 @@ void setMovement(short forward, short right, short clockwise) {
 	short TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: min, max, difference
 
-
 	// First, scale all vectors using values found in settings.h
 	forward = scaleTo(forward, JOYRANGE, DRVRANGE);
 	right = scaleTo(right, JOYRANGE, STFRANGE);
