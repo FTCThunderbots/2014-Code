@@ -7,7 +7,8 @@
 #include "settings.h"
 #include "movement.h"
 
-void setMovement(short forward, short right, short clockwise) {
+//void setMovement(short forward, short right, short clockwise)
+void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global
    // Try to declare these as const with a functioning compiler
 	ubyte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
@@ -22,20 +23,20 @@ void setMovement(short forward, short right, short clockwise) {
 	clockwise = scaleTo(clockwise, JOYRANGE, TRNRANGE);	
 	
 	// Next, assign wheel powers using the mecanum algorithm
-	double frontLeft = (-forward - right - clockwise)/3;
-	double frontRight = (forward - right - clockwise)/3;
-	double backLeft = (-forward + right - clockwise)/3;
-	double backRight = (forward + right - clockwise)/3;
+	float frontLeft = (-forward - right - clockwise)/3;
+   float frontRight = (forward - right - clockwise)/3;
+	float backLeft = (-forward + right - clockwise)/3;
+	float backRight = (forward + right - clockwise)/3;
 	//add note about why/how this works in engineering notebook
 	
 	// find max of all wheel powers
-	short maxLeft = fmax(abs(frontLeft), abs(backLeft));
-	short maxRight = fmax(abs(frontRight), abs(backRight));
-	short max = fmax(maxLeft, maxRight);
+	byte maxLeft = abs(frontLeft)>=abs(backLeft)) : abs(frontLeft) ? abs(backLeft);
+	byte maxRight = abs(frontRight)>=abs(backRight) : abs(frontRight) ? abs(backRight);
+	byte max = maxLeft>=maxRight : maxLeft ? maxRight;
 	
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
-		double scale = (double)max / MOTOR_MAX_POWER;
+		float scale = (float)max / MOTOR_MAX_POWER;
 		frontLeft /= scale;
 		frontRight /= scale;
 		backLeft /= scale;
@@ -47,12 +48,12 @@ void setMovement(short forward, short right, short clockwise) {
 	//motor[bl] = backLeft;
 	//motor[br] = backRight;
 }
-
-static short scaleTo(short value, short range[3], short scale[3]) {
+//static short scaleTo(short value, short range[3], short scale[3])
+static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
 	if (abs(value) < range[0])
 		return 0;
 	if (abs(value) > range[1])
 		return scale[1];
-	double posInR = value / (range[2]);
-	return (short)range[0] + (posInR * range[2]);
+	float posInR = value / (range[2]);
+	return (byte)range[0] + (posInR * range[2]);
 }

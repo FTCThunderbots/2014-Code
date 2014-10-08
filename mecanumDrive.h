@@ -9,19 +9,19 @@
 // They can be repositioned later, but the algorithm must be adjusted
 // Do NOT reverse any motors in the pragma configurations
 
-struct PowerSet {
+typedef struct PowerSet {
 	short frontLeft;
 	short frontRight;
 	short backLeft;
 	short backRight;
-};
+} PowerSet_t;
 
-struct PowerSet powerset(short forward, short right, short clockwise) {
+PowerSet_t powerset(short forward, short right, short clockwise) {
 	struct PowerSet finalpowers;
 	finalpowers.frontLeft = (-forward - right - clockwise)/3;
 	finalpowers.frontRight = (forward - right - clockwise)/3;
 	finalpowers.backLeft = (-forward + right - clockwise)/3;
 	finalpowers.backRight = (forward + right - clockwise)/3;
 	return finalpowers;
-	// Remind me to add something about why this works to the engineering notebook
+	// Remind Zach to add something about why this works to the engineering notebook
 }

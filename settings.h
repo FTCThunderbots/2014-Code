@@ -14,7 +14,7 @@ const ubyte STRAFE_MIN_POWER = 0;
 const ubyte STRAFE_MAX_POWER = 100;
 const ubyte TURN_MIN_POWER = 0;
 const ubyte TURN_MAX_POWER = 100;
-const double MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
+const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 
 // Motors and Hardware
 const ubyte MOTOR_MIN_POWER = 0; //not yet implemented
