@@ -24,15 +24,15 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	
 	// Next, assign wheel powers using the mecanum algorithm
 	float frontLeft = (-forward - right - clockwise)/3;
-   float frontRight = (forward - right - clockwise)/3;
+	float frontRight = (forward - right - clockwise)/3;
 	float backLeft = (-forward + right - clockwise)/3;
 	float backRight = (forward + right - clockwise)/3;
 	//add note about why/how this works in engineering notebook
 	
 	// find max of all wheel powers
-	byte maxLeft = abs(frontLeft)>=abs(backLeft)) : abs(frontLeft) ? abs(backLeft);
-	byte maxRight = abs(frontRight)>=abs(backRight) : abs(frontRight) ? abs(backRight);
-	byte max = maxLeft>=maxRight : maxLeft ? maxRight;
+	byte maxLeft = absMax(frontLeft, backLeft);
+	byte maxRight = absMax(frontRight, backRight);
+	byte max = fmax(maxLeft, maxRight);
 	
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
@@ -48,12 +48,21 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//motor[bl] = backLeft;
 	//motor[br] = backRight;
 }
+
+byte fmax(byte a, byte b) {
+	//finds the larger value
+	return a>=b : a ? b;
+}
+byte absMax(byte a, byte b) {
+	//finds maximum absolute value of two values
+	return abs((int)a)>=abs((int)b) : (byte)abs((int)a) ? (byte)abs((int)b);
+}
 //static short scaleTo(short value, short range[3], short scale[3])
 static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
-	if (abs(value) < range[0])
+	if (abs((int)value) < (int)range[0])
 		return 0;
-	if (abs(value) > range[1])
+	if (abs((int)value) > (int)range[1])
 		return scale[1];
 	float posInR = value / (range[2]);
-	return (byte)range[0] + (posInR * range[2]);
+	return (byte)range[0] + (posInR * (float)range[2]);
 }
