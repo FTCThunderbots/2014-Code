@@ -4,8 +4,6 @@
 
 3. Git must be used for everything. Everything. Everything.
 
-...except for Grimshaw, who can use his outdated methods of copying to flash drives, and then making commits from the school's laptop. If he comes up with a better solution that does not violate the "git must be used for everything" rule, and Pranav and Zach agree, he may use it.
-
-If anyone needs help using git, ask me (Zach).
+If anyone needs help using git, ask me (Zach) or Daniel.
 
 Git is love. Git is life. Resistance is futile.
