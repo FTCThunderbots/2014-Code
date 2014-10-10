@@ -8,5 +8,8 @@
 // AND SENSORS.
 
 // If you absolutely have to change a name, you **MUST** use an automatic refactoring tool
+
+#include "JoystickDriver.c"
+
 typedef char byte;
 typedef unsigned char ubyte;
