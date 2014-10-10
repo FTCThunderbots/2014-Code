@@ -21,20 +21,20 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	// First, scale all vectors using values found in settings.h
 	forward = scaleTo(forward, JOYRANGE, DRVRANGE);
 	right = scaleTo(right, JOYRANGE, STFRANGE);
-	clockwise = scaleTo(clockwise, JOYRANGE, TRNRANGE);	
-	
+	clockwise = scaleTo(clockwise, JOYRANGE, TRNRANGE);
+
 	// Next, assign wheel powers using the mecanum algorithm
 	float frontLeft = (-forward - right - clockwise)/3;
 	float frontRight = (forward - right - clockwise)/3;
 	float backLeft = (-forward + right - clockwise)/3;
 	float backRight = (forward + right - clockwise)/3;
 	//add note about why/how this works in engineering notebook
-	
+
 	// find max of all wheel powers
 	byte maxLeft = absmax(frontLeft, backLeft);
 	byte maxRight = absmax(frontRight, backRight);
 	byte max = absmax(maxLeft, maxRight);
-	
+
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
@@ -43,7 +43,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 		backLeft /= scale;
 		backRight /= scale;
 	}
-	
+
 	//motor[fl] = frontLeft;
 	//motor[fr] = frontRight;
 	//motor[bl] = backLeft;
