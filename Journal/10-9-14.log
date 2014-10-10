@@ -1,0 +1,8 @@
+//Log of changes on 10/9/14
+
+Daniel Grimshaw:
+  Updated all codes so that they should work with robotc (lots of casting and a few new methods in movement.c)
+  Created comment box (will be deprecated (essentially a todo list) after code works) in movement.c
+  Corrected movement.h method declarations to match movement.c
+  Added declarations in movement.h for movement of a certain distance
+  Decided that from now on all files in the Journal directory will be .log files
