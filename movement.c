@@ -7,8 +7,6 @@
 #include "settings.h"
 #include "movement.h"
 
-//void setMovement(short forward, short right, short clockwise)
-//To Daniel: why is the above line commented. Do you need it? If not, please remove it.
 void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global
    // They do not work as const
@@ -43,7 +41,6 @@ void setMovement(byte forward, byte right, byte clockwise) {
 		backLeft /= scale;
 		backRight /= scale;
 	}
-	
 	//motor[fl] = frontLeft;
 	//motor[fr] = frontRight;
 	//motor[bl] = backLeft;
@@ -63,5 +60,3 @@ static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
 	float posInR = value / (range[2]);
 	return (byte)range[0] + (posInR * (float)range[2]);
 }
-
-//All methods have been moved to simplemovement
