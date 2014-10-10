@@ -1,1 +1,3 @@
-Hi Github!
+Hi Github! This sentence has been added.
+This is line 2
+This is line 3
