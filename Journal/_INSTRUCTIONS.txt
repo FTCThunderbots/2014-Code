@@ -1,6 +1,0 @@
-Place text files in this folder that detail stuff we did in the meeting that day, or over a specific period of time.
-The goal of this is that things can be copied into the engineering notebook.
-A sample has been done for Saturday, 10/4/14.
-MAKE SURE ALL FILES ARE .log, NOT .txt
-
-logs may also be made for individual work done outside of meetings, following the formatting of 10-9-14_Daniel.log
