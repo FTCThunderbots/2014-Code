@@ -4,6 +4,6 @@
 
 3. Git must be used for everything. Everything. Everything.
 
-If anyone needs help using git, ask me (Zach) or Daniel.
+If anyone needs help using git, ask Zach or Daniel.
 
 Git is love. Git is life. Resistance is futile.

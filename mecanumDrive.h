@@ -9,6 +9,9 @@
 // They can be repositioned later, but the algorithm must be adjusted
 // Do NOT reverse any motors in the pragma configurations
 
+// DO NOT INCLUDE THIS FILE. IT IS NOT FUNCTIONAL. IT IS PRETTY AND DEMONSTRATIVE.
+// INSTEAD USE movement.c
+
 typedef struct PowerSet {
 	short frontLeft;
 	short frontRight;
