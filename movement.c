@@ -8,9 +8,10 @@
 #include "movement.h"
 
 //void setMovement(short forward, short right, short clockwise)
+//To Daniel: why is the above line commented. Do you need it? If not, please remove it.
 void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global
-   // Try to declare these as const with a functioning compiler
+   // They do not work as const
 	ubyte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
 	ubyte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
 	ubyte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
@@ -30,9 +31,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//add note about why/how this works in engineering notebook
 	
 	// find max of all wheel powers
-	byte maxLeft = absMax(frontLeft, backLeft);
-	byte maxRight = absMax(frontRight, backRight);
-	byte max = fmax(maxLeft, maxRight);
+	byte maxLeft = absmax(frontLeft, backLeft);
+	byte maxRight = absmax(frontRight, backRight);
+	byte max = absmax(maxLeft, maxRight);
 	
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
@@ -49,13 +50,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//motor[br] = backRight;
 }
 
-byte fmax(byte a, byte b) {
-	//finds the larger value
-	return a>=b : a ? b;
-}
-byte absMax(byte a, byte b) {
+byte absmax(byte a, byte b) {
 	//finds maximum absolute value of two values
-	return abs((int)a)>=abs((int)b) : (byte)abs((int)a) ? (byte)abs((int)b);
+	return abs(a)>=abs(b) ? (byte)abs(a) : (byte)abs(b);
 }
 //static short scaleTo(short value, short range[3], short scale[3])
 static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
@@ -66,6 +63,8 @@ static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
 	float posInR = value / (range[2]);
 	return (byte)range[0] + (posInR * (float)range[2]);
 }
+
+//All methods should be moved to simplemovement
 
 //NOT IMPLEMENTED YET:
 void moveFoward(byte power, short distance/*We need to decide: cm or in?*/) {}

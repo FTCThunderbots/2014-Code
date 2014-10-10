@@ -1,7 +1,8 @@
 // settings.h
 // should contain all setting and configuration constants for the robot
 // different groups of settings should be separated by comments
-#include config.h //need to fix syntax
+
+#include "config.h"
 
 //Consider changing some values from byte to short if the value may exceed 255
 //I have in mind the dir_max_power stuff
