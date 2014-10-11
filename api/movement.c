@@ -1,22 +1,19 @@
 // movement.h
-// should contain all code related to the positional movement of the robot
-// lifting code and other functional systems should be defined somewhere else
+// Contains all code related to the positional movement of the robot
+// Lifting code and other functional systems should be defined somewhere else
+// Wrappers such as drive, strafe, and rotate should be placed in simplemovement.c
 
-#include <math.h>
-#include "config.h"
-#include "settings.h"
 #include "movement.h"
 
 void setMovement(byte forward, byte right, byte clockwise) {
-   // In RobotC, make these arrays static/global
-   // They do not work as const
+   // In RobotC, make these arrays static/global and maybe const
 	ubyte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
 	ubyte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
 	ubyte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
 	ubyte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: min, max, difference
 
-	// First, scale all vectors using values found in settings.h
+	// First, scale all vectors using values found in settings.c
 	forward = scaleTo(forward, JOYRANGE, DRVRANGE);
 	right = scaleTo(right, JOYRANGE, STFRANGE);
 	clockwise = scaleTo(clockwise, JOYRANGE, TRNRANGE);	
@@ -47,11 +44,6 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//motor[br] = backRight;
 }
 
-byte absmax(byte a, byte b) {
-	//finds maximum absolute value of two values
-	return abs(a)>=abs(b) ? (byte)abs(a) : (byte)abs(b);
-}
-//static short scaleTo(short value, short range[3], short scale[3])
 static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
 	if (abs((int)value) < (int)range[0])
 		return 0;

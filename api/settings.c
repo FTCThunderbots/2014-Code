@@ -1,13 +1,8 @@
 // settings.h
-// should contain all setting and configuration constants for the robot
-// different groups of settings should be separated by comments
+// Contains all setting and configuration constants for the robot
+// Different groups of settings should be separated by comments
 
-#include "config.h"
-
-//Consider changing some values from byte to short if the value may exceed 255
-//I have in mind the dir_max_power stuff
-//Proposal: maybe we should make our own double type, instead of the limited floats?
-//(-Zach)
+#include "api.h"
 
 // Joysticks
 const ubyte JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as an input
