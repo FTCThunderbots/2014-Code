@@ -5,6 +5,7 @@
 
 void drive(int power);
 void strafe(int power);
+//rotate function should be depracated, nearly uncontrolable
 void rotate(int power);
 void swingTurn(int direction, int power);
 void moveDiagonal(int vector, int power);
