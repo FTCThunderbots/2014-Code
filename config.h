@@ -13,3 +13,7 @@
 
 typedef char byte;
 typedef unsigned char ubyte;
+
+task main() {
+	int i = 0;
+}
