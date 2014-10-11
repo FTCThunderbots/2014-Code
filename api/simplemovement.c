@@ -3,6 +3,7 @@
 // All functions are wrappers of functions in movement
 
 #include "simplemovement.h"
+#include "api.h"
 
 //look in header for functions that need implementations
 
