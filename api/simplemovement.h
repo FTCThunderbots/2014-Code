@@ -1,22 +1,35 @@
-//simplemovement.h
-//Contains wrappers for making movement.c functions easier.
+// simplemovement.h
+// Header file for simplemovement.c
 
-#include "config.h"
+#include "api.h"
+
+void drive(int power);
+void strafe(int power);
+void rotate(int power);
+void swingTurn(int direction, int power);
+void moveDiagonal(int vector, int power);
 
 //Need to be implemented
-void drive(short power);
-void driveIn(short dist, short power);
-void driveCm(short dist, short power);
-void strafe(short power);
-void strafeIn(short dist, short power);
-void strafeCm(short dist, short power);
-void rotate(short power);
-void rotateDeg(short degs, short power);
-void rotateRad(short rads, short power);
+void driveTicks(int ticks, int power);
+void driveIn(int dist, int power);
+void driveCm(int dist, int power);
+
+void strafeTicks(int ticks, int power);
+void strafeIn(int dist, int power);
+void strafeCm(int dist, int power);
+
+void rotateTicks(int ticks, int power);
+void rotateDeg(int degs, int power);
+void rotateRad(int rads, int power);
 
 //Other ideas:
-void swingTurn(short power); //and with degrees/rads
+void swingTurnTicks(int ticks, int direction, int power);
+void swingTurnDeg(int degs, int directions, int power);
+void swingTurnRad(int rads, int directions, int power);
+
+void moveDiagonalTicks(int dist, int vector, int power);
+void moveDiagonalIn(int dist, int vector, int power);
+void moveDiagonalCm(int dist, int vector, int power);
 
 //Low priority: (Daniel's ideas)
-void turnSpiral(byte power, short distance, short deg);
-void moveDiagonal(char vect/*which diagonal?*/, byte power, short distance);
+void turnSpiral(byte power, int distance, int deg);
