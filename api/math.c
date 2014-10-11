@@ -9,7 +9,7 @@
 // Maximum of range functions
 
 int max(int a, int b) {
-	return a > b ? a : b;
+	return a >= b ? a : b;
 }
 
 int absmax(int a, int b) {
@@ -31,7 +31,7 @@ int absmax(int a[]) {
 }
 
 byte max(byte a, byte b) {
-	return a > b ? a : b;
+	return a >= b ? a : b;
 }
 
 byte absmax(int a, int b) {
@@ -53,7 +53,8 @@ byte absmax(byte a[]) {
 }
 
 float max(float a, float b) {
-	return a > b ? a : b;
+	//CAUTION: may have minor imprecisions between two very close numbers
+	return a >= b ? a : b;
 }
 
 float absmax(float a, float b) {
@@ -67,7 +68,7 @@ float max(float a[]) {
 	return max;
 }
 
-float max(float a[]) {
+float absmax(float a[]) {
 	float max = a[0];
 	for (int i = 1; i < a.length; i++)
 		max = absmax(max, a[i]);
