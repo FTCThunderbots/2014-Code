@@ -26,9 +26,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//add note about why/how this works in engineering notebook
 	
 	// find max of all wheel powers
-	byte maxLeft = absmax(frontLeft, backLeft);
-	byte maxRight = absmax(frontRight, backRight);
-	byte max = absmax(maxLeft, maxRight);
+	byte max = absmax({frontLeft, frontRight, backLeft, backRight});
 	
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
