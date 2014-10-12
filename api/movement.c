@@ -42,6 +42,11 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	//motor[br] = backRight;
 }
 
+//for tank drive
+void setMovement(byte forward, byte clockwise) {
+	setMovement(forward, 0, clockwise);
+}
+
 static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
 	if (abs((int)value) < (int)range[0])
 		return 0;
