@@ -7,3 +7,4 @@ Zach:
 --Add initialization function
 --Wheel diameter and tick counts in settings
 --Update types in simplemovement
+--Test movement.scaleTo() with known good code
