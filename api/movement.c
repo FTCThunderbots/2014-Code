@@ -25,17 +25,21 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	float backRight = (forward + right - clockwise)/3;
 	//add note about why/how this works in engineering notebook
 	
+	float power[4] = {frontLeft, frontRight, backLeft, backRight};
+	
 	// find max of all wheel powers
-	byte max = absmax({frontLeft, frontRight, backLeft, backRight});
+	byte max = absmax(power);
 	
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
-		frontLeft /= scale;
-		frontRight /= scale;
-		backLeft /= scale;
-		backRight /= scale;
+		for (int i = 0; i < 4; i++)
+			power[i] /= scale;
 	}
+	
+	for(int i = 0; i < 4; i++)
+		power[i] *= MOVE_POWER_SCALE;
+	
 	//motor[fl] = frontLeft;
 	//motor[fr] = frontRight;
 	//motor[bl] = backLeft;
