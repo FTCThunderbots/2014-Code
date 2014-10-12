@@ -1,0 +1,9 @@
+List of things on the to-do list:
+
+Zach:
+
+--Add timer struct and task
+--Add ruler struct and task
+--Add initialization function
+--Wheel diameter and tick counts in settings
+--Update types in simplemovement

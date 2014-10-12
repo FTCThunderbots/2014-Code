@@ -20,3 +20,6 @@ const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 // Motor Constants
 const int MOTOR_MIN_POWER = 0; //not yet implemented
 const int MOTOR_MAX_POWER = 100;
+
+//Todo: wheel diameter and tick counts
+//
