@@ -7,10 +7,10 @@
 
 void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global and maybe const
-	ubyte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	ubyte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	ubyte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	ubyte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+	byte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+	byte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+	byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+	byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: min, max, difference
 
 	// First, scale all vectors using values found in settings.c
@@ -47,8 +47,8 @@ void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
 }
 
-static byte scaleTo(byte value, ubyte range[3], ubyte scale[3]) {
-	if (abs((int)value) < (int)range[0])
+static byte scaleTo(byte value, byte range[3], byte scale[3]) {
+	if (abs(value) < range[0])
 		return 0;
 	if (abs((int)value) > (int)range[1])
 		return scale[1];
