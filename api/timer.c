@@ -7,18 +7,10 @@ static long currentTime = 0;
 static Timer_t masterTimerSet[0];
 static Timer_t *timerSet[0];
 
-typedef struct Timer {
-	float seconds;
-	long miliseconds;
-	bool running;
-	long start;
-	long previousTime;// if the timer is stopped/started
-} Timer_t;
-
 //in user file:
 //Timer **mytimername = newTimer()
 
-Timer_t * newTimer() {
+Timer_t * newTimer(void) {
 	Timer_t newMasterTimerSet[timerSet.length + 1];
 	for (byte i = 0; i < newTimerSet.length; i++)
 		newTimerSet[i] = timerSet[i];
