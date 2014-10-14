@@ -3,7 +3,14 @@
 
 #include "api.h"
 
-//declare Timer_t struct here
+typedef struct Timer {
+	float seconds;
+	long miliseconds;
+	bool running;
+	long start;
+	long previousTime;// if the timer is stopped/started
+} Timer_t;
+
 Timer_t * newTimer();
 void startTimer(Timer_t timer);
 void stopTimer(Timer_t timer);

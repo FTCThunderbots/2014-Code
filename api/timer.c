@@ -4,7 +4,8 @@
 #include "timer.h"
 
 static long currentTime = 0;
-static Timer_t timerSet[0];
+static Timer_t masterTimerSet[0];
+static Timer_t *timerSet[0];
 
 typedef struct Timer {
 	float seconds;
@@ -15,10 +16,10 @@ typedef struct Timer {
 } Timer_t;
 
 //in user file:
-//Timer *mytimername = newTimer()
+//Timer **mytimername = newTimer()
 
 Timer_t * newTimer() {
-	Timer_t newTimerSet[timerSet.length + 1];
+	Timer_t newMasterTimerSet[timerSet.length + 1];
 	for (byte i = 0; i < newTimerSet.length; i++)
 		newTimerSet[i] = timerSet[i];
 	Timer_t newTimer;
