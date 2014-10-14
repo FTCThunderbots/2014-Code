@@ -8,7 +8,7 @@ static Timer_t masterTimerSet[0];
 static Timer_t *timerSet[0];
 
 //in user file:
-//Timer **mytimername = newTimer()
+//Timer **usetimername = newTimer()
 
 Timer_t * newTimer(void) {
 	Timer_t newMasterTimerSet[timerSet.length + 1];
