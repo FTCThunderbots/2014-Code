@@ -4,11 +4,26 @@
 #include "timer.h"
 
 static long currentTime = 0;
-static Timer_t masterTimerSet[0];
-static Timer_t *timerSet[0];
+static TimerLinkedList_t timerSet;
+timerSet.length = 0;
 
 //in user file:
-//Timer **usetimername = newTimer()
+//Timer *usetimername = newTimer()
+
+/*typedef struct TimerListNode {
+   TimerListNode_t *next;
+   
+   float seconds;
+	long miliseconds;
+	bool running;
+	long start;
+	long previousTime;
+} TimerListNode_t;
+
+typedef struct TimerLinkedList {
+   TimerListNode_t head;
+   byte length;
+} TimerLinkedList_t;*/
 
 Timer_t * newTimer(void) {
 	Timer_t newMasterTimerSet[timerSet.length + 1];
