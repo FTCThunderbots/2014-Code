@@ -16,12 +16,11 @@ typedef struct Timer {
 	long previousTime;
 } Timer_t;
 
-/*
+
 Timer_t **newTimer();
-void startTimer(Timer_t timer);
-void stopTimer(Timer_t timer);
-void clearTimer(Timer_t timer);
+void startTimer(Timer_t * pTimer);
+void stopTimer(Timer_t * pTimer);
+void clearTimer(Timer_t * pTimer);
 //task timing();
 
 float runtime();
-*/

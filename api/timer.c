@@ -34,20 +34,20 @@ Timer_t ** newTimer() {
 	return (timerSet + (timers-1));
 }
 
-void startTimer(Timer_t **timer) {
-	*timer->previousTime = (**timer).miliseconds;
-	*timer->running = true;
-	*timer->start = currentTime;
+void startTimer(Timer_t *pTimer) {
+	pTimer->previousTime = pTimer->miliseconds;
+	pTimer->running = true;
+	pTimer->start = currentTime;
 }
 
-void clearTimer(Timer_t **timer) {
-	(**timer).previousTime = 0;
-	(**timer).seconds = 0;
-	(**timer).miliseconds = 0;
+void clearTimer(Timer_t *pTimer) {
+	pTimer->previousTime = 0;
+	pTimer->seconds = 0;
+	pTimer->miliseconds = 0;
 }
 
-void stopTimer(Timer_t timer) {
-	timer.running = false;
+void stopTimer(Timer_t *pTimer) {
+	pTimer->running = false;
 }	
 
 //task timing() {
@@ -61,5 +61,5 @@ void stopTimer(Timer_t timer) {
 //}
 
 float runtime() {
-	return (float)currentTime / 1000;
+	return (float)(currentTime/1000);
 }	
