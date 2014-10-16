@@ -3,24 +3,24 @@
 
 #include "timer.h"
 
-typedef char byte;
-typedef int bool;
-#define true 1
-#define false 0
+//typedef char byte;
+//typedef int bool;
+//#define true 1
+//#define false 0
 
 static long currentTime = 0;
 static Timer_t timerSetM[0];
 static byte timers = 0;
-static Timer_t *timerSet = timerSetM;
+static Timer_t * timerSet = timerSetM;
 
 //in user file:
 //Timer_t **usetimername = newTimer();
 //startTimer(usertimername);
 
-Timer_t **newTimer() {
+Timer_t ** newTimer() {
 	Timer_t newMaster[timers + 1];
 	int i;
-	for (i = 0; i < timers+1; i++)
+	for (i = 0; i < timers-1; i++)
 		newMaster[i] = timerSetM[i];
 	Timer_t newTimer;
 	newTimer.seconds = 0; //          }
@@ -35,9 +35,9 @@ Timer_t **newTimer() {
 }
 
 void startTimer(Timer_t **timer) {
-	(**timer).previousTime = (**timer).miliseconds;
-	(**timer).running = true;
-	(**timer).start = currentTime;
+	*timer->previousTime = (**timer).miliseconds;
+	*timer->running = true;
+	*timer->start = currentTime;
 }
 
 void clearTimer(Timer_t **timer) {
