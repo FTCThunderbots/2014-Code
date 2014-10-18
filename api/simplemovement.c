@@ -19,6 +19,10 @@ void rotate(byte power) {
 	setMovement(0, 0, power);
 }
 
+void halt() {
+	setMovement(0,0,0);
+}
+
 void swingTurn(byte direction, byte power) {
 	// direction: 0 for left, 1 for right;
 	direction = direction == 0 ? -1 : 1;
@@ -28,9 +32,9 @@ void swingTurn(byte direction, byte power) {
 void moveDiagonal(byte vector, byte power) {
 	// vector is 0 to 3, with 0 being straight forward, and 3 being back/left
 	// use negative power to move in any of the other four directions
-	
+
 	//consider using pothagorean theorem to make sure overall speed is equal in all directions with a constant power
-	byte drive = 1; 
+	byte drive = 1;
 	byte strafe = 1;
 	if (power < 0)
 		strafe = -1;
@@ -40,6 +44,23 @@ void moveDiagonal(byte vector, byte power) {
 		drive = 0;
 	if (vector == 3)
 		drive = -1;
-		
+
 	setMovement(power * drive, power * strafe, 0);
+}
+
+int correctDegs(int degs) {
+	int ans = degs > 359 ? degs-360 : degs;
+	ans = degs < 0 ? degs + 360 : degs;
+	if (ans >= 0 && ans < 360)
+		return ans;
+	else
+		correctDegs(ans);
+}
+
+void rotateDeg(int degs, byte power){
+	//uses compass sensor
+	int startFacing = SensorValue[compass];
+	setMovement(0, 0, power);
+	while(SensorValue[compass] >= correctDegs(startFacing+degs)){}
+	halt();
 }

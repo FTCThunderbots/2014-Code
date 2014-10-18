@@ -20,7 +20,7 @@ void strafeIn(byte dist, byte power);
 void strafeCm(byte dist, byte power);
 
 void rotateTicks(byte ticks, byte power);
-void rotateDeg(byte degs, byte power);
+void rotateDeg(int degs, byte power);
 void rotateRad(byte rads, byte power);
 
 //Other ideas:
