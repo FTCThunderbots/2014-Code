@@ -15,6 +15,7 @@ int correctJoystick(int joystick) {
 		return 0; //completely disregard the input from the joystick
 	else
 		return joystick //leave the input unchanged
+}
 
 task main()
 {
@@ -24,6 +25,6 @@ task main()
 		 int wheelPower = correctJoystick(joystick.joy1_y1); // 	<-- New way
 		 wheelPower /= 1.28 //divide wheelPower by 1.28
 		 setWheelPower(wheelPower)
-		 wait1Msec(10);
+		 //wait1Msec(10);
 	}
 }
