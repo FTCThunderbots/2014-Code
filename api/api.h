@@ -10,6 +10,7 @@
 #include "settings.c"
 #include "simplemovement.c"
 #include "timer.c"
+#include "ruler.c"
 
 // and everyone's favorite...
 #include "JoystickDriver.c"
