@@ -5,7 +5,7 @@
 #pragma config(Motor,  mtr_S1_C2_1,			frontRight,				tmotorTetrix,	openLoop)
 #pragma config(Motor,	 mtr_S1_C2_2,			backRight,				tmotorTetrix,	openLoop)
 
-#include "JoystickDriver.c"
+#include "2014-Code/api/api.h"
 
 void setWheelPower(int cheeseburger){
 	motor[frontLeft] = cheeseburger;
