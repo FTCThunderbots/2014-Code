@@ -2,8 +2,9 @@ Team programming to-do list:
 
 Zach (Last updated 10/18):
 
---Test timing system
+--**IMPORTANT: TEST ALL API SYSTEMS ON OLD ROBOT**
 --Add ruler struct and task
---Add initialization function for robot (?)
 --Wheel diameter and tick counts in settings
---Test movement.scaleTo() with known good code
+--Write move/turn for distance functions
+--Write unit conversion functions
+--Fix array stuff in max funcions of math.c

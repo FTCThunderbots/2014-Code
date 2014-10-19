@@ -16,18 +16,20 @@ int absmax(int a, int b) {
 	return max(abs(a), abs(b));
 }
 
+// robotc cannot accept arrays as args: rewrite
 int max(int a[]) {
-	int max = a[0];
+	int cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = max(max, a[i]);
-	return max;
+		cummax = max(max, a[i]);
+	return cummax;
 }
 
+// robotc cannot accept arrays as args: rewrite
 int absmax(int a[]) {
-	int max = a[0];
+	int cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = absmax(max, a[i]);
-	return max;
+		cummax = absmax(max, a[i]);
+	return cummax;
 }
 
 byte max(byte a, byte b) {
@@ -38,18 +40,20 @@ byte absmax(int a, int b) {
 	return max(abs(a), abs(b));
 }
 
+// robotc cannot accept arrays as args: rewrite
 byte max(byte a[]) {
-	byte max = a[0];
+	byte cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = max(max, a[i]);
-	return max;
+		cummax = max(max, a[i]);
+	return cummax;
 }
 
+// robotc cannot accept arrays as args: rewrite
 byte absmax(byte a[]) {
-	byte max = a[0];
+	byte cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = absmax(max, a[i]);
-	return max;
+		cummax = absmax(max, a[i]);
+	return cummax;
 }
 
 float max(float a, float b) {
@@ -61,18 +65,20 @@ float absmax(float a, float b) {
 	return max(abs(a), abs(b));
 }
 
+// robotc cannot accept arrays as args: rewrite
 float max(float a[]) {
-	float max = a[0];
+	float cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = max(max, a[i]);
-	return max;
+		cummax = max(max, a[i]);
+	return cummax;
 }
 
+// robotc cannot accept arrays as args: rewrite
 float absmax(float a[]) {
-	float max = a[0];
+	float cummax = a[0];
 	for (int i = 1; i < a.length; i++)
-		max = absmax(max, a[i]);
-	return max;
+		cummax = absmax(max, a[i]);
+	return cummax;
 }
 
 // Integer-step functions
@@ -97,6 +103,7 @@ float step(float n) {
 }
 
 // will overload to int if need be
+// need to rewrite to use pointers instead of arrays
 static byte scaleTo(byte value, byte range[3], byte scale[3]) {
 	if (abs(value) < range[0])
 		return 0;

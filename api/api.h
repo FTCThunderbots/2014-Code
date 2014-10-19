@@ -27,3 +27,7 @@
 #include "JoystickDriver.c"
 
 #endif /* include guard */
+
+task main() {
+
+}
