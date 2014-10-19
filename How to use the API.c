@@ -1,13 +1,16 @@
 // API_Example.c
 // Example of how to use the api
 
-#define configfile "config.c"
+#define configfile "myconfigfile.c"
 #define timersused 0
 #define rulersused 0
 // All of these lines are optional
 
-#include "api.h"
+#include "api.c"
 // Must have this line in ALL programs
+
+initializeAPI();
+// Must have this line in the beginning of main task
 
 // You can now use all api methods in your program
 

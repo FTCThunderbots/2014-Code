@@ -2,7 +2,7 @@
 // Contains all setting and configuration constants for the robot
 // Different groups of settings should be separated by comments
 
-#include "api.h"
+#include "api.c"
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as an input

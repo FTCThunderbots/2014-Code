@@ -8,7 +8,7 @@
 #ifdef configfile
 #include configfile
 #else
-#include "config.c"
+#include "default config.c"
 #endif
 //if user has defined a custom config file, include it
 //else, include default config

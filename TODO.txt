@@ -8,3 +8,5 @@ Zach (Last updated 10/18):
 --Write move/turn for distance functions
 --Write unit conversion functions
 --Fix array stuff in max funcions of math.c
+--Change setMovement() to raw (0-100) and create a different one for joystick inputs
+--Add 2013 config to /config/

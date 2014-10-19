@@ -1,7 +1,7 @@
 // timer.h
 // Header file for timer.c
 
-#include "api.h"
+#include "api.c"
 
 /*
 typedef char byte;

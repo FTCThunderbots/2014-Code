@@ -1,7 +1,7 @@
 // math.h
 // Header file for math.c
 
-#include "api.h"
+#include "api.c"
 
 // Maximum value functions
 
