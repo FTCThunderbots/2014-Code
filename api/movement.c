@@ -50,12 +50,3 @@ void setMovement(byte forward, byte right, byte clockwise) {
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
 }
-
-static byte scaleTo(byte value, byte range[3], byte scale[3]) {
-	if (abs(value) < range[0])
-		return 0;
-	if (abs(value) > range[1])
-		return scale[1];
-	float posInR = (float)(value - range[0]) / (range[2]); //should be a percent
-	return (byte)scale[0] + (posInR * range[2]);
-}
