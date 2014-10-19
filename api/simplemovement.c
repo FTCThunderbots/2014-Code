@@ -3,7 +3,6 @@
 // All functions are wrappers of functions in movement
 
 #include "simplemovement.h"
-#include "api.h"
 
 //look in header for functions that need implementations
 
@@ -26,7 +25,7 @@ void halt() {
 void swingTurn(byte direction, byte power) {
 	// direction: 0 for left, 1 for right;
 	direction = direction == 0 ? -1 : 1;
-	setMovement(power, 0, direction * power)
+	setMovement(power, 0, direction * power);
 }
 
 void moveDiagonal(byte vector, byte power) {

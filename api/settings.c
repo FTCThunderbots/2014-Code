@@ -6,7 +6,7 @@
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as an input
-const int JOYSTICK_MAX_VALUE = 128; //should only be changed if a different joystick is used
+const int JOYSTICK_MAX_VALUE = 127; //should only be changed if a different joystick is used
 
 // Movement
 const byte DRIVE_MIN_POWER = 0; //power cannot be in the open interval (0, min)

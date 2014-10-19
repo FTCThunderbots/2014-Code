@@ -17,18 +17,18 @@ int absmax(int a, int b) {
 }
 
 // robotc cannot accept arrays as args: rewrite
-int max(int a[]) {
-	int cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = max(max, a[i]);
+int max(int *a, byte len) {
+	int cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = max(cummax, *(a+i));
 	return cummax;
 }
 
 // robotc cannot accept arrays as args: rewrite
-int absmax(int a[]) {
-	int cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = absmax(max, a[i]);
+int absmax(int *a, byte len) {
+	int cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = absmax(cummax, *(a+i));
 	return cummax;
 }
 
@@ -36,23 +36,23 @@ byte max(byte a, byte b) {
 	return a >= b ? a : b;
 }
 
-byte absmax(int a, int b) {
+byte absmax(byte a, byte b) {
 	return max(abs(a), abs(b));
 }
 
 // robotc cannot accept arrays as args: rewrite
-byte max(byte a[]) {
-	byte cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = max(max, a[i]);
+byte max(byte *a, byte len) {
+	byte cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = max(cummax, *(a+i));
 	return cummax;
 }
 
 // robotc cannot accept arrays as args: rewrite
-byte absmax(byte a[]) {
-	byte cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = absmax(max, a[i]);
+byte absmax(byte *a, byte len) {
+	byte cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = absmax(cummax, *(a+i));
 	return cummax;
 }
 
@@ -66,18 +66,18 @@ float absmax(float a, float b) {
 }
 
 // robotc cannot accept arrays as args: rewrite
-float max(float a[]) {
-	float cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = max(max, a[i]);
+float max(float *a, byte len) {
+	float cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = max(cummax, *(a+i));
 	return cummax;
 }
 
 // robotc cannot accept arrays as args: rewrite
-float absmax(float a[]) {
-	float cummax = a[0];
-	for (int i = 1; i < a.length; i++)
-		cummax = absmax(max, a[i]);
+float absmax(float *a, byte len) {
+	float cummax = *a;
+	for (int i = 1; i < len; i++)
+		cummax = absmax(cummax, *(a+i));
 	return cummax;
 }
 
@@ -104,11 +104,11 @@ float step(float n) {
 
 // will overload to int if need be
 // need to rewrite to use pointers instead of arrays
-static byte scaleTo(byte value, byte range[3], byte scale[3]) {
-	if (abs(value) < range[0])
+static byte scaleTo(byte value, byte *range, byte *scale) {
+	if (abs(value) < *range)
 		return 0;
-	if (abs(value) > range[1])
-		return scale[1];
-	float posInR = (float)(value - range[0]) / (range[2]); //should be a percent
-	return (byte)scale[0] + (posInR * range[2]);
+	if (abs(value) > *(range+1))
+		return *(scale+1);
+	float posInR = (float)(value - *range) / *(range+2); //should be a percent
+	return (byte)(*scale) + (posInR * *(range+2));
 }

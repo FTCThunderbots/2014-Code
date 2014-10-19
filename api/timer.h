@@ -3,20 +3,21 @@
 
 #include "api.h"
 
+/*
 typedef char byte;
 typedef int bool;
 #define true 1
-#define false 0
+#define false 0 */
 
 typedef struct Timer {
-   int seconds : 16;
-   int deciseconds : 16;
-   long centiseconds : 21;
-   long milliseconds : 21;
-   bool running : 1;
-   long start : 20;
-   long previousTime : 21;
-   bool initialized : 1;
+	int seconds;
+	int deciseconds;
+	long centiseconds;
+	long milliseconds;
+	bool running;
+	long start;
+	long previousTime;
+	bool initialized;
 } Timer_t;
 
 void startTimer(Timer_t *timer);

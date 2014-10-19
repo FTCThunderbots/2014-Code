@@ -29,5 +29,10 @@
 #endif /* include guard */
 
 task main() {
-
+	//may need to rephrase based on how wide the NXT screen is
+	nxtDisplayCenteredTextLine(2, "This is the API");
+	nxtDisplayCenteredTextLine(3, "There's no executable code here");
+	nxtDisplayCenteredTextLine(5, "Please see documentation");
+	nxtDisplayCenteredTextLine(6, "Or ask someone else");
+	wait1Msec(5000);
 }

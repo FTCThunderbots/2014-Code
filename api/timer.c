@@ -4,9 +4,9 @@
 #include "timer.h"
 
 #ifdef timersused
-static Timer_t * timerSet[timersused];
+static Timer_t *timerSet[timersused];
 #else
-static Timer_t * timerSet[0];
+static Timer_t *timerSet[0];
 #endif
 
 static long currentTime = 0;
@@ -21,7 +21,9 @@ int initTimer(Timer_t *timer) {
 	timer->running = false;
 	timer->start = 0;
 	timer->initialized = true;
-	timerSet[timers++] = timer;
+	timerSet[timers++] = *timer;
+	// The right side should not be dereferenced, but robotC complains otherwise
+	// timerSet is an array of pointers, not objects...?,
 	return 0;
 }
 
@@ -45,7 +47,7 @@ void clearTimer(Timer_t *timer) {
 
 void updateTimer(Timer_t *timer) {
 	if (timer->running) {
-		long milliseconds = timer->previoustime + (timeInMS() - timer->startTime);
+		long milliseconds = timer->previousTime + (timeInMS() - timer->start);
 		timer->milliseconds = milliseconds;
 		timer->seconds = (int)(milliseconds / 1000);
 		timer->deciseconds = (int)(milliseconds / 100);
@@ -55,7 +57,9 @@ void updateTimer(Timer_t *timer) {
 
 void updateAllTimers() {
 	for (int i = 0; i < timers; i++)
-		updateTimer(timerSet[i]);
+		updateTimer(&timerSet[i]);
+		// I don't think the address operator should be required here,
+		// but RobotC complains if it's absent
 }
 
 void monitorSysTimer() {
@@ -65,7 +69,7 @@ void monitorSysTimer() {
 		extraMS += time1[T1] - 30000; //should be zero or negligible, but it's here just in case
 		ClearTimer(T1);
 		currentTime = time1[T1];
-	}		
+	}
 }
 
 void timeInit() {
@@ -76,7 +80,7 @@ void timeInit() {
 long timeInMS() {
 	return extraMS + currentTime + (minutesPassed * 30000);
 }
-	
+
 //total centiseconds of runtime
 long timeInCS() {
 	return timeInMS() / 10;
@@ -95,4 +99,4 @@ int timeInS() {
 //seconds of runtime, but in a float
 float runtime() {
 	return (float) timeInMS() / 1000;
-}	
+}
