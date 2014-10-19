@@ -29,7 +29,8 @@
  /* HOW TO CREATE A TIMER OBJECT:
   * #define timersused 1
   * Timer_t foo;
-  * initTimer(foo);
-  * startTimer(foo);
+  * initTimer(&foo);
+  * startTimer(&foo);
   * // after this, the timer will be running
+  * // all functions should use the & operator
   * /

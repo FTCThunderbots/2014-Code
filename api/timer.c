@@ -12,41 +12,58 @@ static Timer_t * timerSet[0];
 static long currentTime = 0;
 static byte timers = 0;
 
-/* in user file:
- * Timer_t usertimername;
- * initTimer(usertimername);
- * ...
- * startTimer(usertimername);
- */
+/*
+typedef struct Timer {
+   float seconds;
+	long milliseconds;
+	bool running;
+	long start;
+	long previousTime;
+	bool initialized;
+} Timer_t;
+*/
 
-void initTimer(Timer_t *timer)
-
-void startTimer(Timer_t *pTimer) {
-	pTimer->previousTime = pTimer->miliseconds;
-	pTimer->running = true;
-	pTimer->start = currentTime;
+int initTimer(Timer_t *timer) {
+	if (timer->initialized)
+		return -1;
+	timer->seconds = 0;
+	timer->milliseconds = 0;
+	timer->running = false;
+	timer->start = 0;
+	timer->previousTime = 0;
+	timer->initialized = true;
+	timerSet[timers++] = timer;
+	return 0;
 }
 
-void clearTimer(Timer_t *pTimer) {
-	pTimer->previousTime = 0;
-	pTimer->seconds = 0;
-	pTimer->miliseconds = 0;
+void startTimer(Timer_t *timer) {
+	timer->previousTime = timer->milliseconds;
+	timer->running = true;
+	timer->start = currentTime;
 }
 
-void stopTimer(Timer_t *pTimer) {
-	pTimer->running = false;
-}	
+void stopTimer(Timer_t *timer) {
+	timer->running = false;
+}
 
-//task timing() {
-	//update timer stuff in here:
-	
-	/* General structure:
-	 * Keep one native RobotC timer running at all times, counting milliseconds
-	 * In each iteration, for all elements in timerSet[]:
-	 * 		If running, update seconds and miliseconds fields
-	 */
-//}
+void clearTimer(Timer_t *timer) {
+	timer->previousTime = 0;
+	timer->seconds = 0;
+	timer->milliseconds = 0;
+}
+
+void updateTimer(Timer_t *timer) {
+	if (timer->running) {
+		timer->milliseconds = timer->previoustime + (currentTime - timer->startTime);
+		timer->seconds = (float)timer->milliseconds / 1000;
+	}
+}
+
+void updateAllTimers() {
+	for (int i = 0; i < timers; i++)
+		updateTimer(timerSet[i]);
+}
 
 float runtime() {
-	return (float)(currentTime/1000);
+	return (float)currentTime/1000;
 }	

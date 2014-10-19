@@ -1,7 +1,7 @@
 // timer.h
 // Header file for timer.c
 
-//#include "api.h"
+#include "api.h"
 
 typedef char byte;
 typedef int bool;
@@ -10,17 +10,16 @@ typedef int bool;
 
 typedef struct Timer {
    float seconds;
-	long miliseconds;
+	long milliseconds;
 	bool running;
 	long start;
 	long previousTime;
+	bool initialized;
 } Timer_t;
 
-
-Timer_t **newTimer();
-void startTimer(Timer_t * pTimer);
-void stopTimer(Timer_t * pTimer);
-void clearTimer(Timer_t * pTimer);
-//task timing();
-
+void startTimer(Timer_t *timer);
+void stopTimer(Timer_t *timer);
+void clearTimer(Timer_t *timer);
+void updateTimer(Timer-t *timer);
+void updateAllTimers();
 float runtime();
