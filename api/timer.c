@@ -3,36 +3,23 @@
 
 #include "timer.h"
 
-//typedef char byte;
-//typedef int bool;
-//#define true 1
-//#define false 0
+#ifdef timersused
+static Timer_t * timerSet[timersused];
+#else
+static Timer_t * timerSet[0];
+#endif
 
 static long currentTime = 0;
-static Timer_t timerSetM[0];
 static byte timers = 0;
-static Timer_t * timerSet = timerSetM;
 
-//in user file:
-//Timer_t **usetimername = newTimer();
-//startTimer(usertimername);
+/* in user file:
+ * Timer_t usertimername;
+ * initTimer(usertimername);
+ * ...
+ * startTimer(usertimername);
+ */
 
-Timer_t ** newTimer() {
-	Timer_t newMaster[timers + 1];
-	int i;
-	for (i = 0; i < timers-1; i++)
-		newMaster[i] = timerSetM[i];
-	Timer_t newTimer;
-	newTimer.seconds = 0; //          }
-	newTimer.miliseconds = 0;//       } Code specific to timer type
-	newTimer.running = false;//       }
-	newTimer.previousTime = 0;//      }
-	newMaster[timers] = newTimer;
-	timers++;
-	timerSetM[timers] = newTimer;
-	timerSet = timerSetM;
-	return (timerSet + (timers-1));
-}
+void initTimer(Timer_t *timer)
 
 void startTimer(Timer_t *pTimer) {
 	pTimer->previousTime = pTimer->miliseconds;
