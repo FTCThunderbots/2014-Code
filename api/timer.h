@@ -10,11 +10,11 @@ typedef int bool;
 
 typedef struct Timer {
    float seconds;
-	long milliseconds;
-	bool running;
-	long start;
-	long previousTime;
-	bool initialized;
+   long milliseconds : 21;
+   bool running : 1;
+   long start : 20;
+   long previousTime : 21;
+   bool initialized : 1;
 } Timer_t;
 
 void startTimer(Timer_t *timer);
