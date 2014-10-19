@@ -2,7 +2,7 @@ Team programming to-do list:
 
 Zach:
 
---Add timer struct and task
+--Test timing system
 --Add ruler struct and task
 --Add initialization function for robot (?)
 --Wheel diameter and tick counts in settings
