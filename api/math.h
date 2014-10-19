@@ -20,6 +20,14 @@ float absmax(float a, float b);
 float max(float a[]);
 float absmax(float a[]);
 
+int step(int n, int multiple);
+byte step(byte n, byte multiple);
+float step(float n, float multiple);
+float step(float n);
+
+//maybe overload to int if need be
+static byte scaleTo(byte value, byte range[3], byte scale[3]);
+
 // Not yet implemented:
 int inchesToTicks(int inches);
 int inchesToTicks(float inches);

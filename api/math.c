@@ -74,3 +74,34 @@ float absmax(float a[]) {
 		max = absmax(max, a[i]);
 	return max;
 }
+
+// Integer-step functions
+
+int step(int n, int multiple) {
+	int factor = n / multiple;
+	return n - (factor * multiple);
+}
+
+byte step(byte n, byte multiple) {
+	byte factor = n / multiple;
+	return n - (factor * multiple);
+}
+
+float step(float n, float multiple) {
+	byte factor = n / multiple;
+	return n - (factor * multiple);
+}
+
+float step(float n) {
+	return step(n, 1);
+}
+
+// will overload to int if need be
+static byte scaleTo(byte value, byte range[3], byte scale[3]) {
+	if (abs(value) < range[0])
+		return 0;
+	if (abs(value) > range[1])
+		return scale[1];
+	float posInR = (float)(value - range[0]) / (range[2]); //should be a percent
+	return (byte)scale[0] + (posInR * range[2]);
+}
