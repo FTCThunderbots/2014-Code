@@ -9,10 +9,9 @@ typedef int bool;
 #define false 0
 
 typedef struct Timer {
-	//daniel please update the bits on these
-   int seconds;
-   int deciseconds;
-   long centiseconds;
+   int seconds : 16;
+   int deciseconds : 16;
+   long centiseconds : 21;
    long milliseconds : 21;
    bool running : 1;
    long start : 20;
