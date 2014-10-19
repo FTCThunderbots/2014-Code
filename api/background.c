@@ -3,6 +3,11 @@
 
 #include "api.h"
 
+void initializeAPI() {
+	timeInit();
+}
+
 task background() {
+	monitorSysTimer();
 	updateAllTimers();
 }

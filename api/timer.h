@@ -9,7 +9,10 @@ typedef int bool;
 #define false 0
 
 typedef struct Timer {
-   float seconds;
+	//daniel please update the bits on these
+   int seconds;
+   int deciseconds;
+   long centiseconds;
    long milliseconds : 21;
    bool running : 1;
    long start : 20;
@@ -20,6 +23,12 @@ typedef struct Timer {
 void startTimer(Timer_t *timer);
 void stopTimer(Timer_t *timer);
 void clearTimer(Timer_t *timer);
-void updateTimer(Timer-t *timer);
+void updateTimer(Timer_t *timer);
 void updateAllTimers();
+void monitorSysTimer();
+void timeInit();
+long timeInMS();
+long timeInCS();
+int timeInDS();
+int timeInS();
 float runtime();
