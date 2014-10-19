@@ -9,7 +9,6 @@
 #include configfile
 #else
 #include "config.c"
-#define configfile
 #endif
 //if user has defined a custom config file, include it
 //else, include default config
