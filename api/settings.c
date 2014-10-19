@@ -22,4 +22,3 @@ register const byte MOTOR_MIN_POWER = 0; //not yet implemented
 register const byte MOTOR_MAX_POWER = 100;
 
 //Todo: wheel diameter and tick counts
-//
