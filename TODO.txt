@@ -1,13 +1,9 @@
 Team programming to-do list:
 
-Zach:
+Zach (Last updated 10/18):
 
 --Test timing system
 --Add ruler struct and task
 --Add initialization function for robot (?)
 --Wheel diameter and tick counts in settings
 --Test movement.scaleTo() with known good code
---Add step function(s) to math.c and header
---Move scaleTo() to math.c
---remove correctdegs() from simplemovement
---Fix rotatedegs() in simplemovement
