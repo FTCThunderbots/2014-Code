@@ -20,6 +20,8 @@ typedef struct Timer {
 	bool initialized;
 } Timer_t;
 
+typedef struct Timer * timer_ptr;
+
 void startTimer(Timer_t *timer);
 void stopTimer(Timer_t *timer);
 void clearTimer(Timer_t *timer);
