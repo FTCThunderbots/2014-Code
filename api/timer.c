@@ -14,7 +14,7 @@ static byte minutesPassed = 0;
 static int extraMS = 0;
 static byte timers = 0;
 
-int initTimer(Timer_t *timer) {
+int initTimer(pTimer_t timer) {
 	if (timer->initialized)
 		return -1;
 	clearTimer(timer);
@@ -27,7 +27,7 @@ int initTimer(Timer_t *timer) {
 	return 0;
 }
 
-void startTimer(Timer_t *timer) {
+void startTimer(pTimer_t timer) {
 	timer->previousTime = timer->milliseconds;
 	timer->running = true;
 	timer->start = timeInMS();
@@ -37,7 +37,7 @@ void stopTimer(Timer_t *timer) {
 	timer->running = false;
 }
 
-void clearTimer(Timer_t *timer) {
+void clearTimer(pTimer_t timer) {
 	timer->previousTime = 0;
 	timer->seconds = 0;
 	timer->deciseconds = 0;
@@ -45,7 +45,7 @@ void clearTimer(Timer_t *timer) {
 	timer->milliseconds = 0;
 }
 
-void updateTimer(Timer_t *timer) {
+void updateTimer(pTimer_t timer) {
 	if (timer->running) {
 		long milliseconds = timer->previousTime + (timeInMS() - timer->start);
 		timer->milliseconds = milliseconds;
