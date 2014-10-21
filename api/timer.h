@@ -20,12 +20,12 @@ typedef struct Timer {
 	bool initialized;
 } Timer_t;
 
-typedef Timer_t * pTimer;
+typedef Timer_t * pTimer_t;
 
-void startTimer(Timer_t *timer);
-void stopTimer(Timer_t *timer);
-void clearTimer(Timer_t *timer);
-void updateTimer(Timer_t *timer);
+void startTimer(pTimer_t timer);
+void stopTimer(pTimer_t timer);
+void clearTimer(pTimer_t timer);
+void updateTimer(pTimer_t timer);
 void updateAllTimers();
 void monitorSysTimer();
 void timeInit();
