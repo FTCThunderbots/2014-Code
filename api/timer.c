@@ -3,8 +3,8 @@
 
 #include "timer.h"
 
-#ifdef timersused
-static Timer_t *(timerSet[timersused]);
+#ifdef TIMERS_USED
+static Timer_t *(timerSet[TIMERS_USED]);
 #else
 static Timer_t *(timerSet[0]);
 #endif
