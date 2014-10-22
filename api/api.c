@@ -5,10 +5,10 @@
 #define API_INCLUDEGUARD
 // files will only be included once, preventing infinite recursion
 
-#ifdef configfile
-#include configfile
+#ifdef CONFIGFILE
+#include CONFIGFILE
 #else
-#include "default config.c"
+#include "default_config.c"
 #endif
 //if user has defined a custom config file, include it
 //else, include default config
@@ -34,5 +34,5 @@ task main() {
 	nxtDisplayCenteredTextLine(3, "There's no executable code here");
 	nxtDisplayCenteredTextLine(5, "Please see documentation");
 	nxtDisplayCenteredTextLine(6, "Or ask someone else");
-	wait1Msec(5000);
+	wait1Msec(20000);
 }
