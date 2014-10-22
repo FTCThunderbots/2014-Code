@@ -4,9 +4,9 @@
 #include "timer.h"
 
 #ifdef timersused
-static Timer_t *timerSet[timersused];
+static Timer_t *(timerSet[timersused]);
 #else
-static Timer_t *timerSet[0];
+static Timer_t *(timerSet[0]);
 #endif
 
 static long currentTime = 0;
