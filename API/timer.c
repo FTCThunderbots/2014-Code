@@ -3,10 +3,10 @@
 
 #include "timer.h"
 
-#ifdef TIMERS_USED
-static Timer_t *(timerSet[TIMERS_USED]);
+#ifdef timersused
+static Timer_t *timerSet[timersused];
 #else
-static Timer_t *(timerSet[0]);
+static Timer_t *timerSet[0];
 #endif
 
 static long currentTime = 0;
