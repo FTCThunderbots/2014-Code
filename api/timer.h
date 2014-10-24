@@ -2,6 +2,7 @@
 // Header file for timer.c
 
 #include "api.c"
+#include "movement.c"
 
 /*
 typedef char byte;
