@@ -8,8 +8,7 @@
 #ifdef CONFIGFILE
 #include CONFIGFILE
 #else
-#include "../config/default_config.c"
-// I think this should be simply "default_config.c", but RobotC complains
+#include "default_config.c"
 #endif
 //if user has defined a custom config file, include it
 //else, include default config
