@@ -4,6 +4,10 @@
 //#ifndef API_INCLUDEGUARD
 //#define API_INCLUDEGUARD
 // files will only be included once, preventing infinite recursion
+#ifndef WHEEL_DIAMETER
+#warn "WHEEL_DIAMETER is not defined in CONFIGFILE"
+#warn "ALL PRECISE MOVEMENT FUNCTIONS WILL NOT WORK!!!!!"
+#endif
 
 #ifdef CONFIGFILE
 #include CONFIGFILE
@@ -303,6 +307,15 @@ void rotateDeg(int degs, byte power){
 	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
 	halt();
 }
+
+void rotateRad(int rads, byte power) {
+	rotateDeg(radiansToDegrees(rads), power);
+}
+
+void rotateTicks(long ticks, byte power) {
+#warn "rotateTicks is not implemented"
+}
+
 //----------------------------------------------------------------------------
 // timer.c
 // A custom timing system
