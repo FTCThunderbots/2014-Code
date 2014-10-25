@@ -105,7 +105,7 @@ float step(float n) {
 
 // will overload to int if need be
 // need to rewrite to use pointers instead of arrays
-static byte scaleTo(byte value, byte *range, byte *scale) {
+byte scaleTo(byte value, byte *range, byte *scale) {
 	if (abs(value) < *range)
 		return 0;
 	if (abs(value) > *(range+1))
