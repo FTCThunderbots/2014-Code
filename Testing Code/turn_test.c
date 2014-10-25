@@ -30,9 +30,9 @@ void initializeRobot(){
 	servo[bucket] = 102;
 }
 
-int correctDegs(int degs) {
-	int fullspins = degs/360;
-	return degs-(360*fullspins)
+int step(int n, int multiple) {
+	int factor = n / multiple;
+	return n - (factor * multiple);
 }
 
 void rotateDeg(int degs, byte power){
@@ -40,6 +40,6 @@ void rotateDeg(int degs, byte power){
 	//uses compass sensor
 	int startFacing = SensorValue[compass];
 	setMovement(0, 0, power);
-	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
+	while(SensorValue[compass] != step(startFacing+degs, 360)){}
 	halt();
 }
