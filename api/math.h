@@ -29,14 +29,14 @@ float step(float n);
 static byte scaleTo(byte value, byte *range, byte *scale);
 
 // Not yet implemented:
-long inchesToTicks(byte inches);
-long inchesToTicks(int inches);
-long inchesToTicks(float inches);
-long centimetersToTicks(byte centimeters);
-long centimetersToTicks(int centimeters);
-long centimetersToTicks(float centimeters);
+//long inchesToTicks(byte inches);
+//long inchesToTicks(int inches);
+//long inchesToTicks(float inches);
+//long centimetersToTicks(byte centimeters);
+//long centimetersToTicks(int centimeters);
+//long centimetersToTicks(float centimeters);
 // Tick conversions need to use data from settings.c
-int degreesToTurnTicks(int degrees);
-int degreesToSwingTicks(int degrees);
-int radiansToTurnTicks(int radians); //copy with float
-int radiansToSwingTicks(int radians); //copy with float
+//int degreesToTurnTicks(int degrees);
+//int degreesToSwingTicks(int degrees);
+//int radiansToTurnTicks(int radians); //copy with float
+//int radiansToSwingTicks(int radians); //copy with float
