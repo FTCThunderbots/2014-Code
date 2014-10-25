@@ -7,3 +7,6 @@
 
 void setMovement(byte forward, byte right, byte clockwise);
 void setMovement(byte forward, byte clockwise);
+
+void setMovementFromJoystick(byte forward, byte right, byte clockwise);
+void setMovementFromJoystick(byte forward, byte clockwise);
