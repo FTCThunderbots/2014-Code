@@ -5,6 +5,17 @@
 
 //macros
 #define CM_PER_IN 2.540000
+#define IN_PER_CM 1/CM_PER_IN
+#define IN_PER_FT 12
+#define FT_PER_IN 1/IN_PER_FT
+#define CM_PER_FT CM_PER_IN*IN_PER_FT
+#define FT_PER_CM 1/CM_PER_FT
+#define CM_PER_MT 100
+#define MT_PER_CM 1/CM_PER_MT
+#define IN_PER_MT IN_PER_CM*CM_PER_IN
+#define MT_PER_IN 1/IN_PER_MT
+
+
 // Maximum value functions
 
 int max(int a, int b);
