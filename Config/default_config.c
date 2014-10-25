@@ -8,3 +8,6 @@
 // AND SENSORS.
 
 // If you absolutely have to change a name, you **MUST** use an automatic refactoring tool
+
+// wheel diameter in inches:
+#define WHEEL_DIAMETER 4

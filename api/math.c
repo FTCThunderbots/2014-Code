@@ -6,6 +6,7 @@
 
 #include "math.h"
 
+#define CM_PER_IN 2.540000
 // Maximum of range functions
 
 int max(int a, int b) {
@@ -111,4 +112,41 @@ static byte scaleTo(byte value, byte *range, byte *scale) {
 		return *(scale+1);
 	float posInR = (float)(value - *range) / *(range+2); //should be a percent
 	return (byte)(*scale) + (posInR * *(range+2));
+}
+
+//WHEEL_DIAMETER is in inches and is defined in config.c
+long inchesToTicks(int inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+long inchesToTicks(float inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+long inchesToTicks(byte inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+byte centimetersToInches(byte centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+int centimetersToInches(int centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+float centimetersToInches(float centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+long centimetersToTicks(byte centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
+}
+
+long centimetersToTicks(int centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
+}
+
+long centimetersToTicks(float centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
 }
