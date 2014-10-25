@@ -15,7 +15,7 @@ static void UpdateCoords(float degrees, length_t CIRCUM_TYPE) {
 			you have used for circumference.
 			2. Convert the units to feet.
 		*/
-		byte ticks;
+		byte ticks = nMotorEncoder[;
 		float changeCoord = (ticks / 1440) * convertUnits(CIRCUM_TYPE, FEET, degrees);
 }
 
