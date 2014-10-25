@@ -58,8 +58,17 @@ int correctDegs(int degs) {
 void rotateDeg(int degs, byte power){
 	#warn "Compass sensor is used in rotateDeg"
 	//uses compass sensor
-	//int startFacing = SensorValue[compass];
+	int startFacing = SensorValue[compass];
 	setMovement(0, 0, power);
 	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
 	halt();
 }
+
+void rotateRad(int rads, byte power) {
+	rotateDeg(radiansToDegrees(rads), power);
+}
+
+void rotateTicks(long ticks, byte power) {
+#warn "rotateTicks is not implemented"
+}
+
