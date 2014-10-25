@@ -152,7 +152,7 @@ static byte scaleTo(byte value, byte *range, byte *scale) {
 	return (byte)(*scale) + (posInR * *(range+2));
 }
 //----------------------------------------------------------------------------
-// movement.h
+// movement.c
 // Contains all code related to the positional movement of the robot
 // Lifting code and other functional systems should be defined somewhere else
 // Wrappers such as drive, strafe, and rotate should be placed in simplemovement.c
