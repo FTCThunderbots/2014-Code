@@ -4,7 +4,7 @@
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
 #pragma config(Sensor, S4,     touch,          sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     Left,          tmotorTetrix, openLoop, reversed, encoder)
+#pragma config(Motor,  mtr_S1_C1_1,     Left,          tmotorTetrix, openLoop, encoder)
 #pragma config(Motor,  mtr_S1_C1_2,     Right,         tmotorTetrix, openLoop, encoder)
 #pragma config(Motor,  mtr_S1_C2_1,     Lift1,         tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_2,     Lift2,         tmotorTetrix, openLoop)
@@ -45,19 +45,31 @@ float max(float a, float b);
 float absmax(float *a, byte len);
 float absmax(float a, float b);
 
+void stopForASecond() {
+	setMovement(0,0);
+	wait1Msec(1000);
+}
+
 task main()
 {
 	setMovement(100,0);
 	wait1Msec(2000);
+	stopForASecond();
 	setMovement(-100, 0);
 	wait1Msec(2000);
+	stopForASecond();
 	setMovement(0, 100);
 	wait1Msec(2000);
+	stopForASecond();
 	setMovement(0,-100);
 	wait1Msec(2000);
+	stopForASecond();
 	setMovement(100,100);
 	wait1Msec(2000);
+	stopForASecond();
 	setMovement(-100,-100);
+	wait1Msec(2000);
+	stopForASecond();
 }
 
 void setMovement(byte forward, byte right, byte clockwise) {
@@ -74,10 +86,10 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	clockwise = scaleTo(clockwise, &JOYRANGE[0], &TRNRANGE[0]);
 
 	// Next, assign wheel powers using the mecanum algorithm
-	float frontLeft = (-forward - right - clockwise)/3;
-	float frontRight = (forward - right - clockwise)/3;
-	float backLeft = (-forward + right - clockwise)/3;
-	float backRight = (forward + right - clockwise)/3;
+	float frontLeft = (-forward - right - clockwise);
+	float frontRight = (forward - right - clockwise);
+	float backLeft = (-forward + right - clockwise);
+	float backRight = (forward + right - clockwise);
 	//add note about why/how this works in engineering notebook
 
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
