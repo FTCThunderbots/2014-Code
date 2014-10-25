@@ -3,6 +3,8 @@
 
 #include "api.c"
 
+//macros
+#define CM_PER_IN 2.540000
 // Maximum value functions
 
 int max(int a, int b);
