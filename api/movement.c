@@ -11,10 +11,23 @@ static const byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_
 static const byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 
 void setMovement(byte forward, byte right, byte clockwise) {
-	float frontLeft = (-forward - right - clockwise)/3;
-	float frontRight = (forward - right - clockwise)/3;
-	float backLeft = (-forward + right - clockwise)/3;
-	float backRight = (forward + right - clockwise)/3;
+   // In RobotC, make these arrays static/global and maybe const
+	byte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+	byte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+	byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+	byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+	// Array format: min, max, difference
+
+	// First, scale all vectors using values found in settings.c
+	forward = scaleTo(forward, &JOYRANGE[0], &DRVRANGE[0]);
+	right = scaleTo(right, &JOYRANGE[0], &STFRANGE[0]);
+	clockwise = scaleTo(clockwise, &JOYRANGE[0], &TRNRANGE[0]);
+
+	// Next, assign wheel powers using the mecanum algorithm
+	float frontLeft = (-forward - right - clockwise);
+	float frontRight = (forward - right - clockwise);
+	float backLeft = (-forward + right - clockwise);
+	float backRight = (forward + right - clockwise);
 	//add note about why/how this works in engineering notebook
 
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
@@ -32,10 +45,10 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-	motor[leftmotor_1] = frontLeft;
-	motor[rightmotor_1] = frontRight;
-	motor[leftmotor_2] = backLeft;
-	motor[rightmotor_2] = backRight;
+	motor[Left] = frontLeft;
+	motor[Right] = frontRight;
+	//motor[bl] = backLeft;
+	//motor[br] = backRight;
 }
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
