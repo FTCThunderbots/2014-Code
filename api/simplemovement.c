@@ -47,20 +47,12 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
-// should move to math.c
-// or even better...
-// TODO: create step function in math
-int correctDegs(int degs) {
-	int fullspins = degs/360;
-	return degs-(360*fullspins)
-}
-
 void rotateDeg(int degs, byte power){
 	#warn "Compass sensor is used in rotateDeg"
 	//uses compass sensor
 	int startFacing = SensorValue[compass];
 	setMovement(0, 0, power);
-	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
+	while(SensorValue[compass] != step(startFacing+degs, 360)){}
 	halt();
 }
 
