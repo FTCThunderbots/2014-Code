@@ -71,30 +71,6 @@ int absmax(int *a, byte len) {
 	return cummax;
 }
 
-byte max(byte a, byte b) {
-	return a >= b ? a : b;
-}
-
-byte absmax(byte a, byte b) {
-	return max(abs(a), abs(b));
-}
-
-// robotc cannot accept arrays as args: rewrite
-byte max(byte *a, byte len) {
-	byte cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = max(cummax, *(a+i));
-	return cummax;
-}
-
-// robotc cannot accept arrays as args: rewrite
-byte absmax(byte *a, byte len) {
-	byte cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = absmax(cummax, *(a+i));
-	return cummax;
-}
-
 float max(float a, float b) {
 	//CAUTION: may have minor imprecisions between two very close numbers
 	return a >= b ? a : b;
