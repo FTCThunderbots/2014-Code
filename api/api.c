@@ -40,7 +40,6 @@ task background() {
 
 #include "functions.h"
 //-------------------------------------------------------------------
-
 // math.c
 // Contains all math methods and unit conversions
 
@@ -59,7 +58,6 @@ int absmax(int a, int b) {
 	return max(abs(a), abs(b));
 }
 
-// robotc cannot accept arrays as args: rewrite
 int max(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -67,7 +65,6 @@ int max(int *a, byte len) {
 	return cummax;
 }
 
-// robotc cannot accept arrays as args: rewrite
 int absmax(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -83,7 +80,6 @@ byte absmax(byte a, byte b) {
 	return max(abs(a), abs(b));
 }
 
-// robotc cannot accept arrays as args: rewrite
 byte max(byte *a, byte len) {
 	byte cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -91,7 +87,6 @@ byte max(byte *a, byte len) {
 	return cummax;
 }
 
-// robotc cannot accept arrays as args: rewrite
 byte absmax(byte *a, byte len) {
 	byte cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -108,7 +103,6 @@ float absmax(float a, float b) {
 	return max(abs(a), abs(b));
 }
 
-// robotc cannot accept arrays as args: rewrite
 float max(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -116,7 +110,6 @@ float max(float *a, byte len) {
 	return cummax;
 }
 
-// robotc cannot accept arrays as args: rewrite
 float absmax(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -154,6 +147,43 @@ static byte scaleTo(byte value, byte *range, byte *scale) {
 		return *(scale+1);
 	float posInR = (float)(value - *range) / *(range+2); //should be a percent
 	return (byte)(*scale) + (posInR * *(range+2));
+}
+
+//WHEEL_DIAMETER is in inches and is defined in CONFIGFILE
+long inchesToTicks(int inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+long inchesToTicks(float inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+long inchesToTicks(byte inches) {
+	return PI*WHEEL_DIAMETER/1440*inches;
+}
+
+byte centimetersToInches(byte centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+int centimetersToInches(int centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+float centimetersToInches(float centimeters) {
+	return centimeters/CM_PER_IN;
+}
+
+long centimetersToTicks(byte centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
+}
+
+long centimetersToTicks(int centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
+}
+
+long centimetersToTicks(float centimeters) {
+	return inchesToTicks(centimetersToInches(centimeters));
 }
 //----------------------------------------------------------------------------
 // movement.c
@@ -291,20 +321,12 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
-// should move to math.c
-// or even better...
-// TODO: create step function in math
-int correctDegs(int degs) {
-	int fullspins = degs/360;
-	return degs-(360*fullspins)
-}
-
 void rotateDeg(int degs, byte power){
 	#warn "Compass sensor is used in rotateDeg"
 	//uses compass sensor
 	int startFacing = SensorValue[compass];
 	setMovement(0, 0, power);
-	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
+	while(SensorValue[compass] != step(startFacing+degs, 360)){}
 	halt();
 }
 
