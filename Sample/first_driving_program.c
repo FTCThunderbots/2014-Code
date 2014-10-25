@@ -14,15 +14,15 @@ float max(float *a, byte len);
 
 task main()
 {
-	motor[left] = 100;
 	while(true) {
 		getJoystickSettings(joystick);
 		setMovement(joystick.joy1_y1, joystick.joy1_x2);
 	}
 }
 
+//takes a value and two array pointers
 byte scaleTo(byte value, byte *range, byte *scale) {
-	if (abs(value) < *range)
+	if (abs(value) < *(range+0))
 		return 0;
 	if (abs(value) > *(range+1))
 		return *(scale+1);
@@ -34,11 +34,16 @@ byte max(byte a, byte b) {
 	return a >= b ? a : b;
 }
 
-float absmax(float *a, byte len) {
-	float cummax = *a;
+float absMax(float *a, byte len) {
+	float cumMax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = max(abs(cummax), abs(*(a+i)));
-	return cummax;
+		cumMax = max(abs(cumMax), abs(*(a+i)));
+	return cumMax;
+}
+
+//for tank drive
+void setMovement(byte forward, byte clockwise) {
+	setMovement(forward, 0, clockwise);
 }
 
 void setMovement(byte forward, byte right, byte clockwise) {
@@ -64,7 +69,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
 
 	// find max of all wheel powers
-	float max = absmax(&power[0], 4);
+	float max = absMax(&power[0], 4);
 
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
@@ -80,14 +85,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	motor[right] = (frontRight + backRight) / 2;
 }
 
-//for tank drive
-void setMovement(byte forward, byte clockwise) {
-	setMovement(forward, 0, clockwise);
-}
-
 float max(float *a, byte len) {
-	float cummax = *a;
+	float cumMax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = max(cummax, *(a+i));
-	return cummax;
+		cumMax = max(cumMax, *(a+i));
+	return cumMax;
 }
