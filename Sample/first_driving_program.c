@@ -1,5 +1,7 @@
 #pragma config(Motor,  mtr_S1_C1_1,     left,        tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     left,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_2,     right,        tmotorTetrix, openLoop)
+
+#include "JoystickDriver.c"
 
 static float MOVE_POWER_SCALE = 1;
 static byte MOTOR_MAX_POWER;
@@ -74,10 +76,8 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-	//motor[fl] = frontLeft;
-	//motor[fr] = frontRight;
-	//motor[bl] = backLeft;
-	//motor[br] = backRight;
+	motor[left] = (frontLeft + backLeft) / 2;
+	motor[right] = (frontRight + backRight) / 2;
 }
 
 //for tank drive
