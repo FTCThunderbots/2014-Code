@@ -13,10 +13,10 @@ static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_P
 
 void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global and maybe const
-	byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+	//byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+	//byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+	//byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+	//byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: min, max, difference
 
 	// First, scale all vectors using values found in settings.c
@@ -50,10 +50,12 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-	motor[Left] = frontLeft;
-	motor[Right] = frontRight;
-	//motor[bl] = backLeft;
-	//motor[br] = backRight;
+   // please leave the motor names how they are
+   // update other files to reflect these names
+	motor[leftmotor_1] = frontLeft;
+	motor[rightmotor_1] = frontRight;
+	motor[leftmotor_2] = backLeft;
+	motor[rightmotor_2] = backRight;
 }
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
@@ -64,7 +66,6 @@ void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
 	// byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: {min, max, difference}
    
-
 	// Scale all vectors using values found in settings.c
 	forward = scaleTo(forward, &joyRange[0], &motorRange[0]);
 	right = scaleTo(right, &joyRange[0], &motorRange[0]);
