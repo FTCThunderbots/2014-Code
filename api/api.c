@@ -19,7 +19,7 @@
 
 #include "timer.c"
 //#include "movement.c" //uncomment this line if it's giving compile errors for setMovement()
-
+//-------------------------------------------------------------------
 void initializeAPI() {
 	setMovement(0,0,0);
 	timeInit();
@@ -29,12 +29,13 @@ task background() {
 	monitorSysTimer();
 	updateAllTimers();
 }
-
+//-------------------------------------------------------------------
 // functions.c
 // Contains all functions pertaining to non-movement functions of the robot
 // Ex. Lifts, servos
 
 #include "functions.h"
+//-------------------------------------------------------------------
 
 // math.c
 // Contains all math methods and unit conversions
@@ -150,7 +151,7 @@ static byte scaleTo(byte value, byte *range, byte *scale) {
 	float posInR = (float)(value - *range) / *(range+2); //should be a percent
 	return (byte)(*scale) + (posInR * *(range+2));
 }
-
+//----------------------------------------------------------------------------
 // movement.h
 // Contains all code related to the positional movement of the robot
 // Lifting code and other functional systems should be defined somewhere else
@@ -203,16 +204,16 @@ void setMovement(byte forward, byte right, byte clockwise) {
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
 }
-
+//----------------------------------------------------------------
 // ruler.c
 // A custom encoder measurement system
 // Should be very useful
-
+//--------------------------------------------------------------------
 // sensors.c
 // Contains methods for getting the values of sensors on the robot
 
 #include "sensors.h"
-
+//----------------------------------------------------------------------------
 // settings.h
 // Contains all setting and configuration constants for the robot
 // Different groups of settings should be separated by comments
@@ -236,7 +237,7 @@ const byte MOTOR_MIN_POWER = 0; //not yet implemented
 const byte MOTOR_MAX_POWER = 100;
 
 //Todo: wheel diameter and tick counts
-
+//-------------------------------------------------------------------------------------
 // simplemovement.c
 // Contains very basic movement functions
 // All functions are wrappers of functions in movement
@@ -290,7 +291,7 @@ void moveDiagonal(byte vector, byte power) {
 // or even better...
 // TODO: create step function in math
 int correctDegs(int degs) {
-	int fullspins = deg/360;
+	int fullspins = degs/360;
 	return degs-(360*fullspins)
 }
 
@@ -302,7 +303,7 @@ void rotateDeg(int degs, byte power){
 	while(SensorValue[compass] != correctDegs(startFacing+degs)){}
 	halt();
 }
-
+//----------------------------------------------------------------------------
 // timer.c
 // A custom timing system
 
@@ -405,7 +406,7 @@ int timeInS() {
 float runtime() {
 	return (float) timeInMS() / 1000;
 }
-
+//---------------------------------------------------------------------------
 // and everyone's favorite...
 #include "JoystickDriver.c"
 
