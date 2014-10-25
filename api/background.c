@@ -8,6 +8,7 @@
 void initializeAPI() {
 	setMovement(0,0,0);
 	timeInit();
+	StartTask background();
 }
 
 task background() {
