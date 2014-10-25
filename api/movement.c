@@ -5,24 +5,24 @@
 
 #include "movement.h"
 
-static const byte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-static const byte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-static const byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-static const byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
-static const byte MTRRANGE[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
+static const byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+static const byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+static const byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+static const byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
 
 void setMovement(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global and maybe const
-	byte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	byte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+	byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+	byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+	byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+	byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: min, max, difference
 
 	// First, scale all vectors using values found in settings.c
-	forward = scaleTo(forward, &JOYRANGE[0], &DRVRANGE[0]);
-	right = scaleTo(right, &JOYRANGE[0], &STFRANGE[0]);
-	clockwise = scaleTo(clockwise, &JOYRANGE[0], &TRNRANGE[0]);
+	forward = scaleTo(forward, &joyRange[0], &driveRange[0]);
+	right = scaleTo(right, &joyRange[0], &strafeRange[0]);
+	clockwise = scaleTo(clockwise, &joyRange[0], &turnRange[0]);
 
 	// Next, assign wheel powers using the mecanum algorithm
 	float frontLeft = (-forward - right - clockwise);
@@ -31,9 +31,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	float backRight = (forward + right - clockwise);
 	//add note about why/how this works in engineering notebook
 
-	forward = scaleTo(forward, &MTRRANGE[0], &DRVRANGE[0]);
-	right = scaleTo(right, &MTRRANGE[0], &STFRANGE[0]);
-	clockwise = scaleTo(clockwise, &MTRRANGE[0], &TRNRANGE[0]);
+	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
+	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
+	clockwise = scaleTo(clockwise, &motorRange[0], &turnRange[0]);
 
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
 
@@ -58,17 +58,17 @@ void setMovement(byte forward, byte right, byte clockwise) {
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
    // In RobotC, make these arrays static/global and maybe const
-	// byte JOYRANGE[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	// byte DRVRANGE[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	// byte STFRANGE[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	// byte TRNRANGE[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
+	// byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
+	// byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+	// byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
+	// byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 	// Array format: {min, max, difference}
    
 
 	// Scale all vectors using values found in settings.c
-	forward = scaleTo(forward, &JOYRANGE[0], &MTRRANGE[0]);
-	right = scaleTo(right, &JOYRANGE[0], &MTRRANGE[0]);
-	clockwise = scaleTo(clockwise, &JOYRANGE[0], &MTRRANGE[0]);
+	forward = scaleTo(forward, &joyRange[0], &motorRange[0]);
+	right = scaleTo(right, &joyRange[0], &motorRange[0]);
+	clockwise = scaleTo(clockwise, &joyRange[0], &motorRange[0]);
 
    // the rest of the code is in setMovement()
    setMovement(forward, right, clockwise);
