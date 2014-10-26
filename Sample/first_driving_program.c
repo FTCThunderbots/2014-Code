@@ -14,10 +14,11 @@ float max(float *a, byte len);
 
 task main()
 {
-	do {
+	getJoystickSettings(joystick);
+	while(!joy1Btn(1)) {
 		getJoystickSettings(joystick);
 		setMovement(joystick.joy1_y1, joystick.joy1_x2);
-	} while(!joy1Btn(1));
+	}
 }
 
 //takes a value and two array pointers
