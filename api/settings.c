@@ -21,4 +21,7 @@ const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 const byte MOTOR_MIN_POWER = 0; //not yet implemented
 const byte MOTOR_MAX_POWER = 100;
 
-//Todo: wheel diameter and tick counts
+// Todo: wheel diameter and tick counts
+// THAT MEANS PUT IT HERE, NOT IN CONFIG
+const int WHEEL_DIAMETER = 0;
+#warn "Remove wheel diameter value and redo with ticks. Much more accurate, especially with mecanum."

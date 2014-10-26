@@ -33,7 +33,7 @@ void startTimer(pTimer_t timer) {
 	timer->start = timeInMS();
 }
 
-void stopTimer(Timer_t *timer) {
+void stopTimer(pTimer_t timer) {
 	timer->running = false;
 }
 

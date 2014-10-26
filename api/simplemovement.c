@@ -47,6 +47,8 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
+#warn "Rewrite rotateDeg() to use encoders instead. Delete or rename the current function."
+/*
 void rotateDeg(int degs, byte power){
 	#warn "Compass sensor is used in rotateDeg"
 	//uses compass sensor
@@ -55,12 +57,8 @@ void rotateDeg(int degs, byte power){
 	while(SensorValue[compass] != step(startFacing+degs, 360)){}
 	halt();
 }
+*/
 
-void rotateRad(int rads, byte power) {
-	rotateDeg(radiansToDegrees(rads), power);
+void rotateRad(float rads, byte power) {
+	//rotateDeg(radiansToDegrees(rads), power);
 }
-
-void rotateTicks(long ticks, byte power) {
-#warn "rotateTicks is not implemented"
-}
-

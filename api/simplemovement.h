@@ -19,9 +19,9 @@ void moveDiagonal(byte vector, byte power);
 //void strafeIn(byte dist, byte power);
 //void strafeCm(byte dist, byte power);
 
-void rotateTicks(long ticks, byte power);
-void rotateDeg(int degs, byte power);
-void rotateRad(int rads, byte power);
+//void rotateTicks(long ticks, byte power);
+//void rotateDeg(int degs, byte power); //uncomment when referenced function is fixed
+void rotateRad(float rads, byte power);
 
 //Other ideas:
 //void swingTurnTicks(byte ticks, byte direction, byte power);
