@@ -2,7 +2,7 @@
 // Contains all setting and configuration constants for the robot
 // Different groups of settings should be separated by comments
 
-#include "api.c"
+#define SETTINGS_INCLUDEGAURD
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as an input
@@ -24,4 +24,4 @@ const byte MOTOR_MAX_POWER = 100;
 // Todo: wheel diameter and tick counts
 // THAT MEANS PUT IT HERE, NOT IN CONFIG
 const int WHEEL_DIAMETER = 0;
-#warn "Remove wheel diameter value and redo with ticks. Much more accurate, especially with mecanum."
+#warn "(settings.c) Remove wheel diameter value and redo with ticks. Much more accurate, especially with mecanum."

@@ -1,8 +1,7 @@
 // timer.h
 // Header file for timer.c
 
-#include "api.c"
-#include "movement.c"
+#define TIMER_INCLUDEGAURD
 
 /*
 typedef char byte;

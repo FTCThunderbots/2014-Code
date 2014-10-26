@@ -1,7 +1,10 @@
 // math.h
 // Header file for math.c
 
-#include "api.c"
+#define MATH_INCLUDEGAURD
+
+#include "settings.c"
+#warn "(math.h) After wheel diameter is deprecated, remove the import to settings.c here"
 
 //macros
 #define CM_PER_IN 2.540000
@@ -14,7 +17,7 @@
 #define MT_PER_CM 1/CM_PER_MT
 #define IN_PER_MT IN_PER_CM*CM_PER_IN
 #define MT_PER_IN 1/IN_PER_MT
-
+#warn "(math.h ) I want to remove the macros here -Zach"
 
 // Maximum value functions
 

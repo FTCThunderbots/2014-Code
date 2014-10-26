@@ -14,26 +14,43 @@
 //else, include default config
 
 // Please keep this list alphabetized
+#ifndef BACKGROUND_INCLUDEGAURD
 #include "background.c"
+#endif
+
+#ifndef FUNCTIONS_INCLUDEGAURD
 #include "functions.c"
+#endif
+
+#ifndef MATH_INCLUDEGAURD
 #include "math.c"
+#endif
+
+#ifndef MOVEMENT_INCLUDEGAURD
 #include "movement.c"
+#endif
+
+#ifndef RULER_INCLUDEGAURD
 #include "ruler.c"
-#include "sensors.h"
+#endif
+
+#ifndef SENSORS_INCLUDEGAURD
+#include "sensors.c"
+#endif
+
+#ifndef SETTINGS_INCLUDEGAURD
 #include "settings.c"
+#endif
+
+#ifndef SIMPLEMOVEMENT_INCLUDEGAURD
 #include "simplemovement.c"
+#endif
+
+#ifndef TIMER_INCLUDEGAURD
 #include "timer.c"
+#endif
 
 #include "JoystickDriver.c"
-
-task main() {
-	//may need to rephrase based on how wide the NXT screen is
-	nxtDisplayCenteredTextLine(2, "This is the API");
-	nxtDisplayCenteredTextLine(3, "There's no executable code here");
-	nxtDisplayCenteredTextLine(5, "Please see documentation");
-	nxtDisplayCenteredTextLine(6, "Or ask someone else");
-	wait1Msec(20000);
-}
 
 #endif /* include guard */
 
@@ -41,7 +58,7 @@ task main() {
 // BUT WITH YOUR HELP, WE CAN SAVE IT
 // AKA please find a better file for this code
 
-#warn "This code needs a better home!"
+#warn "(api.c) This code needs a better home!"
 /* long inchesToTicks(int inches) {
 	return PI*WHEEL_DIAMETER/1440*inches;
 }

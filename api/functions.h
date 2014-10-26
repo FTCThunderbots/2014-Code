@@ -1,4 +1,4 @@
 // functions.h
 // Header file for functions.c
 
-#include "api.c"
+#define FUNCTIONS_INCLUDEGAURD

@@ -93,11 +93,10 @@ float step(float n, float multiple) {
 }
 
 float step(float n) {
-	return step(n, 1);
+	return step(n, 1.0);
 }
 
 // will overload to int if need be
-// need to rewrite to use pointers instead of arrays
 byte scaleTo(byte value, byte *range, byte *scale) {
 	if (abs(value) < *range)
 		return 0;
@@ -108,6 +107,7 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 }
 
 //WHEEL_DIAMETER is in inches and is defined in CONFIGFILE
+#warn "(math.c) Should redo these methods"
 long inchesToTicks(int inches) {
 	return PI*WHEEL_DIAMETER/1440*inches;
 }

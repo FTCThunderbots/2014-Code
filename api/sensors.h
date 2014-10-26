@@ -1,4 +1,4 @@
 // sensors.h
 // Header file for sensors.c
 
-#include "api.c"
+#define SENSORS_INCLUDEGAURD

@@ -1,7 +1,16 @@
 // simplemovement.h
 // Header file for simplemovement.c
 
-#include "api.c"
+#define SIMPLEMOVEMENT_INCLUDEGAURD
+
+#ifndef MOVEMENT_INCLUDEGAURD
+#include "movement.c"
+#endif
+
+#ifndef SETTINGS_INCLUDEGAURD
+#include "settings.c"
+#endif
+#warn "(simplemovement.h) After wheel diameter is deprecated, remove the import to settings.c here"
 
 void drive(byte power);
 void strafe(byte power);

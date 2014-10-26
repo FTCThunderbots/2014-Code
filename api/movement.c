@@ -10,19 +10,13 @@ static const byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_P
 static const byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
 static const byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
 static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
+// Array format: min, max, difference
 
 void setMovement(byte forward, byte right, byte clockwise) {
-   // In RobotC, make these arrays static/global and maybe const
-	//byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	//byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	//byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	//byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
-	// Array format: min, max, difference
-
-	// First, scale all vectors using values found in settings.c
-	forward = scaleTo(forward, &joyRange[0], &driveRange[0]);
-	right = scaleTo(right, &joyRange[0], &strafeRange[0]);
-	clockwise = scaleTo(clockwise, &joyRange[0], &turnRange[0]);
+	// Scale from the range of the motors to the range of the specific movement
+	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
+	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
+	clockwise = scaleTo(clockwise, &motorRange[0], &turnRange[0]);
 
 	// Next, assign wheel powers using the mecanum algorithm
 	float frontLeft = (-forward - right - clockwise);
@@ -59,14 +53,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 }
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
-   // In RobotC, make these arrays static/global and maybe const
-	// byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
-	// byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-	// byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
-	// byte turnRange[3] = {TURN_MIN_POWER, TURN_MIN_POWER, TURN_MAX_POWER - TURN_MIN_POWER};
-	// Array format: {min, max, difference}
-   
-	// Scale all vectors using values found in settings.c
+	// Scale from the range of the joystick to the range of the motors
 	forward = scaleTo(forward, &joyRange[0], &motorRange[0]);
 	right = scaleTo(right, &joyRange[0], &motorRange[0]);
 	clockwise = scaleTo(clockwise, &joyRange[0], &motorRange[0]);

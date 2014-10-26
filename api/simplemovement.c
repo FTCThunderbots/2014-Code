@@ -47,7 +47,7 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
-#warn "Rewrite rotateDeg() to use encoders instead. Delete or rename the current function."
+#warn "(simplemovement.c) Rewrite rotateDeg() to use encoders instead. Delete or rename the current function."
 /*
 void rotateDeg(int degs, byte power){
 	#warn "Compass sensor is used in rotateDeg"
