@@ -3,22 +3,6 @@
 
 #define MATH_INCLUDEGAURD
 
-#include "settings.c"
-#warn "(math.h) After wheel diameter is deprecated, remove the import to settings.c here"
-
-//macros
-#define CM_PER_IN 2.540000
-#define IN_PER_CM 1/CM_PER_IN
-#define IN_PER_FT 12
-#define FT_PER_IN 1/IN_PER_FT
-#define CM_PER_FT CM_PER_IN*IN_PER_FT
-#define FT_PER_CM 1/CM_PER_FT
-#define CM_PER_MT 100
-#define MT_PER_CM 1/CM_PER_MT
-#define IN_PER_MT IN_PER_CM*CM_PER_IN
-#define MT_PER_IN 1/IN_PER_MT
-#warn "(math.h ) I want to remove the macros here -Zach"
-
 // Maximum value functions
 
 int max(int a, int b);
@@ -44,18 +28,8 @@ float step(float n);
 //maybe overload to int if need be
 static byte scaleTo(byte value, byte *range, byte *scale);
 
-// Not yet implemented:
-long inchesToTicks(byte inches);
-long inchesToTicks(int inches);
-long inchesToTicks(float inches);
-long centimetersToTicks(byte centimeters);
-long centimetersToTicks(int centimeters);
-long centimetersToTicks(float centimeters);
-byte centimetersToInches(byte centimeters);
-int centimetersToInches(int centimeters);
-float centimetersToInches(float centimeters);
-// Tick conversions need to use data from settings.c
-//int degreesToTurnTicks(int degrees);
-//int degreesToSwingTicks(int degrees);
-//int radiansToTurnTicks(int radians); //copy with float
-//int radiansToSwingTicks(int radians); //copy with float
+// Unit conversion functions
+float inToCm(float in);
+float cmToIn(float cm);
+float degsToRads(float degs);
+float radsToDegs(float rads);

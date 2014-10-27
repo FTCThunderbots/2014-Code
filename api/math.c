@@ -106,40 +106,20 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 	return (byte)(*scale) + (posInR * *(range+2));
 }
 
-//WHEEL_DIAMETER is in inches and is defined in CONFIGFILE
-#warn "(math.c) Should redo these methods"
-long inchesToTicks(int inches) {
-	return PI*WHEEL_DIAMETER/1440*inches;
+// Unit conversion functions
+
+float cmToIn(float cm) {
+	return cm / 2.54;
 }
 
-long inchesToTicks(float inches) {
-	return PI*WHEEL_DIAMETER/1440*inches;
+float inToCm(float in) {
+	return in * 2.54;
 }
 
-long inchesToTicks(byte inches) {
-	return PI*WHEEL_DIAMETER/1440*inches;
+float degsToRads(float degs) {
+	return degs / 57.2957795;
 }
 
-byte centimetersToInches(byte centimeters) {
-	return centimeters/CM_PER_IN;
-}
-
-int centimetersToInches(int centimeters) {
-	return centimeters/CM_PER_IN;
-}
-
-float centimetersToInches(float centimeters) {
-	return centimeters/CM_PER_IN;
-}
-
-long centimetersToTicks(byte centimeters) {
-	return inchesToTicks(centimetersToInches(centimeters));
-}
-
-long centimetersToTicks(int centimeters) {
-	return inchesToTicks(centimetersToInches(centimeters));
-}
-
-long centimetersToTicks(float centimeters) {
-	return inchesToTicks(centimetersToInches(centimeters));
+float radsToDegs(float rads) {
+	return rads * 57.2957795;
 }

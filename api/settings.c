@@ -21,7 +21,16 @@ const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 const byte MOTOR_MIN_POWER = 0; //not yet implemented
 const byte MOTOR_MAX_POWER = 100;
 
-// Todo: wheel diameter and tick counts
-// THAT MEANS PUT IT HERE, NOT IN CONFIG
-const int WHEEL_DIAMETER = 0;
-#warn "(settings.c) Remove wheel diameter value and redo with ticks. Much more accurate, especially with mecanum."
+// Encoder Settings
+const int ENCODER_TICKS_PER_ROTATION = 1440; // May not be correct, requires testing.
+const int ENCODER_TICKS_PER_DRIVE_INCH = 0; // here we might be able to do some math, but will still require precise calibration
+const int ENCODER_TICKS_PER_STRAFE_INCH = 0; // guess and check
+const int ENCODER_TICKS_PER_TURN_DEGREE = 0; // for rotating in place. just guess and check
+const int ENCODER_TICKS_PER_SWING_DEGREE = 0; // should be about double the turn degrees, but guess and check.
+#warn "(settings.c) Encoder values still need to be set! Encoder functions will not work."
+
+int delete_this_function_when_encoder_values_are_referenced_somewhere_else() {
+	// this_is_just_so_it_doesnt_throw_unrefrenced_warnings
+	return ENCODER_TICKS_PER_ROTATION + ENCODER_TICKS_PER_DRIVE_INCH
+		+ ENCODER_TICKS_PER_STRAFE_INCH + ENCODER_TICKS_PER_TURN_DEGREE + ENCODER_TICKS_PER_SWING_DEGREE;
+}
