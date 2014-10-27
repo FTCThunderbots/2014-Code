@@ -55,7 +55,7 @@ void moveDiagonal(byte vector, byte power) {
 void rotateDegWithCompass(int degs, byte power) {
 	int startFacing = getCompassValue();
 	setMovement(0, 0, power);
-	while(getCompassValue != (startFacing + degs) % 360) {}
+	while(getCompassValue() != (startFacing + degs) % 360) {}
 	// this probably will not work; ask Zach O. for more details.
 	stop();
 }

@@ -45,4 +45,4 @@ void moveDiagonal(byte vector, byte power);
 
 // Deprecated and should probs remove:
 void rotateDegWithCompass(int degs, byte power);
-void rotateRadWithCompass(float rads, byte power)
+void rotateRadWithCompass(float rads, byte power);
