@@ -4,8 +4,4 @@ Zach (Last updated 10/18):
 
 --**IMPORTANT: TEST ALL API SYSTEMS ON OLD ROBOT**
 --Add ruler struct and task
---Wheel diameter and tick counts in settings
 --Write move/turn for distance functions
---Write unit conversion functions
---Fix array stuff in max funcions of math.c
---Add 2013 config to /config/
