@@ -9,13 +9,16 @@ const int JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as 
 const int JOYSTICK_MAX_VALUE = 127; //should only be changed if a different joystick is used
 
 // Movement
-const byte DRIVE_MIN_POWER = 0; //power cannot be in the open interval (0, min)
-const byte DRIVE_MAX_POWER = 100; //power cannot exceed max
+const byte DRIVE_MIN_POWER = 0; //abs(power) cannot be in the open interval (0, min)
+const byte DRIVE_MAX_POWER = 100; //abs(power) cannot exceed max
 const byte STRAFE_MIN_POWER = 0;
 const byte STRAFE_MAX_POWER = 100;
 const byte TURN_MIN_POWER = 0;
 const byte TURN_MAX_POWER = 100;
 const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
+const float DRIVE_POWER_WEIGHT = 1.0; //weights are used for changing responsiveness of different movements
+const float STRAFE_POWER_WEIGHT = 1.0;
+const float TURN_POWER_WEIGHT = 1.0;
 
 // Motor Constants
 const byte MOTOR_MIN_POWER = 0; //not yet implemented

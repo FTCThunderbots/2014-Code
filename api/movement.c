@@ -17,7 +17,11 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &turnRange[0]);
-
+	
+	forward *= DRIVE_POWER_WEIGHT;
+	right *= STRAFE_POWER_WEIGHT;
+	clockwise *= TURN_POWER_WEIGHT;
+	
 	// Next, assign wheel powers using the mecanum algorithm
 	float frontLeft = (-forward - right - clockwise);
 	float frontRight = (forward - right - clockwise);
@@ -25,9 +29,6 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	float backRight = (forward + right - clockwise);
 	//add note about why/how this works in engineering notebook
 
-	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
-	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
-	clockwise = scaleTo(clockwise, &motorRange[0], &turnRange[0]);
 
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
 
