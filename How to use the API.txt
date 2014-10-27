@@ -1,12 +1,16 @@
 How to use the API:
 
-The following three lines can be defined in any program. Only the last of the three lines is required. Put these at the top of the program, directly below the configurations.
+The following lines can be defined in any program. All of these lines are optional to make the program compile, but necessary if you want to use certain features of the API. Put these at the top of the program, directly below the configurations.
 
 #define timersused 0
-#define rulersused 0
-#include "api.c"
+#define timersused 0
+#define compass_name compass
 
-If the first two lines are left out, they will default to zero. If your program uses a variable amount of timers, set the amount used to a high estimate, because very little extra memory is consumed before the timer or ruler is defined.
+If the first two lines are left out, they will default to zero. If your program uses a variable amount of timers, set the amount used to a high estimate, because very little extra memory is consumed before the timer or ruler is defined. The compass_name feild should be defined to the name of the compass sensor exactly as it appears in the configurations. Use similar settings for other sensor types.
+
+This line is requried in all programs that use the API. Place it below your configuratinos, and below any optional settings that you've defined, but in front of any other part of your program.
+
+#include "api.c"
 
 The following line should be the very first line of your main task.
 

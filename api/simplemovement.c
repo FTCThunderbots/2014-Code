@@ -18,21 +18,25 @@ void rotate(byte power) {
 	setMovement(0, 0, power);
 }
 
-void halt() {
-	setMovement(0,0,0);
-}
-
-void swingTurn(byte direction, byte power) {
+void swing(byte direction, byte power) {
 	// direction: 0 for left, 1 for right;
 	direction = direction == 0 ? -1 : 1;
 	setMovement(power, 0, direction * power);
 }
 
+void stop() {
+	setMovement(0,0,0);
+}
+
 void moveDiagonal(byte vector, byte power) {
 	// vector is 0 to 3, with 0 being straight forward, and 3 being back/left
 	// use negative power to move in any of the other four directions
+	
+	if (vector % 8 > 3)
+		power = -power;
+	vector = vector % 4;
 
-	//consider using pothagorean theorem to make sure overall speed is equal in all directions with a constant power
+	//consider using pythagorean theorem to make sure overall speed is equal in all directions with a constant power
 	byte drive = 1;
 	byte strafe = 1;
 	if (power < 0)
@@ -47,18 +51,16 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
-#warn "(simplemovement.c) Rewrite rotateDeg() to use encoders instead. Delete or rename the current function."
-/*
-void rotateDeg(int degs, byte power){
-	#warn "Compass sensor is used in rotateDeg"
-	//uses compass sensor
-	int startFacing = SensorValue[compass];
+// deprecated: not at all accurate
+void rotateDegWithCompass(int degs, byte power) {
+	int startFacing = getCompassValue();
 	setMovement(0, 0, power);
-	while(SensorValue[compass] != step(startFacing+degs, 360)){}
-	halt();
+	while(getCompassValue != (startFacing + degs) % 360) {}
+	// this probably will not work; ask Zach O. for more details.
+	stop();
 }
-*/
 
-void rotateRad(float rads, byte power) {
-	//rotateDeg(radiansToDegrees(rads), power);
+// deprecated: not at all accurate
+void rotateRadWithCompass(float rads, byte power) {
+	rotateDegWithCompass(radsToDegs(rads), power);
 }
