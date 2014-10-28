@@ -149,6 +149,29 @@ float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
 
+long inToTicks(int inches) {
+	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
+}
+
+long inToTicks(float inches) {
+	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
+}
+
+long inToTicks(byte inches) {
+	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
+}
+
+long cmToTicks(byte centimeters) {
+	return inchesToTicks(cmToIn((float)centimeters));
+}
+
+long cmToTicks(int centimeters) {
+	return inchesToTicks(cmToIn((float)centimeters));
+}
+
+long cmToTicks(float centimeters) {
+	return inchesToTicks(cmToIn((float)centimeters));
+}
 /* float degreesToRadians(const float fDegrees); and 
  * short radiansToDegrees(const float fRadians);
  * are predefined by the ROBOTC mathe library,
