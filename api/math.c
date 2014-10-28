@@ -6,6 +6,15 @@
 
 #include "math.h"
 
+//Macros
+#define IN_PER_FT 12
+#define FT_PER_IN 1/IN_PER_FT
+#define CM_PER_IN 2.54
+#define IN_PER_CM 1/CM_PER_IN
+#define CM_PER_M 100
+#define M_PER_CM 1/CM_PER_M
+#define IN_PER_M IN_PER_CM*CM_PER_M
+#define M_PER_IN 1/IN_PER_M
 // Maximum of range functions
 
 int max(int a, int b) {
@@ -109,17 +118,39 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 // Unit conversion functions
 
 float cmToIn(float cm) {
-	return cm / 2.54;
+	return cm * IN_PER_CM;
 }
 
 float inToCm(float in) {
-	return in * 2.54;
+	return in * CM_PER_IN;
 }
 
-float degsToRads(float degs) {
-	return degs / 57.2957795;
+float mToIn(float m) {
+	return cmToIn(CM_PER_M*m);
 }
 
-float radsToDegs(float rads) {
-	return rads * 57.2957795;
+float inToM(float in) {
+	return in * M_PER_IN;
 }
+
+float cmToFt(float cm) {
+	return FT_PER_IN*cmToIn(cm);
+}
+
+float mToFt(float m) {
+	return FT_PER_IN*mToIn(m);
+}
+
+float ftToCm(float ft) {
+	return inToCm(IN_PER_FT*ft);
+}
+
+float ftToM(float ft) {
+	return inToM(IN_PER_FT*ft);
+}
+
+/* float degreesToRadians(const float fDegrees); and 
+ * short radiansToDegrees(const float fRadians);
+ * are predefined by the ROBOTC mathe library,
+ * which is included by default.
+ */
