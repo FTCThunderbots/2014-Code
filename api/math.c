@@ -170,7 +170,31 @@ long cmToTicks(int centimeters) {
 }
 
 long cmToTicks(float centimeters) {
-	return inchesToTicks(cmToIn((float)centimeters));
+	return inchesToTicks(cmToIn(centimeters));
+}
+
+long mToTicks(float meters) {
+	return inchesToTicks(mToIn(meters));
+}
+
+long mToTicks(byte meters) {
+	return inchesToTicks(mToIn((float)meters));
+}
+
+long mToTicks(int meters) {
+	return inchesToTicks(mToIn((float)meters));
+}
+
+long ftToTicks(int feet) {
+	return inchesToTicks(ftToIn((float)feet));
+}
+
+long ftToTicks(byte feet) {
+	return inchesToTicks(ftToIn((float)feet));
+}
+
+long ftToTicks(float feet) {
+	return inchesToTicks(ftToIn(feet));
 }
 /* float degreesToRadians(const float fDegrees); and 
  * short radiansToDegrees(const float fRadians);
