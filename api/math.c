@@ -109,7 +109,7 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 // Unit conversion functions
 
 float cmToIn(float cm) {
-	return cm * IN_PER_CM;
+	return cm * (1/CM_PER_IN);
 }
 
 float inToCm(float in) {
@@ -117,7 +117,7 @@ float inToCm(float in) {
 }
 
 float mToIn(float m) {
-	return cmToIn(CM_PER_M*m);
+	return cmToIn((1/(IN_PER_CM*CM_PER_M))*m);
 }
 
 float inToM(float in) {
