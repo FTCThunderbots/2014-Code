@@ -4,13 +4,8 @@
 //macros
 #define MATH_INCLUDEGAURD
 #define IN_PER_FT 12
-#define FT_PER_IN 1/IN_PER_FT
 #define CM_PER_IN 2.54
-#define IN_PER_CM 1/CM_PER_IN
 #define CM_PER_M 100
-#define M_PER_CM 1/CM_PER_M
-#define IN_PER_M IN_PER_CM*CM_PER_M
-#define M_PER_IN 1/IN_PER_M
 
 // Maximum value functions
 
