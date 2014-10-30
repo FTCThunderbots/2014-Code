@@ -117,19 +117,19 @@ float inToCm(float in) {
 }
 
 float mToIn(float m) {
-	return cmToIn((1/(IN_PER_CM*CM_PER_M))*m);
+	return cmToIn((1/((1/CM_PER_IN)*CM_PER_M))*m);
 }
 
 float inToM(float in) {
-	return in * M_PER_IN;
+	return in * (1/((1/CM_PER_IN)*CM_PER_M));
 }
 
 float cmToFt(float cm) {
-	return FT_PER_IN*cmToIn(cm);
+	return (1/IN_PER_FT)*cmToIn(cm);
 }
 
 float mToFt(float m) {
-	return FT_PER_IN*mToIn(m);
+	return (1/IN_PER_FT)*mToIn(m);
 }
 
 float ftToCm(float ft) {
