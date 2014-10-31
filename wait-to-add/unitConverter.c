@@ -115,6 +115,7 @@ float convertUnits(length UNIT, length PARAM, float input)
 	/*
 		If unit == INCH (1) then call inchesConvert
 	*/
+	float output;
 	if (UNIT == 0) {
 		output = inchesConvert(PARAM, input);
 	}	else if (UNIT == 1) {
