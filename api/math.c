@@ -8,70 +8,47 @@
 
 // Maximum of range functions
 
-int max(int a, int b) {
-	return a >= b ? a : b;
-}
 
-int absmax(int a, int b) {
-	return max(abs(a), abs(b));
-}
 
 int max(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = max(cummax, *(a+i));
+		cummax = MAX(cummax, *(a+i));
 	return cummax;
 }
 
 int absmax(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = absmax(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
-}
-
-byte max(byte a, byte b) {
-	return a >= b ? a : b;
-}
-
-byte absmax(byte a, byte b) {
-	return max(abs(a), abs(b));
 }
 
 byte max(byte *a, byte len) {
 	byte cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = max(cummax, *(a+i));
+		cummax = MAX(cummax, *(a+i));
 	return cummax;
 }
 
 byte absmax(byte *a, byte len) {
 	byte cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = absmax(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
-}
-
-float max(float a, float b) {
-	//CAUTION: may have minor imprecisions between two very close numbers
-	return a >= b ? a : b;
-}
-
-float absmax(float a, float b) {
-	return max(abs(a), abs(b));
 }
 
 float max(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = max(cummax, *(a+i));
+		cummax = MAX(cummax, *(a+i));
 	return cummax;
 }
 
 float absmax(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = absmax(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
 }
 

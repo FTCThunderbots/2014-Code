@@ -31,7 +31,7 @@ void stop() {
 void moveDiagonal(byte vector, byte power) {
 	// vector is 0 to 3, with 0 being straight forward, and 3 being back/left
 	// use negative power to move in any of the other four directions
-	
+
 	if (vector % 8 > 3)
 		power = -power;
 	vector = vector % 4;
@@ -51,16 +51,10 @@ void moveDiagonal(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
-// deprecated: not at all accurate
 void rotateDegWithCompass(int degs, byte power) {
 	int startFacing = getCompassValue();
 	setMovement(0, 0, power);
 	while(getCompassValue() != (startFacing + degs) % 360) {}
 	// this probably will not work; ask Zach O. for more details.
 	stop();
-}
-
-// deprecated: not at all accurate
-void rotateRadWithCompass(float rads, byte power) {
-	rotateDegWithCompass(radsToDegs(rads), power);
 }
