@@ -1,0 +1,7 @@
+Team programming to-do list:
+
+Zach (Last updated 10/18):
+
+--**IMPORTANT: TEST ALL API SYSTEMS ON OLD ROBOT**
+--Add ruler struct and task
+--Write move/turn for distance functions
