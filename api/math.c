@@ -140,8 +140,8 @@ float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
 
-long inToTicks(int inches) {
-	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
+/*long inToTicks(int inches) {
+	return ((PI*WHEEL_DIAMETER))/ENCODER_TICKS_PER_INCH)*inches;
 }
 
 long inToTicks(float inches) {
@@ -186,8 +186,9 @@ long ftToTicks(byte feet) {
 
 long ftToTicks(float feet) {
 	return inchesToTicks(ftToIn(feet));
-}
-/* float degreesToRadians(const float fDegrees); and 
+}*/
+
+/* float degreesToRadians(const float fDegrees); and
  * short radiansToDegrees(const float fRadians);
  * are predefined by the ROBOTC mathe library,
  * which is included by default.

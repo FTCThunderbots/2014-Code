@@ -4,13 +4,14 @@
 // Unit conversions
 
 
+long degreesToTurnTicks(float degrees) {
+	return ENCODER_TICKS_PER_TURN_DEGREE * degrees;
+}
+
 long degreesToTicks(float degrees) {
 	return degreesToTurnTicks(degrees);
 }
 
-long degreesToTurnTicks(float degrees) {
-	return ENCODER_TICKS_PER_TURN_DEGREE * degrees;
-}
 
 long degreesToSwingTicks(float degrees) {
 	return ENCODER_TICKS_PER_SWING_DEGREE * degrees;
