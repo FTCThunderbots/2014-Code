@@ -4,7 +4,14 @@
 //Macro Functions for length to ticks
 #define IN_TO_TICKS(inches)
 
-// Not yet implemented:
-long degreesToTicks(float degrees); //shortcut to turn ticks
+long degreesToTicks(float degrees);
 long degreesToTurnTicks(float degrees);
 long degreesToSwingTicks(float degrees);
+
+long inchesToTicks(float inches);
+long inchesToDriveTicks(float inches);
+long inchesToStrafeTicks(float inches);
+
+long centimetersToTicks(float centimeters);
+long centimetersToDriveTicks(float centimeters);
+long centimetersToStrafeTicks(float centimeters);

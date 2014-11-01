@@ -12,7 +12,6 @@
 #define MAX(a, b) ((a>=b) ? a : b)
 #define ABS_MAX(a, b) (MAX(abs(a), abs(b)))
 
-
 // Maximum value functions
 
 //int max(int a, int b);
@@ -47,18 +46,3 @@ float cmToFt(float cm);
 float mToFt(float m);
 float ftToCm(float ft);
 float ftToM(float ft);
-
-//conversion to ticks
-/*
-long inToTicks(int inches);
-long inToTicks(float inches);
-long inToTicks(byte inches);
-long cmToTicks(byte centimeters);
-long cmToTicks(int centimeters);
-long cmToTicks(float centimeters);
-long mToTicks(float meters);
-long mToTicks(byte meters);
-long mToTicks(int meters);
-long ftToTicks(int feet);
-long ftToTicks(byte feet);
-long ftToTicks(float feet);*/

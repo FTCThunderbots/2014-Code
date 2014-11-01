@@ -8,8 +8,6 @@
 
 // Maximum of range functions
 
-
-
 int max(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
@@ -52,27 +50,6 @@ float absmax(float *a, byte len) {
 	return cummax;
 }
 
-// Integer-step functions
-
-int step(int n, int multiple) {
-	int factor = n / multiple;
-	return n - (factor * multiple);
-}
-
-byte step(byte n, byte multiple) {
-	byte factor = n / multiple;
-	return n - (factor * multiple);
-}
-
-float step(float n, float multiple) {
-	byte factor = n / multiple;
-	return n - (factor * multiple);
-}
-
-float step(float n) {
-	return step(n, 1.0);
-}
-
 // will overload to int if need be
 byte scaleTo(byte value, byte *range, byte *scale) {
 	if (abs(value) < *range)
@@ -86,7 +63,7 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 // Unit conversion functions
 
 float cmToIn(float cm) {
-	return cm * (1/CM_PER_IN);
+	return cm /CM_PER_IN;
 }
 
 float inToCm(float in) {
@@ -94,19 +71,19 @@ float inToCm(float in) {
 }
 
 float mToIn(float m) {
-	return cmToIn((1/((1/CM_PER_IN)*CM_PER_M))*m);
+	return cmToIn(m * 100) / 100;
 }
 
 float inToM(float in) {
-	return in * (1/((1/CM_PER_IN)*CM_PER_M));
+	return inToCm(in) / 100;
 }
 
 float cmToFt(float cm) {
-	return (1/IN_PER_FT)*cmToIn(cm);
+	return cmToIn(cm) / IN_PER_FT;
 }
 
 float mToFt(float m) {
-	return (1/IN_PER_FT)*mToIn(m);
+	return mToIn(m) / IN_PER_FT;
 }
 
 float ftToCm(float ft) {
@@ -116,54 +93,6 @@ float ftToCm(float ft) {
 float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
-
-/*long inToTicks(int inches) {
-	return ((PI*WHEEL_DIAMETER))/ENCODER_TICKS_PER_INCH)*inches;
-}
-
-long inToTicks(float inches) {
-	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
-}
-
-long inToTicks(byte inches) {
-	return PI*WHEEL_DIAMETER/ENCODER_TICKS_PER_INCH*inches;
-}
-
-long cmToTicks(byte centimeters) {
-	return inchesToTicks(cmToIn((float)centimeters));
-}
-
-long cmToTicks(int centimeters) {
-	return inchesToTicks(cmToIn((float)centimeters));
-}
-
-long cmToTicks(float centimeters) {
-	return inchesToTicks(cmToIn(centimeters));
-}
-
-long mToTicks(float meters) {
-	return inchesToTicks(mToIn(meters));
-}
-
-long mToTicks(byte meters) {
-	return inchesToTicks(mToIn((float)meters));
-}
-
-long mToTicks(int meters) {
-	return inchesToTicks(mToIn((float)meters));
-}
-
-long ftToTicks(int feet) {
-	return inchesToTicks(ftToIn((float)feet));
-}
-
-long ftToTicks(byte feet) {
-	return inchesToTicks(ftToIn((float)feet));
-}
-
-long ftToTicks(float feet) {
-	return inchesToTicks(ftToIn(feet));
-}*/
 
 /* float degreesToRadians(const float fDegrees); and
  * short radiansToDegrees(const float fRadians);
