@@ -23,7 +23,7 @@ int initTimer(pTimer_t timer) {
 	timer->initialized = true;
 	timerSet[timers++] = *timer;
 	// The right side should not be dereferenced, but robotC complains otherwise
-	// timerSet is an array of pointers, not objects...?,
+	// timerSet is an array of pointers, not objects...?
 	return 0;
 }
 
@@ -38,11 +38,15 @@ void stopTimer(pTimer_t timer) {
 }
 
 void clearTimer(pTimer_t timer) {
+   /*
 	timer->previousTime = 0;
 	timer->seconds = 0;
 	timer->deciseconds = 0;
 	timer->centiseconds = 0;
 	timer->milliseconds = 0;
+   */
+   timer->start = currentTime;
+   updateTimer(timer);  
 }
 
 void updateTimer(pTimer_t timer) {
