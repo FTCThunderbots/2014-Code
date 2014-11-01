@@ -14,18 +14,10 @@
 
 // Maximum value functions
 
-//int max(int a, int b);
-//int absmax(int a, int b);
 int arrmax(int *a, byte len);
 int arrAbsmax(int  *a, byte len);
-
-//byte max(byte a, byte b);
-//byte absmax(byte a, byte b);
 byte arrmax(byte *a, byte len);
 byte arrAbsmax(byte *a, byte len);
-
-//float max(float a, float b);
-//float absmax(float a, float b);
 float arrmax(float *a, byte len);
 float arrAbsmax(float *a, byte len);
 

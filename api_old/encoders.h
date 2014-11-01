@@ -2,7 +2,6 @@
 // Header file for encoders.c
 
 //Macro Functions for length to ticks
-#de
 
 long degreesToTicks(float degrees);
 long degreesToTurnTicks(float degrees);

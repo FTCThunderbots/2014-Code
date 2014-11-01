@@ -18,7 +18,7 @@ int arrmax(int *a, byte len) {
 int arrAbsmax(int *a, byte len) {
 	int cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = ABSMAX(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
 }
 
@@ -32,7 +32,7 @@ byte arrmax(byte *a, byte len) {
 byte arrAbsmax(byte *a, byte len) {
 	byte cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = ABSMAX(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
 }
 
@@ -46,7 +46,7 @@ float arrmax(float *a, byte len) {
 float arrAbsmax(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)
-		cummax = ABSMAX(cummax, *(a+i));
+		cummax = ABS_MAX(cummax, *(a+i));
 	return cummax;
 }
 
@@ -93,9 +93,3 @@ float ftToCm(float ft) {
 float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
-
-/* float degreesToRadians(const float fDegrees); and
- * short radiansToDegrees(const float fRadians);
- * are predefined by the ROBOTC mathe library,
- * which is included by default.
- */
