@@ -5,9 +5,8 @@
 
 #include "JoystickDriver.c"
 
-void setWheelPower(int cheeseburger){
-	motor[wheel] = cheeseburger;
-	//int i = 2;
+void setWheelPower(int power){
+	motor[wheel] = power;
 }
 
 int correctJoystick(int joystick) {
@@ -20,11 +19,7 @@ int correctJoystick(int joystick) {
 task main()
 {
 	while (true) {
-		 getJoystickSettings(joystick);
-		 //int wheelPower = joystick.joy1_y1 / 1.28; 				<-- Old way
-		 int wheelPower = correctJoystick(joystick.joy1_y1); // 	<-- New way
-		 wheelPower /= 1.28; //divide wheelPower by 1.28
-		 setWheelPower(wheelPower);
-		 //wait1Msec(10);
+		 if (nNxtButtonPressed == 3)
+		   motor[wheel] = 100;
 	}
 }
