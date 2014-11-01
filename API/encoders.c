@@ -2,7 +2,6 @@
 // Contains code for accessing encoder values at the lowest possible level
 
 // Unit conversions
-
 long degreesToTicks(float degrees) {
 	return degreesToTurnTicks(degrees);
 }
@@ -27,7 +26,6 @@ long inchesToDriveTicks(float inches) {
 long inchesToStrafeTicks(float inches) {
 	return 	ENCODER_TICKS_PER_STRAFE_INCH * inches;
 }
-
 
 
 long centimetersToTicks(float centimeters) {

@@ -9,25 +9,25 @@
 
 //Function Macros
 
-#define MAX(a, b) ((a>=b) ? a : b)
-#define ABS_MAX(a, b) (MAX(abs(a), abs(b)))
+#define MAX(a, b) (a >= b ? a : b)
+#define ABSMAX(a, b) (MAX(abs(a), abs(b)))
 
 // Maximum value functions
 
 //int max(int a, int b);
 //int absmax(int a, int b);
-int max(int *a, byte len);
-int absmax(int  *a, byte len);
+int arrmax(int *a, byte len);
+int arrAbsmax(int  *a, byte len);
 
 //byte max(byte a, byte b);
 //byte absmax(byte a, byte b);
-byte max(byte *a, byte len);
-byte absmax(byte *a, byte len);
+byte arrmax(byte *a, byte len);
+byte arrAbsmax(byte *a, byte len);
 
 //float max(float a, float b);
 //float absmax(float a, float b);
-float max(float *a, byte len);
-float absmax(float *a, byte len);
+float arrmax(float *a, byte len);
+float arrAbsmax(float *a, byte len);
 
 int step(int n, int multiple);
 byte step(byte n, byte multiple);

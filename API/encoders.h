@@ -2,7 +2,7 @@
 // Header file for encoders.c
 
 //Macro Functions for length to ticks
-#define IN_TO_TICKS(inches)
+#de
 
 long degreesToTicks(float degrees);
 long degreesToTurnTicks(float degrees);
