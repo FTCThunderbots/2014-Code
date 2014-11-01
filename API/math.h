@@ -29,11 +29,6 @@ byte arrAbsmax(byte *a, byte len);
 float arrmax(float *a, byte len);
 float arrAbsmax(float *a, byte len);
 
-int step(int n, int multiple);
-byte step(byte n, byte multiple);
-float step(float n, float multiple);
-float step(float n);
-
 //maybe overload to int if need be
 static byte scaleTo(byte value, byte *range, byte *scale);
 
