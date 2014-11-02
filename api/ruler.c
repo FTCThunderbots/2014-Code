@@ -4,12 +4,13 @@
 
 #include "ruler.h"
 
-#ifdef rulersused
-static Ruler_t *rulerSet[rulersused];
-#else
-static Ruler_t *rulerSet[rulersused];
+#ifndef rulersused
+#define rulersused 0
 #endif
 
+static Ruler_t *rulerSet[rulersused];
+static Ruler_t *sysRuler;
+static bool sysRulerExists;
 static byte rulers = 0;
 
 /*
@@ -19,25 +20,15 @@ typedef struct Ruler {
    long right1_startTicks;
    long right2_startTicks;
    
-	long left1_ticks;
+   long left1_ticks;
    long left2_ticks;
    long right1_ticks;
    long right2_ticks;
-   
-   long left_ticks;
-   long right_ticks;
-   long front_ticks;
-   long back_ticks;
-   
-   long drive_ticks;
-   long strafe_ticks;
-   long rotate_ticks;
-   long swing_ticks;
-   
-   float drive_inches;
-   float strafe_inches;
-   float rotate_degrees;
-   float swing_degrees;
+	   
+	long left1_previousTicks;
+	long left2_previousTicks;
+	long right1_previousTicks;
+	long right2_previousTicks;
    
    bool initialized;
    bool running;   
@@ -55,73 +46,86 @@ int initRuler(pRuler_t ruler) {
 	return 0;
 }
 
-void startTimer(pTimer_t timer) {
-	timer->previousTime = timer->milliseconds;
-	timer->running = true;
-	timer->start = timeInMS();
+int initSysRuler(pRuler_t ruler) {
+	if (ruler->initialized)
+		return -1;
+	clearRuler(ruler);
+	ruler->running = true;
+	ruler->initialized = true;
+	sysRuler = ruler;
+	sysRulerExists = true;
 }
 
-void stopTimer(pTimer_t timer) {
-	timer->running = false;
+void destroySysRuler() {
+	sysRulerExists = false;
+	// Anything else should be done in context
+}
+
+void startRuler(pRuler_t ruler) {
+	ruler->left1_previousTicks = ruler->left1_ticks;
+	ruler->left2_previousTicks = ruler->left2_ticks;
+	ruler->right1_previousTicks = ruler->right1_ticks;
+	ruler->right2_previousTicks = ruler->right2_ticks;
+	
+	ruler->left1_startTicks = getEncoder_left1();
+	ruler->left2_startTicks = getEncoder_left2();
+	ruler->right1_startTicks = getEncoder_right1();
+	ruler->right2_startTicks = getEncoder_right2();
+	
+	ruler->running = true;
+}
+
+void stopRuler(pRuler_t ruler) {
+	ruler->running = false;
 }
 
 void clearRuler(pRuler_t ruler) {
-	// reset start values to current positions
-   updateRuler(ruler);
+	ruler->left1_startTicks = getEncoder_left1();
+	ruler->left2_startTicks = getEncoder_left2();
+	ruler->right1_startTicks = getEncoder_right1();
+	ruler->right2_startTicks = getEncoder_right2();
+	
+	ruler->left1_previousTicks = 0;
+	ruler->left2_previousTicks = 0;
+	ruler->right1_previousTicks = 0;
+	ruler->right2_previousTicks = 0;
+	
+	ruler->left1_ticks = 0;
+	ruler->left2_ticks = 0;
+	ruler->right1_ticks = 0;
+	ruler->right2_ticks = 0;
 }
 
-void updateTimer(pTimer_t timer) {
-	if (timer->running) {
-		long milliseconds = timer->previousTime + (timeInMS() - timer->start);
-		timer->milliseconds = milliseconds;
-		timer->seconds = (int)(milliseconds / 1000);
-		timer->deciseconds = (int)(milliseconds / 100);
-		timer->centiseconds = milliseconds / 10;
+void updateRuler(pRuler_t ruler) {
+	if (ruler->running) {
+		ruler->left1_ticks = getEncoder_left1() - left1_startTicks + left1_previousTicks;
+		ruler->left2_ticks = getEncoder_left2() - left2_previousTicks + left2_previousTicks;
+		ruler->right1_ticks = getEncoder_right1() - right1_previousTicks + right1_previousTicks;
+		ruler->right2_ticks = getEncoder_right2() - right2_previousTicks + right2_previousTicks;
 	}
 }
 
-void updateAllTimers() {
-	for (int i = 0; i < timers; i++)
-		updateTimer(&timerSet[i]);
-		// I don't think the address operator should be required here,
-		// but RobotC complains if it's absent
+void updateAllRulers() {
+	for (int i = 0; i < rulers; i++)
+		updateRuler(rulerSet[i]);
+	if (sysRulerExists)
+		updateRuler(sysRuler);
 }
 
-void monitorSysTimer() {
-	currentTime = time1[T1];
-	if (currentTime >= 30000) {
-		minutesPassed++;
-		extraMS += time1[T1] - 30000; //should be zero or negligible, but it's here just in case
-		ClearTimer(T1);
-		currentTime = time1[T1];
-	}
+// here: add code for getting current encoder stuff
+
+long getLeftTicks(Ruler_t ruler) {
+	return (ruler.left1_ticks + ruler.left2_ticks) / 2;
 }
 
-void timeInit() {
-	ClearTimer(T1);
+long getRightTicks(Ruler_t ruler) {
+	return (ruler.right1_ticks + ruler.right2_ticks) / 2;
 }
 
-//total milliseconds of runtime
-long timeInMS() {
-	return extraMS + currentTime + (minutesPassed * 30000);
+long getFrontTicks(Ruler_t ruler) {
+	return (ruler.left1_ticks + ruler.right1_ticks) / 2;
 }
 
-//total centiseconds of runtime
-long timeInCS() {
-	return timeInMS() / 10;
-}
-
-//total deciseconds of runtime
-int timeInDS() {
-	return (int)(timeInMS() / 100);
-}
-
-//total seconds of runtime
-int timeInS() {
-	return (int)(timeInMS() / 1000);
-}
-
-//seconds of runtime, but in a float
-float runtime() {
-	return (float) timeInMS() / 1000;
+long getBackTicks(Ruler_t ruler) {
+	return (ruler.left2_ticks + ruler.right2_ticks) / 2;
 }
