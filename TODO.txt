@@ -5,3 +5,9 @@ Zach (Last updated 10/18):
 --**IMPORTANT: TEST ALL API SYSTEMS ON OLD ROBOT**
 --Add ruler struct and task
 --Write move/turn for distance functions
+--Completely rewrite API tutorial
+--Change timer and ruler structs to have calculations done in functions and not automatically
+
+Long-term goals:
+--Remove all constants from encoder system and replace with only math, while still retaining full functionality.
+--Implements a PID controller to functions in simplemovement
