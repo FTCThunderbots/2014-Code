@@ -3,9 +3,13 @@
 
 #include "timer.h"
 
+<<<<<<< HEAD
 #ifndef timersused
 #define timersused 0
 #endif
+=======
+static Timer_t *timerSet;
+>>>>>>> origin/master
 
 #warn "(timer.c) TODO: fix timer struct to use functions to calculate seconds"
 
@@ -28,6 +32,11 @@ int initTimer(pTimer_t timer) {
 	timerSet[timers++] = *timer;
 	// The right side should not be dereferenced, but robotC complains otherwise
 	// timerSet is an array of pointers, not objects...?
+	emptyTimer(timer);
+	timer->running = false;
+	timer->start = 0;
+	timer->initialized = true;
+	timerSet+((timers++)*sizeof(Timer_t)) = timer;
 	return 0;
 }
 
@@ -45,6 +54,16 @@ void clearTimer(pTimer_t timer) {
    timer->previousTime = 0;
    timer->milliseconds = 0;
    timer->start = currentTime;
+void emptyTimer(pTimer_t timer) {
+   /*
+	timer->previousTime = 0;
+	timer->seconds = 0;
+	timer->deciseconds = 0;
+	timer->centiseconds = 0;
+	timer->milliseconds = 0;
+   */
+   timer->start = currentTime;
+   updateTimer(timer);
 }
 
 void updateTimer(pTimer_t timer) {
@@ -58,6 +77,7 @@ void updateAllTimers() {
 		updateTimer(timerSet[i]);
 		// I don't think the address operator should be required here,
 		// but RobotC complains if it's absent
+		updateTimer(timerSet+i*sizeof(Timer_t));
 }
 
 void monitorSysTimer() {

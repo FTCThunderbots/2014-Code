@@ -3,12 +3,6 @@
 
 #define TIMER_INCLUDEGAURD
 
-/*
-typedef char byte;
-typedef int bool;
-#define true 1
-#define false 0 */
-
 typedef struct Timer {
 	long milliseconds;
 	long start;
@@ -22,7 +16,7 @@ typedef Timer_t * pTimer_t;
 
 void startTimer(pTimer_t timer);
 void stopTimer(pTimer_t timer);
-void clearTimer(pTimer_t timer);
+void emptyTimer(pTimer_t timer);
 void updateTimer(pTimer_t timer);
 void updateAllTimers();
 void monitorSysTimer();
