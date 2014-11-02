@@ -1,17 +1,17 @@
 // api.c
 // Contiains imports for all api files
 
-#ifndef API_INCLUDEGUARD
-#define API_INCLUDEGUARD
+//#ifndef API_INCLUDEGUARD
+//#define API_INCLUDEGUARD
 // files will only be included once, preventing infinite recursion
 
-#ifdef CONFIGFILE
-#include CONFIGFILE
-#else
-#include "../config/default_config.c"
+// If we're using two-wheel mode, only use two encoders
+// This should be obvious
+#ifdef setting_twoMotors
+#ifndef setting_twoEncoders
+#define setting_twoEncoders
 #endif
-//if user has defined a custom config file, include it
-//else, include default config
+#endif
 
 // Please keep this list alphabetized
 #ifndef BACKGROUND_INCLUDEGAURD
@@ -52,7 +52,7 @@
 
 #include "JoystickDriver.c"
 
-#endif /* include guard */
+//#endif /* include guard */
 
 // ALL THE CODE BELOW IS HOMELESS
 // BUT WITH YOUR HELP, WE CAN SAVE IT
