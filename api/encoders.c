@@ -3,6 +3,8 @@
 
 // Accessing encoder values
 
+#include "encoders.h"
+
 long getEncoder_left1() {
 	return nMotorEncoder[leftmotor_1];
 }
@@ -58,7 +60,7 @@ void setEncoder_right2(long val) {
 // Potentially useful for iterating through all the encoders?
 // Try to avoid literal string arguments, because the non-shortcut version is faster
 
-long getEncoder(String enc) {
+long getEncoder(string enc) {
 	if (enc == "l1")
 		return getEncoder_left1();
 	else if (enc == "r1")
@@ -70,8 +72,8 @@ long getEncoder(String enc) {
 	else
 		return -1;
 }
-		
-void setEncoder(String enc, long val) {
+
+void setEncoder(string enc, long val) {
 	if (enc == "l1")
 		setEncoder_left1(val);
 	else if (enc == "r1")
@@ -97,7 +99,7 @@ long degreesToSwingTicks(float degrees) {
 
 
 long inchesToTicks(float inches) {
-	return inchesToDriveTicks(inches)
+	return inchesToDriveTicks(inches);
 }
 
 long inchesToDriveTicks(float inches) {

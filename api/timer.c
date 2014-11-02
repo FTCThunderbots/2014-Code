@@ -11,13 +11,11 @@ static pTimer_t timerSet[timersused];
 
 #warn "(timer.c) TODO: fix timer struct to use functions to calculate seconds"
 
-static pTimer_t timerSet[timersused];
-
 static long currentTime = 0;
 static byte minutesPassed = 0; //actually half-minutes
 static int extraMS = 0;
 static byte timers = 0;
-//TODO: add system timer 
+//TODO: add system timer
 //Also todo: add move for time functions to simplemovemnt
 
 int initTimer(pTimer_t timer) {
@@ -31,11 +29,6 @@ int initTimer(pTimer_t timer) {
 	timerSet[timers++] = *timer;
 	// The right side should not be dereferenced, but robotC complains otherwise
 	// timerSet is an array of pointers, not objects...?
-	emptyTimer(timer);
-	timer->running = false;
-	timer->start = 0;
-	timer->initialized = true;
-	timerSet+((timers++)*sizeof(Timer_t)) = timer;
 	return 0;
 }
 
@@ -62,11 +55,12 @@ void updateTimer(pTimer_t timer) {
 }
 
 void updateAllTimers() {
-	for (int i = 0; i < timers; i++)
-		updateTimer(timerSet[i]);
+	for (int i = 0; i < timers; i++) {
+		updateTimer(&timerSet[i]);
 		// I don't think the address operator should be required here,
 		// but RobotC complains if it's absent
-		updateTimer(timerSet+i*sizeof(Timer_t));
+		// updateTimer(timerSet+i*sizeof(Timer_t));
+	}
 }
 
 void monitorSysTimer() {

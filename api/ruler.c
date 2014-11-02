@@ -8,8 +8,8 @@
 #define rulersused 0
 #endif
 
-static Ruler_t *rulerSet[rulersused];
-static Ruler_t *sysRuler;
+static pRuler_t rulerSet[rulersused];
+static pRuler_t sysRuler;
 static bool sysRulerExists;
 static byte rulers = 0;
 
@@ -19,19 +19,19 @@ typedef struct Ruler {
    long left2_startTicks;
    long right1_startTicks;
    long right2_startTicks;
-   
+
    long left1_ticks;
    long left2_ticks;
    long right1_ticks;
    long right2_ticks;
-	   
+
 	long left1_previousTicks;
 	long left2_previousTicks;
 	long right1_previousTicks;
 	long right2_previousTicks;
-   
+
    bool initialized;
-   bool running;   
+   bool running;
 } Ruler_t;
 */
 
@@ -54,6 +54,7 @@ int initSysRuler(pRuler_t ruler) {
 	ruler->initialized = true;
 	sysRuler = ruler;
 	sysRulerExists = true;
+	return 0;
 }
 
 void destroySysRuler() {
@@ -66,12 +67,12 @@ void startRuler(pRuler_t ruler) {
 	ruler->left2_previousTicks = ruler->left2_ticks;
 	ruler->right1_previousTicks = ruler->right1_ticks;
 	ruler->right2_previousTicks = ruler->right2_ticks;
-	
+
 	ruler->left1_startTicks = getEncoder_left1();
 	ruler->left2_startTicks = getEncoder_left2();
 	ruler->right1_startTicks = getEncoder_right1();
 	ruler->right2_startTicks = getEncoder_right2();
-	
+
 	ruler->running = true;
 }
 
@@ -84,12 +85,12 @@ void clearRuler(pRuler_t ruler) {
 	ruler->left2_startTicks = getEncoder_left2();
 	ruler->right1_startTicks = getEncoder_right1();
 	ruler->right2_startTicks = getEncoder_right2();
-	
+
 	ruler->left1_previousTicks = 0;
 	ruler->left2_previousTicks = 0;
 	ruler->right1_previousTicks = 0;
 	ruler->right2_previousTicks = 0;
-	
+
 	ruler->left1_ticks = 0;
 	ruler->left2_ticks = 0;
 	ruler->right1_ticks = 0;
@@ -98,22 +99,23 @@ void clearRuler(pRuler_t ruler) {
 
 void updateRuler(pRuler_t ruler) {
 	if (ruler->running) {
-		ruler->left1_ticks = getEncoder_left1() - left1_startTicks + left1_previousTicks;
-		ruler->left2_ticks = getEncoder_left2() - left2_previousTicks + left2_previousTicks;
-		ruler->right1_ticks = getEncoder_right1() - right1_previousTicks + right1_previousTicks;
-		ruler->right2_ticks = getEncoder_right2() - right2_previousTicks + right2_previousTicks;
+		ruler->left1_ticks = getEncoder_left1() - ruler->left1_startTicks + ruler->left1_previousTicks;
+		ruler->left2_ticks = getEncoder_left2() - ruler->left2_previousTicks + ruler->left2_previousTicks;
+		ruler->right1_ticks = getEncoder_right1() - ruler->right1_previousTicks + ruler->right1_previousTicks;
+		ruler->right2_ticks = getEncoder_right2() - ruler->right2_previousTicks + ruler->right2_previousTicks;
 	}
 }
 
 void updateAllRulers() {
 	for (int i = 0; i < rulers; i++)
-		updateRuler(rulerSet[i]);
+		updateRuler(&rulerSet[i]);
 	if (sysRulerExists)
 		updateRuler(sysRuler);
 }
 
 // here: add code for getting current encoder stuff
 
+//The following functions are all on trial and are not in the header, just fyi
 long getLeftTicks(Ruler_t ruler) {
 	return (ruler.left1_ticks + ruler.left2_ticks) / 2;
 }
