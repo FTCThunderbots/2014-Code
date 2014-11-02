@@ -10,14 +10,12 @@ typedef int bool;
 #define false 0 */
 
 typedef struct Timer {
-	int seconds;
-	int deciseconds;
-	long centiseconds;
 	long milliseconds;
-	bool running;
 	long start;
 	long previousTime;
+	
 	bool initialized;
+	bool running;
 } Timer_t;
 
 typedef Timer_t * pTimer_t;
