@@ -3,13 +3,11 @@
 
 #include "timer.h"
 
-<<<<<<< HEAD
 #ifndef timersused
 #define timersused 0
 #endif
-=======
-static Timer_t *timerSet;
->>>>>>> origin/master
+
+static pTimer_t timerSet[timersused];
 
 #warn "(timer.c) TODO: fix timer struct to use functions to calculate seconds"
 
@@ -20,11 +18,12 @@ static byte minutesPassed = 0; //actually half-minutes
 static int extraMS = 0;
 static byte timers = 0;
 //TODO: add system timer 
+//Also todo: add move for time functions to simplemovemnt
 
 int initTimer(pTimer_t timer) {
 	if (timer->initialized)
 		return -1;
-	clearTimer(timer);
+	resetTimer(timer);
 	timer->start = 0;
 	timer->initialized = true;
 	timer->running = false;
@@ -50,21 +49,11 @@ void stopTimer(pTimer_t timer) {
 	timer->running = false;
 }
 
-void clearTimer(pTimer_t timer) {
+void resetTimer(pTimer_t timer) {
    timer->previousTime = 0;
    timer->milliseconds = 0;
    timer->start = currentTime;
-void emptyTimer(pTimer_t timer) {
-   /*
-	timer->previousTime = 0;
-	timer->seconds = 0;
-	timer->deciseconds = 0;
-	timer->centiseconds = 0;
-	timer->milliseconds = 0;
-   */
-   timer->start = currentTime;
-   updateTimer(timer);
-}
+ }
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
