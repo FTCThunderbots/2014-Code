@@ -49,8 +49,10 @@ void setMovement(byte forward, byte right, byte clockwise) {
    // update other files to reflect these names
 	motor[leftmotor_1] = frontLeft;
 	motor[rightmotor_1] = frontRight;
+	#ifndef setting_twoMotors
 	motor[leftmotor_2] = backLeft;
 	motor[rightmotor_2] = backRight;
+	#endif
 }
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
