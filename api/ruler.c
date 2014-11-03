@@ -138,11 +138,12 @@ long getStrafeTicks(Ruler_t ruler) {
 }
 
 long getRotateTicks(Ruler_t ruler) {
-	return -(getLeftTicks(ruler) + getRightTicks(ruler) / 2;
+	return -(getLeftTicks(ruler) + getRightTicks(ruler)) / 2;
 }
 
 long getSwingTicks(Ruler_t ruler) {
-	return -(getLeftTicks(ruler) + getRightTicks(ruler);
+	return -(getLeftTicks(ruler) + getRightTicks(ruler));
 	// Not dividing by two is intentional here, since one side should be zero.
 }
+
 // Current encoder positions: cannot be done because the raw encoder values will be messed up
