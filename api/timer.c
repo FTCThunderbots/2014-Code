@@ -9,8 +9,6 @@
 
 static pTimer_t timerSet[timersused];
 
-#warn "(timer.c) TODO: fix timer struct to use functions to calculate seconds"
-
 static long currentTime = 0;
 static byte minutesPassed = 0; //actually half-minutes
 static int extraMS = 0;
@@ -77,27 +75,51 @@ void timeInit() {
 	ClearTimer(T1);
 }
 
-//total milliseconds of runtime
+// Accessing timer values
+
+long getMilliseconds(Timer_t timer) {
+	return timer.milliseconds;
+}
+
+long getCentiseconds(Timer_t timer) {
+	return timer.milliseconds / 10;
+}
+
+int getDeciseconds(Timer_t timer) {
+	return timer.milliseconds / 100;
+}
+
+int getSeconds(Timer_t timer) {
+	return timer.milliseconds / 1000;
+}
+
+float getRuntime(Timer_t timer) {
+	return (float)timer.milliseconds / 1000;
+}
+
+// Total runtime
+
+// milliseconds
 long timeInMS() {
 	return extraMS + currentTime + (minutesPassed * 30000);
 }
 
-//total centiseconds of runtime
+//centiseconds
 long timeInCS() {
 	return timeInMS() / 10;
 }
 
-//total deciseconds of runtime
+//deciseconds
 int timeInDS() {
 	return (int)(timeInMS() / 100);
 }
 
-//total seconds of runtime
+//seconds
 int timeInS() {
 	return (int)(timeInMS() / 1000);
 }
 
-//seconds of runtime, but in a float
+//seconds, but in a float
 float runtime() {
 	return (float) timeInMS() / 1000;
 }
