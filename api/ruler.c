@@ -113,9 +113,6 @@ void updateAllRulers() {
 		updateRuler(sysRuler);
 }
 
-// here: add code for getting current encoder stuff
-
-//The following functions are all on trial and are not in the header, just fyi
 long getLeftTicks(Ruler_t ruler) {
 	return (ruler.left1_ticks + ruler.left2_ticks) / 2;
 }
@@ -131,3 +128,21 @@ long getFrontTicks(Ruler_t ruler) {
 long getBackTicks(Ruler_t ruler) {
 	return (ruler.left2_ticks + ruler.right2_ticks) / 2;
 }
+
+long getDriveTicks(Ruler_t ruler) {
+	return (-getLeftTicks(ruler) + getRightTicks(ruler)) / 2;
+}
+
+long getStrafeTicks(Ruler_t ruler) {
+	return (-getFrontTicks(ruler) + getBackTicks(ruler)) / 2;
+}
+
+long getRotateTicks(Ruler_t ruler) {
+	return -(getLeftTicks(ruler) + getRightTicks(ruler) / 2;
+}
+
+long getSwingTicks(Ruler_t ruler) {
+	return -(getLeftTicks(ruler) + getRightTicks(ruler);
+	// Not dividing by two is intentional here, since one side should be zero.
+}
+// Current encoder positions: cannot be done because the raw encoder values will be messed up

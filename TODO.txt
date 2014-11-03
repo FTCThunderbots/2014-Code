@@ -7,6 +7,7 @@ Zach (Last updated 10/18):
 --Write move/turn for distance functions
 --Completely rewrite API tutorial
 --Update header file for encoder.c and ruler.c with all functions
+--Add tick to measurement functions to the ruler system
 
 Long-term goals:
 --Remove all constants from encoder system and replace with only math, while still retaining full functionality.
