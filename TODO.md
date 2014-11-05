@@ -2,7 +2,7 @@
 ----------------------------
 
 #IMPORTANT!!!
-* ####TEST ALL COMPLETED API SYSTEMS ON OLD ROBOT!!!
+###TEST ALL COMPLETED API SYSTEMS ON OLD ROBOT!!!
 
 #General:
 * Add ruler struct and task
@@ -15,7 +15,9 @@
 * Remove all constants from encoder system and replace with only math, while still retaining full functionality.
 * Implement a PID controller to functions in simplemovement
 
+--------------------
 ###Tutorial on how to edit this list:
+-------------------------
 Add your required task to the section in which it should go, using the format shown in that section.
 Ex.
 ####Long term goals:
