@@ -1,4 +1,5 @@
 #How to use the api:
+-----------------------
 
 ##Macros:
 Macros are essentially super-global variables that can be 
@@ -31,7 +32,7 @@ will tell the API that the robot only has two motors dedicated to movement.
 If this is defined, setting_twoEncoders will automatically be defined as well.
 
 
-##Getting all of the functions
+##Getting all of the api functions:
 This line is requried in all programs that use the API. Place it below your
 configurations, and below any optional settings that you've defined, but in
 front of any other part of your program.
@@ -48,7 +49,7 @@ initializeAPI();
 
 Now you may use any of the api methods outside of the api!
 
-##End code:
+##Final code for getting the api:
 ```
 //...
 #define timersused 0
@@ -83,4 +84,15 @@ all functions should use the & (address of) operator on your
 timer object. If you want to know exactly what this is and what
 it does, talk to Daniel, Pranav, or Zach.
 
+Instead of using the & operator all of the time you could also create
+a second variable pointing to foo and use that as the arguements. Ex:
 
+```
+Timer_t foo;
+pTimer_t bar = &foo;
+initTimer(bar);
+startTimer(bar);
+```
+
+The line `pTimer_t bar = &foo;` is equivalent to `Timer_t * bar = &foo;`
+if you want to use raw C.
