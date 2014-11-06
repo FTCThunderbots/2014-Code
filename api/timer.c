@@ -5,9 +5,9 @@
 
 #ifndef timersused
 #define timersused 0
-#else
-static pTimer_T * timerSet;
 #endif
+
+static pTimer_t timerSet[timersused];
 
 static long currentTime = 0;
 static byte minutesPassed = 0; //actually half-minutes
@@ -22,8 +22,7 @@ int initTimer(pTimer_t timer) {
 	timer->initialized = true;
 	timer->running = false;
 
-	timerSet + (timers++) = timer;
-	timers++;
+	timerSet[timers++] = *timer;
 	return 0;
 }
 
@@ -51,10 +50,11 @@ void updateTimer(pTimer_t timer) {
 
 void updateAllTimers() {
 	for (int i = 0; i < timers; i++) {
-		//updateTimer(&timerSet[i]);
+		// Read the comment here
+		updateTimer(&timerSet[i]);
+		// This is the only way it compiles. We need to test it later.
 		// I don't think the address operator should be required here,
 		// but RobotC complains if it's absent
-		updateTimer(timerSet+i);
 	}
 }
 
