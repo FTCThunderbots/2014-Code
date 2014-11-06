@@ -5,16 +5,14 @@
 
 #ifndef timersused
 #define timersused 0
+#else
+static pTimer_T * timerSet;
 #endif
-
-static pTimer_t timerSet[timersused];
 
 static long currentTime = 0;
 static byte minutesPassed = 0; //actually half-minutes
 static int extraMS = 0;
 static byte timers = 0;
-//TODO: add system timer
-//Also todo: add move for time functions to simplemovemnt
 
 int initTimer(pTimer_t timer) {
 	if (timer->initialized)
@@ -24,7 +22,7 @@ int initTimer(pTimer_t timer) {
 	timer->initialized = true;
 	timer->running = false;
 
-	timerSet[timers++] = *timer;
+	timerSet + (timers++) = timer;
 	// The right side should not be dereferenced, but robotC complains otherwise
 	// timerSet is an array of pointers, not objects...?
 	return 0;
@@ -54,10 +52,10 @@ void updateTimer(pTimer_t timer) {
 
 void updateAllTimers() {
 	for (int i = 0; i < timers; i++) {
-		updateTimer(&timerSet[i]);
+		//updateTimer(&timerSet[i]);
 		// I don't think the address operator should be required here,
 		// but RobotC complains if it's absent
-		// updateTimer(timerSet+i*sizeof(Timer_t));
+		updateTimer(timerSet+i);
 	}
 }
 
@@ -77,24 +75,24 @@ void timeInit() {
 
 // Accessing timer values
 
-long getMilliseconds(Timer_t timer) {
-	return timer.milliseconds;
+long getMilliseconds(pTimer_t timer) {
+	return timer->milliseconds;
 }
 
-long getCentiseconds(Timer_t timer) {
-	return timer.milliseconds / 10;
+long getCentiseconds(pTimer_t timer) {
+	return timer->milliseconds / 10;
 }
 
-int getDeciseconds(Timer_t timer) {
-	return timer.milliseconds / 100;
+int getDeciseconds(pTimer_t timer) {
+	return timer->milliseconds / 100;
 }
 
-int getSeconds(Timer_t timer) {
-	return timer.milliseconds / 1000;
+int getSeconds(pTimer_t timer) {
+	return timer->milliseconds / 1000;
 }
 
-float getRuntime(Timer_t timer) {
-	return (float)timer.milliseconds / 1000;
+float getRuntime(pTimer_t timer) {
+	return (float)timer->milliseconds / 1000;
 }
 
 // Total runtime

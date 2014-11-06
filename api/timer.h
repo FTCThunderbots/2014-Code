@@ -7,7 +7,6 @@ typedef struct Timer {
 	long milliseconds;
 	long start;
 	long previousTime;
-
 	bool initialized;
 	bool running;
 } Timer_t;
@@ -22,11 +21,11 @@ void updateAllTimers();
 void monitorSysTimer();
 void timeInit();
 
-long getMilliseconds(Timer_t timer);
-long getCentiseconds(Timer_t timer);
-int getDeciseconds(Timer_t timer);
-int getSeconds(Timer_t timer);
-float getRuntime(Timer_t timer);
+long getMilliseconds(pTimer_t timer);
+long getCentiseconds(pTimer_t timer);
+int getDeciseconds(pTimer_t timer);
+int getSeconds(pTimer_t timer);
+float getRuntime(pTimer_t timer);
 
 long timeInMS();
 long timeInCS();

@@ -10,6 +10,9 @@
 * ~~Completely rewrite API tutorial~~
 * Update header file for encoder.c and ruler.c with all functions
 * Add tick to measurement functions to the ruler system
+* ~~Add system timer in timer.c~~
+* add move for time functions to simplemovement.c
+
 
 #Long term goals:
 * Remove all constants from encoder system and replace with only math, while still retaining full functionality.
