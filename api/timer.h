@@ -1,7 +1,11 @@
 // timer.h
 // Header file for timer.c
 
+//macros
 #define TIMER_INCLUDEGAURD
+
+//function macros
+#define waitSecs(timer, secs) while(getSeconds(timer) < secs){}
 
 typedef struct Timer {
 	long milliseconds;
