@@ -1,5 +1,5 @@
 // timer.c
-// A custom timing system
+// A sophisticated custom timing system
 
 #include "timer.h"
 
@@ -23,8 +23,7 @@ int initTimer(pTimer_t timer) {
 	timer->running = false;
 
 	timerSet + (timers++) = timer;
-	// The right side should not be dereferenced, but robotC complains otherwise
-	// timerSet is an array of pointers, not objects...?
+	timers++;
 	return 0;
 }
 
