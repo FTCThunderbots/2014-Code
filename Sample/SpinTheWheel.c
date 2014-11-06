@@ -21,5 +21,7 @@ task main()
 	while (true) {
 		 if (nNxtButtonPressed == 3)
 		   motor[wheel] = 100;
+		else
+			motor[wheel] = 0;
 	}
 }
