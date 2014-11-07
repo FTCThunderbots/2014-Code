@@ -4,9 +4,8 @@
 #include "sensors.h"
 
 int getCompassValue() {
-	#ifdef compass_name
-	return SensorValue[compass_name];
-	#else
-	return -1;
-	#endif
+	if (compass_name)
+		return SensorValue[compass_name];
+	else
+		return -1;
 }

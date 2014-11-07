@@ -19,8 +19,9 @@ void rotate(byte power) {
 }
 
 void swing(byte direction, byte power) {
-	// direction: 0 for left, 1 for right;
-	direction = direction == 0 ? -1 : 1;
+	// direction: - for left, + or zero for right;
+	direction = direction == 0 ? 1 : direction;
+	direction = direction/abs(direction);
 	setMovement(power, 0, direction * power);
 }
 

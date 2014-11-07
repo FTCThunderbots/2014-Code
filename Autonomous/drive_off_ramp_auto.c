@@ -9,7 +9,6 @@ task main()
 {
 	initializeAPI();
 	waitForStart();
-	
 	Timer_t timer;
 	pTimer_t pTimer;
 	initTimer(pTimer);
