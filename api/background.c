@@ -10,7 +10,9 @@ void initializeAPI() {
 }
 
 task background() {
-	monitorSysTimer(); //timers.c
-	updateAllTimers(); //timers.c
-	updateDebugStream() //debug.c
+	while (true){
+		monitorSysTimer(); //timers.c
+		updateAllTimers(); //timers.c
+		updateDebugStream(); //debug.c
+	}
 }

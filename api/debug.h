@@ -82,4 +82,4 @@
 #endif //ifdef DEBUG_STREAM_ON
 
 void updateDebugStream();
-void printConsole(String toPrint);
+void printConsole(string toPrint);
