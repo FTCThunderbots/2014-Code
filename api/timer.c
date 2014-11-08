@@ -68,10 +68,6 @@ void monitorSysTimer() {
 
 void timeInit() {
 	ClearTimer(T1);
-	currentTime = 0;
-  minutesPassed = 0; //actually half-minutes
-  extraMS = 0;
-  timers = 0;
 }
 
 // Accessing timer values

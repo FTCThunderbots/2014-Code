@@ -4,7 +4,6 @@
 #include "background.h"
 
 void initializeAPI() {
-	wait1Msec(1);
 	setMovement(0,0,0); //movement.c
 	timeInit(); //timers.c
 	StartTask(background);
