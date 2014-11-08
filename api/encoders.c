@@ -1,9 +1,8 @@
 // encoders.c
 // Contains code for accessing encoder values at the lowest possible level
 
-// Accessing encoder values
-
 #include "encoders.h"
+
 // Unit conversions
 
 // degrees to ticks
