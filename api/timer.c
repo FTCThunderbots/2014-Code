@@ -9,13 +9,10 @@
 
 static pTimer_t timerSet[timersused];
 
-#warn "(timer.c) these variables should all be changed back to static"
-long currentTime = 0;
-byte minutesPassed = 0; //actually half-minutes
-int extraMS = 0;
-byte timers = 0;
-// end warning
-// please don't change until testing is complete
+static long currentTime = 0;
+static byte minutesPassed = 0; //actually half-minutes
+static int extraMS = 0;
+static byte timers = 0;
 
 int initTimer(pTimer_t timer) {
 	if (timer->initialized)
@@ -44,6 +41,14 @@ void resetTimer(pTimer_t timer) {
    timer->milliseconds = 0;
    timer->begin = currentTime;
  }
+
+// toggle the running state of the timer
+void toggleTimer(pTimer_t timer) {
+	if (timer->running)
+		stopTimer(timer);
+	else
+		startTimer(timer);
+}
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {

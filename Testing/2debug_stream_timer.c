@@ -33,23 +33,22 @@ string label1 = "Runtime";
 #define debugStreamLine2 runtime()
 #define debugStreamType2 "%.2f"
 
-#define debugStreamLine3 (int)timeInMS()
-#define debugStreamType3 "%d"
+string label2 = "Timer Object";
+#define debugStreamLine3 label2
+#define debugStreamType3 "%s"
 
-string label2 = "Debug";
-#define debugStreamLine4 label2
-#define debugStreamType4 "%s"
+float timerTime = 0;
+#define debugStreamLine5 timerTime
+#define debugStreamType5 "%.2f"
 
-#define debugStreamLine5 (int)currentTime
-#define debugStreamType5 "%d"
-
-#define debugStreamLine6 minutesPassed
-#define debugStreamType6 "%d"
+bool timerRunning = false;
+#define debugStreamLine6 timerRunning
+#define debugStreamType6 "%b"
 
 #define debugStreamLine7 (int)timers
 #define debugStreamType7 "%d"
 
-#define debugStreamLine8 (float)time1[T1]/1000
+#define debugStreamLine8 (float)time1[T2]/1000
 #define debugStreamType8 "%.2f"
 
 #define setting_twoMotors
@@ -58,6 +57,8 @@ string label2 = "Debug";
 
 task main() {
 	initializeAPI();
-	Timer_t t;pTimer_t p = &t;initTimer(p);startTimer(p);
+	Timer_t t;
+	pTimer_t p = &t;
+	initTimer(p);startTimer(p);
    while(true) {}
 }

@@ -20,6 +20,7 @@ typedef Timer_t * pTimer_t;
 void startTimer(pTimer_t timer);
 void stopTimer(pTimer_t timer);
 void resetTimer(pTimer_t timer);
+void toggleTimer(pTimer_t timer);
 void updateTimer(pTimer_t timer);
 void updateAllTimers();
 void monitorSysTimer();
