@@ -9,10 +9,13 @@
 
 static pTimer_t timerSet[timersused];
 
-static long currentTime = 0;
-static byte minutesPassed = 0; //actually half-minutes
-static int extraMS = 0;
-static byte timers = 0;
+#warn "(timer.c) these variables should all be changed back to static"
+long currentTime = 0;
+byte minutesPassed = 0; //actually half-minutes
+int extraMS = 0;
+byte timers = 0;
+// end warning
+// please don't change until testing is complete
 
 int initTimer(pTimer_t timer) {
 	if (timer->initialized)
