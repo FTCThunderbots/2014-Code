@@ -45,7 +45,6 @@ bool timerRunning = false;
 #define debugStreamLine6 timerRunning
 #define debugStreamType6 "%b"
 
-ClearTimer(T2);
 #define debugStreamLine8 (float)time10[T2]/100
 #define debugStreamType8 "%.2f"
 
@@ -53,7 +52,8 @@ ClearTimer(T2);
 
 #include "../api/api.c"
 
-task main() {
+task main() {   
+   ClearTimer(T2);
 	initializeAPI();
    while (nNxtButtonPressed != 1) {}
    
