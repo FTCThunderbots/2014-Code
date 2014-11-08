@@ -7,6 +7,7 @@
 float x = 0.0, z = 0.0;
 float orientation = 0.0;
 float changeCoord = 0.0;
+float circumference = 4 * PI;
 
 #define setting_twoMotors
 #define DEBUG_STREAM_ON
@@ -50,9 +51,11 @@ void updateCoords(float degrees, length_t CIRCUM_TYPE) {
 			you have used for circumference.
 			2. Convert the units to feet.
 		*/
-		byte ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
+		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
+
+		float changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
 
 		/*
 		*First I take the degrees and convert to radians.
@@ -112,7 +115,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
+		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
 		updateX(90, changeCoord);
 		drive(50);
 	}
@@ -138,7 +141,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
+		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
 		updateZ(180, changeCoord);
 		drive(50);
 	}
