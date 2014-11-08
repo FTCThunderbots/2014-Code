@@ -22,80 +22,19 @@
 
 //settings are for last year's robot
 
-#define STOP stopFor1Sec()
-#define setting_twoEncoders
+// drive off ramp auto.c
+// The robot will start on top of the corner ramp, and drive forward
+// for 2.5 seconds, onto the floor
 
+#define timersused 1
+#define setting_twoEncoders
 #include "../api/api.c"
 
-void stopFor1Sec() {
-	stop();
-	wait1Msec(1000);
-}
-
-task main() {
+task main()
+{
 	initializeAPI();
-
-	//drive:
-	//drive foward for a second
+	waitForStart();
 	drive(100);
-	wait1Msec(1000);
-	STOP;
-
-	//drive back
-        drive(-100);
-        wait1Msec(1000);
-        STOP;
-
-	//rotation:
-	//rotate for one second
-	rotate(100);
-	wait1Msec(1000);
-	STOP;
-
-	//rotate back
-        rotate(-100);
-        wait1Msec(1000);
-        STOP;
-
-	//strafe:
-	/*//strafe for one second
-	strafe(100);
-	wait1Msec(1000);
-	STOP;
-
-	//strafe back
-	strafe(-100);
-	wait1Msec(1000);
-	STOP;*/
-
-	//swing turn:
-	//swing left for a second
-	swing(-5, 100);
-	wait1Msec(1000);
-	STOP;
-
-	//swing right for a second
-        swing(7, 100);
-        wait1Msec(1000);
-        STOP;
-
-	//go back
-	swing(-5, -100);
-        wait1Msec(1000);
-        STOP;
-
-        swing(7, -100);
-        wait1Msec(1000);
-        STOP;
-
-	//diagonals: (should form a X pattern)
-	//not implemented (requires mecanum drive)
-	//Zach, please explain the moveDiagonal function!
-	//I have no idea as to what it is doing or trying to do
-	//in your comments you say that passing 0 will move straight foward
-	//STRAIGHT FOWARD IS NOT DIAGONAL!!!
-	//please explain this method.
-
-	//rotating degrees with the compass sensor
-	//rotateDegWithCompass(90, 100);
+	wait1Msec(2500);
+	drive(0);
 }

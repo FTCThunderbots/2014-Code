@@ -7,6 +7,7 @@
 
 // If we're using two-wheel mode, only use two encoders
 // This should be obvious
+
 #ifdef setting_twoMotors
 #ifndef setting_twoEncoders
 #define setting_twoEncoders
