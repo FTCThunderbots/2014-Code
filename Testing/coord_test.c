@@ -23,7 +23,7 @@
 // #include statements
 #include "JoystickDriver.c"
 #include "unit_converter.c"
-//#include "../api/api.c"
+#include "../api/api.c"
 //to drive say
 //drive(100)
 
@@ -49,6 +49,8 @@ float changeCoord = 0.0;
 #define DEBUG_STREAM_ON
 #define debugStreamLine1	x
 #define debugStreamLine2	z
+
+void turn45(bool right);
 
 static float updateX(float degrees, float distanceTraveled) {
 	return (float)(x + sin(degrees) * distanceTraveled); //remove cast
@@ -156,11 +158,11 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		updateZ(PI / 4, changeCoord);
 		drive(50);
 	}
-
-
 }
 
 void turn45(bool right){ //true is right, false is left
+	int power = 0;
+
 	if (right){
 		power = 100;
 	}
@@ -168,12 +170,10 @@ void turn45(bool right){ //true is right, false is left
 		power = -100;
 	}
 	resetEncoders();
-	motor[Left] = power;
-	motor[Left2] = power;
-	motor[Right] = -power;
-	motor[Right2] = -power;
+	motor[leftmotor_1] = power;
+	motor[rightmotor_1] = -power;
 	//wait1Msec(TURN45TIME);
-	while ((abs(nMotorEncoder[Left]) + abs(nMotorEncoder[Right]))/2 < 645)
+	while ((abs(nMotorEncoder[leftmotor_1]) + abs(nMotorEncoder[rightmotor_1]))/2 < 645)
 		wait1Msec(1);
 	brake();
 }
