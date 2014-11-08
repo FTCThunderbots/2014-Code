@@ -27,3 +27,8 @@ void testCoords() {
 	gotoCoordinates(0, 0, 0);
 	getCoordinateValue(1);
 }
+
+task main()
+{
+	testCoords();
+}
