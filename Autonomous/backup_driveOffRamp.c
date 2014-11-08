@@ -34,7 +34,7 @@ task main()
 {
 	initializeAPI();
 	waitForStart();
-	drive(100);
-	wait1Msec(2500);
+	drive(75);
+	wait1Msec(3000);
 	drive(0);
 }

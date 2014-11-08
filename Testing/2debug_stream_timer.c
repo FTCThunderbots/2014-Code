@@ -30,7 +30,8 @@ string label1 = "Runtime";
 #define debugStreamLine1 label1
 #define debugStreamType1 "%s"
 
-#define debugStreamLine2 runtime()
+float runtimeFloat = 0;
+#define debugStreamLine2 runtimeFloat
 #define debugStreamType2 "%.2f"
 
 string label2 = "Timer Object";
@@ -41,9 +42,9 @@ float timerTime = 0;
 #define debugStreamLine5 timerTime
 #define debugStreamType5 "%.2f"
 
-bool timerRunning = false;
+string timerRunning = "run";
 #define debugStreamLine6 timerRunning
-#define debugStreamType6 "%b"
+#define debugStreamType6 "%s"
 
 #define debugStreamLine8 (float)time10[T2]/100
 #define debugStreamType8 "%.2f"
@@ -52,20 +53,31 @@ bool timerRunning = false;
 
 #include "../api/api.c"
 
-task main() {   
+task main() {
    ClearTimer(T2);
 	initializeAPI();
-   while (nNxtButtonPressed != 1) {}
-   
 	Timer_t t;
 	pTimer_t p = &t;
 	initTimer(p);
+	resetTimer(p);
+	startTimer(p);
    while(true) {
+     updateTimer(p);
+     runtimeFloat = runtime();
       timerTime = getRuntime(p);
-      timerRunning = t.running;
-      if (nNxtButttonPressed == 1) {
-         resetTimer(p);
+      if (t.running)
+      	timerRunning = "run";
+    	else
+    		timerRunning = "pause";
+      if (nNxtButtonPressed == 3) {
+         toggleTimer(p);
          ClearTimer(T2);
+         wait1Msec(500);
+      }
+      if (nNxtButtonPressed == 1){
+      	resetTimer(p);
+      	ClearTimer(T2);
+      	wait1Msec(500);
       }
    }
 }
