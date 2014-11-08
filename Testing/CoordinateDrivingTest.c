@@ -1,3 +1,5 @@
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
+#pragma config(Hubs,  S2, HTServo,  HTMotor,  none,     none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
@@ -16,6 +18,9 @@
 #pragma config(Servo,  srvo_S2_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
+//*!!Code painstakingly hand written by Daniel Grimshaw, not by ROBOTC               !!*//
+
+//settings are for last year's robot
 
 #include "coord_test.c"
 
