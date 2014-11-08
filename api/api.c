@@ -17,7 +17,12 @@
 #define compass_name NULL
 #endif
 
-// Please keep this list alphabetized
+// Please keep this list alphabetized lol no dont do that
+
+#ifndef DEBUG_INCLUDEGAURD
+#include "debug.c"
+#endif
+
 #ifndef BACKGROUND_INCLUDEGAURD
 #include "background.c"
 #endif
