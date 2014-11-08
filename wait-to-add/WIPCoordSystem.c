@@ -2,6 +2,10 @@
 #include "JoystickDriver.c"
 #include "unitConverter.c"
 
+#define XCOORD 0
+#define ZCOORD 1
+#define DEG	2
+
 float x = 0.0, z = 0.0;
 float orientation = 0.0;
 
@@ -18,7 +22,7 @@ static float getOrientation(float degrees) {
 	return (float)((orientation + cos(degrees)) % 4);
 }
 
-static float * UpdateCoords(float degrees, length CIRCUM_TYPE) {
+static void updateCoords(float degrees, length CIRCUM_TYPE) {
 		/*
 			1. Divide ticks by 1440 then multiply by circumference (Gives you how far it moved in the units
 			you have used for circumference.
@@ -35,10 +39,21 @@ static float * UpdateCoords(float degrees, length CIRCUM_TYPE) {
 		degrees = degreesToRadians(degrees);
 		degrees *= changeCoord;
 		float changedX = updateX(degrees, changeCoord);
+		x += changedX;
 		float changedZ = updateZ(degrees, changeCoord);
+		y += changedZ;
 		float changedOrientation = getOrientation(degrees);
+		orientation += changedOrientation;
 
-		float change[] = {changedX, changedZ, changedOrientation};
+		float change = {changedX, changedZ, changedOrientation};
+}
 
-		return &change[0];
+static float getCoordinateValue(int value) {
+	if (value == 0) {
+			return x;
+	} else if (value == 1) {
+			return z;
+	} else if (value == 2) {
+			return orientation;
+	}
 }
