@@ -45,10 +45,8 @@ bool timerRunning = false;
 #define debugStreamLine6 timerRunning
 #define debugStreamType6 "%b"
 
-#define debugStreamLine7 (int)timers
-#define debugStreamType7 "%d"
-
-#define debugStreamLine8 (float)time1[T2]/1000
+ClearTimer(T2);
+#define debugStreamLine8 (float)time10[T2]/100
 #define debugStreamType8 "%.2f"
 
 #define setting_twoMotors
@@ -57,8 +55,17 @@ bool timerRunning = false;
 
 task main() {
 	initializeAPI();
+   while (nNxtButtonPressed != 1) {}
+   
 	Timer_t t;
 	pTimer_t p = &t;
-	initTimer(p);startTimer(p);
-   while(true) {}
+	initTimer(p);
+   while(true) {
+      timerTime = getRuntime(p);
+      timerRunning = t.running;
+      if (nNxtButttonPressed == 1) {
+         resetTimer(p);
+         ClearTimer(T2);
+      }
+   }
 }
