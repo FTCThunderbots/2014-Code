@@ -34,7 +34,7 @@ static void updateCoords(float degrees, length_t CIRCUM_TYPE) {
 		*/
 		byte ticks = nMotorEncoder[NULL]; /* Will remain NULL until motor is known.*/
 		changeCoord = (ticks / 1440) * convertUnits(CIRCUM_TYPE, FEET, degrees);
-		
+
 		/*
 		*First I take the degrees and convert to radians.
 		*Next, I'll use sin(rad) += x
@@ -44,12 +44,10 @@ static void updateCoords(float degrees, length_t CIRCUM_TYPE) {
 		float changedX = updateX(degrees, changeCoord);
 		x += changedX;
 		float changedZ = updateZ(degrees, changeCoord);
-		y += changedZ;
+		z += changedZ;
 		float changedOrientation = getOrientation(degrees);
 		orientation = changedOrientation;
 
-		float change = {changedX, changedZ, changedOrientation};
-		
 		// reset changeCoord
 		changeCoord = 0.0;
 }
@@ -64,14 +62,14 @@ static float getCoordinateValue(int value) {
 	}
 }
 
-static void gotoCoordinates(newX, newZ, newOrientation) {
+static void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	/*
 		For now I will go in the following order:
 			1.) I will go to the correct X value
 			2.) Next the correct Z value
 			3.) Finally rotate until orientation = newOrientation
 	*/
-	
+
 	// code used to rotate robot to starting degrees goes here
 	if (newX < x) {
 		while (orientation >= -90 - 10 || orientation <= -90 + 10) {
@@ -84,13 +82,13 @@ static void gotoCoordinates(newX, newZ, newOrientation) {
 			updateCoords(45, INCHES);
 		}
 	}
-	
+
 	while (x < newX + 1 || x > newX - 1) {
 		byte ticks = nMotorEncoder[NULL]; /* Will remain NULL until motor is known.*/
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, degrees);
+		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI);
 		updateX(PI, changeCoord);
 	}
-	
+
 	if (newZ < z) {
 		while (orientation >= -180 - 10 || orientation <= -180 + 10) {
 			// Rotate robot
@@ -102,12 +100,12 @@ static void gotoCoordinates(newX, newZ, newOrientation) {
 			updateCoords(45, INCHES);
 		}
 	}
-	
+
 	while (z < newZ + 1 || z > newZ - 1) {
 		byte ticks = nMotorEncoder[NULL]; /* Will remain NULL until motor is known.*/
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, degrees);
+		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI);
 		updateZ(PI, changeCoord);
 	}
-	
-	
+
+
 }

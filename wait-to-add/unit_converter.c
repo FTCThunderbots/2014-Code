@@ -5,14 +5,16 @@ typedef enum {INCHES, FEET, CENTIMETER, METER} length_t;
 // please use the convertUnits(int,int,float) function.
 static float inchesConvert(length_t PARAM, float input) {
 	float output;
-	if (PARAM == INCHES)
+	if (PARAM == INCHES) {
 		return input;
-	else if (PARAM == FEET)
+  } else if (PARAM == FEET) {
 		output = input / 12;
-	else if (PARAM == CENTIMETER)
+	} else if (PARAM == CENTIMETER){
 		return input * 2.54;
-	else if (PARAM == METER)
+	}else if (PARAM == METER) {
 		return (input * 2.54) / 1000;
+	}
+
 	return 0;
 }
 
@@ -25,6 +27,7 @@ static float feetConvert(length_t PARAM, float input) {
 		return (input * 12) * 2.54;
 	else if (PARAM == METER)
 		return ((input * 12) * 2.54) / 1000;
+	return 0;
 }
 
 static float centimeterConvert(length_t PARAM, float input) {
@@ -36,6 +39,7 @@ static float centimeterConvert(length_t PARAM, float input) {
 		return input;
 	else if (PARAM == METER)
 		return input/1000;
+	return 0;
 }
 
 static float meterConvert(length_t PARAM, float input) {
@@ -47,6 +51,7 @@ static float meterConvert(length_t PARAM, float input) {
 		return input / 1000;
 	else if (PARAM == METER)
 		return input;
+	return 0;
 }
 // end of conversion blocks
 
