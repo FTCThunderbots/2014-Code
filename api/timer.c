@@ -49,13 +49,8 @@ void updateTimer(pTimer_t timer) {
 }
 
 void updateAllTimers() {
-	for (int i = 0; i < timers; i++) {
-		// Read the comment here
+	for (int i = 0; i < timers; i++)
 		updateTimer(timerSet[i]);
-		// This is the only way it compiles. We need to test it later.
-		// I don't think the address operator should be required here,
-		// but RobotC complains if it's absent
-	}
 }
 
 void monitorSysTimer() {
