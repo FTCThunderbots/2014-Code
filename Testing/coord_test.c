@@ -91,6 +91,9 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	*/
 
 	// code used to rotate robot to starting degrees goes here
+	nMotorEncoder[leftmotor_1] = 0;
+	nMotorEncoder[rightmotor_1] = 0;
+
 	if (newX < x) {
 		while (orientation >= -90 - 10 || orientation <= -90 + 10) {
 			// Rotate robot
@@ -106,7 +109,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	}
 
 	while (x < newX + 1 || x > newX - 1) {
-		byte ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
+		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
@@ -128,8 +131,11 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		}
 	}
 
+	nMotorEncoder[leftmotor_1] = 0;
+	nMotorEncoder[rightmotor_1] = 0;
+
 	while (z < newZ + 1 || z > newZ - 1) {
-		byte ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
+		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
