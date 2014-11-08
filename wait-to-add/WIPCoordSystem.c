@@ -5,12 +5,12 @@
 float x = 0.0, z = 0.0;
 float orientation = 0.0;
 
-static float updateX(float degrees) {
-	return (float)(x + sin(degrees));
+static float updateX(float degrees, float distanceTraveled) {
+	return (float)(x + sin(degrees) * distanceTraveled);
 }
 
-static float updateZ(float degrees) {
-	return (float)(x + cos(degrees));
+static float updateZ(float degrees, float distanceTraveled) {
+	return (float)(z + cos(degrees) * distanceTraveled);
 }
 
 static float getOrientation(float degrees) {
@@ -34,8 +34,8 @@ static float * UpdateCoords(float degrees, length CIRCUM_TYPE) {
 
 		degrees = degreesToRadians(degrees);
 		degrees *= changeCoord;
-		float changedX = updateX(degrees);
-		float changedZ = updateZ(degrees);
+		float changedX = updateX(degrees, changeCoord);
+		float changedZ = updateZ(degrees, changeCoord);
 		float changedOrientation = getOrientation(degrees);
 
 		float change[] = {changedX, changedZ, changedOrientation};
