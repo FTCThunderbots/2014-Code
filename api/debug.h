@@ -3,7 +3,10 @@
 
 #define DEBUG_INCLUDEGAURD
 
-
+#ifndef TIMER_INCLUDEGUARD
+#include "timer.c"
+#endif
+#warn "(debug.h) remove the timer include once testing is done."
 
 #ifdef DEBUG_STREAM_ON
 
