@@ -7,10 +7,15 @@
 //function macros
 #define waitSecs(timer, secs) while(getSeconds(timer) < secs){}
 
+typedef struct TimeVal {
+   long msecs; //milliseconds
+   byte mins; //really half-minutes
+} TimeVal_t;
+
 typedef struct Timer {
-	long milliseconds;
-	long begin;
-	long previousTime;
+	TimeVal_t time;
+	TimeVal_t begin;
+	TimeVal_t previous;
 	bool initialized;
 	bool running;
 } Timer_t;

@@ -9,8 +9,10 @@
 
 static pTimer_t timerSet[timersused];
 
-static long currentTime = 0;
-static byte minutesPassed = 0; //actually half-minutes
+static TimeVal_t currentTime;
+static currentTime.msecs = 0;
+static currentTime.mins = 0; //actually half-minutes
+
 static int extraMS = 0;
 static byte timers = 0;
 
@@ -18,7 +20,9 @@ int initTimer(pTimer_t timer) {
 	if (timer->initialized)
 		return -1;
 	resetTimer(timer);
-	timer->begin = 0;
+	timer->begin.msecs = 0;
+   timer->begin.mins = 0;
+   
 	timer->initialized = true;
 	timer->running = false;
 
@@ -27,9 +31,9 @@ int initTimer(pTimer_t timer) {
 }
 
 void startTimer(pTimer_t timer) {
-	timer->previousTime = timer->milliseconds;
+	timer->previous = timer->time;
 	timer->running = true;
-	timer->begin = timeInMS();
+	timer->begin = currentTime;
 }
 
 void stopTimer(pTimer_t timer) {
@@ -37,8 +41,10 @@ void stopTimer(pTimer_t timer) {
 }
 
 void resetTimer(pTimer_t timer) {
-   timer->previousTime = 0;
-   timer->milliseconds = 0;
+   timer->previous.msecs = 0;
+   timer->previous.mins = 0;
+   timer->time.msecs = 0;
+   timer->time.mins = 0;
    timer->begin = currentTime;
  }
 
@@ -53,6 +59,7 @@ void toggleTimer(pTimer_t timer) {
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
 		timer->milliseconds = timer->previousTime + (timeInMS() - timer->begin);
+      timer->time.msecs
 	}
 }
 
