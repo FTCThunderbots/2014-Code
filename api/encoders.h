@@ -59,17 +59,18 @@ long getEncoder(string name) {
       return getEncoder_right1();
    if (name == "right2")
       return getEncoder_right2();
+   return -1;
 }
 
 void setEncoder(string name, long val) {
    if (name == "left1")
-      return setEncoder_left1(val);
+      setEncoder_left1(val);
    if (name == "left2")
-      return setEncoder_left2(val);
+      setEncoder_left2(val);
    if (name == "right1")
-      return setEncoder_right1(val);
+      setEncoder_right1(val);
    if (name == "right2")
-      return setEncoder_right2(val);
+      setEncoder_right2(val);
 }
 
 // Unit conversions

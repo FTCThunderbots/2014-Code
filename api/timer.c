@@ -4,7 +4,7 @@
 #include "timer.h"
 
 #ifndef timersused
-#define timersused 0
+#define timersused 1
 #endif
 
 static pTimer_t timerSet[timersused];
@@ -22,7 +22,7 @@ int initTimer(pTimer_t timer) {
 	timer->initialized = true;
 	timer->running = false;
 
-	timerSet[timers++] = *timer;
+	timerSet[timers++] = timer;
 	return 0;
 }
 
@@ -51,7 +51,7 @@ void updateTimer(pTimer_t timer) {
 void updateAllTimers() {
 	for (int i = 0; i < timers; i++) {
 		// Read the comment here
-		updateTimer(&timerSet[i]);
+		updateTimer(timerSet[i]);
 		// This is the only way it compiles. We need to test it later.
 		// I don't think the address operator should be required here,
 		// but RobotC complains if it's absent

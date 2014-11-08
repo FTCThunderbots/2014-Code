@@ -4,8 +4,8 @@
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
 #pragma config(Sensor, S4,     touch,          sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     Left,          tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     Right,         tmotorTetrix, openLoop, encoder)
+#pragma config(Motor,  mtr_S1_C1_1,     leftmotor_1,          tmotorTetrix, openLoop, encoder)
+#pragma config(Motor,  mtr_S1_C1_2,     rightmotor_1,         tmotorTetrix, openLoop, encoder)
 #pragma config(Motor,  mtr_S1_C2_1,     Lift1,         tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_2,     Lift2,         tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C3_1,     Left2,         tmotorTetrix, openLoop, reversed)
@@ -19,6 +19,8 @@
 #pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
 //*!!Code painstakingly hand written by Daniel Grimshaw, not by ROBOTC               !!*//
+
+//settings are for last year's robot
 
 #define setting_twoMotors
 

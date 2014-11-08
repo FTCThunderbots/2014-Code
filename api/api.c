@@ -13,6 +13,10 @@
 #endif
 #endif
 
+#ifndef compass_name
+#define compass_name NULL
+#endif
+
 // Please keep this list alphabetized
 #ifndef BACKGROUND_INCLUDEGAURD
 #include "background.c"
