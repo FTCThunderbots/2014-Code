@@ -110,7 +110,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
-		updateX(PI / 4, changeCoord);
+		updateX(90, changeCoord);
 		drive(50);
 	}
 
@@ -133,7 +133,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, PI / 4);
-		updateZ(PI / 4, changeCoord);
+		updateZ(180, changeCoord);
 		drive(50);
 	}
 }
