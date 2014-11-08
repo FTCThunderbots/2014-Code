@@ -18,7 +18,7 @@ int initTimer(pTimer_t timer) {
 	if (timer->initialized)
 		return -1;
 	resetTimer(timer);
-	timer->start = 0;
+	timer->begin = 0;
 	timer->initialized = true;
 	timer->running = false;
 
@@ -29,7 +29,7 @@ int initTimer(pTimer_t timer) {
 void startTimer(pTimer_t timer) {
 	timer->previousTime = timer->milliseconds;
 	timer->running = true;
-	timer->start = timeInMS();
+	timer->begin = timeInMS();
 }
 
 void stopTimer(pTimer_t timer) {
@@ -39,12 +39,12 @@ void stopTimer(pTimer_t timer) {
 void resetTimer(pTimer_t timer) {
    timer->previousTime = 0;
    timer->milliseconds = 0;
-   timer->start = currentTime;
+   timer->begin = currentTime;
  }
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
-		timer->milliseconds = timer->previousTime + (timeInMS() - timer->start);
+		timer->milliseconds = timer->previousTime + (timeInMS() - timer->begin);
 	}
 }
 

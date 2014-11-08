@@ -9,7 +9,7 @@
 
 typedef struct Timer {
 	long milliseconds;
-	long start;
+	long begin;
 	long previousTime;
 	bool initialized;
 	bool running;

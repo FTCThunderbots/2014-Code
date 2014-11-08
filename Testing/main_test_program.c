@@ -18,7 +18,7 @@
 #pragma config(Servo,  srvo_S2_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
-//*!!Code painstakingly hand written by Daniel Grimshaw, not by ROBOTC               !!*//
+//*!!Code painstakingly copied by Daniel Grimshaw, not by ROBOTC               !!*//
 
 //settings are for last year's robot
 
@@ -30,7 +30,7 @@
 
 task main()
 {
-	initializeAPI();
+	initializeAPI(); //located in background.c
 
 
 }

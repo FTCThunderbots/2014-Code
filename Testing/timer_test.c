@@ -37,8 +37,9 @@ task main()
 	startTimer(pTimer);
 
 	setMovement(100,0);
-	while (getSeconds(pTimer) < 2) {}
+	while (getSeconds(pTimer) < 2) {nxtDisplayCenteredTextLine(3, "%d in seconds, %d in deciseconds", getSeconds(pTimer), getDeciseconds(pTimer));}
 	setMovement(0,0);
+
 	while (getDeciseconds(pTimer) < 30) {}
 
 	resetTimer(pTimer);
