@@ -4,12 +4,13 @@
 #include "background.h"
 
 void initializeAPI() {
-	setMovement(0,0,0); //implemented in movement.c
-	timeInit(); //imp. timers.c
+	setMovement(0,0,0); //movement.c
+	timeInit(); //timers.c
 	StartTask(background);
 }
 
 task background() {
-	monitorSysTimer(); //imp. timers.c
-	updateAllTimers(); //imp. timers.c
+	monitorSysTimer(); //timers.c
+	updateAllTimers(); //timers.c
+	updateDebugStream() //debug.c
 }

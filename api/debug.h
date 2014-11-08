@@ -1,6 +1,8 @@
 // debug.h
 // Header file for debug.c
 
+#define DEBUG_INCLUDEGAURD
+
 #ifdef DEBUG_STREAM_ON
 
 #ifndef debugStreamLine1
@@ -79,4 +81,5 @@
 
 #endif //ifdef DEBUG_STREAM_ON
 
-void updateDebugStream()
+void updateDebugStream();
+void printConsole(String toPrint);
