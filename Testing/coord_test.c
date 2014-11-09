@@ -75,7 +75,8 @@ void updateCoords(float degrees, length_t CIRCUM_TYPE) {
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
 
-		float changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
+		float changeCoord = (ticks / 1440) * convertUnits(CIRCUM_TYPE, FEET, circumference);	// should be the same as what the wheel's diameter was
+																								// measured with.
 
 		/*
 		*First I take the degrees and convert to radians.

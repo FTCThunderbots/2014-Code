@@ -24,13 +24,20 @@
 
 #include "coord_test.c"
 
+float x = 0.0;
+float z = 0.0;
+float orientation = 0.0;
+
 void testCoords() {
 	gotoCoordinates(1, 0, 180);
 	gotoCoordinates(0, 0, 0);
 	gotoCoordinates(0, 1, 180);
 
 	gotoCoordinates(0, 0, 0);
-	getCoordinateValue(1);
+	
+	x = getCoordinateValue(0);
+	z = getCoordinateValue(1);
+	orientation = getCoordinateValue(2);
 }
 
 task main()
