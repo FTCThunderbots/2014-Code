@@ -119,20 +119,20 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	nMotorEncoder[rightmotor_1] = 0;
 
 	if (newX < x) {
-		while (orientation >= -90 - 10 || orientation <= -90 + 10) {
+		while (!(orientation >= -90 - 10 && orientation <= -90 + 10)) {
 			// Rotate robot
 			turn45(true);
 			updateCoords(45, INCHES);
 		}
 	} else {
-		while (orientation >= 90 + 10 || orientation <= 90 - 10) {
+		while (!(orientation >= 90 + 10 && orientation <= 90 - 10)) {
 			// Rotate robot
 			turn45(false);
 			updateCoords(45, INCHES);
 		}
 	}
 
-	while (x < newX + 1 || x > newX - 1) {
+	while (!(x >= newX - 1 && x <= newX + 1)) {
 		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
@@ -142,13 +142,13 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	}
 
 	if (newZ < z) {
-		while (orientation >= -180 - 10 || orientation <= -180 + 10) {
+		while (!(orientation >= -180 + 10 && orientation <= -180 - 10)) {
 			// Rotate robot
 			turn45(true);
 			updateCoords(45, INCHES);
 		}
 	} else {
-		while (orientation >= 180 + 10 || orientation <= 180 - 10) {
+		while (!(orientation >= 180 + 10 && orientation <= 180 - 10)) {
 			// Rotate robot
 			turn45(false);
 			updateCoords(45, INCHES);
@@ -158,7 +158,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	nMotorEncoder[leftmotor_1] = 0;
 	nMotorEncoder[rightmotor_1] = 0;
 
-	while (z < newZ + 1 || z > newZ - 1) {
+	while (!(z >= newZ - 1 && z <= newZ + 1)) {
 		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
 		ticks += nMotorEncoder[rightmotor_1];
 		ticks /= 2;
