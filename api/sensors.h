@@ -6,5 +6,5 @@
 #ifdef compass_name
 #define getCompassValue() SensorValue[compass_name]
 #else
-#define getCompassValue() 0
+#define getCompassValue() -1
 #endif
