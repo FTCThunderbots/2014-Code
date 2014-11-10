@@ -18,7 +18,7 @@ void updateDebugStream() {
    nxtDisplayTextLine(7, debugStreamType8, debugStreamLine8);
 }
 
-#else // #ifdef DEBUG_STREAM_ON, aka debug stream is off
+#else // debug stream is off
 
 void updateDebugStream() {
    // do nothing

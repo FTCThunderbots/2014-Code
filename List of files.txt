@@ -1,6 +1,8 @@
 api/api.c
 api/background.c
 api/background.h
+api/debug.c
+api/debug.h
 api/encoders.c
 api/encoders.h
 api/functions.c
@@ -20,23 +22,33 @@ api/timer.c
 api/timer.h
 
 autonomous/drive_off_ramp_auto.c
-	
+autonomous/backup_driveOffRamp.c
+
+python/linesWritten.py
+python/searchInFiles.py
+
 config/2013_robot_config.c
 config/default_config.c
 	
 sample/first_driving_program.c
-sample/mecanumDrive.h
-sample/SensorTesting.c
 sample/SpinTheWheel.c
 	
 tele-op/main_teleop.c
-	
+
+testing/2013_robot_config.c
+testing/2debug_stream_timer.c
+testing/coord_test.c
+testing/CoordinateDrivingTest.c
 testing/main_test_program.c
-testing/setMovementTest.c
+testing/movement_test.c
+testing/SensorTesting.c
+testing/simplemovement_test.c
+testing/timer_debug_stream_test.c
+testing/timer_test.c
 testing/turn_test.c
+testing/unit_converter.c
 	
 wait-to-add/unit_converter.c
-wait-to-add/unitConverter.c
 wait-to-add/WIPCoordSystem.c
 	
 python/linesWritten.py
