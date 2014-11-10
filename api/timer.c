@@ -8,12 +8,7 @@
 #endif
 
 static pTimer_t timerSet[timersused];
-
 static TimeVal_t currentTime;
-static currentTime.msecs = 0;
-static currentTime.mins = 0; //actually half-minutes
-
-static int extraMS = 0;
 static byte timers = 0;
 
 int initTimer(pTimer_t timer) {
@@ -22,7 +17,7 @@ int initTimer(pTimer_t timer) {
 	resetTimer(timer);
 	timer->begin.msecs = 0;
    timer->begin.mins = 0;
-   
+
 	timer->initialized = true;
 	timer->running = false;
 
@@ -58,8 +53,10 @@ void toggleTimer(pTimer_t timer) {
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
-		timer->milliseconds = timer->previousTime + (timeInMS() - timer->begin);
-      timer->time.msecs
+    	timer->time.mins = currentTime.mins - timer->begin.mins + timer->previous.mins;
+		long totalMsec = (long)currentTime.msecs - (long)(timer->begin.msecs) + (long)(timer->previous.msecs); //leave the casts for now
+		timer->time.msecs = totalMsec / 30000; // may change divisor?
+		timer->time.mins += totalMsec % 30000;
 	}
 }
 
@@ -69,46 +66,46 @@ void updateAllTimers() {
 }
 
 void monitorSysTimer() {
-	currentTime = time1[T1];
-	if (currentTime >= 30000) {
-		minutesPassed++;
-		extraMS += time1[T1] - 30000; //should be zero or negligible, but it's here just in case
+	currentTime.msecs = time1[T1];
+	if (time1[T1] >= 30000) {
 		ClearTimer(T1);
-		currentTime = time1[T1];
+		currentTime.mins += 1;
 	}
 }
 
 void timeInit() {
 	ClearTimer(T1);
+	currentTime.msecs = 0;
+	currentTime.mins = 0; //actually half-minutes
 }
 
 // Accessing timer values
 
 long getMilliseconds(pTimer_t timer) {
-	return timer->milliseconds;
+	return getTotalMilliseconds(&(timer->time));
 }
 
 long getCentiseconds(pTimer_t timer) {
-	return timer->milliseconds / 10;
+	return getTotalMilliseconds(&timer->time) / 10;
 }
 
 int getDeciseconds(pTimer_t timer) {
-	return timer->milliseconds / 100;
+	return getTotalMilliseconds(&timer->time) / 100;
 }
 
 int getSeconds(pTimer_t timer) {
-	return timer->milliseconds / 1000;
+	return getTotalMilliseconds(&(timer->time)) / 1000;
 }
 
 float getRuntime(pTimer_t timer) {
-	return (float)timer->milliseconds / 1000;
+	return (float)getTotalMilliseconds(&(timer->time)) / 1000;
 }
 
 // Total runtime
 
 // milliseconds
 long timeInMS() {
-	return extraMS + currentTime + (minutesPassed * 30000);
+	return getTotalMilliseconds(&currentTime);
 }
 
 //centiseconds
@@ -129,4 +126,8 @@ int timeInS() {
 //seconds, but in a float
 float runtime() {
 	return (float) timeInMS() / 1000;
+}
+
+long getTotalMilliseconds(pTimeVal_t time) {
+	return (30000 * (long)time->mins) + time->msecs;
 }

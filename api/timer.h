@@ -5,12 +5,15 @@
 #define TIMER_INCLUDEGAURD
 
 //function macros
-#define waitSecs(timer, secs) while(getSeconds(timer) < secs){}
+#define waitSecs(timer, secs) while(getSeconds(timer)<secs){}
 
 typedef struct TimeVal {
    long msecs; //milliseconds
+   // could potentially change this to an int, after testing is done
    byte mins; //really half-minutes
 } TimeVal_t;
+
+typedef TimeVal_t * pTimeVal_t;
 
 typedef struct Timer {
 	TimeVal_t time;
@@ -42,3 +45,5 @@ long timeInCS();
 int timeInDS();
 int timeInS();
 float runtime();
+
+long getTotalMilliseconds(pTimeVal_t time);
