@@ -12,6 +12,7 @@
 
 #ifdef DEBUG_STREAM_ON
 
+/*
 #ifndef debugStreamLine1
 #define debugStreamLine1 0
 #define debugStreamType1 "%d"
@@ -51,7 +52,7 @@
 #define debugStreamLine8 0
 #define debugStreamType8 "%d"
 #endif
-
+*/
 // Define types
 
 #ifndef debugStreamType1

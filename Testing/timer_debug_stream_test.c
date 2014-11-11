@@ -40,6 +40,7 @@ string label2 = "Debug";
 #define debugStreamLine4 label2
 #define debugStreamType4 "%s"
 
+/*
 #define debugStreamLine5 (int)currentTime
 #define debugStreamType5 "%d"
 
@@ -48,6 +49,7 @@ string label2 = "Debug";
 
 #define debugStreamLine7 (int)timers
 #define debugStreamType7 "%d"
+*/
 
 #define debugStreamLine8 (float)time1[T1]/1000
 #define debugStreamType8 "%.2f"

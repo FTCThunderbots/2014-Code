@@ -25,64 +25,131 @@
 #define timersused 1
 #define setting_twoMotors
 #define DEBUG_STREAM_ON
-/*float time = 0;
-#define debugStreamLine1 time
-#define debugStreamType1 "%.2f"*/
+
+string label1 = "Timer:";
+#define debugStreamLine1 label1
+#define debugStreamType1 "%s"
+
+float timerRuntime = 0;
+#define debugStreamLine2 timerRuntime
+#define debugStreamType2 "%.2f"
 
 #include "../api/api.c"
-
-//Timer_t timer;
-//pTimer_t pTimer = &timer;
-
-//task updateTimeLocal();
 
 task main()
 {
 	initializeAPI();
-
 	Timer_t timer;
-	pTimer_t pTimer = &timer;
-	initTimer(pTimer);
-	startTimer(pTimer);
-	pTimer->milliseconds = 0;
-
-	//StartTask(updateTimeLocal);
+	pTimer_t ptimer = &timer;
+	initTimer(ptimer);
+	startTimer(ptimer);
+	resetTimer(ptimer);
 
 	setMovement(100,0);
-	while (getSeconds(pTimer) < 2) {nxtDisplayCenteredTextLine(3, "LOOP 1 %d", getDeciseconds(pTimer));}
+	string loop1 = "Loop 1 (2)";
+	printConsole(loop1);
+	while (getRuntime(ptimer) < 2.0) {
+		timerRuntime = getRuntime(ptimer);
+	}
+
 	setMovement(0,0);
+	string loop2 = "Loop 2 (30)";
+	printConsole(loop2);
+	while (getDeciseconds(ptimer) < 30) {
+		//nxtDisplayCenteredTextLine(3, "LOOP 2 %d ", getDeciseconds(ptimer));
+		timerRuntime = getRuntime(ptimer);
+	}
 
-	while (getDeciseconds(pTimer) < 30) {nxtDisplayCenteredTextLine(3, "LOOP 2 %d ", getDeciseconds(pTimer));}
-
-	resetTimer(pTimer);
+	resetTimer(ptimer);
 	setMovement(-100, 0);
-	while (getCentiseconds(pTimer) < 200) {nxtDisplayCenteredTextLine(3, "LOOP 3 %d", getDeciseconds(pTimer));}
-        setMovement(0,0);
-        while (getMilliseconds(pTimer) < 3000) {nxtDisplayCenteredTextLine(3, "LOOP 4 %d", getDeciseconds(pTimer));}
 
-	resetTimer(pTimer);
+	string loop3 = "Loop 3 (2)";
+	printConsole(loop3);
+	while (getCentiseconds(ptimer) < 200) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 3 %d", getDeciseconds(ptimer));
+	}
+
+	setMovement(0,0);
+	string loop4 = "Loop 4 (3)";
+	printConsole(loop4);
+  while (getMilliseconds(ptimer) < 3000) {
+  	timerRuntime = getRuntime(ptimer);
+  	//nxtDisplayCenteredTextLine(3, "LOOP 4 %d", getDeciseconds(pTimer));
+  }
+
+	resetTimer(ptimer);
 	setMovement(0, 100);
-	while (getRuntime(pTimer) < 2.0) {nxtDisplayCenteredTextLine(3, "LOOP 5 %d", getDeciseconds(pTimer));}
-        setMovement(0,0);
-        while (getSeconds(pTimer) < 3) {nxtDisplayCenteredTextLine(3, "LOOP 6 %d", getDeciseconds(pTimer));}
 
-	resetTimer(pTimer);
+	string loop5 = "Loop 5 (2)";
+	printConsole(loop5);
+	while (getRuntime(ptimer) < 2.0) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 5 %d", getDeciseconds(pTimer));
+	}
+
+	setMovement(0,0);
+	string loop6 = "Loop 6 (3)";
+	printConsole(loop6);
+	while (getSeconds(ptimer) < 3) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 6 %d", getDeciseconds(pTimer));
+	}
+
+	resetTimer(ptimer);
 	setMovement(0,-100);
-	while (getSeconds(pTimer) < 2) {nxtDisplayCenteredTextLine(3, "LOOP 7 %d", getDeciseconds(pTimer));}
-        setMovement(0,0);
-        while (getDeciseconds(pTimer) < 30) {nxtDisplayCenteredTextLine(3, "LOOP 8 %d", getDeciseconds(pTimer));}
+	string loop7 = "Loop 7 (2)";
 
-	resetTimer(pTimer);
+	while (getSeconds(ptimer) < 2) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 7 %d", getDeciseconds(pTimer));
+	}
+
+	setMovement(0,0);
+	string loop8 = "Loop 8 (3)";
+	printConsole(loop8);
+
+	while (getDeciseconds(ptimer) < 30) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 8 %d", getDeciseconds(pTimer));
+	}
+
 	setMovement(100,100);
-	while (getSeconds(pTimer) < 2) {nxtDisplayCenteredTextLine(3, "LOOP 9 %d", getDeciseconds(pTimer));}
-        setMovement(0,0);
-        while (getDeciseconds(pTimer) < 30) {nxtDisplayCenteredTextLine(3, "LOOP 10 %d", getDeciseconds(pTimer));}
 
-	resetTimer(pTimer);
+	resetTimer(ptimer);
+	string loop9 = "Loop 9 (2)";
+	printConsole(loop9);
+
+	while (getSeconds(ptimer) < 2) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 9 %d", getDeciseconds(pTimer));
+	}
+
+	setMovement(0,0);
+	string loop10 = "Loop 10 (3)";
+	printConsole(loop10);
+
+  while (getDeciseconds(ptimer) < 30) {
+  	timerRuntime = getRuntime(ptimer);
+  	//nxtDisplayCenteredTextLine(3, "LOOP 10 %d", getDeciseconds(pTimer));
+  }
+
 	setMovement(-100,-100);
-	while (getSeconds(pTimer) < 2) {nxtDisplayCenteredTextLine(3, "LOOP 11 %d", getDeciseconds(pTimer));}
-        setMovement(0,0);
-  while (true) {nxtDisplayCenteredTextLine(3, "LOOP 12 %d", getDeciseconds(pTimer));}
+	resetTimer(ptimer);
+	string loop11 = "Loop 11 (2)";
+	printConsole(loop11);
+
+	while (getSeconds(ptimer) < 2) {
+		timerRuntime = getRuntime(ptimer);
+		//nxtDisplayCenteredTextLine(3, "LOOP 11 %d", getDeciseconds(pTimer));
+	}
+
+	setMovement(0,0);
+	string loop12 = "Loop 12 (3)";
+	printConsole(loop12);
+  while (true) {
+  	timerRuntime = getRuntime(ptimer);
+  }
 }
 
 /*task updateTimeLocal() {

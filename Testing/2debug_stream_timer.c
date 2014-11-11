@@ -38,13 +38,18 @@ string label2 = "Timer Object";
 #define debugStreamLine3 label2
 #define debugStreamType3 "%s"
 
-float timerTime = 0;
+int timerTime = 0;
 #define debugStreamLine5 timerTime
-#define debugStreamType5 "%.2f"
+#define debugStreamType5 "%d"
 
-string timerRunning = "run";
-#define debugStreamLine6 timerRunning
-#define debugStreamType6 "%s"
+int timerMins = 0;
+#define debugStreamLine6 timerMins
+
+long timerMS = 0;
+#define debugStreamLine7 (int)timerMS
+//string timerRunning = "run";
+//#define debugStreamLine7 timerRunning
+//#define debugStreamType7 "%s"
 
 #define debugStreamLine8 (float)time10[T2]/100
 #define debugStreamType8 "%.2f"
@@ -54,30 +59,34 @@ string timerRunning = "run";
 #include "../api/api.c"
 
 task main() {
-   ClearTimer(T2);
+	ClearTimer(T2);
 	initializeAPI();
 	Timer_t t;
 	pTimer_t p = &t;
 	initTimer(p);
 	resetTimer(p);
 	startTimer(p);
-   while(true) {
-     updateTimer(p);
-     runtimeFloat = runtime();
-      timerTime = getRuntime(p);
-      if (t.running)
-      	timerRunning = "run";
-    	else
-    		timerRunning = "pause";
-      if (nNxtButtonPressed == 3) {
-         toggleTimer(p);
-         ClearTimer(T2);
-         wait1Msec(500);
-      }
-      if (nNxtButtonPressed == 1){
-      	resetTimer(p);
-      	ClearTimer(T2);
-      	wait1Msec(500);
-      }
-   }
+	while(true) {
+		updateTimer(p);
+		runtimeFloat = runtime();
+		timerTime = getSeconds(p);
+		timerMins = t.time.mins;
+		timerMS = t.time.msecs;
+		/*
+		if (t.running)
+			timerRunning = "run";
+		else
+			timerRunning = "pause";
+		*/
+		if (nNxtButtonPressed == 3) {
+			toggleTimer(p);
+			ClearTimer(T2);
+			wait1Msec(500);
+		}
+		if (nNxtButtonPressed == 1) {
+			resetTimer(p);
+			ClearTimer(T2);
+			wait1Msec(500);
+		}
+	}
 }

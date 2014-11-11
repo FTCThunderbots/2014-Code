@@ -16,7 +16,7 @@ int initTimer(pTimer_t timer) {
 		return -1;
 	resetTimer(timer);
 	timer->begin.msecs = 0;
-   timer->begin.mins = 0;
+	timer->begin.mins = 0;
 
 	timer->initialized = true;
 	timer->running = false;
@@ -40,7 +40,8 @@ void resetTimer(pTimer_t timer) {
    timer->previous.mins = 0;
    timer->time.msecs = 0;
    timer->time.mins = 0;
-   timer->begin = currentTime;
+   timer->begin.mins = currentTime.mins;
+   timer->begin.msecs = currentTime.msecs;
  }
 
 // toggle the running state of the timer
@@ -53,10 +54,10 @@ void toggleTimer(pTimer_t timer) {
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
-    	timer->time.mins = currentTime.mins - timer->begin.mins + timer->previous.mins;
+    timer->time.mins = currentTime.mins - timer->begin.mins + timer->previous.mins;
 		long totalMsec = (long)currentTime.msecs - (long)(timer->begin.msecs) + (long)(timer->previous.msecs); //leave the casts for now
-		timer->time.msecs = totalMsec / 30000; // may change divisor?
-		timer->time.mins += totalMsec % 30000;
+		timer->time.msecs = totalMsec % 30000; // may change divisor?
+		timer->time.mins += totalMsec / 30000;
 	}
 }
 
