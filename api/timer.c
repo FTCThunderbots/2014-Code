@@ -8,16 +8,15 @@
 #endif
 
 static pTimer_t timerSet[timersused];
-static TimeVal_t sysTimer;
-static pTimeVal_t currentTime = &sysTimer;
+static TimeVal_t currentTime;
 static byte timers = 0;
 
 int initTimer(pTimer_t timer) {
 	if (timer->initialized)
 		return -1;
 	resetTimer(timer);
-	timer->begin->msecs = 0;
-   	timer->begin->mins = 0;
+	timer->begin.msecs = 0;
+   timer->begin.mins = 0;
 
 	timer->initialized = true;
 	timer->running = false;
@@ -27,7 +26,7 @@ int initTimer(pTimer_t timer) {
 }
 
 void startTimer(pTimer_t timer) {
-	timer->previous = &(timer->time);
+	timer->previous = timer->time;
 	timer->running = true;
 	timer->begin = currentTime;
 }
@@ -37,24 +36,27 @@ void stopTimer(pTimer_t timer) {
 }
 
 void resetTimer(pTimer_t timer) {
-   timer->previous->msecs = 0;
-   timer->previous->mins = 0;
-   timer->time->msecs = 0;
-   timer->time->mins = 0;
-   timer->begin = &currentTime;
+   timer->previous.msecs = 0;
+   timer->previous.mins = 0;
+   timer->time.msecs = 0;
+   timer->time.mins = 0;
+   timer->begin = currentTime;
  }
 
 // toggle the running state of the timer
 void toggleTimer(pTimer_t timer) {
-	timer->running ? stopTimer(timer); : startTimer(timer);
+	if (timer->running)
+		stopTimer(timer);
+	else
+		startTimer(timer);
 }
 
 void updateTimer(pTimer_t timer) {
 	if (timer->running) {
-    		timer->time->mins = currentTime->mins - timer->begin->mins + timer->previous->mins;
-		long totalMsec = (long)currentTime->msecs - (long)(timer->begin->msecs) + (long)(timer->previous->msecs); //leave the casts for now
-		timer->time->msecs = totalMsec % 30000; // may change divisor?
-		timer->time->mins += totalMsec / 30000;
+    	timer->time.mins = currentTime.mins - timer->begin.mins + timer->previous.mins;
+		long totalMsec = (long)currentTime.msecs - (long)(timer->begin.msecs) + (long)(timer->previous.msecs); //leave the casts for now
+		timer->time.msecs = totalMsec / 30000; // may change divisor?
+		timer->time.mins += totalMsec % 30000;
 	}
 }
 
@@ -64,17 +66,17 @@ void updateAllTimers() {
 }
 
 void monitorSysTimer() {
-	currentTime->msecs = time1[T1];
+	currentTime.msecs = time1[T1];
 	if (time1[T1] >= 30000) {
 		ClearTimer(T1);
-		currentTime->mins += 1;
+		currentTime.mins += 1;
 	}
 }
 
 void timeInit() {
 	ClearTimer(T1);
-	currentTime->msecs = 0;
-	currentTime->mins = 0; //actually half-minutes
+	currentTime.msecs = 0;
+	currentTime.mins = 0; //actually half-minutes
 }
 
 // Accessing timer values
