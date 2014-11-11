@@ -16,7 +16,9 @@ typedef struct TimeVal {
 typedef TimeVal_t * pTimeVal_t;
 
 typedef struct Timer {
-	struct TimeVal * time, *begin, *previous;
+	TimeVal_t time;
+	TimeVal_t begin;
+	TimeVal_t previous;
 	bool initialized;
 	bool running;
 } Timer_t;
