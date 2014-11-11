@@ -7,19 +7,19 @@
 #include "encoders.c"
 #endif
 
+typedef struct EncoderSet {
+   long left1;
+   long left2;
+   long right1;
+   long right2;
+} EncoderSet_t;
+
+typedef EncoderSet_t * pEncoderSet_t;
+
 typedef struct Ruler {
-	long left1_startTicks;
-	long left2_startTicks;
-	long right1_startTicks;
-	long right2_startTicks;
-	long left1_ticks;
-	long left2_ticks;
-	long right1_ticks;
-	long right2_ticks;
-	long left1_previousTicks;
-	long left2_previousTicks;
-	long right1_previousTicks;
-	long right2_previousTicks;
+   EncoderSet_t ticks
+	EncoderSet_t start;
+   EncoderSet_t previous;
 	bool initialized;
 	bool running;
 } Ruler_t;

@@ -10,39 +10,18 @@
 
 static pRuler_t rulerSet[rulersused];
 static pRuler_t sysRuler;
+
 static bool sysRulerExists;
 static byte rulers = 0;
-
-/*
-typedef struct Ruler {
-   long left1_startTicks;
-   long left2_startTicks;
-   long right1_startTicks;
-   long right2_startTicks;
-
-   long left1_ticks;
-   long left2_ticks;
-   long right1_ticks;
-   long right2_ticks;
-
-	long left1_previousTicks;
-	long left2_previousTicks;
-	long right1_previousTicks;
-	long right2_previousTicks;
-
-   bool initialized;
-   bool running;
-} Ruler_t;
-*/
 
 int initRuler(pRuler_t ruler) {
 	if (ruler->initialized)
 		return -1;
-	clearRuler(ruler);
+	resetRuler(ruler);
 	ruler->running = true;
 	ruler->initialized = true;
-	rulerSet[rulers++] = *ruler;
-	// See comments about similar issue with timerSet[]
+	rulerSet[rulers++] = ruler;
+   
 	return 0;
 }
 
@@ -63,10 +42,10 @@ void destroySysRuler() {
 }
 
 void startRuler(pRuler_t ruler) {
-	ruler->left1_previousTicks = ruler->left1_ticks;
-	ruler->left2_previousTicks = ruler->left2_ticks;
-	ruler->right1_previousTicks = ruler->right1_ticks;
-	ruler->right2_previousTicks = ruler->right2_ticks;
+	ruler->previous.left1 = ruler->ticks.left1;
+	ruler->previous.left2 = ruler->ticks.left2;
+	ruler->previous.right1 = ruler->ticks.right1;
+	ruler->previous.right2 = ruler->ticks.right2;
 
 	ruler->left1_startTicks = getEncoder_left1();
 	ruler->left2_startTicks = getEncoder_left2();
@@ -80,21 +59,21 @@ void stopRuler(pRuler_t ruler) {
 	ruler->running = false;
 }
 
-void clearRuler(pRuler_t ruler) {
-	ruler->left1_startTicks = getEncoder_left1();
-	ruler->left2_startTicks = getEncoder_left2();
-	ruler->right1_startTicks = getEncoder_right1();
-	ruler->right2_startTicks = getEncoder_right2();
+void resetRuler(pRuler_t ruler) {
+	ruler->start.left1 = getEncoder_left1();
+	ruler->start.left2 = getEncoder_left2();
+	ruler->start.right1 = getEncoder_right1();
+	ruler->start.right2 = getEncoder_right2();
 
-	ruler->left1_previousTicks = 0;
-	ruler->left2_previousTicks = 0;
-	ruler->right1_previousTicks = 0;
-	ruler->right2_previousTicks = 0;
+	ruler->previous.left1 = 0;
+	ruler->previous.left2 = 0;
+	ruler->previous.right1 = 0;
+	ruler->previous.right2 = 0;
 
-	ruler->left1_ticks = 0;
-	ruler->left2_ticks = 0;
-	ruler->right1_ticks = 0;
-	ruler->right2_ticks = 0;
+	ruler->ticks.left1 = 0;
+	ruler->ticks.left2 = 0;
+	ruler->ticks.right1 = 0;
+	ruler->ticks.right2 = 0;
 }
 
 void updateRuler(pRuler_t ruler) {
