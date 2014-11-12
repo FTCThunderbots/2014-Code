@@ -81,6 +81,7 @@ void timeInit() {
 }
 
 // Accessing timer values
+// TODO: replace these with macros?
 
 long getMilliseconds(pTimer_t timer) {
 	return getTotalMilliseconds(&(timer->time));

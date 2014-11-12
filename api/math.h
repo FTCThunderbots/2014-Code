@@ -9,6 +9,7 @@
 
 //Function Macros
 
+#define AVG(a, b) (a+b)/2
 #define MAX(a, b) (a >= b ? a : b)
 #define ABSMAX(a, b) (MAX(abs(a), abs(b)))
 
