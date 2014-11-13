@@ -35,3 +35,12 @@ void stopRuler(pRuler_t ruler);
 void resetRuler(pRuler_t ruler);
 void updateRuler(pRuler_t ruler);
 void updateAllRulers();
+
+long getLeftTicks(pRuler_t ruler);
+long getRightTicks(pRuler_t ruler);
+long getFrontTicks(pRuler_t ruler);
+long getBackTicks(pRuler_t ruler);
+long getDriveTicks(pRuler_t ruler);
+long getStrafeTicks(pRuler_t ruler);
+long getRotateTicks(pRuler_t ruler);
+long getSwingTicks(pRuler_t ruler);
