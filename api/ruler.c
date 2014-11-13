@@ -5,7 +5,7 @@
 #include "ruler.h"
 
 #ifndef rulersused
-#define rulersused 0
+#define rulersused 1
 #endif
 
 static pRuler_t rulerSet[rulersused];
@@ -21,7 +21,7 @@ int initRuler(pRuler_t ruler) {
 	ruler->running = true;
 	ruler->initialized = true;
 	rulerSet[rulers++] = ruler;
-   
+
 	return 0;
 }
 
@@ -94,6 +94,7 @@ void updateAllRulers() {
 
 long getLeftTicks(pRuler_t ruler) {
 	return AVG(ruler->ticks.left1, ruler->ticks.left2);
+}
 
 long getRightTicks(pRuler_t ruler) {
 	return AVG(ruler->ticks.right1, ruler->ticks.right2);

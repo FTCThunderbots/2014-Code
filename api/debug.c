@@ -2,8 +2,6 @@
 // Code used for debugging any functional top-level code
 
 #include "debug.h"
-#warn "(debug.c) remove the following line"
-#include "timer.c"
 
 static string consoleLines[8];
 
