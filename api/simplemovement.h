@@ -11,7 +11,27 @@ void drive(byte power);
 void strafe(byte power);
 void rotate(byte power);
 void swing(byte direction, byte power);
-void moveDiagonal(byte vector, byte power);
+void traverse(byte vector, byte power);
+
+void stop();
+
+void drive();
+void strafe();
+void rotate();
+void swing(byte direction);
+void traverse(byte vector);
+
+void driveSeconds(float secs, byte power);
+void strafeSeconds(float secs, byte power);
+void rotateSeconds(float secs, byte power);
+void swingSeconds(float secs, byte direction, byte power);
+void traverseSeconds(float secs, byte vector, byte power);
+
+void driveSeconds(float secs);
+void strafeSeconds(float secs);
+void rotateSeconds(float secs);
+void swingSeconds(float secs, byte direction);
+void traverseSeconds(float secs, byte vector);
 
 //Need to be implemented
 //void driveTicks(long ticks, byte power);

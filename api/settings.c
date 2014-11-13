@@ -23,6 +23,7 @@ const float TURN_POWER_WEIGHT = 1.0;
 // Motor Constants
 const byte MOTOR_MIN_POWER = 0; //not yet implemented
 const byte MOTOR_MAX_POWER = 100;
+const byte DEFAULT_MOTOR_POWER = 100; // when power is not specified
 
 // Encoder Settings
 const int ENCODER_TICKS_PER_ROTATION = 1440; // May not be correct, requires testing.
