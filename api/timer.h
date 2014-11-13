@@ -5,7 +5,13 @@
 #define TIMER_INCLUDEGAURD
 
 //function macros
-#define waitSecs(timer, secs) while(getSeconds(timer)<secs){}
+
+//DEPRECATED: #define waitSecs(timer, secs) while(getSeconds(timer)<secs){}
+
+#define waitMilliseconds(secs) wait1Msec(secs)
+#define waitCentiseconds(secs) wait1Msec(secs*10)
+#define waitDeciseconds(secs) wait1Msec(secs*100)
+#define waitSeconds(secs) wait1Msec(secs*1000)
 
 typedef struct TimeVal {
    long msecs; //milliseconds
