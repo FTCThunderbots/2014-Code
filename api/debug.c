@@ -34,18 +34,65 @@ void updateDebugStream() {
 #endif
 }
 
-#else // debug stream is off
+#else //debug stream is off
 
 void updateDebugStream() {
    // do nothing
 }
 
-#endif
+#endif //debug stream
+
+#ifdef DEBUG_CONSOLE_ON
+
+void updateDebugConsole() {
+   for (int i = 0; i < 7; i++)
+      if (!streamDefined[i])
+         nxtDisplayTextLine(i, consoleLines[i]);
+}
+
+void initDebugConsole() {
+   static bool streamDefined[8];
+   #ifdef debugStreamLine1
+   streamDefined[0] = true;
+   #endif
+   #ifdef debugStreamLine2
+   streamDefined[1] = true;
+   #endif
+   #ifdef debugStreamLine3
+   streamDefined[2] = true;
+   #endif
+   #ifdef debugStreamLine4
+   streamDefined[3] = true;
+   #endif
+   #ifdef debugStreamLine5
+   streamDefined[4] = true;
+   #endif
+   #ifdef debugStreamLine6
+   streamDefined[5] = true;
+   #endif
+   #ifdef debugStreamLine7
+   streamDefined[6] = true;
+   #endif
+   #ifdef debugStreamLine8
+   streamDefined[7] = true;
+   #endif
+}
+
+#else // debug console is off
+
+void updateDebugConsole() {
+   // do nothing
+}
+
+void initDebugConsole() {
+   // do nothing
+}
+
+#endif // debug console
 
 void printConsole(string toPrint) {
 	for (int i = 1; i <= 7; i++)
 		consoleLines[i-1] = consoleLines[i];
 	consoleLines[7] = toPrint;
-	for (int i = 0; i < 7; i++)
-		nxtDisplayTextLine(0, consoleLines[i]);
 }
+

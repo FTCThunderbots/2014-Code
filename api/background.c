@@ -6,6 +6,7 @@
 void initializeAPI() {
 	setMovement(0,0,0); //movement.c
 	timeInit(); //timers.c
+   initDebugConsole();
 	StartTask(background);
 }
 
@@ -14,5 +15,6 @@ task background() {
 		monitorSysTimer(); //timers.c
 		updateAllTimers(); //timers.c
 		updateDebugStream(); //debug.c
+      updateDebugConsole();
 	}
 }

@@ -3,56 +3,6 @@
 
 #define DEBUG_INCLUDEGAURD
 
-/*
-#ifndef TIMER_INCLUDEGUARD
-#include "timer.c"
-#endif
-#warn "(debug.h) remove the timer include once testing is done."
-*/
-
-#ifdef DEBUG_STREAM_ON
-
-/*
-#ifndef debugStreamLine1
-#define debugStreamLine1 0
-#define debugStreamType1 "%d"
-#endif
-
-#ifndef debugStreamLine2
-#define debugStreamLine2 0
-#define debugStreamType2 "%d"
-#endif
-
-#ifndef debugStreamLine3
-#define debugStreamLine3 0
-#define debugStreamType3 "%d"
-#endif
-
-#ifndef debugStreamLine4
-#define debugStreamLine4 0
-#define debugStreamType4 "%d"
-#endif
-
-#ifndef debugStreamLine5
-#define debugStreamLine5 0
-#define debugStreamType5 "%d"
-#endif
-
-#ifndef debugStreamLine6
-#define debugStreamLine6 0
-#define debugStreamType6 "%d"
-#endif
-
-#ifndef debugStreamLine7
-#define debugStreamLine7 0
-#define debugStreamType7 "%d"
-#endif
-
-#ifndef debugStreamLine8
-#define debugStreamLine8 0
-#define debugStreamType8 "%d"
-#endif
-*/
 // Define types
 
 #ifndef debugStreamType1
@@ -87,7 +37,7 @@
 #define debugStreamType8 "%d"
 #endif
 
-#endif //ifdef DEBUG_STREAM_ON
-
 void updateDebugStream();
+void updateDebugConsole();
 void printConsole(string toPrint);
+void initDebugConsole();
