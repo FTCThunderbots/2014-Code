@@ -1,15 +1,14 @@
 # searchInFiles.py
 # used to search for a string of characters in a specified list of files
 
-deprecated = False
-if deprecated:
-   print("You know, in the git shell, there is a very")
-	print("useful command, called `git grep' that will")
-	print("do exactly what this program does, but without")
-	print("all of the hassle of python.")
-	print("it is for that reason that this program has been")
-	print("deprecated.")
-	print("Please use git grep instead.")
+deprecated = True
+print("You know, in the git shell, there is a very")
+print("useful command, called `git grep' that will")
+print("do exactly what this program does, but without")
+print("all of the hassle of python and all of the errors that Zach makes.")
+print("It is for that reason that this program has been")
+print("deprecated.")
+print("Please use git grep instead.")
 
 def main():
    print("What phrase would you like to search for?")
