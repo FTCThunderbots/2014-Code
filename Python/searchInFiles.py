@@ -2,8 +2,8 @@
 # used to search for a string of characters in a specified list of files
 
 deprecated = False
-if not deprecated:
-    print("You know, in the git shell, there is a very")
+if deprecated:
+   print("You know, in the git shell, there is a very")
 	print("useful command, called `git grep' that will")
 	print("do exactly what this program does, but without")
 	print("all of the hassle of python.")
@@ -52,5 +52,5 @@ def main():
    else:
    	print("Sorry, but %s was not found in any known files" % searchPhrase)
 
-if (deprecated==False):
+if not deprecated:
    main()
