@@ -3,14 +3,14 @@
 
 deprecated = True
 
-def complainAboutDeprecation():
-	print("You know, in the git shell, there is a very")
-	print("useful command, called `git grep' that will")
-	print("do exactly what this program does, but without")
-	print("all of the hassle of python and all of the errors that Zach makes.")
-	print("It is for that reason that this program has been")
-	print("deprecated.")
-	print("Please use git grep instead.")
+
+print("You know, in the git shell, there is a very")
+print("useful command, called `git grep' that will")
+print("do exactly what this program does, but without")
+print("all of the hassle of python and all of the errors that Zach makes.")
+print("It is for that reason that this program has been")
+print("deprecated.")
+print("Please use git grep instead.")
 
 def main():
    print("What phrase would you like to search for?")
@@ -53,7 +53,5 @@ def main():
    else:
    	print("Sorry, but %s was not found in any known files" % searchPhrase)
 
-if deprecated:
-   complainAboutDeprecation()
-else:
+if not deprecated:
    main()
