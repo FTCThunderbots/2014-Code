@@ -83,3 +83,16 @@ void setMovementFromJoystick(byte forward, byte clockwise) {
 byte correctJoystick(byte joyval) {
 	return scaleTo(joyval, &joyRange[0], &motorRange[0]);
 }
+
+void scaleInputs(int* x, int* y) {
+	if (abs(*x) > 100)
+	{
+		*y *= 100 / abs(*x);
+		*x *= 100 / abs(*x);
+	}
+	if (abs(*y) > 100)
+	{
+		*x *= 100 / abs(*y);
+		*y *= 100 / abs(*y);
+	}
+}

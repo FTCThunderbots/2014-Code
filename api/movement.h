@@ -17,3 +17,4 @@ void setMovement(byte forward, byte clockwise);
 void setMovementFromJoystick(byte forward, byte right, byte clockwise);
 void setMovementFromJoystick(byte forward, byte clockwise);
 byte correctJoystick(byte joyval);
+void scaleInputs(int* x, int* y);
