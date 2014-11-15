@@ -126,19 +126,31 @@ long getSwingTicks(pRuler_t ruler) {
 }
 
 float getDriveInches(pRuler_t ruler) {
-   return (float)getDriveTicks(ruler) / ENCODER_TICKS_PER_DRIVE_INCH;
+   return driveTicksToInches(getDriveTicks(ruler));
 }
+
+float getDriveCentimeters(pRuler_t ruler) {
+   return inToCm(getDriveInches(ruler));
 
 float getStrafeInches(pRuler_t ruler) {
-   return getStrafeTicks(ruler) / ENCODER_TICKS_PER_STRAFE_INCH;
+   return strafeTicksToInches(getStrafeTicks(ruler));
 }
 
 float getSwingDegrees(pRuler_t ruler) {
-   return getRotateTicks(ruler) / ENCODER_TICKS_PER_ROTATE_DEGREE;
+   return rotateTicksToDegrees(getRotateTicks(ruler));
 }
 
-float getSwingDegrees(pRuler_t ruler) {
-   return getSwingTicks(ruler) / ENCODER_TICKS_PER_SWING_DEGREE;
+float getSwingDegrees(rRuler_t ruler) {
+   return swingTicksToDegrees(getSwingTicks(ruler));
+}
+
+
+float getDriveCentimeters(pRuler_t ruler) {
+   return driveTicksToCentimeters(getDriveTicks(ruler));
+}
+
+float getStrafeCentimeters(pRuler_t ruler) {
+   return strafeTIcksToCentimeters(getStrafeTicks(ruler))
 }
 
 // Current encoder positions: cannot be done because the raw encoder values will be messed up
