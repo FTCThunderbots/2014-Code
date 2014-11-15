@@ -7,11 +7,11 @@
 
 // degrees to ticks
 long degreesToTicks(float degrees) {
-	return degreesToTurnTicks(degrees);
+	return degreesToRotateTicks(degrees);
 }
 
-long degreesToTurnTicks(float degrees) {
-	return ENCODER_TICKS_PER_TURN_DEGREE * degrees;
+long degreesToRotateTicks(float degrees) {
+	return ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
 }
 
 long degreesToSwingTicks(float degrees) {
@@ -20,11 +20,11 @@ long degreesToSwingTicks(float degrees) {
 
 // ticks to degrees
 float ticksToDegrees(long ticks) {
-	return turnTicksToDegrees(ticks);
+	return rotateTicksToDegrees(ticks);
 }
 
-float turnTicksToDegrees(long ticks) {
-	return ticks / ENCODER_TICKS_PER_TURN_DEGREE;
+float rotateTicksToDegrees(long ticks) {
+	return ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
 
 float swingTicksToDegrees(long ticks) {
