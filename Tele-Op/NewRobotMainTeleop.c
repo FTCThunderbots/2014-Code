@@ -20,6 +20,8 @@ task main()
 {
 	initializeAPI();
 	while (isUserAHuman()) {
+		int a = 0;
+		int b = 0;
 		getJoystickSettings(joystick);
 		//setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
 		if (!(joy1Btn(6) || joy1Btn(8) || joy1Btn(5) || joy1Btn(7)))
@@ -33,10 +35,11 @@ task main()
 		else
 			motor[sweep] = -50;
 
-		int a = joystick.joy1_y1;
-		int b = 100;
+		a = joystick.joy1_y1;
+		b = 100;
 		scaleInputs(&a, &b);
 		motor[conveyor] = a;
+		nxtDisplayCenteredBigTextLine(5, "%d", motor[conveyor]);
 
 	}
 
