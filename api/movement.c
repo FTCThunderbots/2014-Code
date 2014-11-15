@@ -38,8 +38,14 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
-		for (int i = 0; i < 4; i++)
+		byte polarity = 1;
+		//byte newPolarity = 1;
+		for (int i = 0; i < 4; i++) {
+			polarity = power[i] / abs(power[i]); //should be 1 or -1
 			power[i] /= scale;
+			if (power[i]/abs(power[i]) != polarity)
+				power[i] *= polarity;
+		}
 	}
 
 	for(int i = 0; i < 4; i++)
@@ -57,9 +63,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 
 void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
 	// Scale from the range of the joystick to the range of the motors
-	forward = scaleTo(forward, &joyRange[0], &motorRange[0]);
-	right = scaleTo(right, &joyRange[0], &motorRange[0]);
-	clockwise = scaleTo(clockwise, &joyRange[0], &motorRange[0]);
+	forward = correctJoystick(forward);
+	right = correctJoystick(right);
+	clockwise = correctJoystick(clockwise);
 
    // the rest of the code is in setMovement()
    setMovement(forward, right, clockwise);
@@ -72,4 +78,8 @@ void setMovement(byte forward, byte clockwise) {
 
 void setMovementFromJoystick(byte forward, byte clockwise) {
 	setMovementFromJoystick(forward, 0, clockwise);
+}
+
+byte correctJoystick(byte joyval) {
+	return scaleTo(joyval, &joyRange[0], &motorRange[0]);
 }

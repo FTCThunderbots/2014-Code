@@ -26,37 +26,41 @@
 
 long leftEnc = 0;
 long rightEnc = 0;
-float driveIn = 0;
-float rotateIn = 0;
-float swingIn = 0;
+long driveIn = 0;
+long rotateIn = 0;
+long swingIn = 0;
 string state = "";
-
-Ruler_t ruler;
-pRuler_t pruler = &ruler;
 
 #define DEBUG_STREAM_ON
 #define debugStreamLine1 "Raw Values"
 #define debugStreamLine2 (int)leftEnc
 #define debugStreamLine3 (int)rightEnc
 #define debugStreamLine4 "Ruler object"
-#define debugStreamLine5 driveIn
-#define debugStreamLine6 rotateIn
-#define debugStreamLine7 swingIn
+#define debugStreamLine5 (int)driveIn
+#define debugStreamLine6 (int)rotateIn
+#define debugStreamLine7 (int)swingIn
 #define debugStreamLine8 state
 
+/*
 #define debugStreamType5 "%.2f"
 #define debugStreamType6 "%.2f"
 #define debugStreamType7 "%.2f"
 #define debugStreamType8 "%s"
-
+*/
+#define setting_twoMotors
 #include "../api/api.c"
 
+Ruler_t ruler;
+pRuler_t pruler = &ruler;
+
 void stopForASecond(void);
+task measureEncoders();
 
 task main()
 {
+	StartTask(measureEncoders);
 	initializeAPI();
-   initRuler(pruler);
+  initRuler(pruler);
 	setMovement(100,0);
 	wait1Msec(2000);
 	stopForASecond();
@@ -86,8 +90,8 @@ task measureEncoders() {
    while (true) {
       leftEnc = getLeftTicks(pruler);
       rightEnc = getRightTicks(pruler);
-      driveIn = getDriveInches(pruler);
-      rotateIn = getRotateDegrees(pruler);
-      swingIn = getSwingDegrees(pruler);
+      driveIn = getDriveTicks(pruler);
+      rotateIn = getRotateTicks(pruler);
+      swingIn = getSwingTicks(pruler);
    }
 }
