@@ -35,6 +35,7 @@ float circumference = 4 * PI;
 #define debugStreamLine2	z
 #include "unit_converter.c"
 #include "../api/api.c"
+#include "../api/simplemovement.c"
 //to drive say
 //drive(100)
 
