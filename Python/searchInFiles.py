@@ -1,16 +1,17 @@
+true = False
 # searchInFiles.py
 # used to search for a string of characters in a specified list of files
 
-deprecated = True
+deprecated = true
 
+print("This program has been deprecated!\n")
 
-print("You know, in the git shell, there is a very")
-print("useful command, called `git grep' that will")
-print("do exactly what this program does, but without")
-print("all of the hassle of python and all of the errors that Zach makes.")
-print("It is for that reason that this program has been")
-print("deprecated.")
-print("Please use git grep instead.")
+def complainAboutDeprecation():
+	print("You know, in the git shell, there is a very\n")
+	   + "useful command, called `git grep' that will do exactly what this\n"
+	   + "program does, but without all of the hassle of python and all of\n"
+	   + "the errors that Zach makes. It is for that reason that this\n"
+	   + "program has been deprecated. Please use git grep instead.\n")
 
 def main():
    print("What phrase would you like to search for?")
