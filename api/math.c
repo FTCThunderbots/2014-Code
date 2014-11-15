@@ -57,8 +57,8 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 		return 0;
 	if (abs(value) > *(range+1))
 		return *(scale+1) * pol;
-	float posInR = (float)(value - *range) / *(range+2); //should be a percent
-	return (byte)(*scale) + (posInR * *(range+2));
+	float posInR = (float)abs(value - *range) / *(range+2); //should be a percent
+	return pol * (byte)(*scale) + (posInR * *(range+2));
 }
 
 // Unit conversion functions
