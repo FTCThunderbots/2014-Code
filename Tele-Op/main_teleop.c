@@ -39,6 +39,6 @@ task main() {
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
-		wait1Msec(10);
+		nxtDisplayCenteredBigTextLine(5,"%d",joystick.joy1_y1);
 	}
 }
