@@ -2,18 +2,20 @@
 // The robot will start on top of the corner ramp, and drive forward
 // for 2.5 seconds, onto the floor
 
-#define timersused 1
+#define setting_twoEncoders
 #include "../api/api.c"
+
+#warn "Time based autonomous!"
+#error "NO PRAGMA!!!"
 
 task main()
 {
 	initializeAPI();
 	waitForStart();
-	Timer_t timer;
-	pTimer_t pTimer;
-	initTimer(pTimer);
-	startTimer(pTimer);
 	drive(100);
-	while (getDeciseconds(pTimer) < 25) {}
+	wait1Msec(3000);
 	drive(0);
+	clampTube(FRONT);
 }
+
+void clamp
