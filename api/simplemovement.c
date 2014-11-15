@@ -6,6 +6,10 @@
 
 //look in header for functions that need implementations
 
+void stop() {
+	setMovement(0,0,0);
+}
+
 void drive(byte power) {
 	setMovement(power, 0, 0);
 }
@@ -40,10 +44,6 @@ void swing(byte direction) {
    swing(direction, DEFAULT_MOTOR_POWER);
 }
 
-void stop() {
-	setMovement(0,0,0);
-}
-
 void traverse(byte vector, byte power) {
 	// vector is 0 to 3, with 0 being straight forward, and 3 being back/left
 	// use negative power to move in any of the other four directions
@@ -69,6 +69,11 @@ void traverse(byte vector, byte power) {
 
 void traverse(byte vector) {
    traverse(vector, DEFAULT_MOTOR_POWER);
+}
+
+void stopSeconds(float secs) {
+   stop();
+   waitSeconds(secs);
 }
 
 void driveSeconds(float secs, byte power) {
