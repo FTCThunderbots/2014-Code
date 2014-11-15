@@ -138,8 +138,10 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
 		updateX(90, changeCoord);
-		drive(50);
+		drive();
 	}
+
+	stop();
 
 	if (newZ < z) {
 		while (!(orientation >= -180 + 10 && orientation <= -180 - 10)) {
@@ -164,8 +166,10 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
 		updateZ(180, changeCoord);
-		drive(50);
+		drive();
 	}
+
+	stop();
 }
 
 void resetEncoders() {
