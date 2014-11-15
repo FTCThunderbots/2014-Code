@@ -75,10 +75,10 @@ void setEncoder(string name, long val) {
 
 // Unit conversions
 long degreesToTicks(float degrees);
-long degreesToTurnTicks(float degrees);
+long degreesToRotateTicks(float degrees);
 long degreesToSwingTicks(float degrees);
 float ticksToDegrees(long ticks);
-float turnTicksToDegrees(long ticks);
+float rotateTicksToDegrees(long ticks);
 float swingTicksToDegrees(long ticks);
 long inchesToTicks(float inches);
 long inchesToDriveTicks(float inches);

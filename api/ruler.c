@@ -137,8 +137,8 @@ float getSwingDegrees(pRuler_t ruler) {
    return getRotateTicks(ruler) / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
 
-float getSwingDegrees(rRuler_t ruler) {
-   return getSwingTicks(ruler) / ENCODER_TICKS_PER_SWING_DEGREE;q
+float getSwingDegrees(pRuler_t ruler) {
+   return getSwingTicks(ruler) / ENCODER_TICKS_PER_SWING_DEGREE;
 }
 
 // Current encoder positions: cannot be done because the raw encoder values will be messed up
