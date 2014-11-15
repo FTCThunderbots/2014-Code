@@ -125,4 +125,20 @@ long getSwingTicks(pRuler_t ruler) {
 	// Not dividing by two is intentional here, since one side should be zero.
 }
 
+float getDriveInches(pRuler_t ruler) {
+   return (float)getDriveTicks(ruler) / ENCODER_TICKS_PER_DRIVE_INCH;
+}
+
+float getStrafeInches(pRuler_t ruler) {
+   return getStrafeTicks(ruler) / ENCODER_TICKS_PER_STRAFE_INCH;
+}
+
+float getSwingDegrees(pRuler_t ruler) {
+   return getRotateTicks(ruler) / ENCODER_TICKS_PER_ROTATE_DEGREE;
+}
+
+float getSwingDegrees(rRuler_t ruler) {
+   return getSwingTicks(ruler) / ENCODER_TICKS_PER_SWING_DEGREE;q
+}
+
 // Current encoder positions: cannot be done because the raw encoder values will be messed up
