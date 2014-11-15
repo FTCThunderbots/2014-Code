@@ -38,14 +38,8 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
-		byte polarity = 1;
-		//byte newPolarity = 1;
-		for (int i = 0; i < 4; i++) {
-			polarity = power[i] / abs(power[i]); //should be 1 or -1
+		for (int i = 0; i < 4; i++)
 			power[i] /= scale;
-			if (power[i]/abs(power[i]) != polarity)
-				power[i] *= polarity;
-		}
 	}
 
 	for(int i = 0; i < 4; i++)
