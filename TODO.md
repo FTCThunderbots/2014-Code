@@ -12,6 +12,7 @@
 * Add tick to measurement functions to the ruler system
 * ~~Add system timer in timer.c~~
 * ~~Add move for time functions to simplemovement.c~~
+* Add prefix and suffix compatability to the debug stream
 
 
 #Long term goals:

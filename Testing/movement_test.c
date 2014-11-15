@@ -22,7 +22,32 @@
 
 //settings are for last year's robot
 
-#define setting_twoMotors
+#define setting_twoEncoders
+
+long leftEnc = 0;
+long rightEnc = 0;
+float driveIn = 0;
+float rotateIn = 0;
+float swingIn = 0;
+string state = "";
+
+Ruler_t ruler;
+pRuler_t pruler = &ruler;
+
+#define DEBUG_STREAM_ON
+#define debugStreamLine1 "Raw Values"
+#define debugStreamLine2 (int)leftEnc
+#define debugStreamLine3 (int)rightEnc
+#define debugStreamLine4 "Ruler object"
+#define debugStreamLine5 driveIn
+#define debugStreamLine6 rotateIn
+#define debugStreamLine7 swingIn
+#define debugStreamLine8 state
+
+#define debugStreamType5 "%.2f"
+#define debugStreamType6 "%.2f"
+#define debugStreamType7 "%.2f"
+#define debugStreamType8 "%s"
 
 #include "../api/api.c"
 
@@ -31,6 +56,7 @@ void stopForASecond(void);
 task main()
 {
 	initializeAPI();
+   initRuler(pruler);
 	setMovement(100,0);
 	wait1Msec(2000);
 	stopForASecond();
@@ -52,6 +78,16 @@ task main()
 }
 
 void stopForASecond() {
-        setMovement(0,0);
-        wait1Msec(1000);
+   waitSeconds(6);
+   resetRuler(pruler);
+}
+
+task measureEncoders() {
+   while (true) {
+      leftEnc = getLeftTicks(pruler);
+      rightEnc = getRightTicks(pruler);
+      driveIn = getDriveInches(pruler);
+      rotateIn = getRotateDegrees(pruler);
+      swingIn = getSwingDegrees(pruler);
+   }
 }
