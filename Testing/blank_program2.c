@@ -19,81 +19,13 @@
 
 #define setting_twoEncoders
 
-//settings are for last year's robot
-
-long leftEnc = 0;
-long rightEnc = 0;
-long driveIn = 0;
-long rotateIn = 0;
-long swingIn = 0;
-string state = "";
-
-#define DEBUG_STREAM_ON
-#define debugStreamLine1 "Raw Values"
-#define debugStreamLine2 (int)leftEnc
-#define debugStreamLine3 (int)rightEnc
-#define debugStreamLine4 "Ruler object"
-#define debugStreamLine5 (int)driveIn
-#define debugStreamLine6 (int)rotateIn
-#define debugStreamLine7 (int)swingIn
-#define debugStreamLine8 state
-
-/*
-#define debugStreamType5 "%.2f"
-#define debugStreamType6 "%.2f"
-#define debugStreamType7 "%.2f"
-#define debugStreamType8 "%s"
-*/
-#define setting_twoMotors
-//#define rulersused 2
 #include "../api/api.c"
-
-
-
-//Ruler_t ruler;
-//pRuler_t pruler = &ruler;
-
-void stopForASecond(void);
-//task measureEncoders();
 
 task main()
 {
-	initializeAPI();
-  //initRuler(pruler);
-  //StartTask(measureEncoders);
-	setMovement(100,0);
+	int n = 0;
+	setMovement(50, 0, 0);
 	wait1Msec(2000);
-	stopForASecond();
-	setMovement(-100, 0);
-	wait1Msec(2000);
-	stopForASecond();
-	setMovement(0, 100);
-	wait1Msec(2000);
-	stopForASecond();
-	setMovement(0,-100);
-	wait1Msec(2000);
-	stopForASecond();
-	setMovement(100,100);
-	wait1Msec(2000);
-	stopForASecond();
-	setMovement(-100,-100);
-	wait1Msec(2000);
-	stopForASecond();
-}
 
-void stopForASecond() {
-   waitSeconds(1);
-   //resetRuler(pruler);
-}
 
-/*
-task measureEncoders() {
-   while (true) {
-      leftEnc = getLeftTicks(pruler);
-      rightEnc = getRightTicks(pruler);
-      driveIn = getDriveTicks(pruler);
-      rotateIn = getRotateTicks(pruler);
-      swingIn = getSwingTicks(pruler);
-   }
 }
-*/

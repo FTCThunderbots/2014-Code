@@ -42,5 +42,6 @@ void testCoords() {
 
 task main()
 {
+	waitForStart();
 	testCoords();
 }
