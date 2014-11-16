@@ -17,6 +17,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
+	nxtDisplayCenteredTextLine(1, "%d", forward);
 	//scaleByteInputs(&forward, &clockwise);
 
 	forward *= DRIVE_POWER_WEIGHT;
@@ -43,8 +44,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 			power[i] /= scale;
 	}
 
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++) {
 		power[i] *= MOVE_POWER_SCALE;
+nxtDisplayCenteredTextLine(i+2, "%d", power[i]);}
 
    // please leave the motor names how they are
    // update other files to reflect these names
@@ -76,6 +78,8 @@ void setMovement(byte forward, byte clockwise) {
 }
 
 void setMovementFromJoystick(byte forward, byte clockwise) {
+	if (forward>100) forward = 100;
+	if (clockwise>127) clockwise = 126;
 	setMovementFromJoystick(forward, 0, clockwise);
 }
 

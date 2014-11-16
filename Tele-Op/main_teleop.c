@@ -12,7 +12,7 @@
                         FRONT
 
 (mtr_S1_C1_1) |  |-----------------|  | (mtr_S1_C2_1)
-leftmotor_1   |--|                 |--|  rightmotor_1
+leftmotor_1   |--|                 |--|  rightmotor_1i
 encoder here  |  |                 |  |  encoder here
                  |                 |
                  |                 |
@@ -39,6 +39,5 @@ task main() {
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
-		nxtDisplayCenteredBigTextLine(5,"%d",joystick.joy1_y1);
 	}
 }

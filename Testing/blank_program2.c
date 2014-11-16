@@ -16,8 +16,9 @@ task main()
 	setMovement(50, 0, 0);
 	wait1Msec(2000);
 	stopSeconds(2);
-	setMovement(0, 0, -50);
+	setMovement(0, 0, 50);
 	wait1Msec(2000);
-	stop();
+	//stop();
+	setMovement(0, 0, 0);
 
 }
