@@ -12,7 +12,7 @@
 #define AVG(a, b) (a+b)/2
 #define MAX(a, b) (a >= b ? a : b)
 #define ABSMAX(a, b) (MAX(abs(a), abs(b)))
-#define POLARITY(n) abs(n)/n
+#define POLARITY(n) n!=0?abs(n)/n:1
 
 // Maximum value functions
 
