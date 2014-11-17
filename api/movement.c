@@ -13,12 +13,13 @@ static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_P
 // Array format: min, max, difference
 
 void setMovement(byte forward, byte right, byte clockwise) {
-		// Scale from the range of the motors to the range of the specific movement
+	// Scale from the range of the motors to the range of the specific movement
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
-	nxtDisplayCenteredTextLine(1, "%d", forward);
-	//scaleByteInputs(&forward, &clockwise);
+	//nxtDisplayCenteredTextLine(1, "%d", forward);
+   
+   //don't add the correctJoystick here. If necessary, add it to setMovementFromJoystick()
 
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
@@ -46,7 +47,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 
 	for(int i = 0; i < 4; i++) {
 		power[i] *= MOVE_POWER_SCALE;
-nxtDisplayCenteredTextLine(i+2, "%d", power[i]);}
+      
+      
+   //nxtDisplayCenteredTextLine(i+2, "%d", power[i]);}
 
    // please leave the motor names how they are
    // update other files to reflect these names
@@ -68,11 +71,6 @@ void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
    setMovement(forward, right, clockwise);
 }
 
-//for tank drive
-/*void setMovement(byte forward, byte clockwise) {
-   setMovement(forward, 0, clockwise);
-}*/
-
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
 }
@@ -84,7 +82,7 @@ void setMovementFromJoystick(byte forward, byte clockwise) {
 }
 
 byte correctJoystick(byte joyval) {
-	return scaleTo(joyval, &joyRange[0], &motorRange[0]);
+	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
 }
 
 void scaleByteInputs(byte* x, byte* y) {

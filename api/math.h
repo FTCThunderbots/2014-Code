@@ -22,6 +22,7 @@ byte arrmax(byte *a, byte len);
 byte arrAbsmax(byte *a, byte len);
 float arrmax(float *a, byte len);
 float arrAbsmax(float *a, byte len);
+byte truncateInt(int n);
 
 //maybe overload to int if need be
 static byte scaleTo(byte value, byte *range, byte *scale);

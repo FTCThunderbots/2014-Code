@@ -50,6 +50,15 @@ float arrAbsmax(float *a, byte len) {
 	return cummax;
 }
 
+// truncates an int to a byte range without overflowing
+byte truncateInt(int n) {
+   if (n > 127)
+      return 127;
+   if (n < -128)
+      return -128;
+   return (byte)n;
+}
+
 // will overload to int if need be
 byte scaleTo(byte value, byte *range, byte *scale) {
    byte pol = POLARITY(value);
