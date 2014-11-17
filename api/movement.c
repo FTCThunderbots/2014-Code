@@ -76,9 +76,37 @@ void setMovement(byte forward, byte clockwise) {
 }
 
 void setMovementFromJoystick(byte forward, byte clockwise) {
-	if (forward>100) forward = 100;
-	if (clockwise>127) clockwise = 126;
-	setMovementFromJoystick(forward, 0, clockwise);
+	if (abs(power) < 10) power = 0;
+	if (abs(turn) < 10) turn = 0;
+	//turn = turn * 1.5;
+	int leftBrake = 1;
+	int rightBrake = 1;
+	if (joy1Btn(7)){
+		leftBrake = 0;
+		//turn = 0;
+	}
+	if (joy1Btn(8)){
+		rightBrake = 0;
+		//turn = 0;
+	}
+	float leftFinal = (float) leftBrake * (power + turn);
+	float rightFinal = (float) rightBrake * (-power + turn);
+
+	if (abs(leftFinal) > 100)
+	{
+		rightFinal *= 100 / abs(leftFinal);
+		leftFinal *= 100 / abs(leftFinal);
+	}
+	if (abs(rightFinal) > 100)
+	{
+		leftFinal *= 100 / abs(rightFinal);
+		rightFinal *= 100 / abs(rightFinal);
+	}
+	motor[leftmotor_1] = leftFinal;
+	motor[rightmotor_1] = rightFinal;
+	motor[leftmotor_2] = leftFinal;
+	motor[rightmotor_2] = rightFinal;
+
 }
 
 byte correctJoystick(byte joyval) {
