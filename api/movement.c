@@ -72,10 +72,6 @@ void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
 }
 
 void setMovement(byte forward, byte clockwise) {
-	setMovement(forward, 0, clockwise);
-}
-
-void setMovementFromJoystick(byte forward, byte clockwise) {
 	if (abs(power) < 10) power = 0;
 	if (abs(turn) < 10) turn = 0;
 	//turn = turn * 1.5;
@@ -106,7 +102,10 @@ void setMovementFromJoystick(byte forward, byte clockwise) {
 	motor[rightmotor_1] = rightFinal;
 	motor[leftmotor_2] = leftFinal;
 	motor[rightmotor_2] = rightFinal;
+}
 
+void setMovementFromJoystick(byte forward, byte clockwise) {
+   setMovement(correctJoystick(forward), correctJoystick(clockwise));
 }
 
 byte correctJoystick(byte joyval) {

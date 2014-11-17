@@ -22,7 +22,7 @@ bool userIsNotAGoat() {
 	return !userIsAGoat();
 }
 
-void backupSetMovementJoystick(byte foward, byte turn);
+
 
 task main()
 {
@@ -31,7 +31,7 @@ task main()
 		int a = 0;
 		int b = 0;
 		getJoystickSettings(joystick);
-		setOldMovementPower(joystick.joy1_y1, joystick.joy1_x2);
+		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
 		if (joy1Btn(2)) {
 			motor[sweep] = 100;
 			motor[conveyor] = 100;
@@ -62,45 +62,4 @@ task main()
 		nxtDisplayCenteredTextLine(3, "r1: %d", motor[rightmotor_1]);
 		nxtDisplayCenteredTextLine(4, "r2: %d", motor[rightmotor_2]);
 	}
-}
-
-void backupSetMovementJoystick(byte foward, byte turn){
-	if (abs(foward) <= 10) foward = 0;
-	if (abs(turn) <= 10) turn = 0;
-	foward = (byte)((float)foward * (100.0/128.0));
-	turn = (byte)((float)turn * (100.0/128.0));
-	setMovement(foward,turn);
-}
-
-void setOldMovementPower(int power, int turn){
-	if (abs(power) < 10) power = 0;
-	if (abs(turn) < 10) turn = 0;
-	//turn = turn * 1.5;
-	int leftBrake = 1;
-	int rightBrake = 1;
-	if (joy1Btn(7)){
-		leftBrake = 0;
-		//turn = 0;
-	}
-	if (joy1Btn(8)){
-		rightBrake = 0;
-		//turn = 0;
-	}
-	float leftFinal = (float) leftBrake * (power + turn);
-	float rightFinal = (float) rightBrake * (-power + turn);
-
-	if (abs(leftFinal) > 100)
-	{
-		rightFinal *= 100 / abs(leftFinal);
-		leftFinal *= 100 / abs(leftFinal);
-	}
-	if (abs(rightFinal) > 100)
-	{
-		leftFinal *= 100 / abs(rightFinal);
-		rightFinal *= 100 / abs(rightFinal);
-	}
-	motor[leftmotor_1] = leftFinal;
-	motor[rightmotor_1] = rightFinal;
-	motor[leftmotor_2] = leftFinal;
-	motor[rightmotor_2] = rightFinal;
 }
