@@ -21,7 +21,7 @@ void rotate();
 void swing(byte direction);
 void traverse(byte vector);
 
-void driveSeconds(float secs, byte power);
+/*void driveSeconds(float secs, byte power);
 void strafeSeconds(float secs, byte power);
 void rotateSeconds(float secs, byte power);
 void swingSeconds(float secs, byte direction, byte power);
@@ -31,7 +31,7 @@ void driveSeconds(float secs);
 void strafeSeconds(float secs);
 void rotateSeconds(float secs);
 void swingSeconds(float secs, byte direction);
-void traverseSeconds(float secs, byte vector);
+void traverseSeconds(float secs, byte vector);*/
 
 //Need to be implemented
 //void driveTicks(long ticks, byte power);
@@ -64,4 +64,4 @@ void traverseSeconds(float secs, byte vector);
 //void turnSpiral(byte power, byte distance, byte deg);
 
 // Deprecated and should probs remove:
-void rotateDegWithCompass(int degs, byte power);
+//void rotateDegWithCompass(int degs, byte power);

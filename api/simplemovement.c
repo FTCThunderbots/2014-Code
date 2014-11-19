@@ -71,7 +71,7 @@ void traverse(byte vector) {
    traverse(vector, DEFAULT_MOTOR_POWER);
 }
 
-void stopSeconds(float secs) {
+/*void stopSeconds(float secs) {
    stop();
    waitSeconds(secs);
 }
@@ -171,4 +171,4 @@ void rotateDegWithCompass(int degs, byte power) {
 	while(getCompassValue() != (startFacing + degs) % 360) {}
 	// this probably will not work; ask Zach O. for more details.
 	stop();
-}
+}*/
