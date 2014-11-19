@@ -18,41 +18,27 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
 	//nxtDisplayCenteredTextLine(1, "%d", forward);
-   
-   //don't add the correctJoystick here. If necessary, add it to setMovementFromJoystick()
-
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
-
 	// Next, assign wheel powers using the mecanum
 	float frontLeft = (forward + right + clockwise);
 	float frontRight = (-forward + right + clockwise);
 	float backLeft = (forward - right + clockwise);
 	float backRight = (-forward - right + clockwise);
 	//add note about why/how this works in engineering notebook
-
-
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
-
 	// find max of all wheel powers
 	byte max = arrAbsmax(power, 4);
-
 	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
 		for (int i = 0; i < 4; i++)
 			power[i] /= scale;
 	}
-
-	for(int i = 0; i < 4; i++) {
+	// multiply all by common scale
+	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
-      
-      
-   //nxtDisplayCenteredTextLine(i+2, "%d", power[i]);}
-
-   // please leave the motor names how they are
-   // update other files to reflect these names
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
@@ -61,7 +47,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	#endif
 }
 
-void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
+void setMovementFromJoystick(int forward, int right, int clockwise) {
 	// Scale from the range of the joystick to the range of the motors
 	forward = correctJoystick(forward);
 	right = correctJoystick(right);
@@ -71,23 +57,22 @@ void setMovementFromJoystick(byte forward, byte right, byte clockwise) {
    setMovement(forward, right, clockwise);
 }
 
+// Just a shortcut
 void setMovement(byte forward, byte clockwise) {
-	if (abs(power) < 10) power = 0;
-	if (abs(turn) < 10) turn = 0;
-	//turn = turn * 1.5;
-	int leftBrake = 1;
-	int rightBrake = 1;
-	if (joy1Btn(7)){
-		leftBrake = 0;
-		//turn = 0;
-	}
-	if (joy1Btn(8)){
-		rightBrake = 0;
-		//turn = 0;
-	}
-	float leftFinal = (float) leftBrake * (power + turn);
-	float rightFinal = (float) rightBrake * (-power + turn);
+	setMovement(forward, 0, clockwise);
+}
 
+// Just a shortcut
+void setMovementFromJoystick(int forward, int clockwise) {
+   setMovementFromJoystick(forward, 0, clockwise);
+}
+
+//deprecated: use setMovementFromJoystick() with the same arguments
+void setMovementFromJoystick_old(int power, int turn) {
+	power = correctJoystick_old(power);
+	turn = correctJoystick_old(turn);
+	float leftFinal = (float)(power + turn);
+	float rightFinal = (float)(-power + turn);
 	if (abs(leftFinal) > 100)
 	{
 		rightFinal *= 100 / abs(leftFinal);
@@ -104,36 +89,15 @@ void setMovement(byte forward, byte clockwise) {
 	motor[rightmotor_2] = rightFinal;
 }
 
-void setMovementFromJoystick(byte forward, byte clockwise) {
-   setMovement(correctJoystick(forward), correctJoystick(clockwise));
-}
-
-byte correctJoystick(byte joyval) {
+byte correctJoystick(int joyval) {
 	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
 }
 
-void scaleByteInputs(byte* x, byte* y) {
-	if (abs(*x) > 100)
-	{
-		*y *= (100.0 / (float)abs(*x));
-		*x *= (100.0 / (float)abs(*x));
-	}
-	if (abs(*y) > 100)
-	{
-		*x *= (100.0 / (float)abs(*y));
-		*y *= (100.0 / (float)abs(*y));
-	}
-}
-
-void scaleInputs(int* x, int* y) {
-	if (abs(*x) > 100)
-	{
-		*y *= (100.0 / (float)abs(*x));
-		*x *= (100.0 / (float)abs(*x));
-	}
-	if (abs(*y) > 100)
-	{
-		*x *= (100.0 / (float)abs(*y));
-		*y *= (100.0 / (float)abs(*y));
-	}
+//deprecated: use correctJoystick() with the same arguments
+float correctJoystick_old(int input){
+	if (abs(input) < JOYSTICK_MIN_VALUE)
+		input = 0;
+	else
+		input -= POLARITY(input) * JOYSTICK_MIN_VALUE;
+	return (float)input / 1.07;
 }
