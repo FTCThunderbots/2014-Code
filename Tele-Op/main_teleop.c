@@ -12,7 +12,7 @@
                         FRONT
 
 (mtr_S1_C1_1) |  |-----------------|  | (mtr_S1_C2_1)
-leftmotor_1   |--|                 |--|  rightmotor_1i
+leftmotor_1   |--|                 |--|  rightmotor_1
 encoder here  |  |                 |  |  encoder here
                  |                 |
                  |                 |
