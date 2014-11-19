@@ -136,6 +136,35 @@ void traverseSeconds(float secs, byte vector) {
    stop();
 }
 
+#warn "Polarity matters! Add polarity to the following functions. Until then, nothing will work"
+void driveInches(float inches, byte power) {
+   drive(power);
+   waitDriveInches(inches);
+   stop();
+}
+
+void driveInches(float inches) {
+   drive();
+   waitDriveInches(inches);
+   stop();
+}
+
+//TODO: strafeInches, with and without power arg
+//TODO: swingDegrees, with and without power arg
+
+void rotateDegrees(float degrees, byte power) {
+   rotate(power);
+   waitRotateDegrees(degrees);
+   stop();
+}
+
+void rotateDegrees(float degrees) {
+   rotate();
+   waitRotateDegrees(degrees);
+   stop();
+}
+//end warning
+
 void rotateDegWithCompass(int degs, byte power) {
 	int startFacing = getCompassValue();
 	setMovement(0, 0, power);
