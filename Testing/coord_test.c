@@ -32,10 +32,15 @@ float circumference = 4 * PI;
 #define setting_twoMotors
 #define DEBUG_STREAM_ON
 #define debugStreamLine1	x
+#define debugStreamType1 "%.3f"
 #define debugStreamLine2	z
+#define debugStreamType2 "%.3f"
+#define debugStreamLine3	orientation
+#define debugStreamType3 "%.3f"
+
 #include "unit_converter.c"
 #include "../api/api.c"
-#include "../api/simplemovement.c"
+//#include "../api/simplemovement.c"
 //to drive say
 //drive(100)
 
