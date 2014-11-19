@@ -7,13 +7,8 @@
 #define setting_twoEncoders
 
 #include "../api/api.c"
-#include "../testing/coord_test.c"
 
 // This program will drive off the ramp, pick up a goal, and carry it to the parking zone
-float x = 0.0;
-float z = 0.0;
-float orientation = 0.0;
-int degrees = 90;
 
 task main() {
    initializeAPI();
@@ -40,32 +35,12 @@ task main() {
    setMovementFromJoystick_old(50, 0);
    while (nMotorEncoder[leftmotor_1] < 1440*120) {setMovementFromJoystick_old(50, 0); wait1Msec(10);}
    setMovementFromJoystick_old(0, 0);
-
-   driveInches(12*10); // 10 feet = 12*10 inches
-
-   x += updateX(10.0, degrees);
-   z += updateZ(10.0, degrees);
-
-   rotateDeg(180); // could equally be -180
-
-   degrees += 180;
-
-   orientation = getOrientation(degrees);
+   /*driveInches(12*10); // 10 feet = 12*10 inches
+   rotateDeg(180); // could equally be -180*/
 
    /*** Pick up the goal right here ***/
 
-   driveInches(12*4); //just guessing here
-
-   x += updateX(4.0, degreesToRadians(degrees));
-   z += updateZ(4.0, degreesToRadians(degrees));
-
+   /*driveInches(12*4); //just guessing here
    rotateDeg(30);
-
-   degrees += 30;
-   orientation = getOrientation(degreesToRadians(degrees));
-
-   driveInches(12*4); //still guessing
-
-   x += updateX(4.0, degreesToRadians(degrees));
-   z += updateZ(4.0, degreesToRadians(degrees));
+   driveInches(12*4); //still guessing*/
 }
