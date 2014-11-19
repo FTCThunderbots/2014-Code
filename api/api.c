@@ -1,9 +1,5 @@
 // api.c
-// Contiains imports for all api files
-
-//#ifndef API_INCLUDEGUARD
-//#define API_INCLUDEGUARD
-// files will only be included once, preventing infinite recursion
+// Contains imports for all api files
 
 // If we're using two-wheel mode, only use two encoders
 // This should be obvious
@@ -57,9 +53,3 @@
 #endif
 
 #include "JoystickDriver.c"
-
-//#endif /* include guard */
-
-// ALL THE CODE BELOW IS HOMELESS
-// BUT WITH YOUR HELP, WE CAN SAVE IT
-// AKA please find a better file for this code
