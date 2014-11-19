@@ -8,7 +8,7 @@ motorRange = mtrRange
 
 
 def main():
-	samples = [-0,-10, -50, -68, -100, -127, -150]
+	samples = [0,10, 50, 68, 100, 127, 150]
 	for i in samples:
 		print(i, setMovementFromJoystick(i,0))
 
@@ -24,6 +24,7 @@ def POLARITY(n):
 	
 def scaleTo(value, range, scale):
 	pol = POLARITY(value)
+	#print("pol = ", pol)
 	if abs(value) < range[0]:
 		return 0
 	if abs(value) > range[1]:
