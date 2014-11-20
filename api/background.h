@@ -3,7 +3,7 @@
 
 #define BACKGROUND_INCLUDEGAURD
 
-#ifndef DEBUG_INCLUDEGUARD
+#ifndef DEBUG_INCLUDEGAURD
 #include "debug.c"
 #endif
 
