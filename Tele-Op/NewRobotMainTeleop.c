@@ -22,7 +22,7 @@ bool userIsNotAGoat() {
 	return !userIsAGoat();
 }
 
-
+void scaleInputs(int *x, int *y);
 
 task main()
 {
@@ -62,4 +62,21 @@ task main()
 		nxtDisplayCenteredTextLine(3, "r1: %d", motor[rightmotor_1]);
 		nxtDisplayCenteredTextLine(4, "r2: %d", motor[rightmotor_2]);
 	}
+}
+
+void scaleInputs(int* x, int* y) {
+	float fx = (float)*x;
+	float fy = (float)*y;
+	if (abs(*x) > 100)
+	{
+		fy *= (100.0 / (float)abs(*x));
+		fx *= (100.0 / (float)abs(*x));
+	}
+	if (abs(*y) > 100)
+	{
+		fx *= (100.0 / (float)abs(*y));
+		fy *= (100.0 / (float)abs(*y));
+	}
+	*x = (int)fx;
+	*y = (int)fy;
 }

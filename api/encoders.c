@@ -37,7 +37,7 @@ long inchesToTicks(float inches) {
 }
 
 long inchesToDriveTicks(float inches) {
-	return ENCODER_TICKS_PER_DRIVE_INCH * inches;
+	return inches * (1440/(NUMBER_OF_WHEELS*PI));
 }
 
 long inchesToStrafeTicks(float inches) {

@@ -31,7 +31,7 @@ const byte MOTOR_MAX_POWER = 100;
 
 #define MAX(a, b) (a >= b ? a : b)
 #define ABSMAX(a, b) (MAX(abs(a), abs(b)))
-#define POLARITY(n) n!=0?abs(n)/n:1 
+#define POLARITY(n) n!=0?abs(n)/n:1
 
 void setMovement(byte forward, byte right, byte clockwise);
 
@@ -141,21 +141,25 @@ void scaleByteInputs(byte* x, byte* y) {
 }
 
 void scaleInputs(int* x, int* y) {
+	float fx = (float)*x;
+	float fy = (float)*y;
 	if (abs(*x) > 100)
 	{
-		*y *= (100.0 / (float)abs(*x));
-		*x *= (100.0 / (float)abs(*x));
+		fy *= (100.0 / (float)abs(*x));
+		fx *= (100.0 / (float)abs(*x));
 	}
 	if (abs(*y) > 100)
 	{
-		*x *= (100.0 / (float)abs(*y));
-		*y *= (100.0 / (float)abs(*y));
+		fx *= (100.0 / (float)abs(*y));
+		fy *= (100.0 / (float)abs(*y));
 	}
+	*x = (int)fx;
+	*y = (int)fy;
 }
 
 #define op_Polarity
 
-int main() {	
+int main() {
 	#ifdef op_scaleTo
 	byte samples[] = {0,10, 50, 68, 100, 127, 150};
 	int i;
