@@ -83,9 +83,9 @@ void setMovementFromJoystick_old(int power, int turn) {
 		leftFinal *= 100 / abs(rightFinal);
 		rightFinal *= 100 / abs(rightFinal);
 	}
-	motor[leftmotor_1] = leftFinal;
+	motor[leftmotor_1] = -leftFinal;
 	motor[rightmotor_1] = rightFinal;
-	motor[leftmotor_2] = leftFinal;
+	motor[leftmotor_2] = -leftFinal;
 	motor[rightmotor_2] = rightFinal;
 }
 

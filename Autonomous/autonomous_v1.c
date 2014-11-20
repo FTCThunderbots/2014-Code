@@ -14,26 +14,32 @@ task main() {
    initializeAPI();
    waitForStart();
    setMovementFromJoystick_old(-50, 0);
-   while (nMotorEncoder[leftmotor_1] < 1440*96) {setMovementFromJoystick_old(-50, 0); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[leftmotor_1] > 1440*(96/(4*PI))) {setMovementFromJoystick_old(-50, 0); wait1Msec(10); nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    wait1Msec(3000);
    setMovementFromJoystick_old(0, -50);
-   while (nMotorEncoder[leftmotor_1] < 8.5*(PI/2)) {setMovementFromJoystick_old(0, -50); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[leftmotor_1] > (8.5*(PI/2)/(4*PI))) {setMovementFromJoystick_old(0, -50); wait1Msec(10);nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    wait1Msec(3000);
    setMovementFromJoystick_old(-50, 0);
-   while (nMotorEncoder[leftmotor_1] < 1440*24) {setMovementFromJoystick_old(-50, 0); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[leftmotor_1] > -1440*24/(4*PI)) {setMovementFromJoystick_old(-50, 0); wait1Msec(10);nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    wait1Msec(3000);
    setMovementFromJoystick_old(0, 50);
-   while (nMotorEncoder[rightmotor_1] < 8.5*(PI/2)) {setMovementFromJoystick_old(0, 50); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[rightmotor_1] > -8.5*(PI/2)/(4*PI)) {setMovementFromJoystick_old(0, 50); wait1Msec(10);nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    wait1Msec(3000);
    setMovementFromJoystick_old(-50, 0);
-   while (nMotorEncoder[leftmotor_1] < 1440*12) {setMovementFromJoystick_old(-50, 0); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[leftmotor_1] > -1440*12/(4*PI)) {setMovementFromJoystick_old(-50, 0); wait1Msec(10);nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    setMovementFromJoystick_old(50, 0);
-   while (nMotorEncoder[leftmotor_1] < 1440*120) {setMovementFromJoystick_old(50, 0); wait1Msec(10);}
+   nMotorEncoder[leftmotor_1] = 0;
+   while (nMotorEncoder[leftmotor_1] > -1440*120/(4*PI)) {setMovementFromJoystick_old(50, 0); wait1Msec(10);nxtDisplayCenteredBigTextLine(5, "%d", nMotorEncoder[leftmotor_1]);}
    setMovementFromJoystick_old(0, 0);
    /*driveInches(12*10); // 10 feet = 12*10 inches
    rotateDeg(180); // could equally be -180*/
