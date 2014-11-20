@@ -1,22 +1,52 @@
 // distances.c
 // Contains code for managing distances on the field
 
+#include "distances.h"
+
+void waitDriveTicks(long ticks) {
+	Ruler_t ruler;
+	initSysRuler(&ruler);
+	ticks = abs(ticks);
+	while (abs(getDriveTicks(&ruler)) < ticks) {};
+	destroySysRuler();
+}
+
+void waitStrafeTicks(long ticks) {
+	Ruler_t ruler;
+	initSysRuler(&ruler);
+	ticks = abs(ticks);
+	while (abs(getStrafeTicks(&ruler)) < ticks) {};
+	destroySysRuler();
+}
+
+void waitRotateTicks(long ticks) {
+	Ruler_t ruler;
+	initSysRuler(&ruler);
+	ticks = abs(ticks);
+	while (abs(getRotateTicks(&ruler)) < ticks) {};
+	destroySysRuler();
+}
+
+void waitSwingTicks(long ticks) {
+	Ruler_t ruler;
+	initSysRuler(&ruler);
+	ticks = abs(ticks);
+	while (abs(getSwingTicks(&ruler)) < ticks) {};
+	destroySysRuler();
+}
+
 void waitDriveInches(float inches) {
-   Ruler_t ruler;
-   initSysRuler(&ruler);
-   if (inches < 0)
-      while (getDriveInches(&ruler) > inches) {};
-   if (inches > 0)
-      while (getDriveInches(&ruler) < inches) {};
-   destroySysRuler();
+	waitDriveTicks(inchesToDriveTicks(inches));
+}
+
+void waitStrafeInches(float inches) {
+	waitStrafeTicks(inchesToStrafeTicks(inches));
 }
 
 void waitRotateDegrees(float degrees) {
-   Ruler_t ruler;
-   initSysRuler(&ruler);
-   if (degrees < 0)
-      while (getRotateDegrees(&ruler) > inches) {};
-   if (degrees > 0)
-      while (getRotateDegrees(&ruler) < inches) {};
-   destroySysRuler();
+	waitRotateTicks(degreesToRotateTicks(degrees));
+}
+
+void waitSwingDegrees(float degrees) {
+	waitSwingTicks(degreesToSwingTicks(degrees));
 }

@@ -20,6 +20,10 @@
 #include "debug.c"
 #endif
 
+#ifndef DISTANCES_INCLUDEGAURD
+#include "distances.c"
+#endif
+
 #ifndef FUNCTIONS_INCLUDEGAURD
 #include "functions.c"
 #endif
