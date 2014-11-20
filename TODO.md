@@ -13,6 +13,8 @@
 * ~~Add system timer in timer.c~~
 * ~~Add move for time functions to simplemovement.c~~
 * Add prefix and suffix compatability to the debug stream
+* Make sure all instances of stop() are replaced with halt()
+* Remove POLARITY() and replace all instances with the built-in sgn()
 
 
 #Long term goals:
