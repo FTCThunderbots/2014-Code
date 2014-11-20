@@ -6,7 +6,7 @@
 
 //look in header for functions that need implementations
 
-void stop() {
+void halt() {
 	setMovement(0,0,0);
 }
 
@@ -14,34 +14,18 @@ void drive(byte power) {
 	setMovement(power, 0, 0);
 }
 
-void drive() {
-   setMovement(DEFAULT_MOTOR_POWER, 0, 0);
-}
-
 void strafe(byte power) {
 	setMovement(0, power, 0);
-}
-
-void strafe() {
-   setMovement(0, DEFAULT_MOTOR_POWER, 0);
 }
 
 void rotate(byte power) {
 	setMovement(0, 0, power);
 }
 
-void rotate() {
-   setMovement(0, 0, DEFAULT_MOTOR_POWER);
-}
-
 void swing(byte direction, byte power) {
 	// direction: - for left, + or zero for right;
 	direction = direction >=0 ? 1 : -1;
 	setMovement(power, 0, direction * power);
-}
-
-void swing(byte direction) {
-   swing(direction, DEFAULT_MOTOR_POWER);
 }
 
 void traverse(byte vector, byte power) {
@@ -67,108 +51,219 @@ void traverse(byte vector, byte power) {
 	setMovement(power * drive, power * strafe, 0);
 }
 
+// functions without power arguments
+
+void driveFW() {
+   setMovement(DEFAULT_MOTOR_POWER, 0, 0);
+}
+
+void driveBW() {
+   setMovement(-DEFAULT_MOTOR_POWER, 0, 0);
+}
+
+void strafeR() {
+	setMovement(0, DEFAULT_MOTOR_POWER, 0);
+}
+
+void strafeL() {
+	setMovement(0, -DEFAULT_MOTOR_POWER, 0);
+}
+
+void rotateCW() {
+   setMovement(0, 0, DEFAULT_MOTOR_POWER);
+}
+
+void rotateCCW() {
+   setMovement(0, 0, -DEFAULT_MOTOR_POWER);
+}
+
+
+void swingFW(byte direction) {
+   swing(direction, DEFAULT_MOTOR_POWER);
+}
+
+void swingBW(byte direction) {
+   swing(direction, -DEFAULT_MOTOR_POWER);
+}
+
 void traverse(byte vector) {
    traverse(vector, DEFAULT_MOTOR_POWER);
 }
 
-/*void stopSeconds(float secs) {
-   stop();
+// movement for time, with power arguments
+
+void haltSeconds(float secs) {
+   halt();
    waitSeconds(secs);
 }
 
 void driveSeconds(float secs, byte power) {
    drive(power);
    waitSeconds(secs);
-   stop();
-}
-
-void driveSeconds(float secs) {
-   drive();
-   waitSeconds(secs);
-   stop();
+   halt();
 }
 
 void strafeSeconds(float secs, byte power) {
    strafe(power);
    waitSeconds(secs);
-   stop();
-}
-
-void strafeSeconds(float secs) {
-   strafe();
-   waitSeconds(secs);
-   stop();
+   halt();
 }
 
 void rotateSeconds(float secs, byte power) {
    rotate(power);
    waitSeconds(secs);
-   stop();
-}
-
-void rotateSeconds(float secs) {
-   rotate();
-   waitSeconds(secs);
-   stop();
+   halt();
 }
 
 void swingSeconds(float secs, byte direction, byte power) {
    swing(direction, power);
    waitSeconds(secs);
-   stop();
-}
-
-void swingSeconds(float secs, byte direction) {
-   swing(direction);
-   waitSeconds(secs);
-   stop();
+   halt();
 }
 
 void traverseSeconds(float secs, byte vector, byte power) {
    traverse(vector, power);
    waitSeconds(secs);
-   stop();
+   halt();
+}
+
+// movement for time, without power argument
+
+void driveSecondsFW(float secs) {
+   driveFW();
+   waitSeconds(secs);
+   halt();
+}
+
+void driveSecondsBW(float secs) {
+   driveBW();
+   waitSeconds(secs);
+   halt();
+}
+
+void strafeSecondsR(float secs) {
+   strafeR();
+   waitSeconds(secs);
+   halt();
+}
+
+void strafeSecondsL(float secs) {
+   strafeL();
+   waitSeconds(secs);
+   halt();
+}
+
+void rotateSecondsCW(float secs) {
+   rotateCW();
+   waitSeconds(secs);
+   halt();
+}
+
+void rotateSecondsCCW(float secs) {
+   rotateCCW();
+   waitSeconds(secs);
+   halt();
+}
+
+void swingSecondsFW(float secs, byte direction) {
+   swingFW(direction);
+   waitSeconds(secs);
+   halt();
+}
+
+void swingSecondsBW(float secs, byte direction) {
+   swingBW(direction);
+   waitSeconds(secs);
+   halt();
 }
 
 void traverseSeconds(float secs, byte vector) {
    traverse(vector);
    waitSeconds(secs);
-   stop();
+   halt();
 }
 
-#warn "Polarity matters! Add polarity to the following functions. Until then, nothing will work"
-void driveInches(float inches, byte power) {
+// movement for inches, with power argument
+void driveInches(float inches, byte power) { 
    drive(power);
    waitDriveInches(inches);
-   stop();
+   halt();
 }
 
-void driveInches(float inches) {
-   drive();
-   waitDriveInches(inches);
-   stop();
+void strafeInches(float inches, byte power) {
+	strafe(power);
+	waitStrafeInches(inches);
+	halt();
 }
-
-//TODO: strafeInches, with and without power arg
-//TODO: swingDegrees, with and without power arg
 
 void rotateDegrees(float degrees, byte power) {
-   rotate(power);
-   waitRotateDegrees(degrees);
-   stop();
+	rotate(power);
+	waitRotateDegrees(degrees);
+	halt();
 }
 
-void rotateDegrees(float degrees) {
-   rotate();
-   waitRotateDegrees(degrees);
-   stop();
+void swingDegrees(float degrees, byte direction, byte power) {
+	swing(direction, power);
+	waitSwingDegrees(degrees);
+	halt();
 }
-//end warning
 
+// movement for inches, with no power argument
+
+void driveInchesFW(float inches) {
+   driveFW();
+   waitDriveInches(inches);
+   halt();
+}
+
+void driveInchesBW(float inches) {
+   driveBW();
+   waitDriveInches(inches);
+   halt();
+}
+
+void strafeInchesR(float inches) {
+	strafeR();
+	waitStrafeInches(inches);
+	halt();
+}
+
+void strafeInchesL(float inches) {
+	strafeL();
+	waitStrafeInches(inches);
+	halt();
+}
+
+void rotateDegreesCW(float degrees) {
+	rotateCW();
+	waitRotateDegrees(degrees);
+	halt();
+}
+
+void rotateDegreesCCW(float degrees) {
+	rotateCCW();
+	waitRotateDegrees(degrees);
+	halt();
+}
+
+void swingDegreesFW(float degrees, byte direction) {
+	swingFW(direction);
+	waitSwingDegrees(degrees);
+	halt();
+}
+
+void swingDegreesBW(float degrees, byte direction) {
+	swingBW(direction);
+	waitSwingDegrees(degrees);
+	halt();
+}
+
+// deprecated: probably not as precise as it could be
+// also, in it's current form, problems may arise if passing arguments more than 36
 void rotateDegWithCompass(int degs, byte power) {
 	int startFacing = getCompassValue();
 	setMovement(0, 0, power);
 	while(getCompassValue() != (startFacing + degs) % 360) {}
 	// this probably will not work; ask Zach O. for more details.
-	stop();
-}*/
+	halt();
+}

@@ -7,61 +7,59 @@
 #include "movement.c"
 #endif
 
+//movement with power
+void halt();
 void drive(byte power);
 void strafe(byte power);
 void rotate(byte power);
 void swing(byte direction, byte power);
 void traverse(byte vector, byte power);
 
-void stop();
-
-void drive();
-void strafe();
-void rotate();
-void swing(byte direction);
+//movement without power
+void driveFW();
+void driveBW();
+void strafeR();
+void strafeL();
+void rotateCW();
+void rotateCCW();
+void swingFW(byte direction);
+void swingBW(byte direction);
 void traverse(byte vector);
 
-/*void driveSeconds(float secs, byte power);
+//movement for seconds with power
+void haltSeconds(float secs);
+void driveSeconds(float secs, byte power);
 void strafeSeconds(float secs, byte power);
 void rotateSeconds(float secs, byte power);
 void swingSeconds(float secs, byte direction, byte power);
 void traverseSeconds(float secs, byte vector, byte power);
 
-void driveSeconds(float secs);
-void strafeSeconds(float secs);
-void rotateSeconds(float secs);
-void swingSeconds(float secs, byte direction);
-void traverseSeconds(float secs, byte vector);*/
+//movement for seconds without power
+void driveSecondsFW(float secs);
+void driveSecondsBW(float secs);
+void strafeSecondsR(float secs);
+void strafeSecondsL(float secs);
+void rotateSecondsCW(float secs);
+void rotateSecondsCCW(float secs);
+void swingSecondsFW(float secs, byte direction);
+void swingSecondsBW(float secs, byte direction);
+void traverseSeconds(float secs, byte vector);
 
-//Need to be implemented
-//void driveTicks(long ticks, byte power);
-//void driveIn(byte dist, byte power);
-//void driveCm(byte dist, byte power);
-//void driveSec(byte sec, byte power);
+//movement for inches with power
+void driveInches(float inches, byte power);
+void strafeInches(float inches, byte power);
+void rotateDegrees(float degrees, byte power);
+void swingDegrees(float degrees, byte direction, byte power);
 
-//void strafeTicks(long ticks, byte power);
-//void strafeIn(byte dist, byte power);
-//void strafeCm(byte dist, byte power);
-//void straftSec(byte sec, byte power);
+//movement for inches without power
+void driveInchesFW(float inches);
+void driveInchesBW(float inches);
+void strafeInchesR(float inches);
+void strafeInchesL(float inches);
+void rotateDegreesCW(float degrees);
+void rotateDegreesCCW(float degrees);
+void swingDegreesFW(float degrees, byte direction);
+void swingDegreesBW(float degrees, byte direction);
 
-//void rotateTicks(long ticks, byte power);
-//void rotateDeg(byte degs, byte power);
-//void rotateRad(float rads, byte power);
-//void rotateSec(byte sec, byte power);
-
-//void swingTicks(long ticks, byte direction, byte power);
-//void swingDeg(byte degs, byte direction, byte power);
-//void swingRad(float rads, byte direction, byte power);
-//void swingSec(byte sec, byte direction, byte power);
-
-//Other ideas:
-//void moveDiagonalTicks(long ticks, byte vector, byte power);
-//void moveDiagonalIn(byte dist, byte vector, byte power);
-//void moveDiagonalCm(byte dist, byte vector, byte power);
-//void moveDiagonalSec(byte sec, byte vector, byte power);
-
-//Low priority: (Daniel's ideas)
-//void turnSpiral(byte power, byte distance, byte deg);
-
-// Deprecated and should probs remove:
-//void rotateDegWithCompass(int degs, byte power);
+//deprecated and should prob remove:
+void rotateDegWithCompass(int degs, byte power);
