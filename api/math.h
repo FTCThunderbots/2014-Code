@@ -12,7 +12,8 @@
 #define AVG(a, b) (a+b)/2
 #define MAX(a, b) (a >= b ? a : b)
 #define ABSMAX(a, b) (MAX(abs(a), abs(b)))
-#define POLARITY(n) n!=0?abs(n)/n:1 //deprecated, use sgn()
+#warn "POLARITY is deprecated. Use sgn() instead."
+#define POLARITY(n) sgn(n) //deprecated, use sgn()
 
 // Maximum value functions
 
