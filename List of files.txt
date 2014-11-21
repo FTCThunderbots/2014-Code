@@ -32,7 +32,6 @@ config/2013_robot_config.c
 config/default_config.c
 
 python/linesWritten.py
-python/searchInFiles.py
 	
 sample/first_driving_program.c
 sample/SpinTheWheel.c
