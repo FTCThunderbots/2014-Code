@@ -61,7 +61,7 @@ byte truncateInt(int n) {
 
 // will overload to int if need be
 byte scaleTo(byte value, byte *range, byte *scale) {
-   byte pol = POLARITY(value);
+   byte pol = sgn(value);
 	if (abs(value) < *range)
 		return 0;
 	if (abs(value) > *(range+1))

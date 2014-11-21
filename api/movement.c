@@ -98,6 +98,6 @@ float correctJoystick_old(int input){
 	if (abs(input) < JOYSTICK_MIN_VALUE)
 		input = 0;
 	else
-		input -= POLARITY(input) * JOYSTICK_MIN_VALUE;
+		input -= sgn(input) * JOYSTICK_MIN_VALUE;
 	return (float)input / 1.07;
 }
