@@ -18,6 +18,7 @@
 #pragma config(Servo,  srvo_S2_C1_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
+// please stop messing with the configurations
 // #include statements
 
 #define XCOORD 0
@@ -38,23 +39,12 @@ float circumference = 4 * PI;
 #define debugStreamLine3	orientation
 #define debugStreamType3 "%.3f"
 
+#ifndef UNIT_CONVERTER
+#define UNIT_CONVERTER
+#endif
+
 #include "unit_converter.c"
 #include "../api/api.c"
-//#include "../api/simplemovement.c"
-//to drive say
-//drive(100)
-
-//to turn, say
-//rotate(100)
-/*
-int declareAnyVariableHere = 0;
-#define DEBUG_STREAM_ON
-#define debugStreamLine1 declareAnyVariableHere
-#define debugStreamLine2 anyOtherVariable
-//up to 8
-*/
-
-void turn45(bool right);
 
 static float updateX(float degrees, float distanceTraveled) {
 	return (float)(x + sin(degrees) * distanceTraveled); //remove cast
@@ -112,13 +102,15 @@ float getCoordinateValue(int value) {
 	return -1;
 }
 
+// 1 MPH for one sec 5280 FT/Hour divide by 60^2= 5280/3600
+// That will equal the amount the robot moves in one second. (Assuming batteries are full)
+
 void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	/*
 		For now I will go in the following order:
 			1.) I will go to the correct X value
 			2.) Next the correct Z value
 			3.) Finally rotate until orientation = newOrientation
-	*/
 
 	// code used to rotate robot to starting degrees goes here
 	float oldX_1 = nMotorEncoder[leftmotor_1];
@@ -139,7 +131,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	}
 
 	while (!(x >= newX - 1 && x <= newX + 1)) {
-		float ticks = nMotorEncoder[leftmotor_1] - oldX_1; /* Will remain NULL until motor is known.*/
+		float ticks = nMotorEncoder[leftmotor_1] - oldX_1; /* Will remain NULL until motor is known.
 		ticks += nMotorEncoder[rightmotor_1] - oldX_2;
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
@@ -167,7 +159,7 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 	float oldZ_2 = nMotorEncoder[rightmotor_1];
 
 	while (!(z >= newZ - 1 && z <= newZ + 1)) {
-		float ticks = nMotorEncoder[leftmotor_1] - oldZ_1; /* Will remain NULL until motor is known.*/
+		float ticks = nMotorEncoder[leftmotor_1] - oldZ_1; /* Will remain NULL until motor is known.
 		ticks += nMotorEncoder[rightmotor_1] - oldZ_2;
 		ticks /= 2;
 		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
@@ -175,31 +167,19 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 		drive();
 	}
 
-	stop();
-}
-
-void resetEncoders() {
-	nMotorEncoder[leftmotor_1] = 0;
-	nMotorEncoder[rightmotor_1] = 0;
+	stop();*/
+	
+	// start loop
+	if (orientation > 80 && orientation < 100) {
+	
+	} else {
+		while (orientation < 80 || orientation > 100) {
+			int orientationRotation = (int)(orientation * 1.46 / 360 + 90);
+			rotateSeconds(1);
+		}
+	}
 }
 
 void brake() {
 	setMovement(0,0);
-}
-void turn45(bool right){ //true is right, false is left
-	int power = 0;
-
-	if (right){
-		power = 100;
-	}
-	else{
-		power = -100;
-	}
-	resetEncoders();
-	motor[leftmotor_1] = power;
-	motor[rightmotor_1] = -power;
-	//wait1Msec(TURN45TIME);
-	while ((abs(nMotorEncoder[leftmotor_1]) + abs(nMotorEncoder[rightmotor_1]))/2 < 645)
-		wait1Msec(1);
-	brake();
 }
