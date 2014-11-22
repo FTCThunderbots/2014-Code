@@ -258,10 +258,6 @@ void swingDegreesBW(float degrees, byte direction) {
 	halt();
 }
 
-void grab() {
-	servo[grab] = GRAB_POS;
-}
-
 // deprecated: probably not as precise as it could be
 // also, in it's current form, problems may arise if passing arguments more than 36
 void rotateDegWithCompass(int degs, byte power) {
