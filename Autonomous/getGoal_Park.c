@@ -13,46 +13,20 @@
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,				 tServoNone)
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,				 tServoNone)
 
-
 #define setting_twoEncoders
+
 #include "../api/api.c"
 
 task main() {
 	//time based off ramp, grab, drive straight to park zone
 	initializeAPI();
-
-	nNxtExitClicks = 3;
-  static int delay = 0;
-  static int i;
-	while (nNxtButtonPressed != 3 && !matchHasStarted){
-  	if (nNxtButtonPressed == 1)
-  		delay += 1;
-  	if (nNxtButtonPressed == 2)
-  		delay -= 1;
-  	/*
-  	if (delay > 15)
-  		delay = 0;
-  	if (delay < 0)
-  		delay = 15;
-  		*/
-  	if (nNxtButtonPressed == 0)
-  	{
-  		if (delay != 0)
-  			i = 0;
-  		else
-  			i = 15;
-  		delay = i;
-  	}
-
-  	nxtDisplayCenteredTextLine(0, "%2.2f second delay", delay);
-  	wait1Msec(300);
-  }
-  eraseDisplay();
-
-	waitForStart();
-  driveSecondsBW(2.0);
-  grab();
-  rotateSecondsCW(0.5);
-  waitSeconds(delay);
-  driveSecondsFW(2.0);
+	initializeRobot();
+	int delay = setAutoDelay(); // implemented: api/nxt.c
+	waitStartAPI();  // implemented: api/nxt.c
+	waitSeconds(delay);
+	driveSecondsBW(2.0);
+	grabGoal();
+	rotateSecondsCW(0.5);
+	waitSeconds(delay);
+	driveSecondsFW(2.0);
 }

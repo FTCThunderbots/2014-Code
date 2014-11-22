@@ -19,7 +19,8 @@
 task main() {
 	//time based off ramp and grab
 	initializeAPI();
+	initializeRobot();
 	waitForStart();
 	driveSecondsBW(2.0);
-	grab();
+	grabGoal();
 }

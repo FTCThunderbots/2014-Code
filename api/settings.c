@@ -26,10 +26,13 @@ const byte MOTOR_MAX_POWER = 100;
 const byte DEFAULT_MOTOR_POWER = 100; // when power is not specified
 
 // Encoder Settings
-//const int ENCODER_TICKS_PER_ROTATION = 1440; // May not be correct, requires testing.
-// ticks per rotation commented becuase unreferenced
 const int ENCODER_TICKS_PER_DRIVE_INCH = 1440/(3*PI); // here we might be able to do some math, but will still require precise calibration
 const int ENCODER_TICKS_PER_STRAFE_INCH = 100; // guess and check
 const int ENCODER_TICKS_PER_ROTATE_DEGREE = 100; // for rotating in place. just guess and check
 const int ENCODER_TICKS_PER_SWING_DEGREE = 200; // should be about double the turn degrees, but guess and check.
 #warn "(settings.c) Encoder values still need to be set! Encoder functions will not work."
+
+// Servo constants
+const int GRAB_SERVO_INIT = 0; // starting position
+const int GRAB_SERVO_CHANGE = 0; // This is not a new position; this is the change in position. May need to be negative.
+#warn "(settings.c) The grabbing servo positions have not been set! Grabbing any goal will not work!"

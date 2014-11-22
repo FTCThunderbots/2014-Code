@@ -3,3 +3,7 @@
 // Ex. Lifts, servos
 
 #include "functions.h"
+
+void grabGoal() {
+	servo[grab] = GRAB_SERVO_INIT + GRAB_SERVO_CHANGE;
+}

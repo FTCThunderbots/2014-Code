@@ -20,6 +20,7 @@
 task main() {
 	//time based off ramp
 	initializeAPI();
+	initializeRobot();
 	waitForStart();
-  driveSecondsBW(2.0);
+	driveSecondsBW(2.0);
 }

@@ -3,11 +3,17 @@
 
 #include "background.h"
 
+void initializeRobot() {
+	setMovement(0,0,0);
+	servo[grab] = GRAB_SERVO_INIT;
+}
+
 void initializeAPI() {
 	setMovement(0,0,0); //movement.c
 	timeInit(); //timers.c
-   initDebugConsole();
+	initDebugConsole();
 	StartTask(background);
+	StartTask(trackMatchStart);
 }
 
 task background() {

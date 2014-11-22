@@ -24,6 +24,10 @@
 #include "distances.c"
 #endif
 
+#ifndef NXT_INCLUDEGAURD
+#include "nxt.c"
+#endif
+
 #ifndef FUNCTIONS_INCLUDEGAURD
 #include "functions.c"
 #endif
@@ -56,4 +60,9 @@
 #include "timer.c"
 #endif
 
+// And everyone's favorite,
+
+#ifndef JOYSTICKDRIVER_INCLUDEGAURD
 #include "JoystickDriver.c"
+#define JOYSTICKDRIVER_INCLUDEGAURD
+#endif
