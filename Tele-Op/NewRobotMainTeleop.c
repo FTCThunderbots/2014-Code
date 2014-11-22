@@ -26,16 +26,19 @@ bool userIsNotAGoat() {
 #define BackboardMove 0
 
 void scaleInputs(int *x, int *y);
+void setSweep();
+void setConvey();
 
 task main()
 {
 	initializeAPI();
 	eraseDisplay();
-	while (userIsNotAGoat()) {
+	while (true) {
 		int a = 0;
 		int b = 0;
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(-joystick.joy1_y1, -joystick.joy1_x2);
+		/*
 		if (joy2Btn(2)) {
 			motor[sweep] = 100;
 			motor[conveyor] = 100;
@@ -51,7 +54,10 @@ task main()
 				motor[conveyor] = -100;
 			else if (joy2Btn(8))
 				motor[conveyor] = 100;
-		}
+		}*/
+
+		setSweep();
+		setConvey();
 
 		a = joystick.joy2_y1;
 		if (abs(a)<10) a = 0;
@@ -87,4 +93,29 @@ void scaleInputs(int* x, int* y) {
 	}
 	*x = (int)fx;
 	*y = (int)fy;
+}
+
+
+void setSweep() {
+   byte pow = 100;
+   if (joy2Btn(0) || joy2Btn(3))
+      pow /= 2;
+   if (joy2Btn(6) || joy2Btn(1))
+      motor[sweep] = pow;
+   else if (joy2Btn(4))
+      motor[sweep] = -pow;
+   else
+      motor[sweep]= 0;
+}
+
+void setConvey() {
+   byte pow = 100;
+   if (joy2Btn(2) || joy2Btn(3))
+      pow /= 2;
+   if (joy2Btn(7) || joy2Btn(1))
+      motor[conveyor] = pow;
+   else if (joy2Btn(5))
+      motor[conveyor] = -pow;
+   else
+      motor[conveyor] = 0;
 }

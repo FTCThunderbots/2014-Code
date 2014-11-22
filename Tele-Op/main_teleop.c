@@ -46,9 +46,9 @@ task main() {
 	initializeAPI();
 	while (true) {
 		getJoystickSettings(joystick);
-		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
-      setSweep();
-      setConvey();
+		setMovementFromJoystick(-joystick.joy1_y1, -joystick.joy1_x2);
+    setSweep();
+    setConvey();
 	}
 }
 
@@ -68,6 +68,6 @@ void setConvey() {
       pow /= 2;
    if (joy2Btn(7))
       motor[conveyor] = pow;
-   if (j2Btn(5))
-      motor[conveyor] = -pow;   
+   if (joy2Btn(5))
+      motor[conveyor] = -pow;
 }
