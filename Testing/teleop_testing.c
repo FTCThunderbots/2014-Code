@@ -27,6 +27,7 @@
 
 task main() {
 	initializeAPI();
+	Ruler_t r;
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);

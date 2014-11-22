@@ -3,6 +3,10 @@
 
 #define DEBUG_INCLUDEGAURD
 
+#ifndef ENCODERS_INCLUDEGAURD
+#include "encoders.c"
+#endif
+
 // Define types
 
 #ifndef debugStreamType1

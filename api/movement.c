@@ -22,10 +22,10 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
 	// Next, assign wheel powers using the mecanum
-	float frontLeft = (forward + right + clockwise);
-	float frontRight = (-forward + right + clockwise);
-	float backLeft = (forward - right + clockwise);
-	float backRight = (-forward - right + clockwise);
+	float frontLeft = (-forward - right - clockwise);
+	float frontRight = (forward - right - clockwise);
+	float backLeft = (-forward + right - clockwise);
+	float backRight = (forward + right - clockwise);
 	//add note about why/how this works in engineering notebook
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
 	// find max of all wheel powers

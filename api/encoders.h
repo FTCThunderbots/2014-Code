@@ -2,9 +2,18 @@
 // Header file for encoders.c
 #define ENCODERS_INCLUDEGAURD
 
+#ifndef SETTINGS_INCLUDEGAURD
+#include "settings.c"
+#endif
+
+#ifndef MATH_INCLUDEGAURD
+#include "math.c"
+#endif
+
 // Accessing encoder values
 #define getEncoder_left1() nMotorEncoder[leftmotor_1]
 #define getEncoder_right1() nMotorEncoder[rightmotor_1]
+
 #ifdef setting_twoEncoders
 #define getEncoder_left2() nMotorEncoder[leftmotor_1]
 #define getEncoder_right2() nMotorEncoder[rightmotor_1]

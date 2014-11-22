@@ -21,6 +21,12 @@
 /* USING THE 2013 CONFIG */
 
 #define DEBUG_STREAM_ON
+/*
+long l1 = 0;
+long l2 = 0;
+long r1 = 0;
+long r2 = 0;
+*/
 #define debugStreamLine1 getEncoder_left1()
 #define debugStreamLine2 getEncoder_left2()
 #define debugStreamLine3 getEncoder_right1()
@@ -29,8 +35,8 @@
 #include "../api/api.c"
 
 task main() {
-   driveSeconds(2);
+   driveSeconds(2, 100);
    while (true) {
-   
+
    }
 }
