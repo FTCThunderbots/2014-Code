@@ -27,4 +27,13 @@ task main() {
 	initializeRobot();
 	waitForStart();
 	driveSecondsBW(2.0);
+	grabGoal();
+	driveSeconds(0.5, 75);
+	rotateDegreesCW(90);
+	driveSeconds(0.25, 75);
+	rotateDegreesCW(90);
+	driveSecondsBW(0.25);
+	rotateDegreesCW(90);
+	driveSecondsBW(1.5);
+	releaseGoal();
 }

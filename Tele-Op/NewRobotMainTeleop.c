@@ -41,21 +41,14 @@ task main()
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(-joystick.joy1_y1, -joystick.joy1_x2);
-		if (joy1Btn(2)) {
-			if (grabbed) {
-				nMotorEncoderTarget[grab] = GRAB_SERVO_INIT;
-				motor[grab] = -50;
-				grabbed = false;
-		} else {
-				nMotorEncoderTarget[grab] = GRAB_SERVO_INIT + GRAB_SERVO_CHANGE;
-				motor[grab] = 50;
-				grabbed = true;
-			}
-		}
+		if (joy1Btn(2))
+			grabGoal();
+		if (joy1Btn(4))
+			releaseGoal();
 		if (joy1Btn(1))
-			servo[backboard] = BackboardBase;
+			servo[backboard] = 128;
 		if (joy1Btn(3))
-			servo[backboard] = BackboardMove;
+			servo[backboard] = 250;
 
 		/*
 		if (joy2Btn(2)) {

@@ -26,5 +26,5 @@ task main() {
 	initializeAPI();
 	initializeRobot();
 	waitForStart();
-	driveSecondsBW(2.0);
+	driveSecondsFW(2.0);
 }
