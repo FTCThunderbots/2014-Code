@@ -18,9 +18,8 @@
 #include "../api/api.c"
 
 task main() {
-	//time based off ramp and grab
+	//time based off ramp
 	initializeAPI();
 	waitForStart();
   driveSecondsBW(2.0);
-  grab();
 }

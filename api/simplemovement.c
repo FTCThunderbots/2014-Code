@@ -184,7 +184,7 @@ void traverseSeconds(float secs, byte vector) {
 }
 
 // movement for inches, with power argument
-void driveInches(float inches, byte power) { 
+void driveInches(float inches, byte power) {
    drive(power);
    waitDriveInches(inches);
    halt();
@@ -256,6 +256,10 @@ void swingDegreesBW(float degrees, byte direction) {
 	swingBW(direction);
 	waitSwingDegrees(degrees);
 	halt();
+}
+
+void grab() {
+	servo[grab] = GRAB_POS;
 }
 
 // deprecated: probably not as precise as it could be

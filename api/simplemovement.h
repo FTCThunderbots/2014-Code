@@ -61,5 +61,7 @@ void rotateDegreesCCW(float degrees);
 void swingDegreesFW(float degrees, byte direction);
 void swingDegreesBW(float degrees, byte direction);
 
+//other
+void grab();
 //deprecated and should prob remove:
 void rotateDegWithCompass(int degs, byte power);
