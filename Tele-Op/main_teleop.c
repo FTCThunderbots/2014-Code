@@ -3,6 +3,8 @@
 #pragma config(Motor,  mtr_S1_C1_2,     leftmotor_2,   tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     rightmotor_1,  tmotorTetrix, openLoop, encoder)
 #pragma config(Motor,  mtr_S1_C2_2,     rightmotor_2,  tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     conveyor,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_2,     sweep,         tmotorTetrix, openLoop, reversed)
 
 #define setting_twoEncoders
 
@@ -34,10 +36,38 @@ leftmotor_2   |--|                 |--|  rightmotor_2
 
 #include "../api/api.c"
 
+const byte SWEEP_MOTOR_POWER = 100;
+const byte CONVEY_MOTOR_POWER = 100;
+
+void setSweep();
+void setConvey();
+
 task main() {
 	initializeAPI();
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
+      setSweep();
+      setConvey();
 	}
+}
+
+void setSweep() {
+   byte pow = SWEEP_MOTOR_POWER;
+   if (joy2Btn(0) || joy2Btn(3))
+      pow /= 2;
+   if (joy2Btn(6))
+      motor[sweep] = pow;
+   if (joy2Btn(4))
+      motor[sweep] = -pow;
+}
+
+void setConvey() {
+   byte pow = CONVEY_MOTOR_POWER;
+   if (joy2Btn(2) || joy2Btn(3))
+      pow /= 2;
+   if (joy2Btn(7))
+      motor[conveyor] = pow;
+   if (j2Btn(5))
+      motor[conveyor] = -pow;   
 }
