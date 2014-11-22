@@ -4,3 +4,5 @@
 #define FUNCTIONS_INCLUDEGAURD
 
 void grabGoal();
+void releaseGoal();
+void toggleGrab();

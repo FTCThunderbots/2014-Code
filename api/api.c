@@ -10,6 +10,12 @@
 #endif
 #endif
 
+
+#ifndef JOYSTICKDRIVER_INCLUDEGAURD
+#include "JoystickDriver.c"
+#define JOYSTICKDRIVER_INCLUDEGAURD
+#endif
+
 // Please keep this list alphabetized
 
 #ifndef BACKGROUND_INCLUDEGAURD
@@ -58,11 +64,4 @@
 
 #ifndef TIMER_INCLUDEGAURD
 #include "timer.c"
-#endif
-
-// And everyone's favorite,
-
-#ifndef JOYSTICKDRIVER_INCLUDEGAURD
-#include "JoystickDriver.c"
-#define JOYSTICKDRIVER_INCLUDEGAURD
 #endif

@@ -5,7 +5,7 @@
 
 void initializeRobot() {
 	setMovement(0,0,0);
-	servo[grab] = GRAB_SERVO_INIT;
+	nMotorEncoder[grab] = GRAB_SERVO_INIT;
 }
 
 void initializeAPI() {
