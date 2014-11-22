@@ -14,5 +14,5 @@
 task main() {
 	initializeAPI();
 	waitForStart();
-   driveSeconds(3);
+   driveSecondsFW(3);
 }
