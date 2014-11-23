@@ -18,7 +18,7 @@
 #define ZCOORD 1
 #define DEG	2
 
-float x = 0.0, z = 0.0;
+float x = 0.0, z = 0.0;			// Zach O please stop freaking out over this, these are two VERY similar variables.
 float orientation = 0.0;
 float changeCoord = 0.0;
 float circumference = 4 * PI;
@@ -33,7 +33,7 @@ float circumference = 4 * PI;
 #define debugStreamType3 "%.3f"
 
 #ifndef UNIT_CONVERTER
-#define UNIT_CONVERTER
+#define UNIT_CONVERTER	"%.2f"
 #endif
 
 #include "unit_converter.c"
