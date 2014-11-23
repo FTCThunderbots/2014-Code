@@ -1,32 +1,24 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
-#pragma config(Hubs,  S2, HTServo,  HTMotor,  none,     none)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
-#pragma config(Sensor, S4,     touch,          sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     leftmotor_1,          tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     rightmotor_1,         tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C2_1,     Lift1,         tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_2,     Lift2,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     leftmotor_2,         tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C3_2,     rightmotor_2,        tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S2_C2_1,     Sweep,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S2_C2_2,     Flag,          tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S2_C1_1,    bucket,               tServoStandard)
-#pragma config(Servo,  srvo_S2_C1_2,    pin,                  tServoStandard)
-#pragma config(Servo,  srvo_S2_C1_3,    servo3,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_4,    servo4,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
-//*!!Code painstakingly hand written by Daniel Grimshaw, not by ROBOTC               !!*//
+#pragma config(Motor,  mtr_S1_C1_1,     leftmotor_1,   tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_2,     leftmotor_2,   tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     rightmotor_1,  tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     rightmotor_2,  tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     conveyor,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_2,     sweep,         tmotorTetrix, openLoop, reversed)
+#pragma config(Servo,  srvo_S1_C4_1,    backboard,     tServoStandard)
+#pragma config(Servo,	 srvo_S1_C4_2,    grab,          tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_3,    servo3,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_4,    servo4,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_5,    servo5,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_6,    servo6,				 tServoNone)
 
-//settings are for last year's robot
+//*!!Re-written for this year's robot               !!*//
 
 #include "coord_test.c"
 
-float x2 = 0.0;
-float z2 = 0.0;
-float orientation2 = 0.0;
+// x, y, and z defined in coord_test.c
+// default coordinates are x=0, z=0, orientation=90deg (PI/2 rad)
 
 void testCoords() {
 	gotoCoordinates(1, 0, 180);

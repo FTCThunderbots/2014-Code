@@ -1,25 +1,18 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
-#pragma config(Hubs,  S2, HTServo,  HTMotor,  none,     none)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S2,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
-#pragma config(Sensor, S4,     touch,          sensorTouch)
-#pragma config(Motor,  mtr_S1_C1_1,     leftmotor_1,          tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C1_2,     rightmotor_1,         tmotorTetrix, openLoop, encoder)
-#pragma config(Motor,  mtr_S1_C2_1,     Lift1,         tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_2,     Lift2,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C3_1,     Left2,         tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C3_2,     Right2,        tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S2_C2_1,     Sweep,         tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S2_C2_2,     Flag,          tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S2_C1_1,    bucket,               tServoStandard)
-#pragma config(Servo,  srvo_S2_C1_2,    pin,                  tServoStandard)
-#pragma config(Servo,  srvo_S2_C1_3,    servo3,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_4,    servo4,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_5,    servo5,               tServoNone)
-#pragma config(Servo,  srvo_S2_C1_6,    servo6,               tServoNone)
-// please stop messing with the configurations
-// #include statements
+#pragma config(Motor,  mtr_S1_C1_1,     leftmotor_1,   tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_2,     leftmotor_2,   tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     rightmotor_1,  tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     rightmotor_2,  tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_1,     conveyor,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C3_2,     sweep,         tmotorTetrix, openLoop, reversed)
+#pragma config(Servo,  srvo_S1_C4_1,    backboard,     tServoStandard)
+#pragma config(Servo,	 srvo_S1_C4_2,    grab,          tServoStandard)
+#pragma config(Servo,  srvo_S1_C4_3,    servo3,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_4,    servo4,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_5,    servo5,				 tServoNone)
+#pragma config(Servo,  srvo_S1_C4_6,    servo6,				 tServoNone)
+
 
 #define XCOORD 0
 #define ZCOORD 1
@@ -46,11 +39,13 @@ float circumference = 4 * PI;
 #include "unit_converter.c"
 #include "../api/api.c"
 
-static float updateX(float degrees, float distanceTraveled) {
-	return (float)(x + sin(degrees) * distanceTraveled); //remove cast
+float getCoordinateValue();
+
+float updateX(float degrees, float distanceTraveled) {
+	return (float)(x + sin(degrees) * distanceTraveled); //returns float
 }
 
-static float updateZ(float degrees, float distanceTraveled) {
+float updateZ(float degrees, float distanceTraveled) {
 	return (float)(z + cos(degrees) * distanceTraveled);
 }
 
@@ -61,35 +56,7 @@ float getOrientation(float degrees) {
 	return (float)(degrees * (180 / PI));
 }
 
-void updateCoords(float degrees, length_t CIRCUM_TYPE) {
-		/*
-			1. Divide ticks by 1440 then multiply by circumference (Gives you how far it moved in the units
-			you have used for circumference.
-			2. Convert the units to feet.
-		*/
-		float ticks = nMotorEncoder[leftmotor_1]; /* Will remain NULL until motor is known.*/
-		ticks += nMotorEncoder[rightmotor_1];
-		ticks /= 2;
-
-		float changeCoord = (ticks / 1440) * convertUnits(CIRCUM_TYPE, FEET, circumference);	// should be the same as what the wheel's diameter was
-																								// measured with.
-
-		/*
-		*First I take the degrees and convert to radians.
-		*Next, I'll use sin(rad) += x
-		*/
-
-		degrees = degreesToRadians(degrees);
-		float changedX = updateX(degrees, changeCoord);
-		x += changedX;
-		float changedZ = updateZ(degrees, changeCoord);
-		z += changedZ;
-		float changedOrientation = getOrientation(degrees);
-		orientation = changedOrientation;
-
-		// reset changeCoord
-		changeCoord = 0.0;
-}
+// deleted updateCoords() due to bugginess and no really useful implementation
 
 float getCoordinateValue(int value) {
 	if (value == 0) {
@@ -103,73 +70,15 @@ float getCoordinateValue(int value) {
 }
 
 // 1 MPH for one sec 5280 FT/Hour divide by 60^2= 5280/3600
+// approx. 1.47 ft/second @ 1 MPH would be useful to know how much the robot actually moves in one second
 // That will equal the amount the robot moves in one second. (Assuming batteries are full)
 
-void gotoCoordinates(float newX, float newZ, float newOrientation) {
-	/*
-		For now I will go in the following order:
-			1.) I will go to the correct X value
-			2.) Next the correct Z value
-			3.) Finally rotate until orientation = newOrientation
-
-	// code used to rotate robot to starting degrees goes here
-	float oldX_1 = nMotorEncoder[leftmotor_1];
-	float oldX_2 = nMotorEncoder[rightmotor_1];
-
-	if (newX < x) {
-		while (!(orientation >= -90 - 10 && orientation <= -90 + 10)) {
-			// Rotate robot
-			turn45(true);
-			updateCoords(45, INCHES);
-		}
-	} else {
-		while (!(orientation >= 90 + 10 && orientation <= 90 - 10)) {
-			// Rotate robot
-			turn45(false);
-			updateCoords(45, INCHES);
-		}
-	}
-
-	while (!(x >= newX - 1 && x <= newX + 1)) {
-		float ticks = nMotorEncoder[leftmotor_1] - oldX_1; /* Will remain NULL until motor is known.
-		ticks += nMotorEncoder[rightmotor_1] - oldX_2;
-		ticks /= 2;
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
-		updateX(90, changeCoord);
-		drive();
-	}
-
-	stop();
-
-	if (newZ < z) {
-		while (!(orientation >= -180 + 10 && orientation <= -180 - 10)) {
-			// Rotate robot
-			turn45(true);
-			updateCoords(45, INCHES);
-		}
-	} else {
-		while (!(orientation >= 180 + 10 && orientation <= 180 - 10)) {
-			// Rotate robot
-			turn45(false);
-			updateCoords(45, INCHES);
-		}
-	}
-
-	float oldZ_1 = nMotorEncoder[leftmotor_1];
-	float oldZ_2 = nMotorEncoder[rightmotor_1];
-
-	while (!(z >= newZ - 1 && z <= newZ + 1)) {
-		float ticks = nMotorEncoder[leftmotor_1] - oldZ_1; /* Will remain NULL until motor is known.
-		ticks += nMotorEncoder[rightmotor_1] - oldZ_2;
-		ticks /= 2;
-		changeCoord = (ticks / 1440) * convertUnits(INCHES, FEET, circumference);
-		updateZ(180, changeCoord);
-		drive();
-	}
-
-	stop();*/
-	
+void gotoCoordinates(float newX, float newZ, float newOrientation) {	
 	// start loop
+	/*
+	*Thanks to the API most of the movement code was simplified so now
+	*it has been reduced to loops and float values
+	*/
 	if (orientation > 80 && orientation < 100) {
 	
 	} else {
@@ -178,8 +87,46 @@ void gotoCoordinates(float newX, float newZ, float newOrientation) {
 			rotateSeconds(1);
 		}
 	}
-}
-
-void brake() {
-	setMovement(0,0);
+	
+	if (newX < x) {
+		while (newX < x) {
+			driveForSecondsFW(0.56);
+			updateX(degreesToRadians(orientation), 1.0);
+		}
+	} else {
+		while (newX > x) {
+			driveForSecondsBW(0.56);
+			updateX(degreesToRadians(orientation), -1.0);
+		}
+	}
+	
+	if (orientation > 190 && orientation < 170) {
+	
+	} else {
+		while (orientation < 80 || orientation > 100) {
+			int orientationRotation = (int)(orientation * 1.46 / 360 + 90);
+			rotateSeconds(1);
+		}
+	}
+	
+	if (newZ < z) {
+		while (newZ < z) {
+			driveForSecondsFW(0.56);
+			updateZ(degreesToRadians(orientation), 1.0);
+		}
+	} else {
+		while (newZ > z) {
+			driveForSecondsBW(0.56);
+			updateZ(degreesToRadians(orientation), -1.0);
+		}
+	}
+	
+	if (orientation > newOrientation+10 && orientation < newOrientation-10) {
+	
+	} else {
+		while (orientation < newOrientation+10 || orientation > newOrientation-10) {
+			int orientationRotation = (int)(orientation * 1.46 / 360 + 90);
+			rotateSeconds(1);
+		}
+	}
 }
