@@ -7,7 +7,6 @@
 #General:
 * Write wait for distance functions
 * Write move/turn for distance functions
-* Write API wiki
 * ~~Update header file for encoder.c and ruler.c with all functions~~
 * Add tick to measurement functions to the ruler system
 * ~~Add system timer in timer.c~~
@@ -31,6 +30,9 @@
 #Long term goals:
 * Remove all constants from encoder system and replace with only math, while still retaining full functionality.
 * Implement a PID controller to functions in simplemovement
+
+#Low Priority:
+* Write API wiki
 
 --------------------
 ###Tutorial on how to edit this list:
