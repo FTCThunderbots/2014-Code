@@ -19,12 +19,12 @@
 * Add support for a setting_noEncoders macro, as well as twoMotors and noMotors
 
 #Post-Competition Cleanup:
-* Fix the spelling of "guard" in all include guards (probably best done with a script)
+* ~~Fix the spelling of "guard" in all include guards (probably best done with a script)~~
 * ~~Change the initialization of the grab motor in background.c to a function in functions.c~~
-* Change the grabbed bool to static, and add getter/setter functions
-* Change the turn constant to subtract the actual sign of power, not add the negative of it
-* Change setMovement to use the inverse of the power, so that a positive argument is actually forward
-* Change all functions in simplemovement to use the positive default power
+* ~~Change the grabbed bool to static, and add getter/setter functions~~
+* ~~Change the turn constant to subtract the actual sign of power, not add the negative of it~~
+* ~~Change setMovement to use the inverse of the power, so that a positive argument is actually forward~~
+* ~~Change all functions in simplemovement to use the positive default power~~
 * Add polarity for move seconds and move distance
 * Update the config copypasta from the teleop
 * Add backboard base and backboard move to settings.c as constant integers
