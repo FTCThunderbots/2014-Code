@@ -5,14 +5,12 @@
 ###TEST ALL COMPLETED API SYSTEMS ON OLD ROBOT!!!
 
 #General:
-<<<<<<< HEAD
+
 * Write wait for distance functions
 * Write move/turn for distance functions
-=======
 * ~~Write wait for distance functions~~ (Needs checking)
 * ~~Write move/turn for distance functions~~ (Needs checking)
 * Write API wiki
->>>>>>> origin/master
 * ~~Update header file for encoder.c and ruler.c with all functions~~
 * Add tick to measurement functions to the ruler system
 * ~~Add system timer in timer.c~~
