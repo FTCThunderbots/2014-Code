@@ -33,7 +33,7 @@ task releaseGoalTask() {
 }
 
 void toggleGrab() {
-	if (grabbed)
+	if (isGoalGrabbed)
 		releaseGoal();
 	else
 		grabGoal();

@@ -3,6 +3,10 @@
 
 #include "background.h"
 
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
+
 void initializeRobot() {
 	halt();
 	resetEncoders();
@@ -23,4 +27,13 @@ task background() {
 		updateDebugStream(); //debug.c
       updateDebugConsole();
 	}
+}
+
+void referenceTasks() {
+	return;
+	// This is all dead code
+	// It only exists to avoid 'unrefrenced' warnings
+	StartTask(grabGoalTask);
+	StartTask(releaseGoalTask);
+	StartTask(toggleGrabTask);
 }

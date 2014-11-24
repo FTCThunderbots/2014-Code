@@ -7,6 +7,10 @@
 #include "debug.c"
 #endif
 
+#ifndef FUNCTIONS_INCLUDEGUARD
+#include "functions.c"
+#endif
+
 #ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif

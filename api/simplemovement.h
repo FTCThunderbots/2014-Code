@@ -3,8 +3,16 @@
 
 #define SIMPLEMOVEMENT_INCLUDEGUARD
 
+#ifndef DISTANCES_INCLUDEGUARD
+#include "distances.c"
+#endif
+
 #ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
+#endif
+
+#ifndef SENSORS_INCLUDEGUARD
+#include "sensors.c"
 #endif
 
 //movement with power
