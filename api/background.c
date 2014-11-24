@@ -4,12 +4,12 @@
 #include "background.h"
 
 void initializeRobot() {
-	setMovement(0,0,0);
-	nMotorEncoder[grab] = GRAB_SERVO_INIT;
+	halt();
+	resetEncoders();
+	initGrabSystem();
 }
 
 void initializeAPI() {
-	setMovement(0,0,0); //movement.c
 	timeInit(); //timers.c
 	initDebugConsole();
 	StartTask(background);

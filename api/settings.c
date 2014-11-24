@@ -33,8 +33,9 @@ const int ENCODER_TICKS_PER_SWING_DEGREE = 200; // should be about double the tu
 #warn "(settings.c) Encoder values still need to be set! Encoder functions will not work."
 
 //turn constant
-const byte TURN_CONSTANT = 0;
-// Servo constants
-const int GRAB_SERVO_INIT = 0; // starting position
-const int GRAB_SERVO_CHANGE = -36; // This is not a new position; this is the change in position. May need to be negative.
-#warn "(settings.c) The grabbing servo positions have not been set! Grabbing any goal will not work!"
+const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot
+
+// Functional motor constants
+const byte GRAB_MOTOR_SPEED = 50; // speed of the goal-grabbing motor
+const int GRAB_MOTOR_OPEN_POS = 0; // encoder position when the goal is not grabbed
+const int GRAB_MOTOR_CLOSED_POS = 110; // encoder position when the goal is grabbed

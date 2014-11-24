@@ -4,20 +4,32 @@
 
 #include "functions.h"
 
-bool grabbed = false;
+static bool isGoalGrabbed = false;
+
+void initGrabSystem() {
+	nMotorEncoder[grab] = 0;
+}
 
 void grabGoal() {
-	motor[grab] = 50;
-	while (nMotorEncoder[grab] != 110) {}
+	motor[grab] = GRAB_MOTOR_SPEED;
+	while (nMotorEncoder[grab] != GRAB_MOTOR_CLOSED_POS) {}
 	motor[grab] = 0;
-	grabbed = true;
+	isGoalGrabbed = true;
+}
+
+task grabGoalTask() {
+	grabGoal();
 }
 
 void releaseGoal() {
-	motor[grab] = -50;
-	while (nMotorEncoder[grab] != 0) {}
+	motor[grab] = -GRAB_MOTOR_SPEED;
+	while (nMotorEncoder[grab] != GRAB_MOTOR_OPEN_POS) {}
 	motor[grab] = 0;
-	grabbed = false;
+	isGoalGrabbed = false;
+}
+
+task releaseGoalTask() {
+	releaseGoal();
 }
 
 void toggleGrab() {
@@ -25,4 +37,8 @@ void toggleGrab() {
 		releaseGoal();
 	else
 		grabGoal();
+}
+
+task toggleGrabTask() {
+	toggleGrab();
 }

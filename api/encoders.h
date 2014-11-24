@@ -57,30 +57,11 @@
 #define setEncoder_right2(val) nMotorEncoder[rightmotor_2]=val
 #endif
 
+void resetEncoders();
+
 // Encoder get/set shortcuts. Useful for iterators?
-
-long getEncoder(string name) {
-   if (name == "left1")
-      return getEncoder_left1();
-   if (name == "left2")
-      return getEncoder_left2();
-   if (name == "right1")
-      return getEncoder_right1();
-   if (name == "right2")
-      return getEncoder_right2();
-   return -1;
-}
-
-void setEncoder(string name, long val) {
-   if (name == "left1")
-      setEncoder_left1(val);
-   if (name == "left2")
-      setEncoder_left2(val);
-   if (name == "right1")
-      setEncoder_right1(val);
-   if (name == "right2")
-      setEncoder_right2(val);
-}
+long getEncoder(string name);
+void setEncoder(string name, long val);
 
 // Unit conversions
 long degreesToTicks(float degrees);
