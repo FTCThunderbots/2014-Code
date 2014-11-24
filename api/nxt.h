@@ -1,7 +1,7 @@
 // nxt.h
 // Header file for nxt.c
 
-#define NXT_INCLUDEGAURD
+#define NXT_INCLUDEGUARD
 
 void waitStartAPI();
 int setAutoDelay();

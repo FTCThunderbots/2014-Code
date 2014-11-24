@@ -1,9 +1,9 @@
 // debug.h
 // Header file for debug.c
 
-#define DEBUG_INCLUDEGAURD
+#define DEBUG_INCLUDEGUARD
 
-#ifndef ENCODERS_INCLUDEGAURD
+#ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"
 #endif
 

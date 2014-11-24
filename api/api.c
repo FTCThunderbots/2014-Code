@@ -11,57 +11,57 @@
 #endif
 
 
-#ifndef JOYSTICKDRIVER_INCLUDEGAURD
+#ifndef JOYSTICKDRIVER_INCLUDEGUARD
 #include "JoystickDriver.c"
-#define JOYSTICKDRIVER_INCLUDEGAURD
+#define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
 // Please keep this list alphabetized
 
-#ifndef BACKGROUND_INCLUDEGAURD
+#ifndef BACKGROUND_INCLUDEGUARD
 #include "background.c"
 #endif
 
-#ifndef DEBUG_INCLUDEGAURD
+#ifndef DEBUG_INCLUDEGUARD
 #include "debug.c"
 #endif
 
-#ifndef DISTANCES_INCLUDEGAURD
+#ifndef DISTANCES_INCLUDEGUARD
 #include "distances.c"
 #endif
 
-#ifndef NXT_INCLUDEGAURD
+#ifndef NXT_INCLUDEGUARD
 #include "nxt.c"
 #endif
 
-#ifndef FUNCTIONS_INCLUDEGAURD
+#ifndef FUNCTIONS_INCLUDEGUARD
 #include "functions.c"
 #endif
 
-#ifndef MATH_INCLUDEGAURD
+#ifndef MATH_INCLUDEGUARD
 #include "math.c"
 #endif
 
-#ifndef MOVEMENT_INCLUDEGAURD
+#ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif
 
-#ifndef RULER_INCLUDEGAURD
+#ifndef RULER_INCLUDEGUARD
 #include "ruler.c"
 #endif
 
-#ifndef SENSORS_INCLUDEGAURD
+#ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
 #endif
 
-#ifndef SETTINGS_INCLUDEGAURD
+#ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
 #endif
 
-#ifndef SIMPLEMOVEMENT_INCLUDEGAURD
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
 #include "simplemovement.c"
 #endif
 
-#ifndef TIMER_INCLUDEGAURD
+#ifndef TIMER_INCLUDEGUARD
 #include "timer.c"
 #endif

@@ -1,13 +1,13 @@
 // movement.h
 // Header file for movement.c
 
-#define MOVEMENT_INCLUDEGAURD
+#define MOVEMENT_INCLUDEGUARD
 
-#ifndef MATH_INCLUDEGAURD
+#ifndef MATH_INCLUDEGUARD
 #include "math.c"
 #endif
 
-#ifndef SETTINGS_INCLUDEGAURD
+#ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
 #endif
 

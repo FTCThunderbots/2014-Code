@@ -2,7 +2,7 @@
 // Contains all setting and configuration constants for the robot
 // Different groups of settings should be separated by comments
 
-#define SETTINGS_INCLUDEGAURD
+#define SETTINGS_INCLUDEGUARD
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 10; //min value where the reading is accepted as an input

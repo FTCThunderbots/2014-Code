@@ -1,9 +1,9 @@
 // ruler.h
 // Header file for ruler.c
 
-#define RULER_INCLUDEGAURD
+#define RULER_INCLUDEGUARD
 
-#ifndef ENCODERS_INCLUDEGAURD
+#ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"
 #endif
 

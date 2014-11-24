@@ -1,12 +1,12 @@
 // encoders.h
 // Header file for encoders.c
-#define ENCODERS_INCLUDEGAURD
+#define ENCODERS_INCLUDEGUARD
 
-#ifndef SETTINGS_INCLUDEGAURD
+#ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
 #endif
 
-#ifndef MATH_INCLUDEGAURD
+#ifndef MATH_INCLUDEGUARD
 #include "math.c"
 #endif
 

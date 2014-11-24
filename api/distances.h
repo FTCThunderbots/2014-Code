@@ -1,9 +1,9 @@
 // distances.h
 // Header file for distances.c
 
-#define DISTANCES_INCLUDEGAURD
+#define DISTANCES_INCLUDEGUARD
 
-#ifndef RULER_INCLUDEGAURD
+#ifndef RULER_INCLUDEGUARD
 #include "ruler.c"
 #endif
 

@@ -1,9 +1,9 @@
 // simplemovement.h
 // Header file for simplemovement.c
 
-#define SIMPLEMOVEMENT_INCLUDEGAURD
+#define SIMPLEMOVEMENT_INCLUDEGUARD
 
-#ifndef MOVEMENT_INCLUDEGAURD
+#ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif
 
@@ -15,7 +15,7 @@ void rotate(byte power);
 void swing(byte direction, byte power);
 void traverse(byte vector, byte power);
 
-//movement without power
+//movement without poweR
 void driveFW();
 void driveBW();
 void strafeR();
