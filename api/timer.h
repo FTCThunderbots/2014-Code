@@ -2,7 +2,7 @@
 // Header file for timer.c
 
 //macros
-#define TIMER_INCLUDEGAURD
+#define TIMER_INCLUDEGUARD
 
 //function macros
 

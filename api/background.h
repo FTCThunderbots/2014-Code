@@ -1,21 +1,25 @@
 // background.h
 // Header file for background.c
 
-#define BACKGROUND_INCLUDEGAURD
+#define BACKGROUND_INCLUDEGUARD
 
-#ifndef DEBUG_INCLUDEGAURD
+#ifndef DEBUG_INCLUDEGUARD
 #include "debug.c"
 #endif
 
-#ifndef MOVEMENT_INCLUDEGAURD
+#ifndef FUNCTIONS_INCLUDEGUARD
+#include "functions.c"
+#endif
+
+#ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif
 
-#ifndef NXT_INCLUDEGAURD
+#ifndef NXT_INCLUDEGUARD
 #include "nxt.c"
 #endif
 
-#ifndef TIMER_INCLUDEGAURD
+#ifndef TIMER_INCLUDEGUARD
 #include "timer.c"
 #endif
 

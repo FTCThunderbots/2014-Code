@@ -54,40 +54,40 @@ void traverse(byte vector, byte power) {
 // functions without power arguments
 
 void driveFW() {
-   setMovement(-DEFAULT_MOTOR_POWER, 0, 0);
-}
-
-void driveBW() {
    setMovement(DEFAULT_MOTOR_POWER, 0, 0);
 }
 
-void strafeR() {
-	setMovement(0, -DEFAULT_MOTOR_POWER, 0);
+void driveBW() {
+   setMovement(-DEFAULT_MOTOR_POWER, 0, 0);
 }
 
-void strafeL() {
+void strafeR() {
 	setMovement(0, DEFAULT_MOTOR_POWER, 0);
 }
 
+void strafeL() {
+	setMovement(0, -DEFAULT_MOTOR_POWER, 0);
+}
+
 void rotateCW() {
-   setMovement(0, 0, -DEFAULT_MOTOR_POWER);
+   setMovement(0, 0, DEFAULT_MOTOR_POWER);
 }
 
 void rotateCCW() {
-   setMovement(0, 0, DEFAULT_MOTOR_POWER);
+   setMovement(0, 0, -DEFAULT_MOTOR_POWER);
 }
 
 
 void swingFW(byte direction) {
-   swing(direction, -DEFAULT_MOTOR_POWER);
-}
-
-void swingBW(byte direction) {
    swing(direction, DEFAULT_MOTOR_POWER);
 }
 
+void swingBW(byte direction) {
+   swing(direction, -DEFAULT_MOTOR_POWER);
+}
+
 void traverse(byte vector) {
-   traverse(vector, -DEFAULT_MOTOR_POWER);
+   traverse(vector, DEFAULT_MOTOR_POWER);
 }
 
 // movement for time, with power arguments

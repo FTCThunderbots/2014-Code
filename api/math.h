@@ -2,7 +2,7 @@
 // Header file for math.c
 
 //macros
-#define MATH_INCLUDEGAURD
+#define MATH_INCLUDEGUARD
 #define IN_PER_FT 12
 #define CM_PER_IN 2.54
 #define CM_PER_M 100
