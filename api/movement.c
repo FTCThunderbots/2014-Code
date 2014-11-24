@@ -41,12 +41,14 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	// multiply all by common scale
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
+	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
 	motor[leftmotor_2] = power[2];
 	motor[rightmotor_2] = power[3];
-	#endif
+	#endif //two motors
+	#endif //no motors
 }
 
 void setMovementFromJoystick(int forward, int right, int clockwise) {

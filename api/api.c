@@ -10,6 +10,11 @@
 #endif
 #endif
 
+#ifdef setting_noMotors
+#ifndef setting_noEncoders
+#define setting_noEncoders
+#endif
+#endif
 
 #ifndef JOYSTICKDRIVER_INCLUDEGUARD
 #include "JoystickDriver.c"
