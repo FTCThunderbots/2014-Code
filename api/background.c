@@ -11,6 +11,7 @@ void initializeRobot() {
 	halt();
 	resetEncoders();
 	initGrabSystem();
+	initBackboardServo();
 }
 
 void initializeAPI() {

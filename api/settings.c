@@ -32,10 +32,18 @@ const int ENCODER_TICKS_PER_ROTATE_DEGREE = 100; // for rotating in place. just 
 const int ENCODER_TICKS_PER_SWING_DEGREE = 200; // should be about double the turn degrees, but guess and check.
 #warn "(settings.c) Encoder values still need to be set! Encoder functions will not work."
 
-//turn constant
-const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot
+// Turn constant
+const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 50; // speed of the goal-grabbing motor
 const int GRAB_MOTOR_OPEN_POS = 0; // encoder position when the goal is not grabbed
 const int GRAB_MOTOR_CLOSED_POS = 110; // encoder position when the goal is grabbed
+const byte SWEEP_MOTOR_SPEED = 100; // default sweeper motor speed
+const byte SWEEP_MOTOR_SLOW_SPEED = 35; // 'slower' sweeper motor speed
+const byte CONVEYOR_MOTOR_SPEED = 100; // default conveyor motor speed
+const byte CONVEYOR_MOTOR_SLOW_SPEED = 35; // 'slower' conveyor motor speed
+
+// Servo constants
+const int BACKBOARD_SERVO_BASE = 128;
+const int BACKBOARD_SERVO_TARGET = 250;

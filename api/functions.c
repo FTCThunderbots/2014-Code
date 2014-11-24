@@ -4,6 +4,8 @@
 
 #include "functions.h"
 
+// Goal-grabbing System
+
 static bool isGoalGrabbed = false;
 
 void initGrabSystem() {
@@ -41,4 +43,18 @@ void toggleGrab() {
 
 task toggleGrabTask() {
 	toggleGrab();
+}
+
+// Backboard servo
+
+void initBackboardServo() {
+	disengageBackboard();
+}
+
+void engageBackboard() {
+	servo[backboard] = BACKBOARD_SERVO_TARGET;
+}
+
+void disengageBackboard() {
+	servo[backboard] = BACKBOARD_SERVO_BASE;
 }

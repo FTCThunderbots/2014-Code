@@ -10,3 +10,7 @@ void releaseGoal();
 task releaseGoalTask();
 void toggleGrab();
 task toggleGrabTask();
+
+void initBackboardServo();
+void engageBackboard();
+void disengageBackboard();
