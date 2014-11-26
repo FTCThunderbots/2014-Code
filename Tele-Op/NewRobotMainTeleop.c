@@ -36,11 +36,10 @@ task main()
 
 	eraseDisplay();
 	nMotorEncoder[grab] = 0;
-	servo[backboard] = BackboardBase;
 
 	while (true) {
 		getJoystickSettings(joystick);
-		setMovementFromJoystick(-joystick.joy1_y1, -joystick.joy1_x2);
+		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
 		if (joy1Btn(2))
 			grabGoal();
 		if (joy1Btn(4))
