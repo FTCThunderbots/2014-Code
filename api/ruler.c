@@ -47,10 +47,12 @@ void startRuler(pRuler_t ruler) {
 	ruler->previous.right1 = ruler->ticks.right1;
 	ruler->previous.right2 = ruler->ticks.right2;
 
-	ruler->ticks.left1 = getEncoder_left1();
-	ruler->ticks.left2 = getEncoder_left2();
-	ruler->ticks.right1 = getEncoder_right1();
-	ruler->ticks.right2 = getEncoder_right2();
+
+
+	ruler->ticks.left1 = nMotorEncoder[leftmotor_1];
+	ruler->ticks.left2 = nMotorEncoder[leftmotor_2];
+	ruler->ticks.right1 = nMotorEncoder[rightmotor_1];
+	ruler->ticks.right2 = nMotorEncoder[rightmotor_2];
 
 	ruler->running = true;
 }
@@ -60,10 +62,10 @@ void stopRuler(pRuler_t ruler) {
 }
 
 void resetRuler(pRuler_t ruler) {
-	ruler->start.left1 = getEncoder_left1();
-	ruler->start.left2 = getEncoder_left2();
-	ruler->start.right1 = getEncoder_right1();
-	ruler->start.right2 = getEncoder_right2();
+	ruler->start.left1 = nMotorEncoder[leftmotor_1];
+	ruler->start.left2 = nMotorEncoder[leftmotor_2];
+	ruler->start.right1 = nMotorEncoder[rightmotor_1];
+	ruler->start.right2 = nMotorEncoder[rightmotor_2];
 
 	ruler->previous.left1 = 0;
 	ruler->previous.left2 = 0;
@@ -78,10 +80,10 @@ void resetRuler(pRuler_t ruler) {
 
 void updateRuler(pRuler_t ruler) {
 	if (ruler->running) {
-		ruler->ticks.left1 = getEncoder_left1() - ruler->start.left1 + ruler->previous.left1;
-		ruler->ticks.left2 = getEncoder_left2() - ruler->start.left2 + ruler->previous.left2;
-		ruler->ticks.right1 = getEncoder_right1() - ruler->start.right1 + ruler->previous.right1;
-		ruler->ticks.right2 = getEncoder_right2() - ruler->start.right2 + ruler->previous.right2;
+		ruler->ticks.left1 = nMotorEncoder[leftmotor_1] - ruler->start.left1 + ruler->previous.left1;
+		ruler->ticks.left2 = nMotorEncoder[leftmotor_2] - ruler->start.left2 + ruler->previous.left2;
+		ruler->ticks.right1 = nMotorEncoder[rightmotor_1] - ruler->start.right1 + ruler->previous.right1;
+		ruler->ticks.right2 = nMotorEncoder[rightmotor_2] - ruler->start.right2 + ruler->previous.right2;
 	}
 }
 

@@ -3,39 +3,14 @@
 
 #include "encoders.h"
 
-void resetEncoders() {
-	setEncoder_left1(0);
-	setEncoder_left2(0);
-	setEncoder_right1(0);
-	setEncoder_right2(0);
-}
-
-// Encoder get/set shortcuts. Useful for iterators?
-
-long getEncoder(string name) {
-   if (name == "left1")
-      return getEncoder_left1();
-   if (name == "left2")
-      return getEncoder_left2();
-   if (name == "right1")
-      return getEncoder_right1();
-   if (name == "right2")
-      return getEncoder_right2();
-   return -1;
-}
-
-void setEncoder(string name, long val) {
-   if (name == "left1")
-      setEncoder_left1(val);
-   else if (name == "left2")
-      setEncoder_left2(val);
-   else if (name == "right1")
-      setEncoder_right1(val);
-   else if (name == "right2")
-      setEncoder_right2(val);
-}
-
 // Unit conversions
+
+void resetEncoders() {
+	nMotorEncoder[leftmotor_1] = 0;
+	nMotorEncoder[leftmotor_2] = 0;
+	nMotorEncoder[rightmotor_1] = 0;
+	nMotorEncoder[leftmotor_2] = 0;
+}
 
 // degrees to ticks
 long degreesToTicks(float degrees) {

@@ -10,41 +10,8 @@
 #include "math.c"
 #endif
 
-// Accessing encoder values
-#ifndef setting_noEncoders // there are encoders
-	#define getEncoder_left1() nMotorEncoder[leftmotor_1]
-	#define getEncoder_right1() nMotorEncoder[rightmotor_1]
-	#ifdef setting_twoEncoders // there are only two encoders
-		#define getEncoder_left2() nMotorEncoder[leftmotor_1]
-		#define getEncoder_right2() nMotorEncoder[rightmotor_1]
-	#else // there are four encoders
-		#define getEncoder_left2() nMotorEncoder[leftmotor_2]
-		#define getEncoder_right2() nMotorEncoder[rightmotor_2]
-	#endif
-#else // there are no encoders
-	#define getEncoder_left1() 0
-	#define getEncoder_right1() 0
-	#define getEncoder_left2() 0
-	#define getEncoder_right2() 0
-#endif
-
-// Setting encoder values
-// I hope we never have to use these, but they're here just in case. (Zach)
-#define setEncoder_left1(val) nMotorEncoder[leftmotor_1]=val
-#define setEncoder_right1(val) nMotorEncoder[rightmotor_1]=val
-#ifdef setting_twoEncoders
-#define setEncoder_left2(val) nMotorEncoder[leftmotor_1]=val
-#define setEncoder_right2(val) nMotorEncoder[rightmotor_1]=val
-#else
-#define setEncoder_left2(val) nMotorEncoder[leftmotor_2]=val
-#define setEncoder_right2(val) nMotorEncoder[rightmotor_2]=val
-#endif
-
-void resetEncoders();
-
 // Encoder get/set shortcuts. Useful for iterators?
-long getEncoder(string name);
-void setEncoder(string name, long val);
+void resetEncoders();
 
 // Unit conversions
 long degreesToTicks(float degrees);

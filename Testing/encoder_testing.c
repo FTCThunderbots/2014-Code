@@ -27,10 +27,6 @@ long l2 = 0;
 long r1 = 0;
 long r2 = 0;
 */
-#define debugStreamLine1 getEncoder_left1()
-#define debugStreamLine2 getEncoder_left2()
-#define debugStreamLine3 getEncoder_right1()
-#define debugStreamLine4 getEncoder_right2()
 
 #include "../api/api.c"
 
