@@ -105,3 +105,11 @@ float correctJoystick_old(int input){
 		input -= sgn(input) * JOYSTICK_MIN_VALUE;
 	return (float)input / 1.07;
 }
+
+float scaleJoyExp(int input) {
+
+	float fInput = (float)abs(input);
+	int ans = sgn(input)*(pow(101, fInput/128.0) - 1);
+	if (abs(ans) < 20) return 0;
+	return ans;
+}

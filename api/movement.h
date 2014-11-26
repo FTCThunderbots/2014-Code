@@ -19,3 +19,4 @@ void setMovementFromJoystick(int forward, int clockwise);
 byte correctJoystick(int joyval);
 void setMovementFromJoystick_old(int power, int turn);
 float correctJoystick_old(int input);
+float scaleJoyExp(int input);

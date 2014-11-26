@@ -39,7 +39,8 @@ task main()
 
 	while (true) {
 		getJoystickSettings(joystick);
-		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
+		//setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
+		setMovementFromJoystick(scaleJoyExp(joystick.joy1_y1), scaleJoyExp(joystick.joy1_x2));
 		if (joy1Btn(2))
 			grabGoal();
 		if (joy1Btn(4))
@@ -84,9 +85,9 @@ task main()
     else
       motor[conveyor] = 0;
 
-		nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
+		/*nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
 		nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
-		nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);
+		nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);*/
 		nxtDisplayCenteredTextLine(1, "left1: %d", motor[leftmotor_1]);
 		nxtDisplayCenteredTextLine(2, "left2: %d", motor[leftmotor_2]);
 		nxtDisplayCenteredTextLine(3, "r1: %d", motor[rightmotor_1]);
