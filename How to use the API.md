@@ -96,3 +96,5 @@ startTimer(bar);
 
 The line `pTimer_t bar = &foo;` is equivalent to `Timer_t * bar = &foo;`
 if you want to use raw C.
+
+**WARNING: Timer system does not work due to limitations of ROBOTC!**
