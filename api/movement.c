@@ -97,7 +97,8 @@ byte correctJoystickExp(int joyval) {
    byte correctVal = abs(correctJoystick(joyval));
    correctVal += JOYSTICK_EXPONENTIAL_SCALE;
    byte maxVal = MOTOR_MAX_POWER + JOYSTICK_EXPONENTIAL_SCALE;
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal) - 1;
+   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal);
+   correctVal -= pow(MOTOR_MAX_POWER + 1, JOYSTICK_EXPONENTIAL_SCALE / maxVal);
    return sgn(joyval) * correctVal;
 }
 
