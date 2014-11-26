@@ -17,30 +17,33 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
-	//nxtDisplayCenteredTextLine(1, "%d", forward);
+   
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
+   
+   // Straighten out the robot
 	clockwise += TURN_CONSTANT*sgn(forward);
 
-	// Next, assign wheel powers using the mecanum
+	// Assign wheel powers based on the constituent vectors
 	float frontLeft = (forward + right + clockwise);
 	float frontRight = (-forward + right + clockwise);
 	float backLeft = (forward - right + clockwise);
 	float backRight = (-forward - right + clockwise);
-	//add note about why/how this works in engineering notebook
+   
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
-	// find max of all wheel powers
+   
+	// scale all wheels to fit within the max power of a motor, while retaining the power ratios
 	byte max = arrAbsmax(power, 4);
-	// scale all wheels to fit within motor_max
 	if (max > MOTOR_MAX_POWER) {
 		float scale = (float)max / MOTOR_MAX_POWER;
 		for (int i = 0; i < 4; i++)
 			power[i] /= scale;
 	}
-	// multiply all by common scale
+	// multiply all by the common movement scale
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
+      
 	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
@@ -52,6 +55,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 }
 
 void setMovementFromJoystick(int forward, int right, int clockwise) {
+
 	// Scale from the range of the joystick to the range of the motors
 	forward = correctJoystick(forward);
 	right = correctJoystick(right);
@@ -61,14 +65,47 @@ void setMovementFromJoystick(int forward, int right, int clockwise) {
    setMovement(forward, right, clockwise);
 }
 
-// Just a shortcut
+void setMovementFromJoystickExp(int forward, int right, int clockwise) {
+	forward = correctJoystickExp(forward);
+	right = correctJoystickExp(right);
+	clockwise = correctJoystickExp(clockwise);
+   
+   setMovment(forward, right, clockwise);
+}
+
+// shortcut
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
 }
 
-// Just a shortcut
+// shortcut
 void setMovementFromJoystick(int forward, int clockwise) {
    setMovementFromJoystick(forward, 0, clockwise);
+}
+
+// shortcut
+void setMovementFromJoystickExp(int forward, int clockwise) {
+   setMovementFromJoystickExp(forward, 0, clockwise);
+}
+
+// Returns a number -100 to +100
+byte correctJoystick(int joyval) {
+	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
+}
+
+byte correctJoystickExp(int joyval) {
+   byte correctVal = correctJoystick(joyval);
+   return sgn(joyval) * (pow(101, (float)correctVal / 100) - 1);
+}
+
+// deprecated: use correctJoystickExp()
+// left in as a reference
+float scaleJoyExp(int input) {
+   if (abs(input) <= 5) return 0;
+	float fInput = (float)abs(input);
+	int ans = sgn(input)*(pow(101, fInput/128.0) - 1);
+	if (abs(ans) < 20) return 0;
+	return ans;
 }
 
 //deprecated: use setMovementFromJoystick() with the same arguments
@@ -93,10 +130,6 @@ void setMovementFromJoystick_old(int power, int turn) {
 	motor[rightmotor_2] = rightFinal;
 }
 
-byte correctJoystick(int joyval) {
-	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
-}
-
 //deprecated: use correctJoystick() with the same arguments
 float correctJoystick_old(int input){
 	if (abs(input) < JOYSTICK_MIN_VALUE)
@@ -104,12 +137,4 @@ float correctJoystick_old(int input){
 	else
 		input -= sgn(input) * JOYSTICK_MIN_VALUE;
 	return (float)input / 1.07;
-}
-
-float scaleJoyExp(int input) {
-
-	float fInput = (float)abs(input);
-	int ans = sgn(input)*(pow(101, fInput/128.0) - 1);
-	if (abs(ans) < 20) return 0;
-	return ans;
 }
