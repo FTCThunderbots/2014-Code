@@ -10,26 +10,31 @@
 #include "math.c"
 #endif
 
+// Trial code here: we'll discuss if we want to keep it
+#define leftEnc1 nMotorEncoder[leftmotor_1]
+#define rightEnc1 nMotorEncoder[rightmotor_1]
+#ifndef setting_twoEncoders // there are four encoders
+#define leftEnc2 nMotorEncoder[leftmotor_2]
+#define rightEnc2 nMotorEncoder[rightmotor_2]
+#else // only two encoders
+#define leftEnc2 nMotorEncoder[leftmotor_1]
+#define rightEnc2 nMotorEncoder[rightmotor_1]
+#endif
+
 // Encoder get/set shortcuts. Useful for iterators?
 void resetEncoders();
 
 // Unit conversions
-long degreesToTicks(float degrees);
 long degreesToRotateTicks(float degrees);
 long degreesToSwingTicks(float degrees);
-float ticksToDegrees(long ticks);
 float rotateTicksToDegrees(long ticks);
 float swingTicksToDegrees(long ticks);
-long inchesToTicks(float inches);
 long inchesToDriveTicks(float inches);
 long inchesToStrafeTicks(float inches);
-float ticksToInches(long ticks);
 float driveTicksToInches(long ticks);
 float strafeTicksToInches(long ticks);
-long centimetersToTicks(float centimeters);
 long centimetersToDriveTicks(float centimeters);
 long centimetersToStrafeTicks(float centimeters);
-float ticksToCentimeters(long ticks);
 float driveTicksToCentimeters(long ticks);
 float strafeTicksToCentimeters(long ticks);
 

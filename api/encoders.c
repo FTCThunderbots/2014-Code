@@ -6,17 +6,13 @@
 // Unit conversions
 
 void resetEncoders() {
-	nMotorEncoder[leftmotor_1] = 0;
-	nMotorEncoder[leftmotor_2] = 0;
-	nMotorEncoder[rightmotor_1] = 0;
-	nMotorEncoder[leftmotor_2] = 0;
+	leftEnc1 = 0;
+	leftEnc2 = 0;
+	rightEnc1 = 0;
+	rightEnc2 = 0;
 }
 
 // degrees to ticks
-long degreesToTicks(float degrees) {
-	return degreesToRotateTicks(degrees);
-}
-
 long degreesToRotateTicks(float degrees) {
 	return ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
 }
@@ -26,10 +22,6 @@ long degreesToSwingTicks(float degrees) {
 }
 
 // ticks to degrees
-float ticksToDegrees(long ticks) {
-	return rotateTicksToDegrees(ticks);
-}
-
 float rotateTicksToDegrees(long ticks) {
 	return ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
@@ -39,10 +31,6 @@ float swingTicksToDegrees(long ticks) {
 }
 
 // inches to ticks
-long inchesToTicks(float inches) {
-	return inchesToDriveTicks(inches);
-}
-
 long inchesToDriveTicks(float inches) {
 	return ENCODER_TICKS_PER_DRIVE_INCH * inches;
 }
@@ -52,10 +40,6 @@ long inchesToStrafeTicks(float inches) {
 }
 
 // ticks to inches
-float ticksToInches(long ticks) {
-	return driveTicksToInches(ticks);
-}
-
 float driveTicksToInches(long ticks) {
 	return ticks / ENCODER_TICKS_PER_DRIVE_INCH;
 }
@@ -65,10 +49,6 @@ float strafeTicksToInches(long ticks) {
 }
 
 // centimeters to ticks
-long centimetersToTicks(float centimeters) {
-	return centimetersToDriveTicks(centimeters);
-}
-
 long centimetersToDriveTicks(float centimeters) {
 	return inchesToTicks(cmToIn(centimeters));
 }
@@ -78,10 +58,6 @@ long centimetersToStrafeTicks(float centimeters) {
 }
 
 // ticks to centimeters
-float ticksToCentimeters(long ticks) {
-	return driveTicksToCentimeters(ticks);
-}
-
 float driveTicksToCentimeters(long ticks) {
 	return inToCm(driveTicksToInches(ticks));
 }
