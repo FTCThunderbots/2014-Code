@@ -70,14 +70,14 @@ void setMovementFromJoystickExp(int forward, int right, int clockwise) {
 	right = correctJoystickExp(right);
 	clockwise = correctJoystickExp(clockwise);
 
-   setMovment(forward, right, clockwise);
+   setMovement(forward, right, clockwise);
 }
 
-void setMovmentFromJoystickComposite(int forward, int right, int clockwise) {
+void setMovementFromJoystickComposite(int forward, int right, int clockwise) {
 	forward = correctJoystickComposite(forward);
 	right = correctJoystickComposite(right);
 	clockwise = correctJoystickComposite(clockwise);
-	
+
 	setMovement(forward, right, clockwise);
 }
 
@@ -117,7 +117,7 @@ byte correctJoystickComposite(int joyval) {
 	byte linear = correctJoystick(joyval);
 	byte exp = correctJoystickExp(joyval);
 	return (exp + (JOYSTICK_LINEAR_WEIGHT * linear)) / (JOYSTICK_LINEAR_WEIGHT + 1);
-}	 
+}
 
 //deprecated: use setMovementFromJoystick() with the same arguments
 void setMovementFromJoystick_old(int power, int turn) {
