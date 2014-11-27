@@ -1,0 +1,4 @@
+y = \begin{cases}
+\frac{\frac{x}{\left | x \right |}\times \left [\left ((M+1)^{(\frac{\left |x\right |}{J})} -1\right ) + w\left ( \left |x\right |\frac{M}{J} \right )\right ]}{w+1} & \text{ if } x\neq 0 \\ 
+0 & \text{ if } x= 0 
+\end{cases}
