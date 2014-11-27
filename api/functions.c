@@ -7,16 +7,21 @@
 // Goal-grabbing System
 
 static bool isGoalGrabbed = false;
+static bool isHookInUse = false; // used to prevent the hook being opened and closed simultaneously
 
 void initGrabSystem() {
 	nMotorEncoder[grab] = 0;
 }
 
 void grabGoal() {
-	motor[grab] = GRAB_MOTOR_SPEED;
-	while (nMotorEncoder[grab] != GRAB_MOTOR_CLOSED_POS) {}
-	motor[grab] = 0;
-	isGoalGrabbed = true;
+	if (!isHookInUse) {
+		isHookInUse = true;
+		motor[grab] = GRAB_MOTOR_SPEED;
+		while (nMotorEncoder[grab] != GRAB_MOTOR_CLOSED_POS) {}
+		motor[grab] = 0;
+		isGoalGrabbed = true;
+		isHookInUse = false;
+	}
 }
 
 task grabGoalTask() {
@@ -24,10 +29,14 @@ task grabGoalTask() {
 }
 
 void releaseGoal() {
-	motor[grab] = -GRAB_MOTOR_SPEED;
-	while (nMotorEncoder[grab] != GRAB_MOTOR_OPEN_POS) {}
-	motor[grab] = 0;
-	isGoalGrabbed = false;
+	if (!isHookInUse) {
+		isHookInUse = true;
+		motor[grab] = -GRAB_MOTOR_SPEED;
+		while (nMotorEncoder[grab] != GRAB_MOTOR_OPEN_POS) {}
+		motor[grab] = 0;
+		isGoalGrabbed = false;
+		isHookInUse = false;
+	}
 }
 
 task releaseGoalTask() {

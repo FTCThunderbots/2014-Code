@@ -17,7 +17,13 @@ byte correctJoystickExp(int joyval);
 
 void setMovementFromJoystick(int forward, int right, int clockwise);
 void setMovementFromJoystick(int forward, int clockwise);
+void setMovementFromJoystickExp(int forward, int right, int clockwise);
+void setMovementFromJoystickExp(int forward, int clockwise);
+void setMovementFromJoystickComposite(int forward, int right, int clockwise);
+void setMovementFromJoystickComposite(int forward, int clockwise);
+
+byte correctJoystickExp(int joyval);
+byte correctJoystickComposite(int joyval);
 byte correctJoystick(int joyval);
 void setMovementFromJoystick_old(int power, int turn);
 float correctJoystick_old(int input);
-float scaleJoyExp(int input);
