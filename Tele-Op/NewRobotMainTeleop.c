@@ -40,7 +40,7 @@ task main()
 	while (true) {
 		getJoystickSettings(joystick);
 		//setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
-		setMovementFromJoystick(scaleJoyExp(joystick.joy1_y1), scaleJoyExp(joystick.joy1_x2));
+		setMovement(scaleJoyExp(joystick.joy1_y1), scaleJoyExp(joystick.joy1_x2));
 		if (joy1Btn(2))
 			grabGoal();
 		if (joy1Btn(4))

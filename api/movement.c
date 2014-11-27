@@ -17,11 +17,11 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
-   
+
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
-   
+
    // Straighten out the robot
 	clockwise += TURN_CONSTANT*sgn(forward);
 
@@ -30,9 +30,9 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	float frontRight = (-forward + right + clockwise);
 	float backLeft = (forward - right + clockwise);
 	float backRight = (-forward - right + clockwise);
-   
+
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
-   
+
 	// scale all wheels to fit within the max power of a motor, while retaining the power ratios
 	byte max = arrAbsmax(power, 4);
 	if (max > MOTOR_MAX_POWER) {
@@ -43,7 +43,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	// multiply all by the common movement scale
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
-      
+
 	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
@@ -69,7 +69,7 @@ void setMovementFromJoystickExp(int forward, int right, int clockwise) {
 	forward = correctJoystickExp(forward);
 	right = correctJoystickExp(right);
 	clockwise = correctJoystickExp(clockwise);
-   
+
    setMovment(forward, right, clockwise);
 }
 
@@ -97,18 +97,14 @@ byte correctJoystickExp(int joyval) {
    byte correctVal = abs(correctJoystick(joyval));
    correctVal += JOYSTICK_EXPONENTIAL_SCALE;
    byte maxVal = MOTOR_MAX_POWER + JOYSTICK_EXPONENTIAL_SCALE;
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal) - 1;
+   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal) - 1; //the 1 here is a magic number
    return sgn(joyval) * correctVal;
 }
 
-// deprecated: use correctJoystickExp()
-// left in as a reference
 float scaleJoyExp(int input) {
-   if (abs(input) <= 5) return 0;
+  if (abs(input) <= 5) return 0;
 	float fInput = (float)abs(input);
-	int ans = sgn(input)*(pow(101, fInput/128.0) - 1);
-	if (abs(ans) < 20) return 0;
-	return ans;
+	return sgn(input)*(pow(101, fInput/128.0) - 1); //1 represents f(0)
 }
 
 //deprecated: use setMovementFromJoystick() with the same arguments
