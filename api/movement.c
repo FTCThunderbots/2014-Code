@@ -73,6 +73,14 @@ void setMovementFromJoystickExp(int forward, int right, int clockwise) {
    setMovment(forward, right, clockwise);
 }
 
+void setMovmentFromJoystickComposite(int forward, int right, int clockwise) {
+	forward = correctJoystickComposite(forward);
+	right = correctJoystickComposite(right);
+	clockwise = correctJoystickComposite(clockwise);
+	
+	setMovement(forward, right, clockwise);
+}
+
 // shortcut
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
@@ -88,6 +96,11 @@ void setMovementFromJoystickExp(int forward, int clockwise) {
    setMovementFromJoystickExp(forward, 0, clockwise);
 }
 
+// shortcut
+void setMovementFromJoystickComposite(int forward, int clockwise) {
+	setMovementFromJoystickComposite(forward, 0, clockwise);
+}
+
 // Returns a number -100 to +100
 byte correctJoystick(int joyval) {
 	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
@@ -95,22 +108,16 @@ byte correctJoystick(int joyval) {
 
 byte correctJoystickExp(int joyval) {
    byte correctVal = abs(correctJoystick(joyval));
-   correctVal += JOYSTICK_EXPONENTIAL_SCALE;
-   byte maxVal = MOTOR_MAX_POWER + JOYSTICK_EXPONENTIAL_SCALE;
-<<<<<<< HEAD
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal) - 1; //the 1 here is a magic number
-=======
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal);
-   correctVal -= pow(MOTOR_MAX_POWER + 1, JOYSTICK_EXPONENTIAL_SCALE / maxVal);
->>>>>>> origin/master
+   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / MOTOR_MAX_POWER);
+   correctVal -= 1;
    return sgn(joyval) * correctVal;
 }
 
-float scaleJoyExp(int input) {
-  if (abs(input) <= 5) return 0;
-	float fInput = (float)abs(input);
-	return sgn(input)*(pow(101, fInput/128.0) - 1); //1 represents f(0)
-}
+byte correctJoystickComposite(int joyval) {
+	byte linear = correctJoystick(joyval);
+	byte exp = correctJoystickExp(joyval);
+	return (exp + (JOYSTICK_LINEAR_WEIGHT * linear)) / (JOYSTICK_LINEAR_WEIGHT + 1);
+}	 
 
 //deprecated: use setMovementFromJoystick() with the same arguments
 void setMovementFromJoystick_old(int power, int turn) {
