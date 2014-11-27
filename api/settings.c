@@ -42,9 +42,9 @@ const byte GRAB_MOTOR_SPEED = 50; // speed of the goal-grabbing motor
 const int GRAB_MOTOR_OPEN_POS = 0; // encoder position when the goal is not grabbed
 const int GRAB_MOTOR_CLOSED_POS = 110; // encoder position when the goal is grabbed
 const byte SWEEP_MOTOR_SPEED = 100; // default sweeper motor speed
-const byte SWEEP_MOTOR_SLOW_SPEED = 35; // 'slower' sweeper motor speed
+const byte SWEEP_MOTOR_SLOW_SPEED = 40; // 'slower' sweeper motor speed
 const byte CONVEYOR_MOTOR_SPEED = 100; // default conveyor motor speed
-const byte CONVEYOR_MOTOR_SLOW_SPEED = 35; // 'slower' conveyor motor speed
+const byte CONVEYOR_MOTOR_SLOW_SPEED = 40; // 'slower' conveyor motor speed
 
 // Servo constants
 const int BACKBOARD_SERVO_BASE = 128;

@@ -18,70 +18,74 @@
 
 #include "../api/api.c"
 
-void setGoalHook();
-void setBackboardServo();
-void setSweeper();
-void setConveyor();
-void displayDebugInfo();
+bool userIsAGoat() {
+	return false;
+}
 
-static const bool DISPLAY_DEBUG_INFORMATION = true;
+bool userIsNotAGoat() {
+	return !userIsAGoat();
+}
+
+#warn "Backboard servo values have not been set!"
+#define BackboardBase 128
+#define BackboardMove 150;
 
 task main()
 {
-	initializeAPI();
-	initializeRobot();
+	eraseDisplay();
+	nMotorEncoder[grab] = 0;
+
 	while (true) {
 		getJoystickSettings(joystick);
+		//setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
 		setMovementFromJoystickComposite(joystick.joy1_y1, joystick.joy1_x2);
-		setGoalHook();
-		setBackboardServo();
-		setSweeper();
-		setConveyor();
-		displayDebugInfo();
-	}
-}
+		if (joy1Btn(2))
+			grabGoal();
+		if (joy1Btn(4))
+			releaseGoal();
+		if (joy1Btn(1))
+			servo[backboard] = 128;
+		if (joy1Btn(3))
+			servo[backboard] = 250;
 
-void setBackboardServo() {
-	if (joy1Btn(1))
-		disengageBackboard(); // set to base
-	if (joy1Btn(3))
-		engageBackboard(); // set to target
-}
+		/*
+		if (joy2Btn(2)) {
+			motor[sweep] = 100;
+			motor[conveyor] = 100;
+		}
+		else {
+			if (!(joy2Btn(6) || joy2Btn(8) || joy2Btn(5) || joy2Btn(7)))
+				motor[sweep] = 0;
+			else if (joy2Btn(5))
+				motor[sweep] = 100;
+			else if (joy2Btn(7))
+				motor[sweep] = -100;
+			else if (joy2Btn(6))
+				motor[conveyor] = -100;
+			else if (joy2Btn(8))
+				motor[conveyor] = 100;
+		}*/
+	 if (joy2Btn(1) || joy2Btn(4))
+      motor[sweep] = 50;
+   else if (joy2Btn(5) || joy2Btn(2))
+      motor[sweep] = 100;
+   else if (joy2Btn(7))
+      motor[sweep] = -100;
+   else
+      motor[sweep]= 0;
 
-void setGoalHook() {
-	if (joy1Btn(2))
-		StartTask(grabGoalTask);
-	if (joy1Btn(4))
-		StartTask(releaseGoalTask);
-}
+		if (joy2Btn(3) || joy2Btn(4))
+      motor[conveyor] = 50;
+    else if (joy2Btn(6) || joy2Btn(2))
+      motor[conveyor] = 100;
+    else if (joy2Btn(8))
+      motor[conveyor] = -100;
+    else
+      motor[conveyor] = 0;
 
-void setSweeper() {
-	if (joy2Btn(1) || joy2Btn(4))
-		motor[sweep] = SWEEP_MOTOR_SLOW_SPEED; // 40
-	else if (joy2Btn(5) || joy2Btn(2))
-		motor[sweep] = SWEEP_MOTOR_SPEED; // 100
-	else if (joy2Btn(7))
-  	motor[sweep] = -SWEEP_MOTOR_SPEED; // -100
-	else
-		motor[sweep]= 0;
-}
-
-void setConveyor() {
-	if (joy2Btn(3) || joy2Btn(4))
-    motor[conveyor] = CONVEYOR_MOTOR_SLOW_SPEED; // 40
-  else if (joy2Btn(6) || joy2Btn(2))
-    motor[conveyor] = CONVEYOR_MOTOR_SPEED; // 100
-  else if (joy2Btn(8))
-    motor[conveyor] = -CONVEYOR_MOTOR_SPEED; // -100
-  else
-    motor[conveyor] = 0;
-}
-
-void displayDebugInfo() {
-	if (DISPLAY_DEBUG_INFORMATION) {
-		//nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
-		//nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
-		//nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);
+		/*nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
+		nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
+		nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);*/
 		nxtDisplayCenteredTextLine(1, "left1: %d", motor[leftmotor_1]);
 		nxtDisplayCenteredTextLine(2, "left2: %d", motor[leftmotor_2]);
 		nxtDisplayCenteredTextLine(3, "r1: %d", motor[rightmotor_1]);
