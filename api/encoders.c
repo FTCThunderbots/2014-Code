@@ -50,7 +50,7 @@ float strafeTicksToInches(long ticks) {
 
 // centimeters to ticks
 long centimetersToDriveTicks(float centimeters) {
-	return inchesToDriveTicks(cmToIn(centimeters));
+	return inchesToTicks(cmToIn(centimeters));
 }
 
 long centimetersToStrafeTicks(float centimeters) {
