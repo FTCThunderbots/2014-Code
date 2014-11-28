@@ -70,7 +70,7 @@ void setMovementFromJoystickExp(int forward, int right, int clockwise) {
 	right = correctJoystickExp(right);
 	clockwise = correctJoystickExp(clockwise);
 
-   setMovment(forward, right, clockwise);
+   setMovement(forward, right, clockwise);
 }
 
 // shortcut
@@ -93,18 +93,18 @@ byte correctJoystick(int joyval) {
 	return scaleTo(truncateInt(joyval), &joyRange[0], &motorRange[0]);
 }
 
-byte correctJoystickExp(int joyval) {
-   byte correctVal = abs(correctJoystick(joyval));
+int correctJoystickExp(int joyval) {
+   int correctVal = abs(correctJoystick(joyval));
    correctVal += JOYSTICK_EXPONENTIAL_SCALE;
-   byte maxVal = MOTOR_MAX_POWER + JOYSTICK_EXPONENTIAL_SCALE;
-<<<<<<< HEAD
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal) - 1; //the 1 here is a magic number
-=======
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal);
+   int maxVal = MOTOR_MAX_POWER + JOYSTICK_EXPONENTIAL_SCALE;
+
+   correctVal = pow(MOTOR_MAX_POWER + 1, (float)correctVal / maxVal); //the 1 here is a magic number
    correctVal -= pow(MOTOR_MAX_POWER + 1, JOYSTICK_EXPONENTIAL_SCALE / maxVal);
->>>>>>> origin/master
    return sgn(joyval) * correctVal;
 }
+
+float compositeScaleTo(int input) {
+
 
 float scaleJoyExp(int input) {
   if (abs(input) <= 5) return 0;

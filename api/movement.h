@@ -13,6 +13,7 @@
 
 void setMovement(byte forward, byte right, byte clockwise);
 void setMovement(byte forward, byte clockwise);
+byte correctJoystickExp(int joyval);
 
 void setMovementFromJoystick(int forward, int right, int clockwise);
 void setMovementFromJoystick(int forward, int clockwise);
