@@ -103,3 +103,21 @@ float ftToCm(float ft) {
 float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
+
+int len(float x) {
+	if (x > 1) {
+		if (ceil(log(x)) % 1 == 0 && (ceil(log(x)) != 1 || ceil(log(x)) != -1)) {
+			return ceil(log(x) + 1);
+		}	else
+			return ceil(log(x));
+	} else if (x < -1) {
+		if (ceil(log(-1 * x)) % 1 == 0 && (ceil(log(-1 * x)) != 1 || ceil(log(-1 * x)) != -1)) {
+			return ceil(log(-1 * x) + 1);
+		}	else
+			return ceil(log(-1 * x));
+	} else {
+		return 0;
+	}
+
+	return 1;
+}
