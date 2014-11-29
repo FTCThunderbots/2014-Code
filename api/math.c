@@ -104,7 +104,8 @@ float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
 
-int len(int x) {
+/* Commented until a use is needed
+int length(int x) {
 	if (x > 1) {
 		if (ceil(log(x)) % 1 == 0 && (ceil(log(x)) != 1 && ceil(log(x)) != -1)) {
 			return ceil(log(x) + 1);
@@ -121,7 +122,4 @@ int len(int x) {
 
 	return 1;
 }
-
-float delta(float num1, float num2) {
-	return (num1 - num2);
-}
+*/

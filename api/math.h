@@ -37,5 +37,4 @@ float ftToCm(float ft);
 float ftToM(float ft);
 
 // Numerical difference and length
-float delta(float num1, float num2);
-int len(int x);
+//int length(int x);
