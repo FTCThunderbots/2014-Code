@@ -106,20 +106,12 @@ float ftToM(float ft) {
 
 /* Commented until a use is needed
 int length(int x) {
-	if (x > 1) {
-		if (ceil(log(x)) % 1 == 0 && (ceil(log(x)) != 1 && ceil(log(x)) != -1)) {
-			return ceil(log(x) + 1);
-		}	else
-			return ceil(log(x));
-	} else if (x < -1) {
-		if (ceil(log(-1 * x)) % 1 == 0 && (ceil(log(-1 * x)) != 1 || ceil(log(-1 * x)) != -1)) {
-			return ceil(log(-1 * x) + 1);
-		}	else
-			return ceil(log(-1 * x));
-	} else {
-		return 0;
-	}
-
-	return 1;
+   x = abs(x);
+   int len = 0;
+   while (x > 0) {
+      len++;
+      x = x/10;
+   }
+   return len;
 }
 */
