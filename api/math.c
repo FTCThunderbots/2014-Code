@@ -106,7 +106,7 @@ float ftToM(float ft) {
 
 int len(int x) {
 	if (x > 1) {
-		if (ceil(log(x)) % 1 == 0 && (ceil(log(x)) != 1 || ceil(log(x)) != -1)) {
+		if (ceil(log(x)) % 1 == 0 && (ceil(log(x)) != 1 && ceil(log(x)) != -1)) {
 			return ceil(log(x) + 1);
 		}	else
 			return ceil(log(x));
