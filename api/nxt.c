@@ -12,8 +12,9 @@ void waitStartAPI() {
 
 int setAutoDelay() {
 	nNxtExitClicks = 3;
-	static int delay = 0;
-	static int i;
+	int delay = 0;
+	int i;
+	eraseDisplay();
 	while (nNxtButtonPressed != 3 && !matchHasStarted) {
 		if (nNxtButtonPressed == 1)
 			delay++;
