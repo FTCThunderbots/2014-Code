@@ -28,6 +28,7 @@ void grabGoal() {
 // If the grab is a servo, use this:
 void grabGoal() {
 	servo[grab] = GRAB_SERVO_BASE + GRAB_SERVO_CHANGE;
+	isGoalGrabbed = true;
 }
 
 // Deprecated: only use if grab is a motor
@@ -51,6 +52,7 @@ void releaseGoal() {
 // Deprecated: only use if grab is a motor
 void releaseGoal() {
 	servo[grab] = GRAB_SERVO_BASE;
+	isGoalGrabbed = false;
 }
 
 task releaseGoalTask() {
