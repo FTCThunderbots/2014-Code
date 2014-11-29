@@ -32,7 +32,8 @@ task main()
 	initializeRobot();
 	while (true) {
 		getJoystickSettings(joystick);
-		setMovementFromJoystickComposite(joystick.joy1_y1, joystick.joy1_x2);
+		//setMovementFromJoystickComposite(joystick.joy1_y1, joystick.joy1_x2);
+		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
 		setGoalHook();
 		setBackboardServo();
 		setSweeper();
