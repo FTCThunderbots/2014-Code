@@ -8,7 +8,7 @@
 const int JOYSTICK_MIN_VALUE = 5; //min value where the reading is accepted as an input
 const int JOYSTICK_MAX_VALUE = 127; //should only be changed if a different joystick is used
 const float JOYSTICK_LINEAR_WEIGHT = 2.5; // Raising this will make the mid-joystick values move the robot faster; lowering will give more control for lower speeds of the robot
-//technically, it's the weight of the linear scale to the exponential scale in the final 
+//technically, it's the weight of the linear scale to the exponential scale in the final
 
 // Movement
 const byte DRIVE_MIN_POWER = 0; //abs(power) cannot be in the open interval (0, min)
@@ -38,9 +38,9 @@ const int ENCODER_TICKS_PER_SWING_DEGREE = 200; // should be about double the tu
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
 // Functional motor constants
-const byte GRAB_MOTOR_SPEED = 50; // speed of the goal-grabbing motor
-const int GRAB_MOTOR_OPEN_POS = 0; // encoder position when the goal is not grabbed
-const int GRAB_MOTOR_CLOSED_POS = 110; // encoder position when the goal is grabbed
+//const byte GRAB_MOTOR_SPEED = 50; // speed of the goal-grabbing motor
+//const int GRAB_MOTOR_OPEN_POS = 0; // encoder position when the goal is not grabbed
+//const int GRAB_MOTOR_CLOSED_POS = 110; // encoder position when the goal is grabbed
 const byte SWEEP_MOTOR_SPEED = 100; // default sweeper motor speed
 const byte SWEEP_MOTOR_SLOW_SPEED = 40; // 'slower' sweeper motor speed
 const byte CONVEYOR_MOTOR_SPEED = 100; // default conveyor motor speed
@@ -49,3 +49,5 @@ const byte CONVEYOR_MOTOR_SLOW_SPEED = 40; // 'slower' conveyor motor speed
 // Servo constants
 const int BACKBOARD_SERVO_BASE = 128;
 const int BACKBOARD_SERVO_TARGET = 250;
+const int GRAB_SERVO_BASE = 0;
+const int GRAB_SERVO_CHANGE = 0;

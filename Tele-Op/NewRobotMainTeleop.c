@@ -49,11 +49,10 @@ void setBackboardServo() {
 }
 
 void setGoalHook() {
-	// by using tasks, other functions on the robot will not be frozen while the hook lifts/lowers
 	if (joy1Btn(2))
-		StartTask(grabGoalTask);
+		grabGoal();
 	if (joy1Btn(4))
-		StartTask(releaseGoalTask);
+		releaseGoal();
 }
 
 void setSweeper() {

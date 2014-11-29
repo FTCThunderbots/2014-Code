@@ -7,12 +7,13 @@
 // Goal-grabbing System
 
 static bool isGoalGrabbed = false;
-static bool isHookInUse = false; // used to prevent the hook being opened and closed simultaneously
+//static bool isHookInUse = false; // used to prevent the hook being opened and closed simultaneously
 
 void initGrabSystem() {
-	nMotorEncoder[grab] = 0;
+	servo[grab] = GRAB_SERVO_BASE;
 }
 
+/* For a system in which the grab is a controlled motor
 void grabGoal() {
 	if (!isHookInUse) {
 		isHookInUse = true;
@@ -22,12 +23,19 @@ void grabGoal() {
 		isGoalGrabbed = true;
 		isHookInUse = false;
 	}
+} */
+
+// If the grab is a servo, use this:
+void grabGoal() {
+	servo[grab] = GRAB_SERVO_BASE + GRAB_SERVO_CHANGE;
 }
 
+// Deprecated: only use if grab is a motor
 task grabGoalTask() {
 	grabGoal();
+	EndTimeSlice();
 }
-
+/*
 void releaseGoal() {
 	if (!isHookInUse) {
 		isHookInUse = true;
@@ -38,9 +46,16 @@ void releaseGoal() {
 		isHookInUse = false;
 	}
 }
+*/
+
+// Deprecated: only use if grab is a motor
+void releaseGoal() {
+	servo[grab] = GRAB_SERVO_BASE;
+}
 
 task releaseGoalTask() {
 	releaseGoal();
+	EndTimeSlice();
 }
 
 void toggleGrab() {
@@ -52,6 +67,7 @@ void toggleGrab() {
 
 task toggleGrabTask() {
 	toggleGrab();
+	EndTimeSlice();
 }
 
 // Backboard servo
