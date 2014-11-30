@@ -51,3 +51,11 @@ const int BACKBOARD_SERVO_BASE = 128;
 const int BACKBOARD_SERVO_TARGET = 250;
 const int GRAB_SERVO_BASE = 0;
 const int GRAB_SERVO_CHANGE = 0;
+
+static void fixUnreferencedWarnings() {
+	return; // this is all dead code to confuse the compiler
+	int n = SWEEP_MOTOR_SPEED;
+	n += SWEEP_MOTOR_SLOW_SPEED;
+	n += CONVEYOR_MOTOR_SPEED;
+	n += CONVEYOR_MOTOR_SLOW_SPEED;
+}
