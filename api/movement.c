@@ -135,10 +135,14 @@ void setMovementFromJoystick_old(int power, int turn) {
 		leftFinal *= 100 / abs(rightFinal);
 		rightFinal *= 100 / abs(rightFinal);
 	}
+#ifndef setting_noMotors
 	motor[leftmotor_1] = -leftFinal;
 	motor[rightmotor_1] = rightFinal;
+#ifndef setting_twoMotors
 	motor[leftmotor_2] = -leftFinal;
 	motor[rightmotor_2] = rightFinal;
+#endif
+#endif
 }
 
 //deprecated: use correctJoystick() with the same arguments

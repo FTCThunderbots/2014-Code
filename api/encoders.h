@@ -11,6 +11,8 @@
 #endif
 
 // Trial code here: we'll discuss if we want to keep it
+#ifndef setting_noMotors
+
 #define leftEnc1 nMotorEncoder[leftmotor_1]
 #define rightEnc1 nMotorEncoder[rightmotor_1]
 #ifndef setting_twoEncoders // there are four encoders
@@ -19,6 +21,16 @@
 #else // only two encoders
 #define leftEnc2 nMotorEncoder[leftmotor_1]
 #define rightEnc2 nMotorEncoder[rightmotor_1]
+#endif
+
+#else
+
+byte encoderPlaceholder = 0;
+#define leftEnc1 encoderPlaceholder
+#define leftEnc2 encoderPlaceholder
+#define rightEnc1 encoderPlaceholder
+#define rightEnc2 encoderPlaceholder
+
 #endif
 
 // Encoder get/set shortcuts. Useful for iterators?
