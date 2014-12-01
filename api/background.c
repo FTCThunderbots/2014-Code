@@ -26,8 +26,8 @@ task background() {
 		monitorSysTimer(); //timers.c
 		updateAllTimers(); //timers.c
 		updateDebugStream(); //debug.c
-    updateDebugConsole();
-    EndTimeSlice();
+    	updateDebugConsole();
+		EndTimeSlice();
 	}
 }
 
