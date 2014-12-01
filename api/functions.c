@@ -34,8 +34,8 @@ void grabGoal() {
 // Deprecated: only use if grab is a motor
 task grabGoalTask() {
 	grabGoal();
+	EndTimeSlice();
 }
-
 /*
 void releaseGoal() {
 	if (!isHookInUse) {
@@ -57,6 +57,7 @@ void releaseGoal() {
 
 task releaseGoalTask() {
 	releaseGoal();
+	EndTimeSlice();
 }
 
 void toggleGrab() {
@@ -68,6 +69,7 @@ void toggleGrab() {
 
 task toggleGrabTask() {
 	toggleGrab();
+	EndTimeSlice();
 }
 
 // Backboard servo
