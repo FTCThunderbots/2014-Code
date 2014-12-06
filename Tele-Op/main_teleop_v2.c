@@ -18,13 +18,9 @@
 
 #include "../api/api.c"
 
-void setGoalHook();
-void setBackboardServo();
-void setSweeper();
-void setConveyor();
 void displayDebugInfo();
 
-static const bool DISPLAY_DEBUG_INFORMATION = true;
+static const bool DISPLAY_DEBUG_INFORMATION = false;
 
 task main()
 {
@@ -34,48 +30,12 @@ task main()
 		getJoystickSettings(joystick);
 		//setMovementFromJoystickComposite(joystick.joy1_y1, joystick.joy1_x2);
 		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
-		setGoalHook();
-		setBackboardServo();
-		setSweeper();
-		setConveyor();
+		setGoalHookJoystick();
+		setBackboardServoJoystick();
+		setSweeperJoystick();
+		setConveyorJoystick();
 		displayDebugInfo();
 	}
-}
-
-void setBackboardServo() {
-	if (joy1Btn(1))
-		disengageBackboard(); // set to base
-	if (joy1Btn(3))
-		engageBackboard(); // set to target
-}
-
-void setGoalHook() {
-	if (joy1Btn(2))
-		grabGoal();
-	if (joy1Btn(4))
-		releaseGoal();
-}
-
-void setSweeper() {
-	if (joy2Btn(1) || joy2Btn(4))
-		motor[sweep] = SWEEP_MOTOR_SLOW_SPEED; // 40
-	else if (joy2Btn(5) || joy2Btn(2))
-		motor[sweep] = SWEEP_MOTOR_SPEED; // 100
-	else if (joy2Btn(7))
-  	motor[sweep] = -SWEEP_MOTOR_SPEED; // -100
-	else
-		motor[sweep]= 0;
-}
-
-void setConveyor() {
-	if (joy2Btn(3) || joy2Btn(4))
-    motor[conveyor] = CONVEYOR_MOTOR_SLOW_SPEED; // 40
-  else if (joy2Btn(6) || joy2Btn(2))
-    motor[conveyor] = CONVEYOR_MOTOR_SPEED; // 100
-  else if (joy2Btn(8))
-    motor[conveyor] = -CONVEYOR_MOTOR_SPEED; // -100
-  else
-    motor[conveyor] = 0;
 }
 
 void displayDebugInfo() {
@@ -85,7 +45,7 @@ void displayDebugInfo() {
 		//nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);
 		nxtDisplayCenteredTextLine(1, "left1: %d", motor[leftmotor_1]);
 		nxtDisplayCenteredTextLine(2, "left2: %d", motor[leftmotor_2]);
-		nxtDisplayCenteredTextLine(3, "r1: %d", motor[rightmotor_1]);
-		nxtDisplayCenteredTextLine(4, "r2: %d", motor[rightmotor_2]);
+		nxtDisplayCenteredTextLine(3, "right1: %d", motor[rightmotor_1]);
+		nxtDisplayCenteredTextLine(4, "right2: %d", motor[rightmotor_2]);
 	}
 }

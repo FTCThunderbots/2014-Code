@@ -14,3 +14,8 @@ task toggleGrabTask();
 void initBackboardServo();
 void engageBackboard();
 void disengageBackboard();
+
+void setBackboardServoJoystick();
+void setGoalHookJoystick();
+void setSweeperJoystick();
+void setConveyorJoystick();
