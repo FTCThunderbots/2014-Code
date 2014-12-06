@@ -19,6 +19,7 @@
 #include "../api/api.c"
 
 typedef enum Mode {
+	EXIT,
 	SETPOWER,
 	LEFT,
 	RIGHT,
@@ -32,7 +33,8 @@ typedef enum Mode {
 
 const string modeStrings[7] = {"Change power", "Left drive",
 	"Right drive", "Parallel Drive", "Rotational Drive",
-	"Sweep Motor", "Conveyor motor"};
+	"Sweep Motor", "Conveyor motor"
+};
 
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
@@ -47,7 +49,7 @@ task main()
 	nNxtExitClicks = 100;
 	StartTask(cycleModes);
 
-	while (true) {
+	while (currentMode != EXIT) {
 		while (currentMode == SETPOWER) {
 			while (nNxtButtonPressed == 2) {
 				power -= powerIncrement;
@@ -58,7 +60,7 @@ task main()
 				while (nNxtButtonPressed == 1) {}
 			}
 		}
-		
+
 		while (currentMode == LEFT) {
 			while (nNxtButtonPressed == 2)
 				setMovement(-power, power);
@@ -112,7 +114,7 @@ task main()
 			motor[conveyor] = 0;
 			EndTimeSlice();
 		}
-		
+
 		while (currentMode == BACKBOARD) {
 			while (nNxtButtonPressed == 2)
 				disengageBackboard();
@@ -120,7 +122,7 @@ task main()
 				engageBackboard();
 			EndTimeSlice();
 		}
-		
+
 		while (currentMode == GOALHOOK) {
 			while (nNxtButtonPressed == 2)
 				releaseGoal();
@@ -141,9 +143,10 @@ task cycleModes() {
 			while (nNxtButtonPressed == 3) {}
 		}
 		if (nNxtButtonPressed == 0) {
-			currentMode = lastMode(currentMode);
+			/*currentMode = lastMode(currentMode);
 			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
-			while (nNxtButtonPressed == 0) {}
+			while (nNxtButtonPressed == 0) {}*/
+			currentMode = EXIT;
 		}
 		EndTimeSlice();
 	}
