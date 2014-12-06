@@ -16,14 +16,19 @@
 
 #define setting_twoEncoders
 #define pressTime 300
+
+task displayDebugging();
+static short nxtFunction = 1;
+static string currentDisplay = "";
+
 task main()
 {
 
-	short nxtFunction = 1;
-	nNxtExitClicks = 999999999;
+	nNxtExitClicks = 999999998;
 
 	while (nxtFunction != 0){
 		if (nxtFunction == 1){
+			currentDisplay = "Left hand drive";
 			nxtDisplayCenteredTextLine(0, "Left hand drive");
 			if (nNxtButtonPressed == 3){
 				nxtFunction++;
@@ -42,10 +47,11 @@ task main()
 				motor[leftmotor_1] = 0;
 				motor[leftmotor_2] = 0;
 			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
+				nxtFunction -= nxtFunction;
 		}
 
 		if (nxtFunction == 2){
+			currentDisplay = "Right hand drive";
 			nxtDisplayCenteredTextLine(0, "Right hand drive");
 			if (nNxtButtonPressed == 3){
 				nxtFunction++;
@@ -68,6 +74,7 @@ task main()
 		}
 
 		if (nxtFunction == 3){
+			currentDisplay = "Sweeper";
 			nxtDisplayCenteredTextLine(0, "Sweeper");
 			if (nNxtButtonPressed == 3){
 				nxtFunction++;
@@ -84,6 +91,7 @@ task main()
 		}
 
 		if (nxtFunction == 4){
+			currentDisplay = "Conveyor"
 			nxtDisplayCenteredTextLine(0, "Conveyor");
 			if (nNxtButtonPressed == 3){
 				nxtFunction++;
@@ -98,54 +106,11 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
-		if (nxtFunction == 5){
-			nxtDisplayCenteredTextLine(0, "Grab");
-			nxtDisplayCenteredTextLine(1, "%d", nMotorEncoder[grab]);
-			if (nNxtButtonPressed == 3){
-				nxtFunction = 1;
-				wait1Msec(pressTime);
-			}
-				while (nNxtButtonPressed == 2){
-					motor[grab] = -30;
-				}
-				motor[grab] = 0;
-
-			while (nNxtButtonPressed == 1){
-				motor[grab] = 30;
-			}
-			motor[grab] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
 	}
+}
 
-		/*
-		if (nxtFunction == 6){
-			nxtDisplayCenteredTextLine(0, "Bucket");
-			if (nNxtButtonPressed == 3){
-				nxtFunction++;
-				wait1Msec(pressTime);
-			}
-			if (nNxtButtonPressed == 2)
-				servo[bucket] = 102-50;
-			if (nNxtButtonPressed == 1)
-				servo[bucket] = 102+50;
-			if (nNxtButtonPressed == 0)
-				servo[bucket] = 102;
-		}
+task displayDebugging() {
+	while (nxtFunction != 0) {
 
-		if (nxtFunction == 7){
-			nxtDisplayCenteredTextLine(0, "Pin");
-			if (nNxtButtonPressed == 3){
-				nxtFunction = 1;
-				wait1Msec(pressTime);
-			}
-			if (nNxtButtonPressed == 2)
-				servo[pin] = 30;
-			if (nNxtButtonPressed == 1)
-				servo[pin] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
-		*/
-		}
 	}
+}
