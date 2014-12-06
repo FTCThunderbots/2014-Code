@@ -18,8 +18,6 @@
 
 #include "../api/api.c"
 
-#define PRESSTIME 300 // in milliseconds
-
 typedef enum Mode {
 	SETPOWER,
 	LEFT,
@@ -42,6 +40,7 @@ task cycleModes();
 
 Mode currentMode = LEFT;
 short power = 80;
+const short powerIncrement = 5;
 
 task main()
 {
@@ -50,7 +49,14 @@ task main()
 
 	while (true) {
 		while (currentMode == SETPOWER) {
-			
+			while (nNxtButtonPressed == 2) {
+				power -= powerIncrement;
+				while (nNxtButtonPressed == 2) {}
+			}
+			while (nNxtButtonPressed == 1) {
+				power += powerIncrement;
+				while (nNxtButtonPressed == 1) {}
+			}
 		}
 		
 		while (currentMode == LEFT) {
@@ -131,11 +137,13 @@ task cycleModes() {
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
 		if (nNxtButtonPressed == 3) {
 			currentMode = nextMode(currentMode);
-			wait1Msec(PRESSTIME);
+			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
+			while (nNxtButtonPressed == 3) {}
 		}
 		if (nNxtButtonPressed == 0) {
 			currentMode = lastMode(currentMode);
-			wait1Msec(PRESSTIME);
+			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
+			while (nNxtButtonPressed == 0) {}
 		}
 		EndTimeSlice();
 	}
