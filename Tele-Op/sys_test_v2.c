@@ -14,6 +14,8 @@
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,               tServoNone)
 
+#include "motorConfigurations.c"
+
 #define setting_twoEncoders
 
 #include "../api/api.c"
