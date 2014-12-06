@@ -15,102 +15,134 @@
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,               tServoNone)
 
 #define setting_twoEncoders
-#define pressTime 300
 
-task displayDebugging();
-static short nxtFunction = 1;
-static string currentDisplay = "";
+#include "../api/api.c"
+
+#define PRESSTIME 300 // in milliseconds
+
+typedef enum Mode {
+	LEFT,
+	RIGHT,
+	DRIVE,
+	ROTATE,
+	SWEEPER,
+	CONVEYOR,
+	BACKBOARD,
+	GOALHOOK
+} Mode;
+
+const string modeStrings[6] = {"Left drive", "Right drive",
+	"Parallel Drive", "Rotational Drive", "Sweep Motor",
+	"Conveyor motor"};
+
+Mode nextMode(Mode m);
+Mode lastMode(Mode m);
+task cycleModes();
+
+Mode currentMode = LEFT;
 
 task main()
 {
+	nNxtExitClicks = 100;
+	StartTask(cycleModes);
 
-	nNxtExitClicks = 999999998;
-
-	while (nxtFunction != 0){
-		if (nxtFunction == 1){
-			currentDisplay = "Left hand drive";
-			nxtDisplayCenteredTextLine(0, "Left hand drive");
-			if (nNxtButtonPressed == 3){
-				nxtFunction++;
-				wait1Msec(pressTime);
-			}
-			while (nNxtButtonPressed == 2){
-				motor[leftmotor_1] = -100;
-				motor[leftmotor_2] = -100;
-			}
-				motor[leftmotor_1] = 0;
-				motor[leftmotor_2] = 0;
-			while (nNxtButtonPressed == 1){
-				motor[leftmotor_1] = 100;
-				motor[leftmotor_2] = 100;
-			}
-				motor[leftmotor_1] = 0;
-				motor[leftmotor_2] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction -= nxtFunction;
+	while (true) {
+		while (currentMode == LEFT) {
+			while (nNxtButtonPressed == 2)
+				setMovement(-100, 100);
+			while (nNxtButtonPressed == 1)
+				setMovement(100, 100);
+			setMovement(0, 0);
 		}
 
-		if (nxtFunction == 2){
-			currentDisplay = "Right hand drive";
-			nxtDisplayCenteredTextLine(0, "Right hand drive");
-			if (nNxtButtonPressed == 3){
-				nxtFunction++;
-				wait1Msec(pressTime);
-			}
-			while (nNxtButtonPressed == 2){
-				motor[rightmotor_1] = -100;
-				motor[rightmotor_2] = -100;
-			}
-				motor[rightmotor_1] = 0;
-				motor[rightmotor_2] = 0;
-			while (nNxtButtonPressed == 1){
-				motor[rightmotor_1] = 100;
-				motor[rightmotor_2] = 100;
-			}
-				motor[rightmotor_1] = 0;
-				motor[rightmotor_2] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
+		while (currentMode == RIGHT) {
+			while (nNxtButtonPressed == 2)
+				setMovement(-100, -100);
+			while (nNxtButtonPressed == 1)
+				setMovement(100, -100);
+			setMovement(0, 0);
 		}
 
-		if (nxtFunction == 3){
-			currentDisplay = "Sweeper";
-			nxtDisplayCenteredTextLine(0, "Sweeper");
-			if (nNxtButtonPressed == 3){
-				nxtFunction++;
-				wait1Msec(pressTime);
-			}
+		while (currentMode == DRIVE) {
+			while (nNxtButtonPressed == 2)
+				setMovement(-100, 0);
+			while (nNxtButtonPressed == 1)
+				setMovement(100, 0);
+			setMovement(0, 0);
+		}
+
+		while (currentMode == ROTATE) {
+			while (nNxtButtonPressed == 2)
+				setMovement(0, -100);
+			while (nNxtButtonPressed == 1)
+				setMovement(0, 100);
+			setMovement(0, 0);
+		}
+
+		while (currentMode == SWEEPER) {
 			while (nNxtButtonPressed == 2)
 				motor[sweep] = -100;
-			motor[sweep] = 0;
 			while (nNxtButtonPressed == 1)
 				motor[sweep] = 100;
 			motor[sweep] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
 		}
 
-		if (nxtFunction == 4){
-			currentDisplay = "Conveyor"
-			nxtDisplayCenteredTextLine(0, "Conveyor");
-			if (nNxtButtonPressed == 3){
-				nxtFunction++;
-				wait1Msec(pressTime);
-			}
+		while (currentMode == CONVEYOR) {
 			while (nNxtButtonPressed == 2)
 				motor[conveyor] = -100;
-			motor[conveyor] = 0;
 			while (nNxtButtonPressed == 1)
 				motor[conveyor] = 100;
 			motor[conveyor] = 0;
-			if (nNxtButtonPressed == 0)
-				nxtFunction = 0;
 		}
 	}
 }
 
-task displayDebugging() {
-	while (nxtFunction != 0) {
-
+task cycleModes() {
+	while (true) {
+		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
+		if (nNxtButtonPressed == 3) {
+			currentMode = nextMode(currentMode);
+			wait1Msec(PRESSTIME);
+		}
+		if (nNxtButtonPressed == 0) {
+			currentMode = lastMode(currentMode);
+			wait1Msec(PRESSTIME);
+		}
 	}
+}
+
+Mode nextMode(Mode m) {
+	if (m == LEFT)
+		return RIGHT;
+	if (m == RIGHT)
+		return DRIVE;
+	if (m == DRIVE)
+		return ROTATE;
+	if (m == ROTATE)
+		return SWEEPER;
+	if (m == SWEEPER)
+		return CONVEYOR;
+	if (m == CONVEYOR)
+		return BACKBOARD;
+	if (m == BACKBOARD)
+		return GOALHOOK;
+	return LEFT;
+}
+
+Mode lastMode(Mode m) {
+	if (m == RIGHT)
+		return LEFT;
+	if (m == DRIVE)
+		return RIGHT;
+	if (m == ROTATE)
+		return DRIVE;
+	if (m == SWEEPER)
+		return ROTATE;
+	if (m == CONVEYOR)
+		return SWEEPER;
+	if (m == BACKBOARD)
+		return CONVEYOR;
+	if (m == GOALHOOK)
+		return BACKBOARD;
+	return GOALHOOK;
 }
