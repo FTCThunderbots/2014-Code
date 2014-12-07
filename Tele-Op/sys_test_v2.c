@@ -32,7 +32,6 @@
 #include "../api/api.c"
 
 typedef enum Mode {
-	EXIT,
 	SETPOWER,
 	LEFT,
 	RIGHT,
@@ -41,13 +40,14 @@ typedef enum Mode {
 	SWEEPER,
 	CONVEYOR,
 	BACKBOARD,
-	GOALHOOK
+	GOALHOOK,
+	PROMPTEXIT
 } Mode;
 
-const string modeStrings[7] = {"Change power", "Left drive",
+const string modeStrings[10] = {"Change power", "Left drive",
 	"Right drive", "Parallel Drive", "Rotational Drive",
-	"Sweep Motor", "Conveyor motor"
-};
+	"Sweep Motor", "Conveyor motor", "Backboard shield",
+	"Goal-grabbing hook", "Exit program?"};
 
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
@@ -62,40 +62,47 @@ task main()
 	nNxtExitClicks = 100;
 	StartTask(cycleModes);
 
-	while (currentMode != EXIT) {
+	while (power >= 0) {
 		while (currentMode == SETPOWER) {
 			while (nNxtButtonPressed == 2) {
 				power -= powerIncrement;
-				while (nNxtButtonPressed == 2) {}
+				while (nNxtButtonPressed == 2) {
+					EndTimeSlice();
+				}
 			}
 			while (nNxtButtonPressed == 1) {
 				power += powerIncrement;
-				while (nNxtButtonPressed == 1) {}
+				while (nNxtButtonPressed == 1)
+					EndTimeSlice();
 			}
+			if (power < 0)
+				break;
+			else
+				EndTimeSlice();
 		}
 
 		while (currentMode == LEFT) {
-			while (nNxtButtonPressed == 2)
-				//setMovement(-power, power);
-				motor[leftmotor_1] = -100;
-				motor[leftmotor_2] = -100;
-			while (nNxtButtonPressed == 1)
-				//setMovement(power, power);
-				motor[leftmotor_1] = 100;
-				motor[leftmotor_2] = 100;
+			while (nNxtButtonPressed == 2) {
+				setMovement(-power, power);
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
+				setMovement(power, power);
+				EndTimeSlice();
+			}
 			setMovement(0, 0);
 			EndTimeSlice();
 		}
 
 		while (currentMode == RIGHT) {
-			while (nNxtButtonPressed == 2)
-				//setMovement(-power, -power);
-				motor[rightmotor_1] = -100;
-				motor[rightmotor_2] = -100;
-			while (nNxtButtonPressed == 1)
-				//setMovement(power, -power);
-				motor[rightmotor_1] = 100;
-				motor[rightmotor_2] = 100;
+			while (nNxtButtonPressed == 2) {
+				setMovement(-power, -power);
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
+				setMovement(power, -power);
+				EndTimeSlice();
+			}
 			setMovement(0, 0);
 			EndTimeSlice();
 		}
@@ -103,52 +110,74 @@ task main()
 		while (currentMode == DRIVE) {
 			while (nNxtButtonPressed == 2)
 				setMovement(-power, 0);
+				EndTimeSlice();
 			while (nNxtButtonPressed == 1)
 				setMovement(power, 0);
+				EndTimeSlice();
 			setMovement(0, 0);
 			EndTimeSlice();
 		}
 
 		while (currentMode == ROTATE) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
 				setMovement(0, -power);
-			while (nNxtButtonPressed == 1)
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
 				setMovement(0, power);
+				EndTimeSlice();
+			}
 			setMovement(0, 0);
 			EndTimeSlice();
 		}
 
 		while (currentMode == SWEEPER) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
 				motor[sweep] = -power;
-			while (nNxtButtonPressed == 1)
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
 				motor[sweep] = power;
+				EndTimeSlice();
+			}
 			motor[sweep] = 0;
 			EndTimeSlice();
 		}
 
 		while (currentMode == CONVEYOR) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
 				motor[conveyor] = -power;
-			while (nNxtButtonPressed == 1)
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
 				motor[conveyor] = power;
+				EndTimeSlice();
+			}
 			motor[conveyor] = 0;
 			EndTimeSlice();
 		}
 
 		while (currentMode == BACKBOARD) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
 				disengageBackboard();
-			while (nNxtButtonPressed == 1)
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
 				engageBackboard();
+				EndTimeSlice();
+			}
 			EndTimeSlice();
 		}
 
 		while (currentMode == GOALHOOK) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
 				releaseGoal();
-			while (nNxtButtonPressed == 1)
+				EndTimeSlice();
+			}
+			while (nNxtButtonPressed == 1) {
 				grabGoal();
+				EndTimeSlice();
+			}
 			EndTimeSlice();
 		}
 	}
@@ -164,10 +193,9 @@ task cycleModes() {
 			while (nNxtButtonPressed == 3) {}
 		}
 		if (nNxtButtonPressed == 0) {
-			/*currentMode = lastMode(currentMode);
+			currentMode = lastMode(currentMode);
 			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
-			while (nNxtButtonPressed == 0) {}*/
-			currentMode = EXIT;
+			while (nNxtButtonPressed == 0) {}
 		}
 		EndTimeSlice();
 	}
@@ -190,6 +218,8 @@ Mode nextMode(Mode m) {
 		return BACKBOARD;
 	if (m == BACKBOARD)
 		return GOALHOOK;
+	if (m == GOALHOOK)
+		return PROMPTEXIT;
 	return SETPOWER;
 }
 
@@ -210,5 +240,7 @@ Mode lastMode(Mode m) {
 		return CONVEYOR;
 	if (m == GOALHOOK)
 		return BACKBOARD;
-	return GOALHOOK;
+	if (m == PROMPTEXIT)
+		return GOALHOOK;
+	return PROMPTEXIT;
 }
