@@ -218,27 +218,30 @@ Mode nextMode(Mode m) {
 		return GOALHOOK;
 	if (m == GOALHOOK)
 		return PROMPTEXIT;
-	return SETPOWER;
+	else //m == PROMPTEXIT
+		return SETPOWER;
 }
 
 Mode lastMode(Mode m) {
-	if (m == LEFT)
-		return SETPOWER;
-	if (m == RIGHT)
-		return LEFT;
-	if (m == DRIVE)
-		return RIGHT;
-	if (m == ROTATE)
-		return DRIVE;
-	if (m == SWEEPER)
-		return ROTATE;
-	if (m == CONVEYOR)
-		return SWEEPER;
-	if (m == BACKBOARD)
-		return CONVEYOR;
-	if (m == GOALHOOK)
-		return BACKBOARD;
+	if (m == SETPOWER)
+		return PROMPTEXIT;
 	if (m == PROMPTEXIT)
 		return GOALHOOK;
-	return PROMPTEXIT;
+	if (m == GOALHOOK)
+		return BACKBOARD;
+	if (m == BACKBOARD)
+		return CONVEYOR;
+	if (m == CONVEYOR)
+		return SWEEPER;
+	if (m == SWEEPER)
+		return ROTATE;
+	if (m == ROTATE)
+		return DRIVE;
+	if (m == DRIVE)
+		return RIGHT;
+	if (m == RIGHT)
+		return LEFT;
+	else //m == LEFT
+		return SETPOWER;
+	
 }
