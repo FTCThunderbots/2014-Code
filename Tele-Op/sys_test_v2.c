@@ -39,13 +39,13 @@ typedef enum Mode {
 	CONVEYOR,
 	BACKBOARD,
 	GOALHOOK,
-	PROMPTEXIT
+	//PROMPTEXIT
 } Mode;
 
 const string modeStrings[10] = {"Change power", "Left drive",
 	"Right drive", "Parallel Drive", "Rotational Drive",
 	"Sweep Motor", "Conveyor motor", "Backboard shield",
-	"Goal-grabbing hook", "Exit program?"};
+	"Goal-grabbing hook", /*"Exit program?"*/};
 
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
