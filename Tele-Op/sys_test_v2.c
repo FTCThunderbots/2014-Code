@@ -57,18 +57,22 @@ const short powerIncrement = 5;
 
 task main()
 {
-	nNxtExitClicks = 3;
+	nNxtExitClicks = 9999999999;
+	greyButtonPresses = 0;
 	StartTask(cycleModes);
+	StartTask(exitListener);
 
 	while (power >= 0) {
 		while (currentMode == SETPOWER) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				power -= powerIncrement;
 				while (nNxtButtonPressed == 2) {
 					EndTimeSlice();
 				}
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				power += powerIncrement;
 				while (nNxtButtonPressed == 1)
 					EndTimeSlice();
@@ -81,10 +85,12 @@ task main()
 
 		while (currentMode == LEFT) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				setMovement(-power, power);
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				setMovement(power, power);
 				EndTimeSlice();
 			}
@@ -94,10 +100,12 @@ task main()
 
 		while (currentMode == RIGHT) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				setMovement(-power, -power);
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				setMovement(power, -power);
 				EndTimeSlice();
 			}
@@ -106,22 +114,28 @@ task main()
 		}
 
 		while (currentMode == DRIVE) {
-			while (nNxtButtonPressed == 2)
+			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				setMovement(-power, 0);
 				EndTimeSlice();
-			while (nNxtButtonPressed == 1)
+			}
+			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				setMovement(power, 0);
 				EndTimeSlice();
+			}
 			setMovement(0, 0);
 			EndTimeSlice();
 		}
 
 		while (currentMode == ROTATE) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				setMovement(0, -power);
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				setMovement(0, power);
 				EndTimeSlice();
 			}
@@ -131,10 +145,12 @@ task main()
 
 		while (currentMode == SWEEPER) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				motor[sweep] = -power;
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				motor[sweep] = power;
 				EndTimeSlice();
 			}
@@ -144,10 +160,12 @@ task main()
 
 		while (currentMode == CONVEYOR) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				motor[conveyor] = -power;
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				motor[conveyor] = power;
 				EndTimeSlice();
 			}
@@ -157,10 +175,12 @@ task main()
 
 		while (currentMode == BACKBOARD) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				disengageBackboard();
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				engageBackboard();
 				EndTimeSlice();
 			}
@@ -169,10 +189,12 @@ task main()
 
 		while (currentMode == GOALHOOK) {
 			while (nNxtButtonPressed == 2) {
+				greyButtonPresses = 0;
 				releaseGoal();
 				EndTimeSlice();
 			}
 			while (nNxtButtonPressed == 1) {
+				greyButtonPresses = 0;
 				grabGoal();
 				EndTimeSlice();
 			}
@@ -185,13 +207,15 @@ task cycleModes() {
 	while (true) {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
-      nxtDisplayCenteredTextLine(2, "Press back x3 to exit"); // 21 characters, will this fit?
+      		nxtDisplayCenteredTextLine(2, "Press back x3 to exit"); // 21 characters, will this fit?
 		if (nNxtButtonPressed == 3) {
+			greyButtonPresses = 0;
 			currentMode = nextMode(currentMode);
 			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 			while (nNxtButtonPressed == 3) {}
 		}
 		if (nNxtButtonPressed == 0) {
+			greyButtonPresses++;
 			currentMode = lastMode(currentMode);
 			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 			while (nNxtButtonPressed == 0) {}
@@ -200,7 +224,16 @@ task cycleModes() {
 	}
 }
 
+task exitListener() {
+	while (true) {
+		if (greyButtonPresses >= 3)
+			StopAllTasks();
+		EndTimeSlice();
+	}
+}
+
 Mode nextMode(Mode m) {
+	return m++;/*
 	if (m == SETPOWER)
 		return LEFT;
 	else if (m == LEFT)
@@ -217,7 +250,7 @@ Mode nextMode(Mode m) {
 		return BACKBOARD;
 	else if (m == BACKBOARD)
 		return GOALHOOK;
-	/*
+		*//*
    else if (m == GOALHOOK)
 		return PROMPTEXIT;
    */
@@ -226,11 +259,13 @@ Mode nextMode(Mode m) {
 }
 
 Mode lastMode(Mode m) {
+	return m--;
+	/*
 	if (m == SETPOWER)
-   /*
-		return PROMPTEXIT;
-	else if (m == PROMPTEXIT)
-   */
+   
+//		return PROMPTEXIT;
+//	else if (m == PROMPTEXIT)
+   
 		return GOALHOOK;
 	else if (m == GOALHOOK)
 		return BACKBOARD;
@@ -248,5 +283,5 @@ Mode lastMode(Mode m) {
 		return LEFT;
 	else //m is on the second mode
 		return SETPOWER; //return the first mode
-	
+	*/
 }
