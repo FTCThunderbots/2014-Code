@@ -57,7 +57,7 @@ const short powerIncrement = 5;
 
 task main()
 {
-	nNxtExitClicks = 1000000;
+	nNxtExitClicks = 3;
 	StartTask(cycleModes);
 
 	while (power >= 0) {
@@ -185,6 +185,7 @@ task cycleModes() {
 	while (true) {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
+      nxtDisplayCenteredTextLine(2, "Press back x3 to exit"); // 21 characters, will this fit?
 		if (nNxtButtonPressed == 3) {
 			currentMode = nextMode(currentMode);
 			nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
@@ -216,16 +217,20 @@ Mode nextMode(Mode m) {
 		return BACKBOARD;
 	else if (m == BACKBOARD)
 		return GOALHOOK;
-	else if (m == GOALHOOK)
+	/*
+   else if (m == GOALHOOK)
 		return PROMPTEXIT;
-	else //m == PROMPTEXIT
-		return SETPOWER;
+   */
+	else //m is on the last mode
+		return SETPOWER; //return the first mode
 }
 
 Mode lastMode(Mode m) {
 	if (m == SETPOWER)
+   /*
 		return PROMPTEXIT;
 	else if (m == PROMPTEXIT)
+   */
 		return GOALHOOK;
 	else if (m == GOALHOOK)
 		return BACKBOARD;
@@ -241,7 +246,7 @@ Mode lastMode(Mode m) {
 		return RIGHT;
 	else if (m == RIGHT)
 		return LEFT;
-	else //m == LEFT
-		return SETPOWER;
+	else //m is on the second mode
+		return SETPOWER; //return the first mode
 	
 }
