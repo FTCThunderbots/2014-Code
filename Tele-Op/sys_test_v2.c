@@ -202,21 +202,21 @@ task cycleModes() {
 Mode nextMode(Mode m) {
 	if (m == SETPOWER)
 		return LEFT;
-	if (m == LEFT)
+	else if (m == LEFT)
 		return RIGHT;
-	if (m == RIGHT)
+	else if (m == RIGHT)
 		return DRIVE;
-	if (m == DRIVE)
+	else if (m == DRIVE)
 		return ROTATE;
-	if (m == ROTATE)
+	else if (m == ROTATE)
 		return SWEEPER;
-	if (m == SWEEPER)
+	else if (m == SWEEPER)
 		return CONVEYOR;
-	if (m == CONVEYOR)
+	else if (m == CONVEYOR)
 		return BACKBOARD;
-	if (m == BACKBOARD)
+	else if (m == BACKBOARD)
 		return GOALHOOK;
-	if (m == GOALHOOK)
+	else if (m == GOALHOOK)
 		return PROMPTEXIT;
 	else //m == PROMPTEXIT
 		return SETPOWER;
@@ -225,21 +225,21 @@ Mode nextMode(Mode m) {
 Mode lastMode(Mode m) {
 	if (m == SETPOWER)
 		return PROMPTEXIT;
-	if (m == PROMPTEXIT)
+	else if (m == PROMPTEXIT)
 		return GOALHOOK;
-	if (m == GOALHOOK)
+	else if (m == GOALHOOK)
 		return BACKBOARD;
-	if (m == BACKBOARD)
+	else if (m == BACKBOARD)
 		return CONVEYOR;
-	if (m == CONVEYOR)
+	else if (m == CONVEYOR)
 		return SWEEPER;
-	if (m == SWEEPER)
+	else if (m == SWEEPER)
 		return ROTATE;
-	if (m == ROTATE)
+	else if (m == ROTATE)
 		return DRIVE;
-	if (m == DRIVE)
+	else if (m == DRIVE)
 		return RIGHT;
-	if (m == RIGHT)
+	else if (m == RIGHT)
 		return LEFT;
 	else //m == LEFT
 		return SETPOWER;
