@@ -126,11 +126,13 @@ task main()
 
 		while (currentMode == BACKBOARD) {
 			if (nNxtButtonPressed == 2)
-				motor[backboard] = power;
+				//motor[backboard] = power;
 				//StartTask(disengageBackboardTask);
+				disengageBackboard();
 			else if (nNxtButtonPressed == 1)
-				motor[backboard] = -power;
+				//motor[backboard] = -power;
 				//StartTask(engageBackboardTask);
+				engageBackboard();
 			else
 				motor[backboard] = 0;
 			EndTimeSlice();
@@ -138,11 +140,11 @@ task main()
 
 		while (currentMode == GOALHOOK) {
 			if (nNxtButtonPressed == 2)
-				motor[grab] = power;
-				//StartTask(releaseGoalTask);
+				//motor[grab] = power;
+				StartTask(releaseGoalTask);
 			else if (nNxtButtonPressed == 1)
-				motor[grab] = -power;
-				//StartTask(grabGoalTask);
+				//motor[grab] = -power;
+				StartTask(grabGoalTask);
 			else
 				motor[grab] = 0;
 			EndTimeSlice();

@@ -83,7 +83,7 @@ void engageBackboard() {
 	if (!isBackboardInUse) {
 		isBackboardInUse = true;
 		motor[backboard] = BACKBOARD_MOTOR_SPEED;
-		wait1Msec(BACKBOARD_MOTOR_TIME);
+		wait1Msec(BACKBOARD_MOTOR_UP_TIME);
 		motor[backboard] = 0;
 		isBackboardEngaged = true;
 		isBackboardInUse = false;
@@ -98,7 +98,7 @@ void disengageBackboard() {
 	if (!isBackboardInUse) {
 		isBackboardInUse = true;
 		motor[backboard] = -BACKBOARD_MOTOR_SPEED;
-		wait1Msec(BACKBOARD_MOTOR_TIME);
+		wait1Msec(BACKBOARD_MOTOR_DOWN_TIME);
 		motor[backboard] = 0;
 		isBackboardEngaged = false;
 		isBackboardInUse = false;
@@ -124,9 +124,11 @@ task toggleBackboardTask() {
 
 void setBackboardServoJoystick() {
 	if (joy1Btn(1))
-		StartTask(disengageBackboardTask);
+		//StartTask(disengageBackboardTask);
+		disengageBackboard();
 	if (joy1Btn(3))
-		StartTask(engageBackboardTask);
+		//StartTask(engageBackboardTask);
+		engageBackboard();
 }
 
 void setGoalHookJoystick() {

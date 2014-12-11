@@ -35,10 +35,13 @@ const int ENCODER_TICKS_PER_SWING_DEGREE = 200;
 #warn "(settings.c) Encoder values still need to be set! Encoder functions will not work."
 
 // Functional motor constants
-const byte GRAB_MOTOR_SPEED = 35;
-const int GRAB_MOTOR_TIME = 500; // msecs the motor moves
-const byte BACKBOARD_MOTOR_SPEED = 45;
-const int BACKBOARD_MOTOR_TIME = 200;
+const byte GRAB_MOTOR_SPEED = 35; //**UNTESTED**
+const int GRAB_MOTOR_TIME = 500; //**UNTESTED** msecs the motor moves
+const byte BACKBOARD_MOTOR_SPEED = 30;
+const int BACKBOARD_MOTOR_DOWN_TIME = 500;
+const int BACKBOARD_MOTOR_UP_TIME = 565;
+const int LIFT_MOTOR_SPEED = 80; //**UNTESTED**
+const int LIFT_MOTOR_TIME = 10; //**UNTESTED**
 const byte SWEEP_MOTOR_SPEED = 100;
 const byte SWEEP_MOTOR_SLOW_SPEED = 40; // speed in 'slow' mode
 const byte CONVEYOR_MOTOR_SPEED = 100;
