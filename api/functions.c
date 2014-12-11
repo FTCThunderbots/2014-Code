@@ -7,54 +7,56 @@
 // Goal-grabbing System
 
 static bool isGoalGrabbed = false;
-//static bool isHookInUse = false; // used to prevent the hook being opened and closed simultaneously
+static bool isBackboardEngaged = false;
+static bool isHookInUse = false; // used to prevent the hook being opened and closed simultaneously
+static bool isBackboardInUse = false;
 
 void initGrabSystem() {
-	servo[grab] = GRAB_SERVO_BASE;
+	//servo[grab] = GRAB_SERVO_BASE;
+	// for now, just do nothing
 }
 
-/* For a system in which the grab is a controlled motor
+// For a system in which the grab is a controlled motor
 void grabGoal() {
 	if (!isHookInUse) {
 		isHookInUse = true;
 		motor[grab] = GRAB_MOTOR_SPEED;
-		while (nMotorEncoder[grab] != GRAB_MOTOR_CLOSED_POS) {}
+		wait1Msec(GRAB_MOTOR_TIME);
 		motor[grab] = 0;
 		isGoalGrabbed = true;
 		isHookInUse = false;
 	}
-} */
+}
 
-// If the grab is a servo, use this:
+/* If the grab is a servo, use this:
 void grabGoal() {
 	servo[grab] = GRAB_SERVO_BASE + GRAB_SERVO_CHANGE;
 	isGoalGrabbed = true;
-}
+} */
 
 // Deprecated: only use if grab is a motor
 task grabGoalTask() {
 	grabGoal();
 }
 
-/*
 void releaseGoal() {
 	if (!isHookInUse) {
 		isHookInUse = true;
 		motor[grab] = -GRAB_MOTOR_SPEED;
-		while (nMotorEncoder[grab] != GRAB_MOTOR_OPEN_POS) {}
+		wait1Msec(GRAB_MOTOR_TIME);
 		motor[grab] = 0;
 		isGoalGrabbed = false;
 		isHookInUse = false;
 	}
 }
-*/
 
-// Deprecated: only use if grab is a motor
+/* For use if grab is a servo
 void releaseGoal() {
 	servo[grab] = GRAB_SERVO_BASE;
 	isGoalGrabbed = false;
-}
+} */
 
+// Deprecated: only use if grab is a motor
 task releaseGoalTask() {
 	releaseGoal();
 }
@@ -73,31 +75,65 @@ task toggleGrabTask() {
 // Backboard servo
 
 void initBackboardServo() {
-	disengageBackboard();
+	//disengageBackboard();
+	// do nothing for now
 }
 
 void engageBackboard() {
-	servo[backboard] = BACKBOARD_SERVO_TARGET;
+	if (!isBackboardInUse) {
+		isBackboardInUse = true;
+		motor[backboard] = BACKBOARD_MOTOR_SPEED;
+		wait1Msec(BACKBOARD_MOTOR_TIME);
+		motor[backboard] = 0;
+		isBackboardEngaged = true;
+		isBackboardInUse = false;
+	}
+}
+
+task engageBackboardTask() {
+	engageBackboard();
 }
 
 void disengageBackboard() {
-	servo[backboard] = BACKBOARD_SERVO_BASE;
+	if (!isBackboardInUse) {
+		isBackboardInUse = true;
+		motor[backboard] = -BACKBOARD_MOTOR_SPEED;
+		wait1Msec(BACKBOARD_MOTOR_TIME);
+		motor[backboard] = 0;
+		isBackboardEngaged = false;
+		isBackboardInUse = false;
+	}
+}
+
+task disengageBackboardTask() {
+	disengageBackboard();
+}
+
+void toggleBackboard() {
+	if (isBackboardEngaged)
+		disengageBackboard();
+	else
+		engageBackboard();
+}
+
+task toggleBackboardTask() {
+	toggleBackboard();
 }
 
 // Control from joysticks
 
 void setBackboardServoJoystick() {
 	if (joy1Btn(1))
-		disengageBackboard(); // set to base
+		StartTask(disengageBackboardTask);
 	if (joy1Btn(3))
-		engageBackboard(); // set to target
+		StartTask(engageBackboardTask);
 }
 
 void setGoalHookJoystick() {
 	if (joy1Btn(2))
-		grabGoal();
+		StartTask(grabGoalTask);
 	if (joy1Btn(4))
-		releaseGoal();
+		StartTask(releaseGoalTask);
 }
 
 void setSweeperJoystick() {

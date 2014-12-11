@@ -31,11 +31,17 @@ task background() {
 	}
 }
 
-void referenceTasks() {
-	return;
-	// This is all dead code
-	// It only exists to avoid 'unrefrenced' warnings
+static void fixUnreferencedWarnings() {
+	return; // this is all dead code to confuse the compiler
+	int n = SWEEP_MOTOR_SPEED;
+	n += SWEEP_MOTOR_SLOW_SPEED;
+	n += CONVEYOR_MOTOR_SPEED;
+	n += CONVEYOR_MOTOR_SLOW_SPEED;
+
 	StartTask(grabGoalTask);
 	StartTask(releaseGoalTask);
 	StartTask(toggleGrabTask);
+	StartTask(engageBackboardTask);
+	StartTask(disengageBackboardTask);
+	StartTask(toggleBackboardTask);
 }
