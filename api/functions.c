@@ -56,7 +56,6 @@ void releaseGoal() {
 	isGoalGrabbed = false;
 } */
 
-// Deprecated: only use if grab is a motor
 task releaseGoalTask() {
 	releaseGoal();
 }
@@ -133,9 +132,9 @@ void setBackboardServoJoystick() {
 
 void setGoalHookJoystick() {
 	if (joy1Btn(2))
-		StartTask(grabGoalTask);
+		grabGoal();
 	if (joy1Btn(4))
-		StartTask(releaseGoalTask);
+		releaseGoal();
 }
 
 void setSweeperJoystick() {
