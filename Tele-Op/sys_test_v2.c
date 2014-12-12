@@ -37,6 +37,7 @@ const string modeStrings[10] = {"Change power", "Left drive",
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
 void waitRelease(int button);
+void resetDebugEncoders();
 task cycleModes();
 
 Mode currentMode = SETPOWER;
@@ -227,4 +228,10 @@ void waitRelease(int button) {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		EndTimeSlice();
 	}
+}
+
+void resetDebugEncoders() {
+	nMotorEncoder[leftmotor_1] = 0;
+	nMotorEncoder[leftmotor_1] = 0;
+	nMotorEncoder[leftmotor_1] = 0;
 }
