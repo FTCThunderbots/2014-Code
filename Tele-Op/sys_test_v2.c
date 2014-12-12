@@ -165,12 +165,15 @@ task cycleModes() {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
       		nxtDisplayCenteredTextLine(2, "Exit: back x3"); // 21 characters, will this fit?
+      		nxtDisplayCenteredTextLine(3, "LeftEnc1: %d", leftEnc1);
+      		nxtDisplayCenteredTextLine(4, "RightEnc1: %d", rightEnc1);
 		if (nNxtButtonPressed == 3) {
 			currentMode = nextMode(currentMode);
 			waitRelease(3);
 		}
 		if (nNxtButtonPressed == 0) {
 			currentMode = lastMode(currentMode);
+			resetDebugEncoders();
 			waitRelease(0);
 		}
 		EndTimeSlice();
@@ -231,7 +234,8 @@ void waitRelease(int button) {
 }
 
 void resetDebugEncoders() {
-	nMotorEncoder[leftmotor_1] = 0;
-	nMotorEncoder[leftmotor_1] = 0;
-	nMotorEncoder[leftmotor_1] = 0;
+	leftEnc1 = 0;
+	leftEnc2 = 0;
+	rightEnc1 = 0;
+	rightEnc2 = 0;
 }
