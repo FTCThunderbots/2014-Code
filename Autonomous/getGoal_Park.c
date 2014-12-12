@@ -21,8 +21,8 @@ task main() {
 	//time based off ramp, grab, drive straight to park zone
 	initializeAPI();
 	initializeRobot();
-	int delay = setAutoDelay(); // implemented: api/nxt.c
 	waitStartAPI();  // implemented: api/nxt.c
+	int delay = setAutoDelay(); // implemented: api/nxt.c
 	waitSeconds(delay);
 	driveSecondsBW(2.0);
 	grabGoal();
