@@ -18,7 +18,6 @@ void initializeAPI() {
 	timeInit(); //timers.c
 	initDebugConsole();
 	StartTask(background);
-	StartTask(trackMatchStart);
 }
 
 task background() {
