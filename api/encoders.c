@@ -13,47 +13,47 @@ void resetEncoders() {
 }
 
 // degrees to ticks
-long degreesToRotateTicks(float degrees) {
-	return ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
+int degreesToRotateTicks(float degrees) {
+	return (int)ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
 }
 
-long degreesToSwingTicks(float degrees) {
-	return ENCODER_TICKS_PER_SWING_DEGREE * degrees;
+int degreesToSwingTicks(float degrees) {
+	return (int)ENCODER_TICKS_PER_SWING_DEGREE * degrees;
 }
 
 // ticks to degrees
 float rotateTicksToDegrees(long ticks) {
-	return ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
+	return (float)ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
 
 float swingTicksToDegrees(long ticks) {
-	return ticks / ENCODER_TICKS_PER_SWING_DEGREE;
+	return (float)ticks / ENCODER_TICKS_PER_SWING_DEGREE;
 }
 
 // inches to ticks
-long inchesToDriveTicks(float inches) {
-	return ENCODER_TICKS_PER_DRIVE_INCH * inches;
+int inchesToDriveTicks(float inches) {
+	return (int)ENCODER_TICKS_PER_DRIVE_INCH * inches;
 }
 
-long inchesToStrafeTicks(float inches) {
-	return 	ENCODER_TICKS_PER_STRAFE_INCH * inches;
+int inchesToStrafeTicks(float inches) {
+	return 	(int)ENCODER_TICKS_PER_STRAFE_INCH * inches;
 }
 
 // ticks to inches
 float driveTicksToInches(long ticks) {
-	return ticks / ENCODER_TICKS_PER_DRIVE_INCH;
+	return (float)ticks / ENCODER_TICKS_PER_DRIVE_INCH;
 }
 
 float strafeTicksToInches(long ticks) {
-	return ticks / ENCODER_TICKS_PER_STRAFE_INCH;
+	return (float)ticks / ENCODER_TICKS_PER_STRAFE_INCH;
 }
 
 // centimeters to ticks
-long centimetersToDriveTicks(float centimeters) {
+int centimetersToDriveTicks(float centimeters) {
 	return inchesToDriveTicks(cmToIn(centimeters));
 }
 
-long centimetersToStrafeTicks(float centimeters) {
+int centimetersToStrafeTicks(float centimeters) {
 	return inchesToStrafeTicks(cmToIn(centimeters));
 }
 
