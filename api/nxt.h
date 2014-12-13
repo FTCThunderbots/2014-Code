@@ -3,6 +3,5 @@
 
 #define NXT_INCLUDEGUARD
 
-void waitStartAPI();
 int setAutoDelay();
-task trackMatchStart();
+task matchStartListener();
