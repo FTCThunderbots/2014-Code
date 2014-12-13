@@ -8,40 +8,19 @@
 #endif
 
 void initializeRobot() {
-	halt();
-	resetEncoders();
-	initGrabSystem();
-	initBackboardServo();
+        halt();
+        resetEncoders();
 }
 
 void initializeAPI() {
-	timeInit(); //timers.c
-	initDebugConsole();
-	StartTask(background);
-	StartTask(trackMatchStart);
+        initDebugConsole();
+        StartTask(background);
 }
 
 task background() {
-	while (true){
-		monitorSysTimer(); //timers.c
-		updateAllTimers(); //timers.c
-		updateDebugStream(); //debug.c
-    	updateDebugConsole();
-		EndTimeSlice();
-	}
-}
-
-static void fixUnreferencedWarnings() {
-	return; // this is all dead code to confuse the compiler
-	int n = SWEEP_MOTOR_SPEED;
-	n += SWEEP_MOTOR_SLOW_SPEED;
-	n += CONVEYOR_MOTOR_SPEED;
-	n += CONVEYOR_MOTOR_SLOW_SPEED;
-
-	StartTask(grabGoalTask);
-	StartTask(releaseGoalTask);
-	StartTask(toggleGrabTask);
-	StartTask(engageBackboardTask);
-	StartTask(disengageBackboardTask);
-	StartTask(toggleBackboardTask);
+        while (true) {
+                updateDebugStream(); //debug.c
+                updateDebugConsole();
+                EndTimeSlice();
+        }
 }
