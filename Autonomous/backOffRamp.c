@@ -27,4 +27,5 @@ task main() {
 	initializeRobot();
 	waitForStart();
 	driveSecondsBW(2.0);
+	setMovement(0, 0);
 }

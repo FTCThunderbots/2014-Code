@@ -17,21 +17,22 @@
 
 void displayDebugInfo();
 
-static const bool DISPLAY_DEBUG_INFORMATION = false;
+static const bool DISPLAY_DEBUG_INFORMATION = true;
 
 task main()
 {
 	initializeAPI();
 	initializeRobot();
+	eraseDisplay();
 	while (true) {
 		getJoystickSettings(joystick);
 		//setMovementFromJoystickComposite(joystick.joy1_y1, joystick.joy1_x2);
 		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
 		setGoalHookJoystick();
-		setBackboardServoJoystick();
+		setBackboardJoystick();
 		setSweeperJoystick();
 		setConveyorJoystick();
-		displayDebugInfo();
+		//displayDebugInfo();
 	}
 }
 

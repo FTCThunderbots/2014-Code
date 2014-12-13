@@ -122,28 +122,43 @@ task toggleBackboardTask() {
 // Control from joysticks
 
 void setBackboardServoJoystick() {
-	if (joy1Btn(1))
+	if (joy2Btn(1))
 		//StartTask(disengageBackboardTask);
 		disengageBackboard();
-	if (joy1Btn(3))
+	if (joy2Btn(3))
 		//StartTask(engageBackboardTask);
 		engageBackboard();
 }
 
+void setBackboardJoystick() {
+	if (joy2Btn(1))
+		motor[backboard] = BACKBOARD_MOTOR_SPEED;
+	else if (joy2Btn(3))
+		motor[backboard] = -BACKBOARD_MOTOR_SPEED;
+	else
+		motor[backboard] = 0;
+}
+
 void setGoalHookJoystick() {
-	if (joy1Btn(2))
-		grabGoal();
-	if (joy1Btn(4))
-		releaseGoal();
+	if (joy1Btn(2)) {
+		//grabGoal();
+		motor[grab] = GRAB_MOTOR_SPEED;
+	}
+	else if (joy1Btn(4)) {
+		//releaseGoal();
+		motor[grab] = -GRAB_MOTOR_SPEED;
+	}
+	else
+		motor[grab] = 0;
 }
 
 void setSweeperJoystick() {
 	if (joy2Btn(1) || joy2Btn(4))
 		motor[sweep] = SWEEP_MOTOR_SLOW_SPEED; // 40
 	else if (joy2Btn(5) || joy2Btn(2))
-		motor[sweep] = SWEEP_MOTOR_SPEED; // 100
+		motor[sweep] = -SWEEP_MOTOR_SPEED; // 100
 	else if (joy2Btn(7))
-  	motor[sweep] = -SWEEP_MOTOR_SPEED; // -100
+  	motor[sweep] = SWEEP_MOTOR_SPEED; // -100
 	else
 		motor[sweep]= 0;
 }
