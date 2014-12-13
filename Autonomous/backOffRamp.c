@@ -21,5 +21,11 @@ task main() {
 	initializeAPI();
 	initializeRobot();
 	waitForStart();
-	driveSeconds(4.0, -40);
+	//driveSeconds(4.0, -40);
+	ClearTimer(T1);
+	int a = time1[T1];
+	while (time1[T1] < a + 2000) {
+		setMovement(-40, 0);
+	}
+	setMovement(0, 0);
 }
