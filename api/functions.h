@@ -3,19 +3,15 @@
 
 #define FUNCTIONS_INCLUDEGUARD
 
-void initGrabSystem();
 void grabGoal();
-task grabGoalTask();
 void releaseGoal();
-task releaseGoalTask();
 void toggleGrab();
-task toggleGrabTask();
 
-void initBackboardServo();
 void engageBackboard();
 void disengageBackboard();
+void toggleBackboard();
 
-void setBackboardServoJoystick();
+void setBackboardJoystick();
 void setGoalHookJoystick();
 void setSweeperJoystick();
 void setConveyorJoystick();
