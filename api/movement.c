@@ -22,7 +22,7 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
 
-   // Straighten out the robot
+	// Straighten out the robot
 	clockwise += TURN_CONSTANT*sgn(forward);
 
 	// Assign wheel powers based on the constituent vectors
@@ -44,61 +44,16 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
 	motor[leftmotor_2] = power[2];
 	motor[rightmotor_2] = power[3];
 	#endif //two motors
-	#endif //no motors
 }
 
-void setMovementFromJoystick(int forward, int right, int clockwise) {
-
-	// Scale from the range of the joystick to the range of the motors
-	forward = correctJoystick(forward);
-	right = correctJoystick(right);
-	clockwise = correctJoystick(clockwise);
-
-   // the rest of the code is in setMovement()
-   setMovement(forward, right, clockwise);
-}
-
-void setMovementFromJoystickExp(int forward, int right, int clockwise) {
-	forward = correctJoystickExp(forward);
-	right = correctJoystickExp(right);
-	clockwise = correctJoystickExp(clockwise);
-
-   setMovement(forward, right, clockwise);
-}
-
-void setMovementFromJoystickComposite(int forward, int right, int clockwise) {
-	forward = correctJoystickComposite(forward);
-	right = correctJoystickComposite(right);
-	clockwise = correctJoystickComposite(clockwise);
-
-	setMovement(forward, right, clockwise);
-}
-
-// shortcut
 void setMovement(byte forward, byte clockwise) {
 	setMovement(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystick(int forward, int clockwise) {
-   setMovementFromJoystick(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystickExp(int forward, int clockwise) {
-   setMovementFromJoystickExp(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystickComposite(int forward, int clockwise) {
-	setMovementFromJoystickComposite(forward, 0, clockwise);
 }
 
 // Returns a number -100 to +100
@@ -107,10 +62,10 @@ byte correctJoystick(int joyval) {
 }
 
 byte correctJoystickExp(int joyval) {
-   byte correctVal = abs(correctJoystick(joyval));
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / MOTOR_MAX_POWER);
-   correctVal -= 1;
-   return sgn(joyval) * correctVal;
+	byte correctVal = abs(correctJoystick(joyval));
+	correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / MOTOR_MAX_POWER);
+	correctVal -= 1;
+	return sgn(joyval) * correctVal;
 }
 
 byte correctJoystickComposite(int joyval) {
@@ -135,14 +90,12 @@ void setMovementFromJoystick_old(int power, int turn) {
 		leftFinal *= 100 / abs(rightFinal);
 		rightFinal *= 100 / abs(rightFinal);
 	}
-#ifndef setting_noMotors
 	motor[leftmotor_1] = -leftFinal;
 	motor[rightmotor_1] = rightFinal;
-#ifndef setting_twoMotors
+	#ifndef setting_twoMotors
 	motor[leftmotor_2] = -leftFinal;
 	motor[rightmotor_2] = rightFinal;
-#endif
-#endif
+	#endif
 }
 
 //deprecated: use correctJoystick() with the same arguments
