@@ -37,3 +37,7 @@ int centimetersToStrafeTicks(float centimeters);
 float driveTicksToCentimeters(long ticks);
 float strafeTicksToCentimeters(long ticks);
 
+//actual measurement code
+void moveFor(int ticks);
+void swingLeftFor(int ticks);
+void swingRightFor(int ticks);
