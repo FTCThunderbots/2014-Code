@@ -37,6 +37,7 @@ const string modeStrings[10] = {"Change power", "Left drive",
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
 void waitRelease(int button);
+void resetDebugEncoders();
 task cycleModes();
 
 Mode currentMode = SETPOWER;
@@ -123,13 +124,13 @@ task main()
 
 		while (currentMode == BACKBOARD) {
 			if (nNxtButtonPressed == 2)
-				//motor[backboard] = power;
+				motor[backboard] = BACKBOARD_MOTOR_SPEED;
 				//StartTask(disengageBackboardTask);
-				disengageBackboard();
+				//disengageBackboard();
 			else if (nNxtButtonPressed == 1)
-				//motor[backboard] = -power;
+				motor[backboard] = -BACKBOARD_MOTOR_SPEED;
 				//StartTask(engageBackboardTask);
-				engageBackboard();
+				//engageBackboard();
 			else
 				motor[backboard] = 0;
 			EndTimeSlice();
@@ -138,10 +139,14 @@ task main()
 		while (currentMode == GOALHOOK) {
 			if (nNxtButtonPressed == 2)
 				//motor[grab] = power;
-				StartTask(releaseGoalTask);
+				//StartTask(releaseGoalTask);
+				motor[grab] = -GRAB_MOTOR_SPEED;
+				//releaseGoal();
 			else if (nNxtButtonPressed == 1)
 				//motor[grab] = -power;
-				StartTask(grabGoalTask);
+				//StartTask(grabGoalTask);
+				motor[grab] = GRAB_MOTOR_SPEED;
+				//grabGoal();
 			else
 				motor[grab] = 0;
 			EndTimeSlice();
@@ -149,11 +154,11 @@ task main()
 
 		while (currentMode == LIFT) {
 			if (nNxtButtonPressed == 2)
-				motor[lift] = power;
+				motor[grab] = power;
 			else if (nNxtButtonPressed == 1)
-				motor[lift] = -power;
+				motor[grab] = -power;
 			else
-				motor[lift] = 0;
+				motor[grab] = 0;
 			EndTimeSlice();
 		}
 	}
@@ -164,12 +169,15 @@ task cycleModes() {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
       		nxtDisplayCenteredTextLine(2, "Exit: back x3"); // 21 characters, will this fit?
+      		nxtDisplayCenteredTextLine(3, "LeftEnc1: %d", leftEnc1);
+      		nxtDisplayCenteredTextLine(4, "RightEnc1: %d", rightEnc1);
 		if (nNxtButtonPressed == 3) {
 			currentMode = nextMode(currentMode);
 			waitRelease(3);
 		}
 		if (nNxtButtonPressed == 0) {
 			currentMode = lastMode(currentMode);
+			resetDebugEncoders();
 			waitRelease(0);
 		}
 		EndTimeSlice();
@@ -202,7 +210,7 @@ Mode nextMode(Mode m) {
 Mode lastMode(Mode m) {
 	//if (m == LIFT)
 	//	return GOALHOOK;
-	else if (m == GOALHOOK)
+	if (m == GOALHOOK)
 		return BACKBOARD;
 	else if (m == BACKBOARD)
 		return CONVEYOR;
@@ -227,4 +235,11 @@ void waitRelease(int button) {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		EndTimeSlice();
 	}
+}
+
+void resetDebugEncoders() {
+	leftEnc1 = 0;
+	leftEnc2 = 0;
+	rightEnc1 = 0;
+	rightEnc2 = 0;
 }

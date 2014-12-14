@@ -7,6 +7,7 @@ bool matchHasStarted = false;
 
 void waitStartAPI() {
 	StartTask(trackMatchStart);
+	//here's the other place
 	while (!matchHasStarted) {}
 }
 
