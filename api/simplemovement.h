@@ -23,7 +23,7 @@ void rotate(byte power);
 void swing(byte direction, byte power);
 void traverse(byte vector, byte power);
 
-//movement without poweR
+//movement without power
 void driveFW();
 void driveBW();
 void strafeR();
@@ -35,7 +35,6 @@ void swingBW(byte direction);
 void traverse(byte vector);
 
 //movement for seconds with power
-void haltSeconds(float secs);
 void driveSeconds(float secs, byte power);
 void strafeSeconds(float secs, byte power);
 void rotateSeconds(float secs, byte power);
@@ -69,5 +68,3 @@ void rotateDegreesCCW(float degrees);
 void swingDegreesFW(float degrees, byte direction);
 void swingDegreesBW(float degrees, byte direction);
 
-//deprecated and should prob remove:
-void rotateDegWithCompass(int degs, byte power);

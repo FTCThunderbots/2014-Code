@@ -24,7 +24,7 @@ void rotate(byte power) {
 
 void swing(byte direction, byte power) {
 	// direction: - for left, + or zero for right;
-	direction = direction >=0 ? 1 : -1;
+	direction = sgn(direction);
 	setMovement(power, 0, direction * power);
 }
 
@@ -54,11 +54,11 @@ void traverse(byte vector, byte power) {
 // functions without power arguments
 
 void driveFW() {
-   setMovement(DEFAULT_MOTOR_POWER, 0, 0);
+	setMovement(DEFAULT_MOTOR_POWER, 0, 0);
 }
 
 void driveBW() {
-   setMovement(-DEFAULT_MOTOR_POWER, 0, 0);
+	setMovement(-DEFAULT_MOTOR_POWER, 0, 0);
 }
 
 void strafeR() {
@@ -70,200 +70,171 @@ void strafeL() {
 }
 
 void rotateCW() {
-   setMovement(0, 0, DEFAULT_MOTOR_POWER);
+	setMovement(0, 0, DEFAULT_MOTOR_POWER);
 }
 
 void rotateCCW() {
-   setMovement(0, 0, -DEFAULT_MOTOR_POWER);
+	setMovement(0, 0, -DEFAULT_MOTOR_POWER);
 }
 
-
 void swingFW(byte direction) {
-   swing(direction, DEFAULT_MOTOR_POWER);
+	swing(direction, DEFAULT_MOTOR_POWER);
 }
 
 void swingBW(byte direction) {
-   swing(direction, -DEFAULT_MOTOR_POWER);
+	swing(direction, -DEFAULT_MOTOR_POWER);
 }
 
 void traverse(byte vector) {
-   traverse(vector, DEFAULT_MOTOR_POWER);
+	traverse(vector, DEFAULT_MOTOR_POWER);
 }
 
 // movement for time, with power arguments
-
-void haltSeconds(float secs) {
-   halt();
-   waitSeconds(secs);
-}
-
 void driveSeconds(float secs, byte power) {
-   drive(power);
-   waitSeconds(secs);
-   halt();
+	drive(power);
+	waitSeconds(secs);
+	halt();
 }
 
 void strafeSeconds(float secs, byte power) {
-   strafe(power);
-   waitSeconds(secs);
-   halt();
+	strafe(power);
+	waitSeconds(secs);
+	halt();
 }
 
 void rotateSeconds(float secs, byte power) {
-   rotate(power);
-   waitSeconds(secs);
-   halt();
+	rotate(power);
+	waitSeconds(secs);
+	halt();
 }
 
 void swingSeconds(float secs, byte direction, byte power) {
-   swing(direction, power);
-   waitSeconds(secs);
-   halt();
+	swing(direction, power);
+	waitSeconds(secs);
+	halt();
 }
 
 void traverseSeconds(float secs, byte vector, byte power) {
-   traverse(vector, power);
-   waitSeconds(secs);
-   halt();
+	traverse(vector, power);
+	waitSeconds(secs);
+	halt();
 }
 
 // movement for time, without power argument
 
 void driveSecondsFW(float secs) {
-   driveFW();
-   waitSeconds(secs);
-   halt();
+	driveFW();
+	waitSeconds(secs);
+	halt();
 }
 
 void driveSecondsBW(float secs) {
-   driveBW();
-   waitSeconds(secs);
-   halt();
+	driveBW();
+	waitSeconds(secs);
+	halt();
 }
 
 void strafeSecondsR(float secs) {
-   strafeR();
-   waitSeconds(secs);
-   halt();
+	strafeR();
+	waitSeconds(secs);
+	halt();
 }
 
 void strafeSecondsL(float secs) {
-   strafeL();
-   waitSeconds(secs);
-   halt();
+	strafeL();
+	waitSeconds(secs);
+	halt();
 }
 
 void rotateSecondsCW(float secs) {
-   rotateCW();
-   waitSeconds(secs);
-   halt();
+	rotateCW();
+	waitSeconds(secs);
+	halt();
 }
 
 void rotateSecondsCCW(float secs) {
-   rotateCCW();
-   waitSeconds(secs);
-   halt();
+	rotateCCW();
+	waitSeconds(secs);
+	halt();
 }
 
 void swingSecondsFW(float secs, byte direction) {
-   swingFW(direction);
-   waitSeconds(secs);
-   halt();
+	swingFW(direction);
+	waitSeconds(secs);
+	halt();
 }
 
 void swingSecondsBW(float secs, byte direction) {
-   swingBW(direction);
-   waitSeconds(secs);
-   halt();
+	swingBW(direction);
+	waitSeconds(secs);
+	halt();
 }
 
 void traverseSeconds(float secs, byte vector) {
-   traverse(vector);
-   waitSeconds(secs);
-   halt();
+	traverse(vector);
+	waitSeconds(secs);
+	halt();
 }
 
 // movement for inches, with power argument
 void driveInches(float inches, byte power) {
-   drive(power);
-   waitDriveInches(inches);
-   halt();
+	drive(power);
+	moveFor(inchesToDriveTicks(inches));
+	halt();
 }
 
 void strafeInches(float inches, byte power) {
 	strafe(power);
-	waitStrafeInches(inches);
+	moveFor(inchesToStrafeTicks(inches));
 	halt();
 }
 
 void rotateDegrees(float degrees, byte power) {
 	rotate(power);
-	waitRotateDegrees(degrees);
+	moveFor(degreesToRotateTicks(degrees));
 	halt();
 }
 
 void swingDegrees(float degrees, byte direction, byte power) {
 	swing(direction, power);
-	waitSwingDegrees(degrees);
+	if (sgn(direction) == 1)
+		swingRightFor(degreesToSwingTicks(degrees));
+	else
+		swingLeftFor(degreesToSwingTicks(degrees));
 	halt();
 }
 
 // movement for inches, with no power argument
 
 void driveInchesFW(float inches) {
-   driveFW();
-   waitDriveInches(inches);
-   halt();
+	driveInches(inches, DEFAULT_MOTOR_POWER);
 }
 
 void driveInchesBW(float inches) {
-   driveBW();
-   waitDriveInches(inches);
-   halt();
+	driveInches(inches, DEFAULT_MOTOR_POWER);
 }
 
 void strafeInchesR(float inches) {
-	strafeR();
-	waitStrafeInches(inches);
-	halt();
+	strafeInches(inches, DEFAULT_MOTOR_POWER);
 }
 
 void strafeInchesL(float inches) {
-	strafeL();
-	waitStrafeInches(inches);
-	halt();
+	strafeInches(inches, -DEFAULT_MOTOR_POWER);
 }
 
 void rotateDegreesCW(float degrees) {
-	rotateCW();
-	waitRotateDegrees(degrees);
-	halt();
+	rotateDegrees(degrees, DEFAULT_MOTOR_POWER);
 }
 
 void rotateDegreesCCW(float degrees) {
-	rotateCCW();
-	waitRotateDegrees(degrees);
-	halt();
+	rotateDegrees(degrees, -DEFAULT_MOTOR_POWER);
 }
 
 void swingDegreesFW(float degrees, byte direction) {
-	swingFW(direction);
-	waitSwingDegrees(degrees);
-	halt();
+	swingDegrees(degrees, direction, DEFAULT_MOTOR_POWER);
 }
 
 void swingDegreesBW(float degrees, byte direction) {
-	swingBW(direction);
-	waitSwingDegrees(degrees);
-	halt();
+	swingDegrees(degrees, direction, -DEFAULT_MOTOR_POWER);
 }
 
-// deprecated: probably not as precise as it could be
-// also, in it's current form, problems may arise if passing arguments more than 36
-void rotateDegWithCompass(int degs, byte power) {
-	int startFacing = getCompassValue();
-	setMovement(0, 0, power);
-	while(getCompassValue() != (startFacing + degs) % 360) {}
-	// this probably will not work; ask Zach O. for more details.
-	halt();
-}
