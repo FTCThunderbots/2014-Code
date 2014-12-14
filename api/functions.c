@@ -164,7 +164,7 @@ void setSweeperJoystick() {
 }
 
 void setConveyorJoystick() {
-	if (joy2Btn(3) || joy2Btn(4))
+	if (joy2Btn(4))
     motor[conveyor] = CONVEYOR_MOTOR_SLOW_SPEED; // 40
   else if (joy2Btn(6) || joy2Btn(2))
     motor[conveyor] = CONVEYOR_MOTOR_SPEED; // 100
