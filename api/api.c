@@ -31,10 +31,6 @@
 #include "debug.c"
 #endif
 
-#ifndef DISTANCES_INCLUDEGUARD
-#include "distances.c"
-#endif
-
 #ifndef NXT_INCLUDEGUARD
 #include "nxt.c"
 #endif
@@ -51,10 +47,6 @@
 #include "movement.c"
 #endif
 
-#ifndef RULER_INCLUDEGUARD
-#include "ruler.c"
-#endif
-
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
 #endif
@@ -68,5 +60,5 @@
 #endif
 
 #ifndef TIMER_INCLUDEGUARD
-#include "timer.c"
+#include "timer.h"
 #endif
