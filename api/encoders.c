@@ -21,6 +21,11 @@ int degreesToSwingTicks(float degrees) {
 	return (int)ENCODER_TICKS_PER_SWING_DEGREE * degrees;
 }
 
+int degreesToRawTicks(float degrees) {
+	//convert raw degrees into ticks for simple rotating mechanisms
+	return (int)ENCODER_TICKS_PER_DEGREE * degrees;
+}
+
 // ticks to degrees
 float rotateTicksToDegrees(long ticks) {
 	return (float)ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
@@ -28,6 +33,10 @@ float rotateTicksToDegrees(long ticks) {
 
 float swingTicksToDegrees(long ticks) {
 	return (float)ticks / ENCODER_TICKS_PER_SWING_DEGREE;
+}
+
+float rawTicksToDegrees(long ticks) {
+	return (float)ticks / ENCODER_TICKS_PER_DEGREE;
 }
 
 // inches to ticks
