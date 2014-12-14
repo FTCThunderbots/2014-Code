@@ -21,8 +21,6 @@
 #define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
-// Please keep this list alphabetized
-
 #ifndef BACKGROUND_INCLUDEGUARD
 #include "background.c"
 #endif
@@ -35,8 +33,16 @@
 #include "nxt.c"
 #endif
 
-#ifndef FUNCTIONS_INCLUDEGUARD
-#include "functions.c"
+#ifndef GRAB_INCLUDEGUARD
+#include "grab.c"
+#endif
+
+#ifndef BACKBOARD_INCLUDEGUARD
+#include "backboard.c"
+#endif
+
+#ifndef TELEOP_INCLUDEGUARD
+#include "teleop.c"
 #endif
 
 #ifndef MATH_INCLUDEGUARD

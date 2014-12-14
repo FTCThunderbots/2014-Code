@@ -26,8 +26,10 @@ void resetEncoders();
 // Unit conversions
 int degreesToRotateTicks(float degrees);
 int degreesToSwingTicks(float degrees);
+int degreesToRawTicks(float degrees);
 float rotateTicksToDegrees(long ticks);
 float swingTicksToDegrees(long ticks);
+float rawTicksToDegrees(long ticks);
 int inchesToDriveTicks(float inches);
 int inchesToStrafeTicks(float inches);
 float driveTicksToInches(long ticks);
