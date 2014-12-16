@@ -8,4 +8,4 @@
 #define waitMilliseconds(Msecs) wait1Msec(Msecs)
 #define waitCentiseconds(Csecs) wait1Msec(Csecs*10)
 #define waitDeciseconds(Dsecs) wait1Msec(Dsecs*100)
-#define delay(secs) wait10Msec(secs*100)
+#define waitSeconds(secs) wait10Msec(secs*100)

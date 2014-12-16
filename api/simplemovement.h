@@ -3,8 +3,8 @@
 
 #define SIMPLEMOVEMENT_INCLUDEGUARD
 
-#ifndef DISTANCES_INCLUDEGUARD
-#include "distances.c"
+#ifndef ENCODERS_INCLUDEGUARD
+#include "encoders.c"
 #endif
 
 #ifndef MOVEMENT_INCLUDEGUARD
@@ -67,4 +67,3 @@ void rotateDegreesCW(float degrees);
 void rotateDegreesCCW(float degrees);
 void swingDegreesFW(float degrees, byte direction);
 void swingDegreesBW(float degrees, byte direction);
-

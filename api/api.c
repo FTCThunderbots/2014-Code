@@ -4,6 +4,8 @@
 // If we're using two-wheel mode, only use two encoders
 // This should be obvious
 
+#warn "(settings.c) Please set time vals for auto grabbing and auto backboard"
+
 #ifdef setting_twoMotors
 #ifndef setting_twoEncoders
 #define setting_twoEncoders
@@ -19,6 +21,14 @@
 #ifndef JOYSTICKDRIVER_INCLUDEGUARD
 #include "JoystickDriver.c"
 #define JOYSTICKDRIVER_INCLUDEGUARD
+#endif
+
+#ifndef TIMER_INCLUDEGUARD
+#include "timer.h"
+#endif
+
+#ifndef ENCODERS_INCLUDEGUARD
+#include "encoders.c"
 #endif
 
 #ifndef BACKGROUND_INCLUDEGUARD
@@ -63,8 +73,4 @@
 
 #ifndef SIMPLEMOVEMENT_INCLUDEGUARD
 #include "simplemovement.c"
-#endif
-
-#ifndef TIMER_INCLUDEGUARD
-#include "timer.h"
 #endif

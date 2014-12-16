@@ -3,8 +3,6 @@
 
 #include "teleop.h"
 
-#warn "This is a temporary fix in teleop.c, please set times"
-
 void setBackboardJoystick() {
 	if (joy2Btn(1))
 		motor[backboard] = BACKBOARD_MOTOR_SPEED;
