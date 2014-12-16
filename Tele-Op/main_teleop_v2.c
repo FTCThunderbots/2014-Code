@@ -17,7 +17,7 @@
 
 void displayDebugInfo();
 
-static const bool DISPLAY_DEBUG_INFORMATION = true;
+static const bool DISPLAY_DEBUG_INFORMATION = false;
 
 task main()
 {
@@ -32,7 +32,7 @@ task main()
 		setBackboardJoystick();
 		setSweeperJoystick();
 		setConveyorJoystick();
-		//displayDebugInfo();
+		displayDebugInfo();
 	}
 }
 

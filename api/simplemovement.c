@@ -70,7 +70,7 @@ void strafeL() {
 }
 
 void rotateCW() {
-	setMovement(0, 0, DEFAULT_MOTOR_POWER);
+   setMovement(0, 0, DEFAULT_MOTOR_POWER/2);
 }
 
 void rotateCCW() {
