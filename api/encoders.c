@@ -63,7 +63,12 @@ void moveFor(int ticks) {
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
-	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {/*wait*/}
+	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {/*wait*/
+		nxtDisplayCenteredTextLine(0, "%d", abs(leftEnc1));
+		nxtDisplayCenteredTextLine(1, "%d", abs(leftEnc2));
+		nxtDisplayCenteredTextLine(2, "%d", abs(rightEnc1));
+		nxtDisplayCenteredTextLine(3, "%d", abs(leftEnc2));
+	}
 	halt();
 	resetEncoders();
 }

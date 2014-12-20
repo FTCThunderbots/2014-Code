@@ -7,26 +7,33 @@
 
 static const byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
 static const byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
+static const byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
 static const byte rotateRange[3] = {ROTATE_MIN_POWER, ROTATE_MIN_POWER, ROTATE_MAX_POWER - ROTATE_MIN_POWER};
 static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
 // Array format: min, max, difference
 
 void setMovement(byte forward, byte clockwise) {
+	setMovement(forward, 0, clockwise);
+}
+
+static void setMovement(byte forward, byte right, byte clockwise) {
 	// Scale from the range of the motors to the range of the specific movement
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
+	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
 
 	forward *= DRIVE_POWER_WEIGHT;
+	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
 
-	// Straighten out the robot
+   // Straighten out the robot
 	clockwise += TURN_CONSTANT*sgn(forward);
 
 	// Assign wheel powers based on the constituent vectors
-	float frontLeft = (forward +  clockwise);
-	float frontRight = (-forward  + clockwise);
-	float backLeft = (forward  + clockwise);
-	float backRight = (-forward  + clockwise);
+	float frontLeft = (forward + right + clockwise);
+	float frontRight = (-forward + right + clockwise);
+	float backLeft = (forward - right + clockwise);
+	float backRight = (-forward - right + clockwise);
 
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
 

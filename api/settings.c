@@ -15,20 +15,22 @@ const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)
 const byte DRIVE_MAX_POWER = 100; //abs(power) cannot exceed max
 const byte ROTATE_MIN_POWER = 20;
 const byte ROTATE_MAX_POWER = 100;
+const byte STRAFE_MIN_POWER = 0;
+const byte STRAFE_MAX_POWER = 100;
 const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 const float DRIVE_POWER_WEIGHT = 1.0; //weights are used for changing responsiveness of different movements
 const float ROTATE_POWER_WEIGHT = 1.0;
+const float STRAFE_POWER_WEIGHT = 1.0;
 
 // Motor Constants
 const byte MOTOR_MIN_POWER = 0; //not yet implemented
 const byte MOTOR_MAX_POWER = 100;
 
 // Encoder Settings
-const int ENCODER_TICKS_PER_DRIVE_INCH = 1440/(3*PI); //should be exact
-const int ENCODER_TICKS_PER_ROTATE_DEGREE = 100; //untested and needs to be calculated
-const int ENCODER_TICKS_PER_SWING_DEGREE = 200; //untested and needs to be calculated
+const int ENCODER_TICKS_PER_DRIVE_INCH = 72;
+const int ENCODER_TICKS_PER_ROTATE_DEGREE = 11;
+const int ENCODER_TICKS_PER_SWING_DEGREE = 26;
 const int ENCODER_TICKS_PER_DEGREE = 4; //should be exact (1440/360)
-#warn "(settings.c) Encoder values still need to be set! Encoder and tick conversion functions will not work."
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35; //**UNTESTED**

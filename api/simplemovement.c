@@ -27,22 +27,22 @@ void swing(byte direction, byte power) {
 // movement for time, with power arguments
 void driveSeconds(float secs, byte power) {
 	drive(power);
-	int startTime = time1[T1];
-	while(time1[T1] < startTime + secs*1000) { drive(power); }
+	ClearTimer(T1);
+	while(time1[T1] < secs*1000) {}
 	halt();
 }
 
 void rotateSeconds(float secs, byte power) {
 	rotate(power);
-	int startTime = time1[T1];
-	while(time1[T1] < startTime + secs*1000) { rotate(power); }
+	ClearTimer(T1);
+	while(time1[T1] < secs*1000) {}
 	halt();
 }
 
 void swingSeconds(float secs, byte direction, byte power) {
 	swing(direction, power);
-	int startTime = time1[T1];
-	while(time1[T1] < startTime + secs*1000) { swing(direction, power); }
+	ClearTimer(T1);
+	while(time1[T1] < secs*1000) {}
 	halt();
 }
 

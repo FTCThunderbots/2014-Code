@@ -12,6 +12,7 @@
 #endif
 
 void setMovement(byte forward, byte clockwise);
+static void setMovement(byte forward, byte right, byte clockwise);
 
 //byte correctJoystickExp(int joyval);
 byte correctJoystickComposite(int joyval);
