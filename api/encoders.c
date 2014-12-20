@@ -44,17 +44,9 @@ int inchesToDriveTicks(float inches) {
 	return (int)ENCODER_TICKS_PER_DRIVE_INCH * inches;
 }
 
-int inchesToStrafeTicks(float inches) {
-	return 	(int)ENCODER_TICKS_PER_STRAFE_INCH * inches;
-}
-
 // ticks to inches
 float driveTicksToInches(long ticks) {
 	return (float)ticks / ENCODER_TICKS_PER_DRIVE_INCH;
-}
-
-float strafeTicksToInches(long ticks) {
-	return (float)ticks / ENCODER_TICKS_PER_STRAFE_INCH;
 }
 
 // centimeters to ticks
@@ -62,17 +54,9 @@ int centimetersToDriveTicks(float centimeters) {
 	return inchesToDriveTicks(cmToIn(centimeters));
 }
 
-int centimetersToStrafeTicks(float centimeters) {
-	return inchesToStrafeTicks(cmToIn(centimeters));
-}
-
 // ticks to centimeters
 float driveTicksToCentimeters(long ticks) {
 	return inToCm(driveTicksToInches(ticks));
-}
-
-float strafeTicksToCentimeters(long ticks) {
-	return inToCm(strafeTicksToInches(ticks));
 }
 
 void moveFor(int ticks) {
