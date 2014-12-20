@@ -64,16 +64,22 @@ void moveFor(int ticks) {
 	//might also work for strafing
 	resetEncoders();
 	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {/*wait*/}
+	halt();
+	resetEncoders();
 }
 
 void swingLeftFor(int ticks) {
 	//incase you could not tell, this is for swinging to the left
 	resetEncoders();
 	while ((abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {/*wait*/}
+	halt();
+	resetEncoders();
 }
 
 void swingRightFor(int ticks) {
 	//incase you could not tell, this is for swinging to the right
 	resetEncoders();
 	while ((abs(leftEnc1) +abs(leftEnc2))/2 < abs(ticks)) {/*wait*/}
+	halt();
+	resetEncoders();
 }

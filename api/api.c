@@ -31,6 +31,10 @@
 #include "encoders.c"
 #endif
 
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
+
 #ifndef BACKGROUND_INCLUDEGUARD
 #include "background.c"
 #endif
@@ -69,8 +73,4 @@
 
 #ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
-#endif
-
-#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
-#include "simplemovement.c"
 #endif

@@ -42,7 +42,7 @@ void rotateSeconds(float secs, byte power) {
 void swingSeconds(float secs, byte direction, byte power) {
 	swing(direction, power);
 	int startTime = time1[T1];
-	while(time1[T1] < startTime + secs*1000) { swing(power); }
+	while(time1[T1] < startTime + secs*1000) { swing(direction, power); }
 	halt();
 }
 
@@ -52,13 +52,11 @@ void swingSeconds(float secs, byte direction, byte power) {
 void driveInches(float inches, byte power) {
 	drive(power);
 	moveFor(inchesToDriveTicks(inches));
-	halt();
 }
 
 void rotateDegrees(float degrees, byte power) {
 	rotate(power);
 	moveFor(degreesToRotateTicks(degrees));
-	halt();
 }
 
 void swingDegrees(float degrees, byte direction, byte power) {
@@ -67,5 +65,4 @@ void swingDegrees(float degrees, byte direction, byte power) {
 		swingRightFor(degreesToSwingTicks(degrees));
 	else
 		swingLeftFor(degreesToSwingTicks(degrees));
-	halt();
 }

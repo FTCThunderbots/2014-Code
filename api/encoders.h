@@ -39,3 +39,7 @@ float driveTicksToCentimeters(long ticks);
 void moveFor(int ticks);
 void swingLeftFor(int ticks);
 void swingRightFor(int ticks);
+
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
