@@ -18,6 +18,9 @@ void initializeAPI() {
 	timeInit(); //timers.c
 	initDebugConsole();
 	StartTask(background);
+   #ifdef autorun
+   autorun;
+   #endif
 }
 
 task background() {
