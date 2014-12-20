@@ -33,11 +33,3 @@ task matchStartListener() {
 	waitForStart();
 	matchHasStarted = true;
 }
-
-void screwyouunreferencedwarning() {
-	int a = BACKBOARD_MOTOR_UP_POS;
-	int b = BACKBOARD_MOTOR_DOWN_POS;
-	a += b;
-	b += a;
-	StartTask(matchStartListener);
-}[\

@@ -24,3 +24,11 @@ task background() {
                 EndTimeSlice();
         }
 }
+
+void SuppressUnreferencedWarnings() {
+        int a = BACKBOARD_MOTOR_UP_POS;
+        int b = BACKBOARD_MOTOR_DOWN_POS;
+        a += b;
+        b += a;
+        StartTask(matchStartListener);
+}

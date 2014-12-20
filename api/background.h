@@ -22,3 +22,5 @@
 void initializeRobot();
 void initializeAPI();
 task background();
+
+void SuppressUnreferencedWarnings();
