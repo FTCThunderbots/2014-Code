@@ -11,7 +11,6 @@
 #include "settings.c"
 #endif
 
-void setMovement(byte forward, byte right, byte clockwise);
 void setMovement(byte forward, byte clockwise);
 
 //byte correctJoystickExp(int joyval);

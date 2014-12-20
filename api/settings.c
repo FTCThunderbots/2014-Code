@@ -19,7 +19,6 @@ const byte ROTATE_MIN_POWER = 20;
 const byte ROTATE_MAX_POWER = 100;
 const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
 const float DRIVE_POWER_WEIGHT = 1.0; //weights are used for changing responsiveness of different movements
-const float STRAFE_POWER_WEIGHT = 1.0;
 const float ROTATE_POWER_WEIGHT = 1.0;
 
 // Motor Constants
