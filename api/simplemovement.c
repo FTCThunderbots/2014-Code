@@ -24,88 +24,29 @@ void swing(byte direction, byte power) {
 	setMovement(power, direction * power);
 }
 
-// functions without power arguments
-
-void driveFW() {
-	setMovement(DEFAULT_MOTOR_POWER, 0);
-}
-
-void driveBW() {
-	setMovement(-DEFAULT_MOTOR_POWER, 0);
-}
-
-void rotateCW() {
-   setMovement(0, DEFAULT_MOTOR_POWER/2);
-}
-
-void rotateCCW() {
-	setMovement(0, -DEFAULT_MOTOR_POWER);
-}
-
-void swingFW(byte direction) {
-	swing(direction, DEFAULT_MOTOR_POWER);
-}
-
-void swingBW(byte direction) {
-	swing(direction, -DEFAULT_MOTOR_POWER);
-}
-
 // movement for time, with power arguments
 void driveSeconds(float secs, byte power) {
 	drive(power);
-	waitSeconds(secs);
+	int startTime = time1[T1];
+	while(time1[T1] < startTime + secs*1000) { drive(power); }
 	halt();
 }
 
 void rotateSeconds(float secs, byte power) {
 	rotate(power);
-	waitSeconds(secs);
+	int startTime = time1[T1];
+	while(time1[T1] < startTime + secs*1000) { rotate(power); }
 	halt();
 }
 
 void swingSeconds(float secs, byte direction, byte power) {
 	swing(direction, power);
-	waitSeconds(secs);
+	int startTime = time1[T1];
+	while(time1[T1] < startTime + secs*1000) { swing(power); }
 	halt();
 }
 
-// movement for time, without power argument
 
-void driveSecondsFW(float secs) {
-	driveFW();
-	waitSeconds(secs);
-	halt();
-}
-
-void driveSecondsBW(float secs) {
-	driveBW();
-	waitSeconds(secs);
-	halt();
-}
-
-void rotateSecondsCW(float secs) {
-	rotateCW();
-	waitSeconds(secs);
-	halt();
-}
-
-void rotateSecondsCCW(float secs) {
-	rotateCCW();
-	waitSeconds(secs);
-	halt();
-}
-
-void swingSecondsFW(float secs, byte direction) {
-	swingFW(direction);
-	waitSeconds(secs);
-	halt();
-}
-
-void swingSecondsBW(float secs, byte direction) {
-	swingBW(direction);
-	waitSeconds(secs);
-	halt();
-}
 
 // movement for inches, with power argument
 void driveInches(float inches, byte power) {
@@ -127,30 +68,4 @@ void swingDegrees(float degrees, byte direction, byte power) {
 	else
 		swingLeftFor(degreesToSwingTicks(degrees));
 	halt();
-}
-
-// movement for inches, with no power argument
-
-void driveInchesFW(float inches) {
-	driveInches(inches, DEFAULT_MOTOR_POWER);
-}
-
-void driveInchesBW(float inches) {
-	driveInches(inches, DEFAULT_MOTOR_POWER);
-}
-
-void rotateDegreesCW(float degrees) {
-	rotateDegrees(degrees, DEFAULT_MOTOR_POWER);
-}
-
-void rotateDegreesCCW(float degrees) {
-	rotateDegrees(degrees, -DEFAULT_MOTOR_POWER);
-}
-
-void swingDegreesFW(float degrees, byte direction) {
-	swingDegrees(degrees, direction, DEFAULT_MOTOR_POWER);
-}
-
-void swingDegreesBW(float degrees, byte direction) {
-	swingDegrees(degrees, direction, -DEFAULT_MOTOR_POWER);
 }

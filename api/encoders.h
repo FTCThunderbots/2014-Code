@@ -31,13 +31,9 @@ float rotateTicksToDegrees(long ticks);
 float swingTicksToDegrees(long ticks);
 float rawTicksToDegrees(long ticks);
 int inchesToDriveTicks(float inches);
-int inchesToStrafeTicks(float inches);
 float driveTicksToInches(long ticks);
-float strafeTicksToInches(long ticks);
 int centimetersToDriveTicks(float centimeters);
-int centimetersToStrafeTicks(float centimeters);
 float driveTicksToCentimeters(long ticks);
-float strafeTicksToCentimeters(long ticks);
 
 //actual measurement code
 void moveFor(int ticks);

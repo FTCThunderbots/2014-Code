@@ -1,13 +1,12 @@
 // movement.h
 // Contains all code related to the positional movement of the robot
 // Lifting code and other functional systems should be defined somewhere else
-// Wrappers such as drive, strafe, and rotate should be placed in simplemovement.c
+// Wrappers such as drive and rotate should be placed in simplemovement.c
 
 #include "movement.h"
 
 static const byte joyRange[3] = {JOYSTICK_MIN_VALUE, JOYSTICK_MAX_VALUE, JOYSTICK_MAX_VALUE - JOYSTICK_MIN_VALUE};
 static const byte driveRange[3] = {DRIVE_MIN_POWER, DRIVE_MAX_POWER, DRIVE_MAX_POWER - DRIVE_MIN_POWER};
-static const byte strafeRange[3] = {STRAFE_MIN_POWER, STRAFE_MAX_POWER, STRAFE_MAX_POWER - STRAFE_MIN_POWER};
 static const byte rotateRange[3] = {ROTATE_MIN_POWER, ROTATE_MIN_POWER, ROTATE_MAX_POWER - ROTATE_MIN_POWER};
 static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
 // Array format: min, max, difference

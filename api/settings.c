@@ -13,8 +13,6 @@ const float JOYSTICK_LINEAR_WEIGHT = 2.5; // Raising this will make the mid-joys
 // Movement
 const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)
 const byte DRIVE_MAX_POWER = 100; //abs(power) cannot exceed max
-const byte STRAFE_MIN_POWER = 20;
-const byte STRAFE_MAX_POWER = 100;
 const byte ROTATE_MIN_POWER = 20;
 const byte ROTATE_MAX_POWER = 100;
 const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits
@@ -28,7 +26,6 @@ const byte DEFAULT_MOTOR_POWER = 100; // when power is not specified
 
 // Encoder Settings
 const int ENCODER_TICKS_PER_DRIVE_INCH = 1440/(3*PI); //should be exact
-const int ENCODER_TICKS_PER_STRAFE_INCH = 100; //untested
 const int ENCODER_TICKS_PER_ROTATE_DEGREE = 100; //untested and needs to be calculated
 const int ENCODER_TICKS_PER_SWING_DEGREE = 200; //untested and needs to be calculated
 const int ENCODER_TICKS_PER_DEGREE = 4; //should be exact (1440/360)
