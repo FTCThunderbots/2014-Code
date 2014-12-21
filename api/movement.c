@@ -1,7 +1,7 @@
 // movement.h
 // Contains all code related to the positional movement of the robot
 // Lifting code and other functional systems should be defined somewhere else
-// Wrappers such as drive, strafe, and rotate should be placed in simplemovement.c
+// Wrappers such as drive and rotate should be placed in simplemovement.c
 
 #include "movement.h"
 
@@ -12,7 +12,11 @@ static const byte rotateRange[3] = {ROTATE_MIN_POWER, ROTATE_MIN_POWER, ROTATE_M
 static const byte motorRange[3] = {MOTOR_MIN_POWER, MOTOR_MAX_POWER, MOTOR_MAX_POWER - MOTOR_MIN_POWER};
 // Array format: min, max, difference
 
-void setMovement(byte forward, byte right, byte clockwise) {
+void setMovement(byte forward, byte clockwise) {
+	setMovement(forward, 0, clockwise);
+}
+
+static void setMovement(byte forward, byte right, byte clockwise) {
 	// Scale from the range of the motors to the range of the specific movement
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
@@ -44,61 +48,12 @@ void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
 	motor[leftmotor_2] = power[2];
 	motor[rightmotor_2] = power[3];
 	#endif //two motors
-	#endif //no motors
-}
-
-void setMovementFromJoystick(int forward, int right, int clockwise) {
-
-	// Scale from the range of the joystick to the range of the motors
-	forward = correctJoystick(forward);
-	right = correctJoystick(right);
-	clockwise = correctJoystick(clockwise);
-
-   // the rest of the code is in setMovement()
-   setMovement(forward, right, clockwise);
-}
-
-void setMovementFromJoystickExp(int forward, int right, int clockwise) {
-	forward = correctJoystickExp(forward);
-	right = correctJoystickExp(right);
-	clockwise = correctJoystickExp(clockwise);
-
-   setMovement(forward, right, clockwise);
-}
-
-void setMovementFromJoystickComposite(int forward, int right, int clockwise) {
-	forward = correctJoystickComposite(forward);
-	right = correctJoystickComposite(right);
-	clockwise = correctJoystickComposite(clockwise);
-
-	setMovement(forward, right, clockwise);
-}
-
-// shortcut
-void setMovement(byte forward, byte clockwise) {
-	setMovement(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystick(int forward, int clockwise) {
-   setMovementFromJoystick(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystickExp(int forward, int clockwise) {
-   setMovementFromJoystickExp(forward, 0, clockwise);
-}
-
-// shortcut
-void setMovementFromJoystickComposite(int forward, int clockwise) {
-	setMovementFromJoystickComposite(forward, 0, clockwise);
 }
 
 // Returns a number -100 to +100
@@ -107,16 +62,16 @@ byte correctJoystick(int joyval) {
 }
 
 byte correctJoystickExp(int joyval) {
-   byte correctVal = abs(correctJoystick(joyval));
-   correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / MOTOR_MAX_POWER);
-   correctVal -= 1;
-   return sgn(joyval) * correctVal;
+	byte correctVal = abs(correctJoystick(joyval));
+	correctVal = (byte)pow(MOTOR_MAX_POWER + 1, (float)correctVal / MOTOR_MAX_POWER);
+	correctVal -= 1;
+	return sgn(joyval) * correctVal;
 }
 
 byte correctJoystickComposite(int joyval) {
 	byte linear = correctJoystick(joyval);
-	byte exp = correctJoystickExp(joyval);
-	return (exp + (JOYSTICK_LINEAR_WEIGHT * linear)) / (JOYSTICK_LINEAR_WEIGHT + 1);
+	byte expVar = correctJoystickExp(joyval);
+	return (expVar + (JOYSTICK_LINEAR_WEIGHT * linear)) / (JOYSTICK_LINEAR_WEIGHT + 1);
 }
 
 //deprecated: use setMovementFromJoystick() with the same arguments
@@ -135,14 +90,12 @@ void setMovementFromJoystick_old(int power, int turn) {
 		leftFinal *= 100 / abs(rightFinal);
 		rightFinal *= 100 / abs(rightFinal);
 	}
-#ifndef setting_noMotors
 	motor[leftmotor_1] = -leftFinal;
 	motor[rightmotor_1] = rightFinal;
-#ifndef setting_twoMotors
+	#ifndef setting_twoMotors
 	motor[leftmotor_2] = -leftFinal;
 	motor[rightmotor_2] = rightFinal;
-#endif
-#endif
+	#endif
 }
 
 //deprecated: use correctJoystick() with the same arguments

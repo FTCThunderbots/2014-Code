@@ -4,6 +4,8 @@
 // If we're using two-wheel mode, only use two encoders
 // This should be obvious
 
+#warn "(settings.c) Please set time vals for auto grabbing and auto backboard"
+
 #ifdef setting_twoMotors
 #ifndef setting_twoEncoders
 #define setting_twoEncoders
@@ -21,7 +23,17 @@
 #define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
-// Please keep this list alphabetized
+#ifndef TIMER_INCLUDEGUARD
+#include "timer.h"
+#endif
+
+#ifndef ENCODERS_INCLUDEGUARD
+#include "encoders.c"
+#endif
+
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
 
 #ifndef BACKGROUND_INCLUDEGUARD
 #include "background.c"
@@ -31,16 +43,20 @@
 #include "debug.c"
 #endif
 
-#ifndef DISTANCES_INCLUDEGUARD
-#include "distances.c"
-#endif
-
 #ifndef NXT_INCLUDEGUARD
 #include "nxt.c"
 #endif
 
-#ifndef FUNCTIONS_INCLUDEGUARD
-#include "functions.c"
+#ifndef GRAB_INCLUDEGUARD
+#include "grab.c"
+#endif
+
+#ifndef BACKBOARD_INCLUDEGUARD
+#include "backboard.c"
+#endif
+
+#ifndef TELEOP_INCLUDEGUARD
+#include "teleop.c"
 #endif
 
 #ifndef MATH_INCLUDEGUARD
@@ -51,22 +67,10 @@
 #include "movement.c"
 #endif
 
-#ifndef RULER_INCLUDEGUARD
-#include "ruler.c"
-#endif
-
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
 #endif
 
 #ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
-#endif
-
-#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
-#include "simplemovement.c"
-#endif
-
-#ifndef TIMER_INCLUDEGUARD
-#include "timer.c"
 #endif

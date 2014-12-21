@@ -13,48 +13,45 @@ void resetEncoders() {
 }
 
 // degrees to ticks
-long degreesToRotateTicks(float degrees) {
-	return ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
+int degreesToRotateTicks(float degrees) {
+	return (int)ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
 }
 
-long degreesToSwingTicks(float degrees) {
-	return ENCODER_TICKS_PER_SWING_DEGREE * degrees;
+int degreesToSwingTicks(float degrees) {
+	return (int)ENCODER_TICKS_PER_SWING_DEGREE * degrees;
+}
+
+int degreesToRawTicks(float degrees) {
+	//convert raw degrees into ticks for simple rotating mechanisms
+	return (int)ENCODER_TICKS_PER_DEGREE * degrees;
 }
 
 // ticks to degrees
 float rotateTicksToDegrees(long ticks) {
-	return ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
+	return (float)ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
 
 float swingTicksToDegrees(long ticks) {
-	return ticks / ENCODER_TICKS_PER_SWING_DEGREE;
+	return (float)ticks / ENCODER_TICKS_PER_SWING_DEGREE;
+}
+
+float rawTicksToDegrees(long ticks) {
+	return (float)ticks / ENCODER_TICKS_PER_DEGREE;
 }
 
 // inches to ticks
-long inchesToDriveTicks(float inches) {
-	return ENCODER_TICKS_PER_DRIVE_INCH * inches;
-}
-
-long inchesToStrafeTicks(float inches) {
-	return 	ENCODER_TICKS_PER_STRAFE_INCH * inches;
+int inchesToDriveTicks(float inches) {
+	return (int)ENCODER_TICKS_PER_DRIVE_INCH * inches;
 }
 
 // ticks to inches
 float driveTicksToInches(long ticks) {
-	return ticks / ENCODER_TICKS_PER_DRIVE_INCH;
-}
-
-float strafeTicksToInches(long ticks) {
-	return ticks / ENCODER_TICKS_PER_STRAFE_INCH;
+	return (float)ticks / ENCODER_TICKS_PER_DRIVE_INCH;
 }
 
 // centimeters to ticks
-long centimetersToDriveTicks(float centimeters) {
+int centimetersToDriveTicks(float centimeters) {
 	return inchesToDriveTicks(cmToIn(centimeters));
-}
-
-long centimetersToStrafeTicks(float centimeters) {
-	return inchesToStrafeTicks(cmToIn(centimeters));
 }
 
 // ticks to centimeters
@@ -62,6 +59,32 @@ float driveTicksToCentimeters(long ticks) {
 	return inToCm(driveTicksToInches(ticks));
 }
 
-float strafeTicksToCentimeters(long ticks) {
-	return inToCm(strafeTicksToInches(ticks));
+void moveFor(int ticks) {
+	//this will work for rotating in place and linear driving (forwards and backwards)
+	//might also work for strafing
+	resetEncoders();
+	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {/*wait*/
+		nxtDisplayCenteredTextLine(0, "%d", abs(leftEnc1));
+		nxtDisplayCenteredTextLine(1, "%d", abs(leftEnc2));
+		nxtDisplayCenteredTextLine(2, "%d", abs(rightEnc1));
+		nxtDisplayCenteredTextLine(3, "%d", abs(leftEnc2));
+	}
+	halt();
+	resetEncoders();
+}
+
+void swingLeftFor(int ticks) {
+	//incase you could not tell, this is for swinging to the left
+	resetEncoders();
+	while ((abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {/*wait*/}
+	halt();
+	resetEncoders();
+}
+
+void swingRightFor(int ticks) {
+	//incase you could not tell, this is for swinging to the right
+	resetEncoders();
+	while ((abs(leftEnc1) +abs(leftEnc2))/2 < abs(ticks)) {/*wait*/}
+	halt();
+	resetEncoders();
 }

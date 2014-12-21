@@ -7,9 +7,9 @@
 #include "debug.c"
 #endif
 
-#ifndef FUNCTIONS_INCLUDEGUARD
+/*#ifndef FUNCTIONS_INCLUDEGUARD
 #include "functions.c"
-#endif
+#endif*/
 
 #ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
@@ -19,10 +19,8 @@
 #include "nxt.c"
 #endif
 
-#ifndef TIMER_INCLUDEGUARD
-#include "timer.c"
-#endif
-
 void initializeRobot();
 void initializeAPI();
 task background();
+
+void SuppressUnreferencedWarnings();

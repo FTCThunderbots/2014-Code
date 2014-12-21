@@ -10,11 +10,9 @@
 #include "math.c"
 #endif
 
-// Trial code here: we'll discuss if we want to keep it
-#ifndef setting_noMotors
-
 #define leftEnc1 nMotorEncoder[leftmotor_1]
 #define rightEnc1 nMotorEncoder[rightmotor_1]
+
 #ifndef setting_twoEncoders // there are four encoders
 #define leftEnc2 nMotorEncoder[leftmotor_2]
 #define rightEnc2 nMotorEncoder[rightmotor_2]
@@ -23,52 +21,25 @@
 #define rightEnc2 nMotorEncoder[rightmotor_1]
 #endif
 
-#else
-
-byte encoderPlaceholder = 0;
-#define leftEnc1 encoderPlaceholder
-#define leftEnc2 encoderPlaceholder
-#define rightEnc1 encoderPlaceholder
-#define rightEnc2 encoderPlaceholder
-
-#endif
-
-// Encoder get/set shortcuts. Useful for iterators?
 void resetEncoders();
 
 // Unit conversions
-long degreesToRotateTicks(float degrees);
-long degreesToSwingTicks(float degrees);
+int degreesToRotateTicks(float degrees);
+int degreesToSwingTicks(float degrees);
+int degreesToRawTicks(float degrees);
 float rotateTicksToDegrees(long ticks);
 float swingTicksToDegrees(long ticks);
-long inchesToDriveTicks(float inches);
-long inchesToStrafeTicks(float inches);
+float rawTicksToDegrees(long ticks);
+int inchesToDriveTicks(float inches);
 float driveTicksToInches(long ticks);
-float strafeTicksToInches(long ticks);
-long centimetersToDriveTicks(float centimeters);
-long centimetersToStrafeTicks(float centimeters);
+int centimetersToDriveTicks(float centimeters);
 float driveTicksToCentimeters(long ticks);
-float strafeTicksToCentimeters(long ticks);
 
-/* 	You said to "make it prettier"
+//actual measurement code
+void moveFor(int ticks);
+void swingLeftFor(int ticks);
+void swingRightFor(int ticks);
 
-	  /-_-\
-	 /  /  \
-	/  /    \
-	\  \    /
-	 \__\__/
-	    \\
-	    -\\    ____
-	      \\  /   /
-	____   \\/___/
-	\   \ -//
-	 \___\//-
-	    -//
-	     \\
-	     //
-	    //-
-	  -//
-	  //
-	  \\
-	   \\
-*/
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif

@@ -52,16 +52,16 @@ float arrAbsmax(float *a, byte len) {
 
 // truncates an int to a byte range without overflowing
 byte truncateInt(int n) {
-   if (n > 127)
-      return 127;
-   if (n < -128)
-      return -128;
-   return (byte)n;
+	if (n > 127)
+		return 127;
+	if (n < -128)
+		return -128;
+	return (byte)n;
 }
 
 // will overload to int if need be
 byte scaleTo(byte value, byte *range, byte *scale) {
-   byte pol = sgn(value);
+	byte pol = sgn(value);
 	if (abs(value) < *range)
 		return 0;
 	if (abs(value) > *(range+1))
@@ -73,7 +73,7 @@ byte scaleTo(byte value, byte *range, byte *scale) {
 // Unit conversion functions
 
 float cmToIn(float cm) {
-	return cm /CM_PER_IN;
+	return cm / CM_PER_IN;
 }
 
 float inToCm(float in) {
@@ -106,12 +106,11 @@ float ftToM(float ft) {
 
 /* Commented until a use is needed
 int length(int x) {
-   x = abs(x);
-   int len = 0;
-   while (x > 0) {
-      len++;
-      x = x/10;
-   }
-   return len;
+	int len = 0;
+	while (x > 0) {
+		len++;
+		x = x/10;
+	}
+	return len;
 }
 */
