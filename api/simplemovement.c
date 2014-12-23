@@ -61,8 +61,5 @@ void rotateDegrees(float degrees, byte power) {
 
 void swingDegrees(float degrees, byte direction, byte power) {
 	swing(direction, power);
-	if (sgn(direction) == 1)
-		swingRightFor(degreesToSwingTicks(degrees));
-	else
-		swingLeftFor(degreesToSwingTicks(degrees));
+	swingFor(degreesToSwingTicks(degrees));
 }
