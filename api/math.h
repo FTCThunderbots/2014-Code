@@ -35,6 +35,3 @@ float cmToFt(float cm);
 float mToFt(float m);
 float ftToCm(float ft);
 float ftToM(float ft);
-
-// Numerical difference and length
-//int length(int x);

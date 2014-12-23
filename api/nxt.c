@@ -14,9 +14,6 @@ int setAutoDelay() {
 			delay++;
 		if (nNxtButtonPressed == 2)
 			delay--;
-		/*
-		if (delay > 15)
-			delay = 0;*/
 		if (delay < 0)
 			delay = 0;
 		if (nNxtButtonPressed == 0)

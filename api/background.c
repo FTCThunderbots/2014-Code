@@ -25,7 +25,7 @@ task background() {
         }
 }
 
-void SuppressUnreferencedWarnings() {
+static void suppressUnreferencedWarnings() {
         int a = BACKBOARD_MOTOR_UP_POS;
         int b = BACKBOARD_MOTOR_DOWN_POS;
         a += b;

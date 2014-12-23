@@ -103,14 +103,3 @@ float ftToCm(float ft) {
 float ftToM(float ft) {
 	return inToM(IN_PER_FT*ft);
 }
-
-/* Commented until a use is needed
-int length(int x) {
-	int len = 0;
-	while (x > 0) {
-		len++;
-		x = x/10;
-	}
-	return len;
-}
-*/
