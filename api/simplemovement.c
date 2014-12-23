@@ -52,14 +52,17 @@ void swingSeconds(float secs, byte direction, byte power) {
 void driveInches(float inches, byte power) {
 	drive(power);
 	moveFor(inchesToDriveTicks(inches));
+	halt();
 }
 
 void rotateDegrees(float degrees, byte power) {
 	rotate(power);
 	moveFor(degreesToRotateTicks(degrees));
+	halt();
 }
 
 void swingDegrees(float degrees, byte direction, byte power) {
 	swing(direction, power);
 	swingFor(degreesToSwingTicks(degrees));
+	halt();
 }

@@ -33,8 +33,8 @@ const int ENCODER_TICKS_PER_SWING_DEGREE = 26;
 const int ENCODER_TICKS_PER_DEGREE = 4; //should be exact (1440/360)
 
 // Functional motor constants
-const byte GRAB_MOTOR_SPEED = 35; //**UNTESTED**
-const int GRAB_MOTOR_TIME = 500; //**UNTESTED** msecs the motor moves
+const byte GRAB_MOTOR_SPEED = 35;
+const int GRAB_MOTOR_TIME = 300;
 const byte BACKBOARD_MOTOR_SPEED = 30;
 const int BACKBOARD_MOTOR_DOWN_TIME = 500;
 const int BACKBOARD_MOTOR_UP_TIME = 565;

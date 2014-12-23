@@ -26,15 +26,11 @@
 
 #include "../api/api.c"
 
-task main() {
-	//encoder based off ramp and grab
+task main()
+{
 	initializeAPI();
 	initializeRobot();
-	startTask(matchStartListener);
-	int delay = setAutoDelay(); // implemented: api/nxt.c
-	while(!matchHasStarted) {/* wait for start*/}
-	waitSeconds(delay);
-	driveInches(84, -100);
-	grabGoal();
-
+	//grabGoal();
+	waitSeconds(2);
+	releaseGoal();
 }
