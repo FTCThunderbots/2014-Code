@@ -22,8 +22,10 @@ void setGoalHookJoystick() {
 }
 
 void setSweeperJoystick() {
-	if (joy2Btn(1) || joy2Btn(4))
+	if (joy2Btn(1))
 		motor[sweep] = SWEEP_MOTOR_SLOW_SPEED; // 40
+	else if (joy2Btn(4))
+		motor[sweep] = -SWEEP_MOTOR_SLOW_SPEED;
 	else if (joy2Btn(5) || joy2Btn(2))
 		motor[sweep] = -SWEEP_MOTOR_SPEED; // 100
 	else if (joy2Btn(7))

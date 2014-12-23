@@ -19,36 +19,30 @@
 
 #define setting_twoEncoders
 
+
 #include "../api/api.c"
 
-void displayDebugInfo();
-
-static const bool DISPLAY_DEBUG_INFORMATION = false;
+void calculatePosition();
 
 task main()
 {
-	initializeAPI();
-	initializeRobot();
-	eraseDisplay();
-	while (true) {
-		getJoystickSettings(joystick);
-		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
-		setGoalHookJoystick();
-		setBackboardJoystick();
-		setSweeperJoystick();
-		setConveyorJoystick();
-		displayDebugInfo();
-	}
+	calculatePosition();
 }
 
-void displayDebugInfo() {
-	if (DISPLAY_DEBUG_INFORMATION) {
-		//nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
-		//nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
-		//nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);
-		nxtDisplayCenteredTextLine(1, "left1: %d", motor[leftmotor_1]);
-		nxtDisplayCenteredTextLine(2, "left2: %d", motor[leftmotor_2]);
-		nxtDisplayCenteredTextLine(3, "right1: %d", motor[rightmotor_1]);
-		nxtDisplayCenteredTextLine(4, "right2: %d", motor[rightmotor_2]);
-	}
+byte s_sub1(byte currentVal) {
+	return (currentVal + 8) % 8;
+}
+
+void calculatePosition() {
+	byte currentVal = SensorValue(infrared);
+	byte sensor1 = s_sub1(SensorValue(infrared));
+	driveInches(60, -100);
+	byte sensor2 = s_sub1(SensorValue(infrared));
+	driveInches(72, -100);
+	byte sensor3 = s_sub1(SensorValue(infrared));
+	sensor1 -= sensor3;
+	sensor1 = abs(sensor1);
+	currentVal = sensor1 / 3;
+	while (true)
+		nxtDisplayCenteredTextLine(0, "%d", currentVal);
 }
