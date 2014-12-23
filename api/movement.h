@@ -11,12 +11,9 @@
 #include "settings.c"
 #endif
 
-void setMovement(byte forward, byte clockwise);
 static void setMovement(byte forward, byte right, byte clockwise);
+void setMovement(byte forward, byte clockwise);
 
-//byte correctJoystickExp(int joyval);
 byte correctJoystickComposite(int joyval);
+byte correctJoystickExp(int joyval);
 byte correctJoystick(int joyval);
-
-void setMovementFromJoystick_old(int power, int turn);
-float correctJoystick_old(int input);
