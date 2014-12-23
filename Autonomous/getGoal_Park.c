@@ -19,17 +19,20 @@
 #include "../api/api.c"
 
 task main() {
-	//time based off ramp, grab, drive straight to park zone
+	//encoder based off ramp, grab 60cm, drag to park zone
 	initializeAPI();
 	initializeRobot();
-	waitStartAPI();  // implemented: api/nxt.c
+	startTask(matchStartListener);
 	int delay = setAutoDelay(); // implemented: api/nxt.c
+	while(!matchHasStarted) {/* wait for start*/}
 	waitSeconds(delay);
-	setMovement(-40, 0);
-	wait1Msec(2500);
-	halt();
+	driveInches(84, -100);
 	grabGoal();
-	rotateSecondsCW(1.5);
-	waitSeconds(delay);
-	driveSeconds(2.5, 75);
+	swingDegrees(90, 1, 10);
+	driveInches(24, 100);
+	swingDegrees(90, -1, 10);
+	driveInches(74, 100);
+	swingDegrees(90, 1, 10);
+	driveInches(36, 50);
+	releaseGoal();
 }

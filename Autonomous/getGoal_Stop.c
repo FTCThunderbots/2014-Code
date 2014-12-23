@@ -17,10 +17,13 @@
 #include "../api/api.c"
 
 task main() {
-	//time based off ramp and grab
+	//encoder based off ramp and grab
 	initializeAPI();
 	initializeRobot();
-	waitForStart();
-	driveSecondsBW(2.0);
+	startTask(matchStartListener);
+	int delay = setAutoDelay(); // implemented: api/nxt.c
+	while(!matchHasStarted) {/* wait for start*/}
+	waitSeconds(delay);
+	driveInches(84, -100);
 	grabGoal();
 }
