@@ -10,6 +10,8 @@
 void initializeRobot() {
         halt();
         resetEncoders();
+        nMotorEncoder[grab] = 1;
+        nMotorEncoder[backboard] = 1;
 }
 
 void initializeAPI() {
