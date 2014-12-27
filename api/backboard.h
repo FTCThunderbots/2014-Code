@@ -6,3 +6,6 @@
 void engageBackboard();
 void disengageBackboard();
 void toggleBackboard();
+void engageBackboard_time();
+void disengageBackboard_time();
+void toggleBackboard_time();
