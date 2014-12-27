@@ -35,10 +35,12 @@ const int ENCODER_TICKS_PER_DEGREE = 4; //should be exact (1440/360)
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35;
 const int GRAB_MOTOR_TIME = 300;
+const int GRAB_MOTOR_DOWN_POS = 100;
+const int GRAB_MOTOR_UP_POS = 1;
 const byte BACKBOARD_MOTOR_SPEED = 30;
 const int BACKBOARD_MOTOR_DOWN_TIME = 500;
 const int BACKBOARD_MOTOR_UP_TIME = 565;
-const int BACKBOARD_MOTOR_UP_POS = 0; //when we get an encoder on this this is the base pos
+const int BACKBOARD_MOTOR_UP_POS = 1; //when we get an encoder on this this is the base pos
 const int BACKBOARD_MOTOR_DOWN_POS = 480; //120 degrees
 const byte SWEEP_MOTOR_SPEED = 100;
 const byte SWEEP_MOTOR_SLOW_SPEED = 40; // speed in 'slow' mode
