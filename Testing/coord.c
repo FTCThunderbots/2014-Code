@@ -4,6 +4,9 @@
 #define COORD_INCLUDEGAURD	true
 
 float x, z, orientation;
+x = 0.0;
+z = 0.0;
+orientation = 90.0;
 
 void updateDirection(float degrees) {
 	orientation = (180 / PI) * orientation + degrees;
