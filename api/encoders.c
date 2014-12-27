@@ -66,7 +66,11 @@ void moveFor(int ticks) {
 	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {}
 }
 
-void swingFor(int ticks) {
+void swingFor(int ticks, int speed) {
    resetEncoders();
+	 #ifdef setting_twoMotors
    while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+   #else
+   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {correctSwing(speed)}
+   #endif
 }

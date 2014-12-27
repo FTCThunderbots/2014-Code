@@ -23,6 +23,10 @@
 #define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
+#ifndef PID_INCLUDEGUARD
+#include "PID.h"
+#endif
+
 #ifndef TIMER_INCLUDEGUARD
 #include "timer.h"
 #endif

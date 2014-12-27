@@ -49,3 +49,4 @@ const byte CONVEYOR_MOTOR_SLOW_SPEED = 40;
 
 // Turn constant
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
+const byte CORRECTION_CONSTANT = 5; //used in PID
