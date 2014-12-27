@@ -51,13 +51,13 @@ void swingSeconds(float secs, byte direction, byte power) {
 // movement for inches, with power argument
 void driveInches(float inches, byte power) {
 	drive(power);
-	moveFor(inchesToDriveTicks(inches));
+	moveFor(inchesToDriveTicks(inches), power);
 	halt();
 }
 
 void rotateDegrees(float degrees, byte power) {
 	rotate(power);
-	moveFor(degreesToRotateTicks(degrees));
+	moveFor(degreesToRotateTicks(degrees), abs(power));
 	halt();
 }
 
