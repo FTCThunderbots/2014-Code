@@ -1,3 +1,4 @@
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Hubs,  S2, HTMotor,  none,     none,     none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
@@ -35,19 +36,34 @@ task main()
 }
 
 byte s_sub1(byte currentVal) {
-	return (currentVal + 8) % 8;
+	if (currentVal == 1)
+		return 9;
+	else if (currentVal == 2)
+		return 0;
+	else if (currentVal == 3)
+		return 1;
+	else if (currentVal == 4)
+		return 1;
+	else if (currentVal == 5)
+		return 2;
+	else if (currentVal == 6)
+		return 3;
+	else if (currentVal == 7)
+		return 4;
+	else if (currentVal == 8)
+		return 5;
+	else if (currentVal == 9)
+		return 7;
 }
 
 void calculatePosition() {
 	byte currentVal = SensorValue(infrared);
 	byte sensor1 = s_sub1(SensorValue(infrared));
-	driveInches(60, -100);
+	driveInches(36, -50);
 	byte sensor2 = s_sub1(SensorValue(infrared));
-	driveInches(72, -100);
+	driveInches(36, -50);
 	byte sensor3 = s_sub1(SensorValue(infrared));
-	sensor1 -= sensor3;
-	sensor1 = abs(sensor1);
-	currentVal = sensor1 / 3;
+	currentVal = abs(sensor1 + sensor2 + sensor3) / 3;
 	while (true)
 		nxtDisplayCenteredTextLine(0, "%d", currentVal);
 }
