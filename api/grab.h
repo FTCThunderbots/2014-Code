@@ -6,3 +6,6 @@
 void grabGoal();
 void releaseGoal();
 void toggleGrab();
+void grabGoal_time();
+void releaseGoal_time();
+void toggleGrab_time();

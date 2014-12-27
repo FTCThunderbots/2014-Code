@@ -7,14 +7,16 @@ static bool isGoalGrabbed = false;
 
 void grabGoal() {
 	motor[grab] = GRAB_MOTOR_SPEED;
-	wait1Msec(GRAB_MOTOR_TIME);
+	nMotorEncoderTarget[grab] = GRAB_MOTOR_DOWN_POS;
+	while (nMotorRunState[grab] != runStateIdle) {}
 	motor[grab] = 0;
 	isGoalGrabbed = true;
 }
 
 void releaseGoal() {
 	motor[grab] = -GRAB_MOTOR_SPEED;
-	wait1Msec(GRAB_MOTOR_TIME);
+	nMotorEncoderTarget[grab] = GRAB_MOTOR_UP_POS;
+	while (nMotorRunState[grab] != runStateIdle) {}
 	motor[grab] = 0;
 	isGoalGrabbed = false;
 }
@@ -24,4 +26,25 @@ void toggleGrab() {
 		releaseGoal();
 	else
 		grabGoal();
+}
+
+void grabGoal_time() {
+	motor[grab] = GRAB_MOTOR_SPEED;
+	wait1Msec(GRAB_MOTOR_TIME);
+	motor[grab] = 0;
+	isGoalGrabbed = true;
+}
+
+void releaseGoal_time() {
+	motor[grab] = -GRAB_MOTOR_SPEED;
+	wait1Msec(GRAB_MOTOR_TIME);
+	motor[grab] = 0;
+	isGoalGrabbed = false;
+}
+
+void toggleGrab_time() {
+	if (isGoalGrabbed)
+		releaseGoal_time();
+	else
+		grabGoal_time();
 }
