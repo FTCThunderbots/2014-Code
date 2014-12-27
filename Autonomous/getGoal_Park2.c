@@ -36,11 +36,10 @@ task main() {
 	waitSeconds(delay);
 	driveInches(84, -100);
 	grabGoal();
-	swingDegrees(90, 1, 10);
 	driveInches(24, 100);
-	swingDegrees(90, -1, 10);
-	driveInches(74, 100);
-	swingDegrees(90, 1, 10);
-	driveInches(36, 50);
+	swingDegrees(45, 1, 10);
+	driveInches(68, 100);
+	swingDegrees(315, 1, 10);
+	driveInches(20, -10);
 	releaseGoal();
 }
