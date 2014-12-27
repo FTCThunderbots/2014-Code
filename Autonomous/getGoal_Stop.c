@@ -36,5 +36,4 @@ task main() {
 	waitSeconds(delay);
 	driveInches(84, -100);
 	grabGoal();
-
 }
