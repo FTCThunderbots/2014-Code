@@ -11,22 +11,26 @@
 * Add support for a setting_noEncoders macro, as well as twoMotors and noMotors
 
 #Code cleanup:
-* Alphabetize includes list
-* Move settings.c to root folder so it's easier to access
-* Reorganize unused constants in settings.c
+* ~~Alphabetize includes list~~
+* ~~Move settings.c to root folder so it's easier to access~~
+* ~~Reorganize unused constants in settings.c~~
 * Rewrite or remove the debug stream system
-* Fix include statements in encoders.h and simplemovement.h
-* Implement differing up/down times for the grab motor
-* Examine legitimacy and neccessity of many of the functions in math.c
+* ~~Fix include statements in encoders.h and simplemovement.h~~
+* ~~Implement differing up/down times for the grab motor~~
+* Implement grab_is_motor and related macros
+* ~~Examine legitimacy and neccessity of many of the functions in math.c~~
 * Ruler system?
 * Rewrite setAutoDelay to be better
 * Re-implement the custom wait for start system
 * Delete sensors.c / sensors.h
 * (?) Add function files to a subfolder of /api/
-* Clean up the mess that simplemovement has become
+* ~~Clean up the mess that simplemovement has become~~
+* Fix goal/backboard functions in teleop.c
+
+* Add in new move functions with only time/distance and a default power
 
 #Post-Competition Cleanup:
-* Add polarity for move seconds and move distance
+* ~~Add polarity for move seconds and move distance~~
 
 #Long term goals:
 * Remove all constants from encoder system and replace with only math, while still retaining full functionality.
