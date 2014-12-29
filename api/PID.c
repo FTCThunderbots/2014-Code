@@ -12,7 +12,7 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 	ClearTimer(T1);
 	PID pid;
 	pid_zeroize(&pid);
-	if (sgn(motor[leftmotor_1]) == sgn(motor[rightmotor_1])) //we are driving
+	/*if (sgn(motor[leftmotor_1]) == sgn(motor[rightmotor_1])) //we are rotating
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 			prev_time = time1(T1);
@@ -24,7 +24,7 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 			#endif
 			wait10Msec(1);
 		}
-	else //we are rotating
+	else //we are driving */
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 			prev_time = time1(T1);
