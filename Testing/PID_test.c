@@ -24,45 +24,9 @@
 
 #define setting_twoEncoders
 
-#include "coord.c"
-
-void rotateDegreesImp(int degrees, byte power);
+#include "../api/api.c"
 
 task main()
 {
-	setDefaults();
-	driveInches(48, -25);
-	updateCoords(-48);
-	swingDegrees(180, 1, -50);
-	rotateDegreesImp(200, -50);
-	updateDirection(-180);
-	updateCoords(18);
-	driveInches(52, -50);
-	grabGoal();
-	updateCoords(-52);
-	waitDeciseconds(10);
-	driveInches(96, 50);
-	updateCoords(96);
-	rotateDegreesImp(36, 50);
-	updateDirection(36);
-	rotateDegreesImp(180, 25);
-	updateDirection(180);
-	driveInches(6, -25);
-	updateCoords(-6);
-	releaseGoal();
-	driveInches(12, 25);
-	rotateDegreesImp(180, 50);
-	while (true) {
-		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
-		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
-		nxtDisplayCenteredTextLine(2, "O is: %0.01f", (readValues('o') * 180 / PI));
-	}
-}
-
-void rotateDegreesImp(int degrees, byte power) {
-		if (power < 0)
-			degrees -= 3;
-		if (power > 0)
-			degrees -= 5;
-		rotateDegrees(degrees, power);
+	driveInches(50, -50);
 }
