@@ -21,6 +21,7 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 			#ifndef setting_twoMotors
 			motor[leftmotor_2] = sgn(motor[leftmotor_2])*speed + sgn(motor[leftmotor_2])*pid.control;
 			motor[rightmotor_2] = sgn(motor[rightmotor_2])*speed - sgn(motor[rightmotor_2])*pid.control;
+			#endif
 			wait10Msec(1);
 		}
 	else //we are driving
@@ -32,6 +33,7 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 			#ifndef setting_twoMotors
 			motor[leftmotor_2] = speed + pid.control;
 			motor[rightmotor_2] = speed - pid.control;
+			#endif
 			wait10Msec(1);
 		}
 	prev_time = 0;
@@ -55,6 +57,7 @@ void swingFor(int ticks, int speed) {
      } else {
      	motor[leftmotor_1] = speed + pid.control;
      	motor[leftmotor_2] = speed - pid.control;
+     }
    }
    #endif
 }
@@ -63,6 +66,10 @@ void pid_zeroize(PID* pid) {
     // set prev and integrated error to zero
     pid->prev_error = 0;
     pid->int_error = 0;
+    pid->windup_guard = INTEGRAL_CAP;
+    pid->proportional_gain = Kp;
+    pid->integral_gain = Ki;
+    pid->derivative_gain = Kd;
 }
 
 void pid_update(PID* pid, float curr_error, float dt) {

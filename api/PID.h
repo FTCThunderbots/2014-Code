@@ -11,10 +11,10 @@
 #endif
 
 typedef struct {
-    const float windup_guard = INTEGRAL_CAP;
-    const float proportional_gain = Kp;
-    const float integral_gain = Ki;
-    const float derivative_gain = Kd;
+    float windup_guard;
+    float proportional_gain;
+    float integral_gain;
+    float derivative_gain;
     float prev_error;
     float int_error;
     float control;
