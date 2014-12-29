@@ -65,7 +65,7 @@ void calculatePosition() {
 	byte sensor2 = s_sub1(SensorValue(infrared));
 	driveInches(36, -50);
 	byte sensor3 = s_sub1(SensorValue(infrared));
-	currentVal = abs(sensor1 + sensor2 + sensor3) / 3;
+	currentVal = s_sub1(abs(sensor1 + sensor2 + sensor3) / 3);
 	while (true)
 		nxtDisplayCenteredTextLine(0, "%d", currentVal);
 }
