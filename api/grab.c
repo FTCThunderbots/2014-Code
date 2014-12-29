@@ -28,20 +28,23 @@ void toggleGrab() {
 		grabGoal();
 }
 
+//deprecated: use grabGoal()
 void grabGoal_time() {
 	motor[grab] = GRAB_MOTOR_SPEED;
-	wait1Msec(GRAB_MOTOR_TIME);
+	wait1Msec(GRAB_MOTOR_DOWN_TIME);
 	motor[grab] = 0;
 	isGoalGrabbed = true;
 }
 
+//deprecated: use releaseGoal()
 void releaseGoal_time() {
 	motor[grab] = -GRAB_MOTOR_SPEED;
-	wait1Msec(GRAB_MOTOR_TIME);
+	wait1Msec(GRAB_MOTOR_UP_TIME);
 	motor[grab] = 0;
 	isGoalGrabbed = false;
 }
 
+//deprecated: use toggleGrab()
 void toggleGrab_time() {
 	if (isGoalGrabbed)
 		releaseGoal_time();

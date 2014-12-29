@@ -4,8 +4,6 @@
 // If we're using two-wheel mode, only use two encoders
 // This should be obvious
 
-#warn "(settings.c) Please set time vals for auto grabbing and auto backboard"
-
 #ifdef setting_twoMotors
 #ifndef setting_twoEncoders
 #define setting_twoEncoders

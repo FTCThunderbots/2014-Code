@@ -28,6 +28,7 @@ void toggleBackboard() {
 		engageBackboard();
 }
 
+//deprecated: use engageBackboard()
 void engageBackboard_time() {
 	motor[backboard] = BACKBOARD_MOTOR_SPEED;
 	wait1Msec(BACKBOARD_MOTOR_UP_TIME);
@@ -35,6 +36,7 @@ void engageBackboard_time() {
 	isBackboardEngaged = true;
 }
 
+//deprecated: use disengageBackboard()
 void disengageBackboard_time() {
 	motor[backboard] = -BACKBOARD_MOTOR_SPEED;
 	wait1Msec(BACKBOARD_MOTOR_DOWN_TIME);
@@ -42,6 +44,7 @@ void disengageBackboard_time() {
 	isBackboardEngaged = false;
 }
 
+//deprecated: use toggleBackboard()
 void toggleBackboard_time() {
 	if (isBackboardEngaged)
 		disengageBackboard_time();
