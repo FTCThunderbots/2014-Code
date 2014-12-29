@@ -1,17 +1,19 @@
 // PID.c
 //This is where we code the PID.
 
+#include "PID.h"
+
 void correctLinear(int speed) {
 	// the P (proportional)
 	int turnPower = nMotorEncoder[rightmotor_1] - nMotorEncoder[leftmotor_1];
 	turnPower = BOUND((int)(turnPower*Kp), -10, 10);
 
 
-	motor[leftmotor_1] = BOUND(speed + turnPower, -MAX_MOTOR_POWER, MAX_MOTOR_POWER);
-	motor[rightmotor_1] = BOUND(speed - turnPower, -MAX_MOTOR_POWER, MAX_MOTOR_POWER);
+	motor[leftmotor_1] = BOUND(speed + turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
+	motor[rightmotor_1] = BOUND(speed - turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
 	#ifndef setting_twoMotors
-	motor[leftmotor_2] = BOUND(speed + turnPower, -MAX_MOTOR_POWER, MAX_MOTOR_POWER);
-	motor[rightmotor_2] = BOUND(speed - turnPower, -MAX_MOTOR_POWER, MAX_MOTOR_POWER);
+	motor[leftmotor_2] = BOUND(speed + turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
+	motor[rightmotor_2] = BOUND(speed - turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
 	#endif
 }
 
@@ -55,11 +57,11 @@ void pid_zeroize(PID* pid) {
     pid->int_error = 0;
 }
 
-void pid_update(PID* pid, double curr_error, double dt) {
-    double diff;
-    double p_term;
-    double i_term;
-    double d_term;
+void pid_update(PID* pid, float curr_error, float dt) {
+    float diff;
+    float p_term;
+    float i_term;
+    float d_term;
 
     // integration with windup guarding
     pid->int_error += (curr_error * dt);

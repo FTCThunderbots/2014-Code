@@ -1,4 +1,4 @@
-// settings.h
+// settings.c
 // Contains all setting and configuration constants for the robot
 // Different groups of settings should be separated by comments
 

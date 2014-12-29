@@ -24,7 +24,7 @@
 #endif
 
 #ifndef PID_INCLUDEGUARD
-#include "PID.h"
+#include "PID.c"
 #endif
 
 #ifndef TIMER_INCLUDEGUARD

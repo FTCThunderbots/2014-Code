@@ -6,14 +6,18 @@
 
 #define BOUND(n, l, h) (((n)<(l)) ? (l) : ((n)>(h)) ? (h) : (n))
 
+#ifndef SETTINGS_INCLUDEGUARD
+#include "settings.c"
+#endif
+
 typedef struct {
-    double windup_guard;
-    double proportional_gain;
-    double integral_gain;
-    double derivative_gain;
-    double prev_error;
-    double int_error;
-    double control;
+    float windup_guard;
+    float proportional_gain;
+    float integral_gain;
+    float derivative_gain;
+    float prev_error;
+    float int_error;
+    float control;
 } PID;
 
 void correctLinear(int speed); //the correction algorithm for linear movement (driving)
@@ -24,4 +28,9 @@ void correctSwing(int speed); //corrects for swing, will only be necessary if th
 #endif
 
 void pid_zeroize(PID* pid);
-void pid_update(PID* pid, double curr_error, double dt);
+void pid_update(PID* pid, float curr_error, float dt);
+
+
+#ifndef ENCODERS_INCLUDEGUARD
+#include "encoders.c"
+#endif

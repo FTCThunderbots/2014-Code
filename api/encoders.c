@@ -63,7 +63,8 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
-	if (sgn(motor[leftmotor_1]) != sgn(motor[rightmotor_1]) //we are rotating
+	ClearTimer(T1);
+	if (sgn(motor[leftmotor_1]) != sgn(motor[rightmotor_1])) //we are rotating
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {correctRotate(speed);}
 	else //we are driving
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {correctLinear(speed);}
