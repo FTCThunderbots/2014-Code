@@ -25,16 +25,37 @@
 #define setting_twoEncoders
 
 #include "coord.c"
-// New Coordinate System File
+
+void rotateDegreesImp(int degrees, byte power);
 
 task main()
 {
-	driveInches(36, 50);
-	updateCoords(36);
-	rotateDegrees(90);
-	updateDirection(90);
-	driveInches(36, 50);
-	updateCoords(36);
-	while (true)
-		nxtDisplayCenteredTextLine(0, "X is: %0.01f Z is: %0.01f O: is %0.01f", readValues('x'), readValues('z'), readValues('o'));
+	setDefaults();
+	driveInches(48, -25);
+	updateCoords(-48);
+	swingDegrees(180, 1, -50);
+	rotateDegreesImp(200, -50);
+	updateDirection(-180);
+	updateCoords(18);
+	driveInches(52, -50);
+	grabGoal();
+	updateCoords(-52);
+	waitDeciseconds(10);
+	driveInches(48, 50);
+	releaseGoal();
+	driveInches(12, 50);
+	rotateDegreesImp(180, 100);
+	while (true) {
+		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
+		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
+		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+	}
+}
+
+void rotateDegreesImp(int degrees, byte power) {
+		if (power < 0)
+			degrees -= 3;
+		if (power > 0)
+			degrees -= 5;
+		rotateDegrees(degrees, power);
 }

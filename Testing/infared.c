@@ -54,6 +54,8 @@ byte s_sub1(byte currentVal) {
 		return 5;
 	else if (currentVal == 9)
 		return 7;
+
+	return 9;
 }
 
 void calculatePosition() {
