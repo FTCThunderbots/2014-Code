@@ -41,10 +41,10 @@ task main()
 	grabGoal();
 	updateCoords(-52);
 	waitDeciseconds(10);
-	driveInches(48, 50);
-	releaseGoal();
-	driveInches(12, 50);
-	rotateDegreesImp(180, 100);
+	driveInches(120, 50);
+	rotateDegreesImp(36, 50);
+	rotateDegreesImp(180, 25);
+	driveInches(12, -25);
 	while (true) {
 		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
 		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
