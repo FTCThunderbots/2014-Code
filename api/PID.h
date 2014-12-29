@@ -11,21 +11,17 @@
 #endif
 
 typedef struct {
-    float windup_guard;
-    float proportional_gain;
-    float integral_gain;
-    float derivative_gain;
+    const float windup_guard = INTEGRAL_CAP;
+    const float proportional_gain = Kp;
+    const float integral_gain = Ki;
+    const float derivative_gain = Kd;
     float prev_error;
     float int_error;
     float control;
 } PID;
 
-void correctLinear(int speed); //the correction algorithm for linear movement (driving)
-void correctRotate(int posSpeed); //the correction algorithm for rotation
-
-#ifndef setting_twoMotors
-void correctSwing(int speed); //corrects for swing, will only be necessary if there is a four wheel drive
-#endif
+void moveFor(int ticks, int speed);
+void swingFor(int ticks, int speed);
 
 void pid_zeroize(PID* pid);
 void pid_update(PID* pid, float curr_error, float dt);

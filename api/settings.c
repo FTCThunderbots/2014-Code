@@ -23,7 +23,7 @@ const float ROTATE_POWER_WEIGHT = 1.0;
 const float STRAFE_POWER_WEIGHT = 1.0;
 
 // Motor Constants
-const byte MOTOR_MIN_POWER = 0; //not yet implemented
+const byte MOTOR_MIN_POWER = 5;
 const byte MOTOR_MAX_POWER = 100;
 
 // Encoder Settings
@@ -51,5 +51,8 @@ const byte CONVEYOR_MOTOR_SLOW_SPEED = 40;
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
 //PID Constants
-const byte CORRECTION_CONSTANT = 5; //used in PID
-#define Kp 0.1 //we may need to tune this
+//DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING!!!
+#define INTEGRAL_CAP 10
+#define Kp 0.2
+#define Ki 0.01
+#define Kd 1

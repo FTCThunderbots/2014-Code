@@ -3,53 +3,61 @@
 
 #include "PID.h"
 
-void correctLinear(int speed) {
-	// the P (proportional)
-	int turnPower = nMotorEncoder[rightmotor_1] - nMotorEncoder[leftmotor_1];
-	turnPower = BOUND((int)(turnPower*Kp), -10, 10);
+static int prev_time = 0;
 
-
-	motor[leftmotor_1] = BOUND(speed + turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
-	motor[rightmotor_1] = BOUND(speed - turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
-	#ifndef setting_twoMotors
-	motor[leftmotor_2] = BOUND(speed + turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
-	motor[rightmotor_2] = BOUND(speed - turnPower, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
-	#endif
-}
-
-void correctRotate(int posSpeed) {
-
-}
-
-#ifndef setting_twoMotors
-void correctSwing(int speed) {
-	if (motor[leftmotor_1] != 0) {
-		if (leftEnc1 < leftEnc2) {
-			if (abs(motor[leftmotor_1]) < abs(speed) - 4)
-				motor[leftmotor_1] += CORRECTION_CONSTANT;
-			else
-				motor[leftmotor_2] -= CORRECTION_CONSTANT;
-		} else if (leftEnc1 > leftEnc2) {
-			if (abs(motor[leftmotor_2]) < abs(speed) - 4)
-				motor[leftmotor_2] += CORRECTION_CONSTANT;
-			else
-				motor[leftmotor_1] -= CORRECTION_CONSTANT;
+void moveFor(int ticks, int speed) { //speed is positive for rotating
+	//this will work for rotating in place and linear driving (forwards and backwards)
+	//might also work for strafing
+	resetEncoders();
+	ClearTimer(T1);
+	PID pid;
+	pid_zeroize(&pid);
+	if (sgn(motor[leftmotor_1]) != sgn(motor[rightmotor_1])) //we are rotating
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
+			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
+			prev_time = time1(T1);
+			motor[leftmotor_1] = sgn(motor[leftmotor_1])*speed + sgn(motor[leftmotor_1])*pid.control;
+			motor[rightmotor_1] = sgn(motor[rightmotor_1])*speed - sgn(motor[rightmotor_1])*pid.control;
+			#ifndef setting_twoMotors
+			motor[leftmotor_2] = sgn(motor[leftmotor_2])*speed + sgn(motor[leftmotor_2])*pid.control;
+			motor[rightmotor_2] = sgn(motor[rightmotor_2])*speed - sgn(motor[rightmotor_2])*pid.control;
+			wait10Msec(1);
 		}
-	} else {
-		if (rightEnc1 < rightEnc2) {
-			if (abs(motor[rightmotor_1]) < abs(speed) - 4)
-				motor[rightmotor_1] += CORRECTION_CONSTANT;
-			else
-				motor[rightmotor_2] -= CORRECTION_CONSTANT;
-		} else if (rightEnc1 > rightEnc2) {
-			if (abs(motor[rightmotor_2]) < abs(speed) - 4)
-				motor[rightmotor_2] += CORRECTION_CONSTANT;
-			else
-				motor[rightmotor_1] -= CORRECTION_CONSTANT;
+	else //we are driving
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
+			pid_update(&pid, rightEnc1 - leftEnc1, time1(T1) - prev_time);
+			prev_time = time1(T1);
+			motor[leftmotor_1] = speed + pid.control;
+			motor[rightmotor_1] = speed - pid.control;
+			#ifndef setting_twoMotors
+			motor[leftmotor_2] = speed + pid.control;
+			motor[rightmotor_2] = speed - pid.control;
+			wait10Msec(1);
 		}
-	}
+	prev_time = 0;
 }
-#endif
+
+void swingFor(int ticks, int speed) {
+   resetEncoders();
+   ClearTimer(T1);
+   PID pid;
+   pid_zeroize(&pid);
+	 #ifdef setting_twoMotors
+   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+   #else
+   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
+     pid_update(&pid, (motor[leftmotor_1] <= MOTOR_MIN_POWER) ? rightEnc2 - rightEnc1 : leftEnc2 - leftEnc1, time1(T1) - prev_time);
+     // ^^^ calculates pid based on which side is moving
+     prev_time = time1(T1);
+     if (motor[leftmotor_1] <= MOTOR_MIN_POWER) {
+       motor[rightmotor_1] = speed + pid.control;
+       motor[rightmotor_2] = speed - pid.control;
+     } else {
+     	motor[leftmotor_1] = speed + pid.control;
+     	motor[leftmotor_2] = speed - pid.control;
+   }
+   #endif
+}
 
 void pid_zeroize(PID* pid) {
     // set prev and integrated error to zero
@@ -79,7 +87,7 @@ void pid_update(PID* pid, float curr_error, float dt) {
     d_term = (pid->derivative_gain   * diff);
 
     // summation of terms
-    pid->control = p_term + i_term + d_term;
+    pid->control = BOUND(p_term + i_term + d_term, -MOTOR_MAX_POWER, MOTOR_MAX_POWER);
 
     // save current error as previous error for next iteration
     pid->prev_error = curr_error;

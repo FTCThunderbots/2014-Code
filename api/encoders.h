@@ -35,10 +35,6 @@ float driveTicksToInches(long ticks);
 int centimetersToDriveTicks(float centimeters);
 float driveTicksToCentimeters(long ticks);
 
-//actual measurement code
-void moveFor(int ticks, int speed);
-void swingFor(int ticks, int speed);
-
 #ifndef SIMPLEMOVEMENT_INCLUDEGUARD
 #include "simplemovement.c"
 #endif
