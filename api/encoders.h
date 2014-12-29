@@ -2,12 +2,12 @@
 // Header file for encoders.c
 #define ENCODERS_INCLUDEGUARD
 
-#ifndef SETTINGS_INCLUDEGUARD
-#include "settings.c"
-#endif
-
 #ifndef MATH_INCLUDEGUARD
 #include "math.c"
+#endif
+
+#ifndef SETTINGS_INCLUDEGUARD
+#include "settings.c"
 #endif
 
 #define leftEnc1 nMotorEncoder[leftmotor_1]

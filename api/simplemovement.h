@@ -11,6 +11,10 @@
 #include "movement.c"
 #endif
 
+#ifndef PID_INCLUDEGUARD
+#include "pid.c"
+#endif
+
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
 #endif

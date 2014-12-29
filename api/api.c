@@ -23,6 +23,10 @@
 #define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
+#ifndef SETTINGS_INCLUDEGUARD
+#include "settings.c"
+#endif
+
 #ifndef BACKBOARD_INCLUDEGUARD
 #include "backboard.c"
 #endif
@@ -61,10 +65,6 @@
 
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
-#endif
-
-#ifndef SETTINGS_INCLUDEGUARD
-#include "settings.c"
 #endif
 
 #ifndef SIMPLEMOVEMENT_INCLUDEGUARD
