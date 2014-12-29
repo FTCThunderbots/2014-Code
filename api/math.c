@@ -8,41 +8,6 @@
 
 // Maximum of range functions
 
-int arrmax(int *a, byte len) {
-	int cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = MAX(cummax, *(a+i));
-	return cummax;
-}
-
-int arrAbsmax(int *a, byte len) {
-	int cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = ABSMAX(cummax, *(a+i));
-	return cummax;
-}
-
-byte arrmax(byte *a, byte len) {
-	byte cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = MAX(cummax, *(a+i));
-	return cummax;
-}
-
-byte arrAbsmax(byte *a, byte len) {
-	byte cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = ABSMAX(cummax, *(a+i));
-	return cummax;
-}
-
-float arrmax(float *a, byte len) {
-	float cummax = *a;
-	for (int i = 1; i < len; i++)
-		cummax = MAX(cummax, *(a+i));
-	return cummax;
-}
-
 float arrAbsmax(float *a, byte len) {
 	float cummax = *a;
 	for (int i = 1; i < len; i++)

@@ -1,8 +1,9 @@
 // math.h
 // Header file for math.c
 
-//macros
 #define MATH_INCLUDEGUARD
+
+// Unit conversion constants
 #define IN_PER_FT 12
 #define CM_PER_IN 2.54
 #define CM_PER_M 100
@@ -13,22 +14,16 @@
 #define MAX(a, b) (a >= b ? a : b)
 #define ABSMAX(a, b) (MAX(abs(a), abs(b)))
 
-// Maximum value functions
+// Misc functions
 
-int arrmax(int *a, byte len);
-int arrAbsmax(int  *a, byte len);
-byte arrmax(byte *a, byte len);
-byte arrAbsmax(byte *a, byte len);
-float arrmax(float *a, byte len);
 float arrAbsmax(float *a, byte len);
 byte truncateInt(int n);
+byte scaleTo(byte value, byte *range, byte *scale);
 
-//maybe overload to int if need be
-static byte scaleTo(byte value, byte *range, byte *scale);
+// Unit conversions
 
-// Unit conversion functions
-float inToCm(float in);
 float cmToIn(float cm);
+float inToCm(float in);
 float mToIn(float m);
 float inToM(float in);
 float cmToFt(float cm);

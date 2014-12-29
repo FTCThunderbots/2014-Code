@@ -17,7 +17,7 @@ static void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
-   
+
    // multiply each power by its respective weight
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
@@ -41,20 +41,20 @@ static void setMovement(byte forward, byte right, byte clockwise) {
 		for (int i = 0; i < 4; i++)
 			power[i] /= scale;
 	}
-   
+
 	// Multiply all wheel powers by the common movement scale
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
-      
-   // Finally, set the motor powers
-   #ifndef setting_noMotors
+
+  // Finally, set the motor powers
+	#ifndef setting_noMotors
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
 	motor[leftmotor_2] = power[2];
 	motor[rightmotor_2] = power[3];
 	#endif //two motors
-   #endif //no motors
+	#endif //no motors
 }
 
 void setMovement(byte forward, byte clockwise) {
