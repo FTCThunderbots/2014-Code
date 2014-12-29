@@ -23,20 +23,8 @@
 #define JOYSTICKDRIVER_INCLUDEGUARD
 #endif
 
-#ifndef PID_INCLUDEGUARD
-#include "PID.c"
-#endif
-
-#ifndef TIMER_INCLUDEGUARD
-#include "timer.h"
-#endif
-
-#ifndef ENCODERS_INCLUDEGUARD
-#include "encoders.c"
-#endif
-
-#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
-#include "simplemovement.c"
+#ifndef BACKBOARD_INCLUDEGUARD
+#include "backboard.c"
 #endif
 
 #ifndef BACKGROUND_INCLUDEGUARD
@@ -47,20 +35,12 @@
 #include "debug.c"
 #endif
 
-#ifndef NXT_INCLUDEGUARD
-#include "nxt.c"
+#ifndef ENCODERS_INCLUDEGUARD
+#include "encoders.c"
 #endif
 
 #ifndef GRAB_INCLUDEGUARD
 #include "grab.c"
-#endif
-
-#ifndef BACKBOARD_INCLUDEGUARD
-#include "backboard.c"
-#endif
-
-#ifndef TELEOP_INCLUDEGUARD
-#include "teleop.c"
 #endif
 
 #ifndef MATH_INCLUDEGUARD
@@ -71,10 +51,30 @@
 #include "movement.c"
 #endif
 
+#ifndef NXT_INCLUDEGUARD
+#include "nxt.c"
+#endif
+
+#ifndef PID_INCLUDEGUARD
+#include "pid.c"
+#endif
+
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
 #endif
 
 #ifndef SETTINGS_INCLUDEGUARD
 #include "settings.c"
+#endif
+
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
+
+#ifndef TELEOP_INCLUDEGUARD
+#include "teleop.c"
+#endif
+
+#ifndef TIMER_INCLUDEGUARD
+#include "timer.h"
 #endif
