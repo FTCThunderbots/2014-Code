@@ -28,38 +28,39 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 			prev_time = time1(T1);
-			motor[leftmotor_1] = sgn(motor[leftmotor_1])*speed + sgn(motor[leftmotor_1])*pid.control;
-			motor[rightmotor_1] = sgn(motor[rightmotor_1])*speed + sgn(motor[rightmotor_1])*pid.control;
+			motor[leftmotor_1] = speed - sgn(motor[leftmotor_1])*pid.control;
+			motor[rightmotor_1] = -speed - sgn(motor[rightmotor_1])*pid.control;
 			#ifndef setting_twoMotors
-			motor[leftmotor_2] = sgn(motor[leftmotor_2])*speed + sgn(motor[leftmotor_2])*pid.control;
-			motor[rightmotor_2] = sgn(motor[rightmotor_2])*speed + sgn(motor[rightmotor_2])*pid.control;
+			motor[leftmotor_2] = speed - sgn(motor[leftmotor_2])*pid.control;
+			motor[rightmotor_2] = -speed - sgn(motor[rightmotor_2])*pid.control;
 			#endif
 			wait10Msec(1);
 		}
 	prev_time = 0;
 }
 
-void swingFor(int ticks, int speed) {
+void swingFor(int ticks, int direction, int speed) {
    resetEncoders();
    ClearTimer(T1);
    PID pid;
    pid_zeroize(&pid);
-	 #ifdef setting_twoMotors
-   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
-   #else
+   #ifndef setting_twoEncoders
    while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
-     pid_update(&pid, (motor[leftmotor_1] <= MOTOR_MIN_POWER) ? rightEnc2 - rightEnc1 : leftEnc2 - leftEnc1, time1(T1) - prev_time);
+     //BE WARNED, THIS HAS NOT BEEN TESTED!!! IT PROBABLY DOES NOT WORK!!!
+     pid_update(&pid, (sgn(direction) == -1) ? rightEnc2 - rightEnc1 : leftEnc2 - leftEnc1, time1(T1) - prev_time);
      // ^^^ calculates pid based on which side is moving
      prev_time = time1(T1);
-     if (motor[leftmotor_1] <= MOTOR_MIN_POWER) {
-       motor[rightmotor_1] = speed + pid.control;
-       motor[rightmotor_2] = speed - pid.control;
+     if (sgn(direction) == -1) {
+       motor[rightmotor_1] = -speed + sgn(speed)*pid.control;
+       motor[rightmotor_2] = -speed - sgn(speed)*pid.control;
      } else {
      	motor[leftmotor_1] = speed + pid.control;
      	motor[leftmotor_2] = speed - pid.control;
      }
    }
    #endif
+   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+   prev_time = 0;
 }
 
 void pid_zeroize(PID* pid) {

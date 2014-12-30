@@ -21,7 +21,7 @@ typedef struct {
 } PID;
 
 void moveFor(int ticks, int speed);
-void swingFor(int ticks, int speed);
+void swingFor(int ticks, int direction, int speed);
 
 void pid_zeroize(PID* pid);
 void pid_update(PID* pid, float curr_error, float dt);
