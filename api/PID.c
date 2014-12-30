@@ -12,27 +12,27 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 	ClearTimer(T1);
 	PID pid;
 	pid_zeroize(&pid);
-	/*if (sgn(motor[leftmotor_1]) == sgn(motor[rightmotor_1])) //we are rotating
+	if (sgn(motor[leftmotor_1]) == sgn(motor[rightmotor_1])) //we are rotating
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 			prev_time = time1(T1);
-			motor[leftmotor_1] = speed + pid.control;
-			motor[rightmotor_1] = speed - pid.control;
+			motor[leftmotor_1] = speed + sgn(motor[leftmotor_1])*pid.control;
+			motor[rightmotor_1] = speed - sgn(motor[rightmotor_1])*pid.control;
 			#ifndef setting_twoMotors
-			motor[leftmotor_2] = speed + pid.control;
-			motor[rightmotor_2] = speed - pid.control;
+			motor[leftmotor_2] = speed + sgn(motor[leftmotor_2])*pid.control;
+			motor[rightmotor_2] = speed - sgn(motor[rightmotor_1])*pid.control;
 			#endif
 			wait10Msec(1);
 		}
-	else //we are driving */
+	else //we are driving
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 			pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 			prev_time = time1(T1);
 			motor[leftmotor_1] = sgn(motor[leftmotor_1])*speed + sgn(motor[leftmotor_1])*pid.control;
-			motor[rightmotor_1] = sgn(motor[rightmotor_1])*speed - sgn(motor[rightmotor_1])*pid.control;
+			motor[rightmotor_1] = sgn(motor[rightmotor_1])*speed + sgn(motor[rightmotor_1])*pid.control;
 			#ifndef setting_twoMotors
 			motor[leftmotor_2] = sgn(motor[leftmotor_2])*speed + sgn(motor[leftmotor_2])*pid.control;
-			motor[rightmotor_2] = sgn(motor[rightmotor_2])*speed - sgn(motor[rightmotor_2])*pid.control;
+			motor[rightmotor_2] = sgn(motor[rightmotor_2])*speed + sgn(motor[rightmotor_2])*pid.control;
 			#endif
 			wait10Msec(1);
 		}
