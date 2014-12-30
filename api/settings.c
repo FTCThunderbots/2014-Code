@@ -4,7 +4,7 @@
 
 #define SETTINGS_INCLUDEGUARD
 
-#warn "(settings.c) Please set time vals for auto grabbing and auto backboard"
+#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35;
@@ -28,10 +28,10 @@ const byte CONVEYOR_MOTOR_SPEED = 100;
 const byte CONVEYOR_MOTOR_SLOW_SPEED = 40;
 
 // Encoder Settings
-const int ENCODER_TICKS_PER_DRIVE_INCH = 72;
-const int ENCODER_TICKS_PER_ROTATE_DEGREE = 11; // degrees the entire robot rotates
-const int ENCODER_TICKS_PER_SWING_DEGREE = 26; // degrees the entire robot rotates
-const int ENCODER_TICKS_PER_DEGREE = 4; //should be exact (1440/360)
+const float ENCODER_TICKS_PER_DRIVE_INCH = 72.0;
+const float ENCODER_TICKS_PER_ROTATE_DEGREE = 11.667; // degrees the entire robot rotates
+const float ENCODER_TICKS_PER_SWING_DEGREE = 21.9; // degrees the entire robot rotates
+const float ENCODER_TICKS_PER_DEGREE = 4.0; //should be exact (1440/360)
 
 //PID Constants
 //DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING!!!
