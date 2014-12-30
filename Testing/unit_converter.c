@@ -11,7 +11,7 @@ static float inchesConvert(length_t PARAM, float input) {
 	} else if (PARAM == CENTIMETER){
 		return input * 2.54;
 	}else if (PARAM == METER) {
-		return (input * 2.54) / 1000;
+		return (input * 2.54) / 100;
 	}
 
 	return 0;
@@ -25,7 +25,7 @@ static float feetConvert(length_t PARAM, float input) {
 	else if (PARAM == CENTIMETER)
 		return (input * 12) * 2.54;
 	else if (PARAM == METER)
-		return ((input * 12) * 2.54) / 1000;
+		return ((input * 12) * 2.54) / 100;
 	return 0;
 }
 
@@ -37,17 +37,17 @@ static float centimeterConvert(length_t PARAM, float input) {
 	else if (PARAM == CENTIMETER)
 		return input;
 	else if (PARAM == METER)
-		return input/1000;
+		return input/100;
 	return 0;
 }
 
 static float meterConvert(length_t PARAM, float input) {
 	if (PARAM == INCHES)
-		return (input / 1000) / 2.54;
+		return (input / 100) / 2.54;
 	else if (PARAM == FEET)
-		return ((input / 1000) / 2.54) / 12;
+		return ((input / 100) / 2.54) / 12;
 	else if (PARAM == CENTIMETER)
-		return input / 1000;
+		return input / 100;
 	else if (PARAM == METER)
 		return input;
 	return 0;

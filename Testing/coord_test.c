@@ -34,6 +34,7 @@ task main()
 	driveInches(48, -25);
 	updateCoords(-48);
 	swingDegrees(105, 1, -50);
+	updateDirection(-105);
 	driveInches(6, -25);
 	updateDirection(-90);
 	updateCoords(7);
@@ -42,10 +43,12 @@ task main()
 	updateDirection(-180);
 	updateCoords(18);
 	driveInches(60, -50);
+	updateCoords(-60);
 	grabGoal_time();
 	updateCoords(-60);
 	waitDeciseconds(10);
 	rotateDegreesImp(20, 50);
+	updateDirection(20);
 	waitDeciseconds(1);
 	driveInches(48, 50);
 	updateCoords(48);
