@@ -19,27 +19,27 @@ void rotate(byte power) {
 }
 
 void swing(byte direction, byte power) {
-	// direction: - for left, + or zero for right;
+	// direction: - for left, + or zero (don't use zero) for right;
 	setMovement(power, sgn(direction) * power);
 }
 
 // movement for time, with power arguments
 void driveSeconds(float secs, byte power) {
-	drive(power * sgn(secs));
+	drive(power);
 	ClearTimer(T1);
 	while(time1[T1] < abs(secs)*1000) {}
 	halt();
 }
 
 void rotateSeconds(float secs, byte power) {
-	rotate(power * sgn(secs));
+	rotate(power);
 	ClearTimer(T1);
 	while(time1[T1] < abs(secs)*1000) {}
 	halt();
 }
 
 void swingSeconds(float secs, byte direction, byte power) {
-	swing(direction, power * sgn(secs));
+	swing(direction, power);
 	ClearTimer(T1);
 	while(time1[T1] < abs(secs)*1000) {}
 	halt();
@@ -47,19 +47,19 @@ void swingSeconds(float secs, byte direction, byte power) {
 
 // movement for inches, with power argument
 void driveInches(float inches, byte power) {
-	drive(power * sgn(inches));
-	moveFor(inchesToDriveTicks(inches), power * sgn(inches));
+	drive(power);
+	moveFor(inchesToDriveTicks(inches), power);
 	halt();
 }
 
 void rotateDegrees(float degrees, byte power) {
-	rotate(power * sgn(degrees));
-	moveFor(degreesToRotateTicks(degrees), power * sgn(degrees));
+	rotate(power);
+	moveFor(degreesToRotateTicks(degrees), power);
 	halt();
 }
 
 void swingDegrees(float degrees, byte direction, byte power) {
-	swing(direction, power * sgn(degrees));
-	swingFor(degreesToSwingTicks(degrees), power * sgn(degrees));
+	swing(direction, power);
+	swingFor(degreesToSwingTicks(degrees), power);
 	halt();
 }
