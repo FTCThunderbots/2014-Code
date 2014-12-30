@@ -14,39 +14,39 @@ void resetEncoders() {
 
 // degrees to ticks
 int degreesToRotateTicks(float degrees) {
-	return (int)ENCODER_TICKS_PER_ROTATE_DEGREE * degrees;
+	return (int)(ENCODER_TICKS_PER_ROTATE_DEGREE * degrees);
 }
 
 int degreesToSwingTicks(float degrees) {
-	return (int)ENCODER_TICKS_PER_SWING_DEGREE * degrees;
+	return (int)(ENCODER_TICKS_PER_SWING_DEGREE * degrees);
 }
 
 int degreesToRawTicks(float degrees) {
 	//convert raw degrees into ticks for simple rotating mechanisms
-	return (int)ENCODER_TICKS_PER_DEGREE * degrees;
+	return (int)(ENCODER_TICKS_PER_DEGREE * degrees);
 }
 
 // ticks to degrees
 float rotateTicksToDegrees(long ticks) {
-	return (float)ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
+	return ticks / ENCODER_TICKS_PER_ROTATE_DEGREE;
 }
 
 float swingTicksToDegrees(long ticks) {
-	return (float)ticks / ENCODER_TICKS_PER_SWING_DEGREE;
+	return ticks / ENCODER_TICKS_PER_SWING_DEGREE;
 }
 
 float rawTicksToDegrees(long ticks) {
-	return (float)ticks / ENCODER_TICKS_PER_DEGREE;
+	return ticks / ENCODER_TICKS_PER_DEGREE;
 }
 
 // inches to ticks
 int inchesToDriveTicks(float inches) {
-	return (int)ENCODER_TICKS_PER_DRIVE_INCH * inches;
+	return (int)(ENCODER_TICKS_PER_DRIVE_INCH * inches);
 }
 
 // ticks to inches
 float driveTicksToInches(long ticks) {
-	return (float)ticks / ENCODER_TICKS_PER_DRIVE_INCH;
+	return ticks / ENCODER_TICKS_PER_DRIVE_INCH;
 }
 
 // centimeters to ticks
