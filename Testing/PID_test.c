@@ -28,5 +28,5 @@
 
 task main()
 {
-	swingDegrees(90, 1, 50);
+	driveInches(24, 50);
 }
