@@ -7,7 +7,7 @@ static bool isGoalGrabbed = false;
 
 void grabGoal() {
 	motor[grab] = GRAB_MOTOR_SPEED;
-	nMotorEncoderTarget[grab] = GRAB_MOTOR_DOWN_POS;
+	nMotorEncoderTarget[grab] = -GRAB_MOTOR_DOWN_POS;
 	while (nMotorRunState[grab] != runStateIdle) {}
 	motor[grab] = 0;
 	isGoalGrabbed = true;
