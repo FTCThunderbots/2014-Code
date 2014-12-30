@@ -29,5 +29,6 @@
 
 task main()
 {
-	nxtDisplayCenteredTextLine(0, "%0.1f", SensorValue(gyro));
+	while (true)
+		nxtDisplayCenteredTextLine(0, "%0.1f", SensorValue(gyro));
 }
