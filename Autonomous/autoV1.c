@@ -63,5 +63,6 @@ task main()
 		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
 		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
 		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+		nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue(compass));
 	}
 }

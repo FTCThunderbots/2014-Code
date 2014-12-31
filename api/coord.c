@@ -52,11 +52,11 @@ void gotoCoords(float newX, float newZ, float newO) {
         while (false) {}                // empty loop just for fun! :D
     }
     else if (newZ < z) {
-        while (readValues('z') > newX)
+        while (readValues('z') > newZ)
             moveWithDirection(1, -25);   // Low and slow is the way to go!
     }
     else if (newZ > z) {
-        while (readValues('z') < newX)
+        while (readValues('z') < newZ)
             moveWithDirection(1, -25);
     }
 
