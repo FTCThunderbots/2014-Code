@@ -54,8 +54,9 @@ task main()
     rotateDegreesImp(180, 100);
     releaseGoal_time();
 
-    alignToInitial();
-    moveWithDirection(12, 50);
+    alignToInitial();           // Align back to before the goal grab
+    rotateDegreesImp(20, -50);  // rotate -20 degrees
+    moveWithDirection(12, 50);  // move one foot, at power 50, while updating the coordinate system
 
     setMovement(0, 0);
 
