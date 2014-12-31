@@ -1,5 +1,7 @@
 #define COORD_INCLUDEGUARD
 
+#warn "All coord functions have not been thouroghly tested, use at your own risk."
+
 void updateDirection(float degrees);
 void updateCoords(float distance);
 void gotoCoords(float newX, float newZ, float newO);
