@@ -93,7 +93,7 @@ void setCoords(float newX, float newZ, float newO) {
 }
 
 void swingWithCoords(float degrees, byte direction, byte power) {
-    float arcLength = (float)sqrt(648) * degrees;
+    float arcLength = (float)sqrt(648) * (degrees * (PI / 180));
     swingDegrees(degrees, direction, power);
     updateDirection(degrees);
     updateCoords(arcLength * sgn(direction) * sgn(power));
