@@ -38,11 +38,11 @@ task main()
     swingWithCoords(105, 1, -50);
     moveWithDirection(6, -25);
     swingWithCoords(90, 1, -50);
-    rotateWithOrientation(180, -50);
+    rotateDegreesImp(180, -50);
     moveWithDirection(60, -50);
     grabGoal_time();
     waitDeciseconds(10);
-    rotateWithOrientation(20, 50);
+    rotateDegreesImp(20, 50);
     waitDeciseconds(1);
     moveWithDirection(108, 50);
     rotateDegreesImp(180, 100);
