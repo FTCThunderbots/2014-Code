@@ -30,7 +30,7 @@
 #include "compass_sensor.h"
 #include "coord.h"
 
-int initialCompassReading = SensorValue(compass);
+int initialCompassReading = 0;
 
 int getCompassReading() {
     return SensorValue(compass);
@@ -90,4 +90,8 @@ void swingDegreesImp(int degrees, byte direction, byte power) {
         swingDegreesImp(degOff, direction * sgnPower, power);
         return;
     }
+}
+
+void setInitial() {
+    initialCompassReading = SensorValue(compass);
 }

@@ -33,12 +33,18 @@ task main()
     initializeRobot();
     waitForStart();
 
-    setDefaults();
+    setInitial();       // Initialize the Compass and
+    setDefaults();      // Coordinate system values
+
     moveWithDirection(48, -25);
+    alignToInitial();
     swingDegreesImp(105, 1, -50);
     moveWithDirection(6, -25);
     swingDegreesImp(90, 1, -50);
     rotateDegreesImp(180, -50);
+
+    setInitial();
+
     moveWithDirection(60, -50);
     grabGoal_time();
     waitDeciseconds(10);
@@ -47,6 +53,9 @@ task main()
     moveWithDirection(108, 50);
     rotateDegreesImp(180, 100);
     releaseGoal_time();
+
+    alignToInitial();
+    moveWithDirection(12, 50);
 
     setMovement(0, 0);
 
