@@ -5,3 +5,4 @@ float readValues(char value);		/*'x' for x 'z' for z 'o' for orientation*/
 void rotateWithOrientation(int degrees, byte power);
 void moveWithDirection(float distance, byte power);
 void setCoords(float newX, float newZ, float newO);
+void swingWithCoords(float degrees, byte direction, byte power);
