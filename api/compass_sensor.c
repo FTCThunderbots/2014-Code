@@ -75,3 +75,19 @@ void rotateDegreesImp(int degrees, byte power) {    // "Imp" stands for 'improve
         return;
     }
 }
+
+void swingDegreesImp(int degrees, byte direction, byte power) {
+    int start = getCompassReading();
+    int checkDifference = degrees * sgn(power) * sgn(direction);
+
+    swingWithCoords(degrees, direction, power);
+
+    if ((start + checkDifference) == getCompassReading()) {
+        return;
+    } else {
+        int degOff = abs((start + checkDifference) - getCompassReading());
+        int sgnPower = sgn((start + checkDifference) - getCompassReading());
+        swingDegreesImp(degOff, direction * sgnPower, power);
+        return;
+    }
+}

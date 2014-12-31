@@ -35,9 +35,9 @@ task main()
 
     setDefaults();
     moveWithDirection(48, -25);
-    swingWithCoords(105, 1, -50);
+    swingDegreesImp(105, 1, -50);
     moveWithDirection(6, -25);
-    swingWithCoords(90, 1, -50);
+    swingDegreesImp(90, 1, -50);
     rotateDegreesImp(180, -50);
     moveWithDirection(60, -50);
     grabGoal_time();
