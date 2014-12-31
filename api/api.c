@@ -33,6 +33,14 @@
 #include "background.c"
 #endif
 
+#ifndef COMPASS_INCLUDEGAURD
+#include "compass_sensor.c"
+#endif
+
+#ifndef COORD_INCLUDEGAURD
+#include "coord.c"
+#endif
+
 #ifndef DEBUG_INCLUDEGUARD
 #include "debug.c"
 #endif
