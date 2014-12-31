@@ -1,9 +1,5 @@
 #include "coord.h"
 
-#define COORD_INCLUDEGAURD
-
-#define PI      3.1415926535823
-
 float x, z, orientation;
 
 void setDefaults() {

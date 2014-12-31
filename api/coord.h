@@ -1,3 +1,5 @@
+#define COORD_INCLUDEGUARD
+
 void updateDirection(float degrees);
 void updateCoords(float distance);
 void gotoCoords(float newX, float newZ, float newO);
