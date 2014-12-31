@@ -11,6 +11,9 @@
 #include "coord.h"
 #endif
 
+#warn "All compass code is depracated. We are using the Xander Drivers for all sensors"
+#warn "The default drivers do not account for noise. See the /api/Xander_Drivers directory for example use."
+
 int getCompassReading();
 int calculateAverageReading(int samples);
 void alignToCompassZero();
