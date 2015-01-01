@@ -8,6 +8,8 @@
 * Add support for a setting_noEncoders macro, as well as twoMotors (and possibly noMotors)
 * ~~Add a configuration replacement script~~
 * Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
+* Rewrite the coordinate system to listen to the motors, instead of needing to be updated
+* Change the config autopush to accept some config-related definitions and to copy them with the config
 
 #Code cleanup:
 ###API
