@@ -13,13 +13,12 @@ import os
         #print(os.path.join(dirname, filename))
 		
 def main():
-	defaultConfig = getDefaultConfig()
+	defaultConfig = [line for line in getDefaultConfig()]
 	#print(defaultConfig)
-	fileList = getFiles()
 	modified = 0
-	for file in fileList:
+	for file in getFiles():
 		modified += replaceConfig(defaultConfig, file)
-	print("%d files have been updated" % modified)
+	print("%d configurations have been replaced" % modified)
 		
 def getDefaultConfig():
 	for line in open('../Config/default_config.c'):
@@ -42,7 +41,7 @@ def replaceConfig(defaultConfig, filename):
 		while file[i].startswith("#pragma "):
 			i += 1
 		nonConfigLines = file[i:]
-		for l in nonConfigLines: print(l[:-1])
+		#print(nonConfigLines)
 		fileobj.close()
 		fileobj = open(filename, 'r+')
 		fileobj.truncate()
