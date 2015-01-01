@@ -1,34 +1,46 @@
 # linesWritten.py
 # Returns how many lines of code exist in it's path.
 
-# Please keep this list alphebetized
+'''
+A replacement for this program is:
+wc -l $(git ls-files)
+'''
 
-print("This program has been deprecated!")
-print("The command `wc -l $(git ls-files)'")
-print("Performs the same function. If you")
-print("only want to read the lines of executable")
-print("code use the command: ")
-print("`wc -l $(cat \".\List of Files.txt\"'")
-print("\nUnlike searchInFiles.py this program will")
-print("not be deleted as the commands are not simple.")
-print("\nCAUTION!!! The count is not accurate!")
+import os
+
+EXCLUDED_FOLDERS = (".git", "api\Xander_Drivers")
+EXCLUDED_FILES = ("","Batteries\\Battery Log 12-13-14.xlsx")
+ACCEPTED_EXTENSIONS = ('.c', '.h', '.py')
+
+def main():
+	lines = 0
+	for filename in getFiles():
+		lines += lengthOf(filename)
+	print("All the specified files contain a total of %d lines of code" % lines)
 
 def lengthOf(filename):
 	try:
-		return sum(1 for line in open('../' + filename))
+		return sum(1 for line in open(filename))
 	except:
 		print("There was an error and %s could not be read" % filename)
-		return 0;
+		return 0
 
-# Main code
-
-lines = 0
-for filename in open('../List of files.txt'):
-	if len(filename) > 2:
-		file = filename[:-1]
-		lines += lengthOf(file)
+def getFiles():
+	for dirname, dirnames, filenames in os.walk('..'):
+		if not dirnameIsBanned(dirname):
+			for file in filenames:
+				if not filenameIsBanned(file, dirname):
+					if isValidCode(file):
+						yield os.path.join(dirname, file)
+					
+def dirnameIsBanned(dirname):
+	dirname = dirname.lower()
+	return (True in ["".join(("\\",exFolder,"\\")).lower() in dirname or dirname.endswith("".join(("\\",exFolder)).lower()) for exFolder in EXCLUDED_FOLDERS])
 	
-print("All the specified files contain a total of %d lines of code" % lines)
-
-#wc can also count words, bytes, length of longes line, and characters.
-#The last time I (Daniel) checked we had about 100 KiB of code (99.88281250 KiB) and 10708 words.
+def filenameIsBanned(filename, dirname):
+	return (True in [os.path.join(dirname, filename) == os.path.join("..",exFile) for exFile in EXCLUDED_FILES])
+	
+def isValidCode(file):
+	return True in [file.endswith(ex) for ex in ACCEPTED_EXTENSIONS]
+	
+main()
