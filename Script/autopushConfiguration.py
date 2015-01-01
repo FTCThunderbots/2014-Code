@@ -3,25 +3,22 @@
 # found configuration with that default configuration
 # (excluding the /config/ folder, for obvious reasons)
 
-# There must be at least two items in each
+# There must be at least two items in each list for it to work
 EXCLUDED_FOLDERS = (".git", "old", "api", "config", "notebook")
 EXCLUDED_FILES = ("","Batteries\\Battery Log 12-13-14.xlsx")
+DEFAULT_CONFIG = "../Config/default_config.c"
 
 import os
-
-    #for filename in filenames:
-        #print(os.path.join(dirname, filename))
 		
 def main():
 	defaultConfig = [line for line in getDefaultConfig()]
-	#print(defaultConfig)
 	modified = 0
 	for file in getFiles():
 		modified += replaceConfig(defaultConfig, file)
 	print("%d configurations have been replaced" % modified)
 		
 def getDefaultConfig():
-	for line in open('../Config/default_config.c'):
+	for line in open(DEFAULT_CONFIG):
 		if line.startswith("#pragma "):
 			yield line
 	
@@ -36,16 +33,14 @@ def getFiles():
 def replaceConfig(defaultConfig, filename):
 	fileobj = open(filename, 'r')
 	file = [line for line in fileobj]
-	if "//USE DEFAULT CONFIG\n" in file: #the file should be replaced with the default
+	if "//USE DEFAULT CONFIG\n" in file:
 		i = 0
 		while file[i].startswith("#pragma "):
 			i += 1
 		nonConfigLines = file[i:]
-		#print(nonConfigLines)
 		fileobj.close()
 		fileobj = open(filename, 'r+')
 		fileobj.truncate()
-		#print(len(fileobj))
 		for line in defaultConfig:
 			fileobj.write(line)
 		for line in nonConfigLines:
@@ -55,6 +50,7 @@ def replaceConfig(defaultConfig, filename):
 	else:
 		fileobj.close()
 		return 0
+		
 def dirnameIsBanned(dirname):
 	dirname = dirname.lower()
 	return (True in ["".join(("\\",exFolder,"\\")).lower() in dirname or dirname.endswith("".join(("\\",exFolder)).lower()) for exFolder in EXCLUDED_FOLDERS])
