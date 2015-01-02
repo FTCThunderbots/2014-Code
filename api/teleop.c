@@ -3,6 +3,20 @@
 
 #include "teleop.h"
 
+void setBackboardAuto() {
+	if (joy2Btn(1))
+		engageBackboard();
+	else if (joy2Btn(3))
+		disengageBackboard();
+}
+
+void setGoalHookAuto() {
+	if (joy1Btn(2))
+		grabGoal();
+	else if (joy1Btn(4))
+		releaseGoal();
+}
+
 void setBackboardJoystick() {
 	if (joy2Btn(1))
 		motor[backboard] = BACKBOARD_MOTOR_SPEED;

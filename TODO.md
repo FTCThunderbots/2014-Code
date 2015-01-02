@@ -7,7 +7,7 @@
 * Add a move arc function
 * Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
 * Rewrite the coordinate system to listen to the motors, instead of needing to be updated
-* Change the config autopush to accept some config-related definitions and to copy them with the config
+* Write machine learning code for autonomous
 
 #Code cleanup:
 ###API
@@ -15,7 +15,7 @@
 * Implement grab_is_motor and related macros
 * Custom wait for start system
 * Rewrite setAutoDelay to be better
-* Fix goal/backboard functions in teleop.c
+* ~~Fix goal/backboard functions in teleop.c~~
 * Move for time/distance only and default power
 * Try to condense initializeAPI and initializeRobot
 ###Autonomous
