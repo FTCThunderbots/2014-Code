@@ -8,7 +8,7 @@
 #include "Xander_Drivers\drivers\hitechnic-irseeker-v2.h" // This is the IR seeker
 
 #ifndef COORD_INCLUDEGUARD
-#include "coord.h"
+#include "coord.c"
 #endif
 
 #warn "All compass code is depracated. We are using the Xander Drivers for all sensors"

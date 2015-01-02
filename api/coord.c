@@ -73,12 +73,12 @@ float readValues(char value) {
 
 
 void rotateWithOrientation(int degrees, byte power) {
-    rotateDegrees(degrees, power);
+    rotateDegrees((float)degrees, power);
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
-    driveInches(distance, power);
+    driveInches((float)distance, power);
     updateCoords(distance * sgn(power));
 }
 

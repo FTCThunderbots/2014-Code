@@ -6,7 +6,7 @@
 int initialCompassReading = 0;
 
 int getCompassReading() {
-    return SensorValue(compass);
+    return SensorValue[compass];
 }
 
 int calculateAverageReading(int samples) {
