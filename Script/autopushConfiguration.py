@@ -6,6 +6,8 @@
 # There must be at least two items in each list for it to work
 EXCLUDED_FOLDERS = (".git", "old", "api", "config", "notebook")
 EXCLUDED_FILES = ("","Batteries\\Battery Log 12-13-14.xlsx")
+DEFINITIONS = ("setting_twoMotors", "setting_noMotors", "setting_twoEncoders",
+		"setting_noEncoders", "COMPASS", "INFRARED")
 DEFAULT_CONFIG = "../Config/default_config.c"
 
 import os
@@ -19,7 +21,7 @@ def main():
 		
 def getDefaultConfig():
 	for line in open(DEFAULT_CONFIG):
-		if line.startswith("#pragma "):
+		if lineIsConfig(line):
 			yield line
 	
 def getFiles():
@@ -35,7 +37,7 @@ def replaceConfig(defaultConfig, filename):
 	file = [line for line in fileobj]
 	if "//USE DEFAULT CONFIG\n" in file:
 		i = 0
-		while file[i].startswith("#pragma "):
+		while lineIsConfig(file[i]):
 			i += 1
 		nonConfigLines = file[i:]
 		fileobj.close()
@@ -50,6 +52,10 @@ def replaceConfig(defaultConfig, filename):
 	else:
 		fileobj.close()
 		return 0
+		
+def lineIsConfig(line):
+	return line.startswith("#pragma") or True in [line.startswith("#define " + definition) for definition in DEFINITIONS]
+	#return true if the line starts with #pragma or if it's an accepted definition
 		
 def dirnameIsBanned(dirname):
 	dirname = dirname.lower()
