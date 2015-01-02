@@ -2,7 +2,7 @@
 #pragma config(Hubs,  S2, HTMotor,  none,     none,     none)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S2,     ,               sensorI2CMuxController)
-#pragma config(Sensor, S3,     infrared,       sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S3,     infrared,              sensorI2CCustom)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
@@ -24,11 +24,22 @@
 
 #define setting_twoEncoders
 
+#include "../api/Xander_Drivers/drivers/hitechnic-irseeker-v2.h"
+
 task main()
 {
+	//always use ac, never use dc for the IR
+	int acS1, acS2, acS3, acS4, acS5;
+	HTIRS2setDSPMode(HTIRS2, DSP_1200)
 	int irValues[3] = {0, 0, 0};
 	while (true) {
-		nxtDisplayCenteredBigTextLine(SensorValue[infrared]);
+		HTIRS2readAllACStrength(HTIRS2, acS1, acS2, acS3, acS4, acS5 )
+		nxtDisplayCenteredTextLine(0, "Direction: %d", HTIRS2readACDir(HTIRS2));
+		nxtDisplayCenteredTextLine(1, "Sensor 1: %d", acS1);
+		nxtDisplayCenteredTextLine(2, "Sensor 2: %d", acS2);
+		nxtDisplayCenteredTextLine(3, "Sensor 3: %d", acS3);
+		nxtDisplayCenteredTextLine(4, "Sensor 4: %d", acS4);
+		nxtDisplayCenteredTextLine(5, "Sensor 5: %d", acS5);
 	}
 
 }
