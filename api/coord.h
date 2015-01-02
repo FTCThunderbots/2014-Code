@@ -1,6 +1,6 @@
 #define COORD_INCLUDEGUARD
 
-#warn "All coord functions have not been thouroghly tested, use at your own risk."
+#warn "Coordinate functions are not finished. DO NOT USE."
 
 #ifndef SENSOR_INCLUDEGUARD
 #include "sensors.c"

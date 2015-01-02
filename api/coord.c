@@ -2,7 +2,10 @@
 
 float x, z, orientation;
 
-void setDefaults() {
+void setDefaultCoords() {
+	setDefaults();
+}
+static void setDefaults() {
 	x = 0.0;
 	z = 0.0;
 	orientation = 0.0;
@@ -62,13 +65,19 @@ void gotoCoords(float newX, float newZ, float newO) {
     setCoords(newX, newZ, newO);
 }
 
-float readValues(char value) {
+static float readValues(char value) {
 	if (value == 'x')
 		return x;
 	else if (value == 'z')
 		return z;
-	else
+	else if (value == 'o')
 		return (orientation * 180 / PI);
+	else
+		return 0;
+}
+
+float readCoordValue(char value) {
+	return readValues(value);
 }
 
 

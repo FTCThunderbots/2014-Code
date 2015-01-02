@@ -33,9 +33,9 @@
 #include "background.c"
 #endif
 
-#ifndef COORD_INCLUDEGUARD
-#include "coord.c"
-#endif
+//#ifndef COORD_INCLUDEGUARD
+//#include "coord.c"
+//#endif
 
 #ifndef DEBUG_INCLUDEGUARD
 #include "debug.c"

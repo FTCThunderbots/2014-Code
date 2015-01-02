@@ -22,22 +22,9 @@
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,               tServoNone)
 #define INFRARED infrared
 #define setting_twoEncoders
+
 //USE DEFAULT CONFIG
-
-
-#define setting_twoEncoders
-#include "../api/api.c"
-
-task main() {
-	//time based off ramp
-	initializeAPI();
-	initializeRobot();
-	waitForStart();
-	//driveSeconds(2.0, 100);
-	ClearTimer(T1);
-	int a = time1[T1];
-	while (time1[T1] < a + 1500) {
-		setMovement(100, 60);
-	}
-	setMovement(0, 0);
-}
+#pragma good!
+//1
+//2
+//3

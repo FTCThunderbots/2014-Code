@@ -16,6 +16,7 @@ void initializeRobot() {
 
 void initializeAPI() {
         initDebugConsole();
+		initSensors();
         StartTask(background);
 }
 
@@ -27,10 +28,9 @@ task background() {
         }
 }
 
-static void suppressUnreferencedWarnings() {
-        int a = BACKBOARD_MOTOR_UP_POS;
-        int b = BACKBOARD_MOTOR_DOWN_POS;
-        a += b;
-        b += a;
+static void suppressUnreferencedWarnings(int a) {
+        a = BACKBOARD_MOTOR_UP_POS;
+        a = BACKBOARD_MOTOR_DOWN_POS;
+		a = DEFAULT_MOVE_POWER;
         StartTask(matchStartListener);
 }

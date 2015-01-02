@@ -19,4 +19,4 @@ void initializeRobot();
 void initializeAPI();
 task background();
 
-static void suppressUnreferencedWarnings();
+static void suppressUnreferencedWarnings(int a);

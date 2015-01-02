@@ -5,19 +5,31 @@
 
 * Add prefix and suffix compatability to the debug stream
 * Add a move arc function
-* Add support for a setting_noEncoders macro, as well as twoMotors
+* Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
+* Rewrite the coordinate system to listen to the motors, instead of needing to be updated
+* Write machine learning code for autonomous
 
 #Code cleanup:
-
+###API
 * Rewrite or remove the debug stream system
 * Implement grab_is_motor and related macros
-* ~~Examine legitimacy and neccessity of many of the functions in math.c~~
+* Custom wait for start system
 * Rewrite setAutoDelay to be better
-
-#Post-Competition Cleanup:
+* ~~Fix goal/backboard functions in teleop.c~~
+* Move for time/distance only and default power
+* Try to condense initializeAPI and initializeRobot
+###Autonomous
+* Add more documentation to files that dictate where to start, and the path of the program
+* Rewrite files to use distance instead of time:
+ * backOffRamp.c
+ * doubleFloorAuto.c
+ * floorAuto.c
+* Differentiate getGoal_Park and getGoal_Park2
+* Is updateAuto.c even used for anything?
 
 #Long term goals:
 * Write API wiki
+* Ruler system?
 
 --------------------
 ###Tutorial on how to edit this list:
@@ -33,4 +45,4 @@ Ex.
 ####Long term goals:
 * ~~make the robot fly~~
 
-Just as a note, our robot does not actually fly.
+Just as a note, our robot does not actually fly. It will someday, but not today.
