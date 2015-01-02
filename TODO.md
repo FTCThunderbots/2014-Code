@@ -5,8 +5,6 @@
 
 * Add prefix and suffix compatability to the debug stream
 * Add a move arc function
-* Add support for a setting_noEncoders macro, as well as twoMotors (and possibly noMotors)
-* ~~Add a configuration replacement script~~
 * Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
 * Rewrite the coordinate system to listen to the motors, instead of needing to be updated
 * Change the config autopush to accept some config-related definitions and to copy them with the config
@@ -20,7 +18,6 @@
 * Fix goal/backboard functions in teleop.c
 * Move for time/distance only and default power
 * Try to condense initializeAPI and initializeRobot
-* Delete 2013 config
 ###Autonomous
 * Add more documentation to files that dictate where to start, and the path of the program
 * Rewrite files to use distance instead of time:
