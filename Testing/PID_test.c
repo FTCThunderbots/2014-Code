@@ -28,5 +28,5 @@
 
 task main()
 {
-	driveInches(24, 50);
+	rotateDegrees(24, 50);
 }

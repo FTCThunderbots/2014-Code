@@ -2,8 +2,6 @@
 
 #define COORD_INCLUDEGAURD
 
-#define PI      3.1415926535823
-
 float x, z, orientation;
 
 void setDefaults() {
@@ -95,6 +93,6 @@ void setCoords(float newX, float newZ, float newO) {
 void swingWithCoords(float degrees, byte direction, byte power) {
     float arcLength = (float)sqrt(648) * (degrees * (PI / 180));
     swingDegrees(degrees, direction, power);
-    updateDirection(degrees);
+    updateDirection(degrees * (sgn(direction) * sgn(power)));
     updateCoords(arcLength * sgn(direction) * sgn(power));
 }
