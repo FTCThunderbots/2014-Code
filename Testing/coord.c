@@ -14,7 +14,7 @@ void setDefaults() {
 
 void updateDirection(float degrees) {
 	orientation = (180/PI)*orientation;
-	orientation = (orientation + degrees) % 360.0 - PI;
+	orientation = ((orientation + degrees) % 360.0) - PI;
 	orientation = degreesToRadians(orientation);
 }
 
