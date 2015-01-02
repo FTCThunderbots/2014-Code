@@ -30,11 +30,11 @@ task main()
 {
 	//always use ac, never use dc for the IR
 	int acS1, acS2, acS3, acS4, acS5;
-	HTIRS2setDSPMode(HTIRS2, DSP_1200)
+	HTIRS2setDSPMode(infrared, DSP_1200);
 	int irValues[3] = {0, 0, 0};
 	while (true) {
-		HTIRS2readAllACStrength(HTIRS2, acS1, acS2, acS3, acS4, acS5 )
-		nxtDisplayCenteredTextLine(0, "Direction: %d", HTIRS2readACDir(HTIRS2));
+		HTIRS2readAllACStrength(infrared, acS1, acS2, acS3, acS4, acS5);
+		nxtDisplayCenteredTextLine(0, "Direction: %d", HTIRS2readACDir(infrared));
 		nxtDisplayCenteredTextLine(1, "Sensor 1: %d", acS1);
 		nxtDisplayCenteredTextLine(2, "Sensor 2: %d", acS2);
 		nxtDisplayCenteredTextLine(3, "Sensor 3: %d", acS3);
