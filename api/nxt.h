@@ -5,3 +5,4 @@
 
 int setAutoDelay();
 task matchStartListener();
+void waitStartAPI();

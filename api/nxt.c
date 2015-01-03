@@ -30,3 +30,7 @@ task matchStartListener() {
 	waitForStart();
 	matchHasStarted = true;
 }
+
+void waitStartAPI() {
+   while (!matchHasStarted) {}
+}
