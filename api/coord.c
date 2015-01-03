@@ -67,10 +67,12 @@ void gotoCoords(float newX, float newZ, float newO) {
 }
 
 static float readValues(char value) {
+
 	if (value == 'x')
 		return x;
 	else if (value == 'z')
 		return z;
+
 	else if (value == 'o')
 		return (orientation * 180 / PI);
 	else
