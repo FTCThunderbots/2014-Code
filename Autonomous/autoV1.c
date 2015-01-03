@@ -37,9 +37,9 @@ task main()
     setInitial();       // Initialize the Compass and
     setDefaults();      // Coordinate system values
 
-    moveWithDirection(60, 50);
+    moveWithDirection(60, -50);
     wait1Msec(500);
-   	rotateWithOrientation(180, 50);
+   	//rotateWithOrientation(180, 50);
    	wait1Msec(500);
    	moveWithDirection(12, -50);
    	wait1Msec(500);
@@ -48,6 +48,7 @@ task main()
 		rotateWithOrientation(30, 50);
 		wait1Msec(500);
 		moveWithDirection(108, 50);
+		/*
 		wait1Msec(500);
 		rotateWithOrientation(180, 50);
 		wait1Msec(500);
@@ -81,7 +82,7 @@ task main()
 		rotateWithOrientation(180, 50);
 		rotateWithOrientation(180, 50);
 		rotateWithOrientation(180, 50);
-		rotateWithOrientation(180, 50);
+		rotateWithOrientation(180, 50);*/
 
     while (true) {
 			nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
