@@ -31,10 +31,6 @@
 //#include "coord.c"
 //#endif
 
-#ifndef DEBUG_INCLUDEGUARD
-#include "debug.c"
-#endif
-
 #ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"
 #endif

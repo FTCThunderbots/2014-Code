@@ -3,7 +3,6 @@
 
 #General:
 
-* Add prefix and suffix compatability to the debug stream
 * Add a move arc function
 * Add support for a setting_noEncoders macro, as well as twoMotors (and possibly noMotors)
 * ~~Add a configuration replacement script~~
@@ -13,7 +12,6 @@
 
 #Code cleanup:
 ###API
-* Rewrite or remove the debug stream system
 * Implement grab_is_motor and related macros
 * Custom wait for start system
 * Rewrite setAutoDelay to be better
