@@ -46,20 +46,20 @@ void swingSeconds(float secs, byte direction, byte power) {
 }
 
 // movement for inches, with power argument
-void driveInches(float inches, byte power, bool PID) {
+void driveInches(float inches, byte power, bool usePID) {
 	drive(power);
-	moveFor(inchesToDriveTicks(inches), power, PID);
+	moveFor(inchesToDriveTicks(inches), power, usePID);
 	halt();
 }
 
-void rotateDegrees(float degrees, byte power, bool PID) {
+void rotateDegrees(float degrees, byte power, bool usePID) {
 	rotate(power);
-	moveFor(degreesToRotateTicks(degrees), power, PID);
+	moveFor(degreesToRotateTicks(degrees), power, usePID);
 	halt();
 }
 
-void swingDegrees(float degrees, byte direction, byte power, bool PID) {
+void swingDegrees(float degrees, byte direction, byte power, bool usePID) {
 	swing(direction, power);
-	swingFor(degreesToSwingTicks(degrees), direction, power, PID);
+	swingFor(degreesToSwingTicks(degrees), direction, power, usePID);
 	halt();
 }

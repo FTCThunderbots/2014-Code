@@ -31,6 +31,6 @@ void rotateSeconds(float secs, byte power);
 void swingSeconds(float secs, byte direction, byte power);
 
 //movement for inches with power
-void driveInches(float inches, byte power, bool PID);
-void rotateDegrees(float degrees, byte power, bool PID);
-void swingDegrees(float degrees, byte direction, byte power, bool PID);
+void driveInches(float inches, byte power, bool usePID);
+void rotateDegrees(float degrees, byte power, bool usePID);
+void swingDegrees(float degrees, byte direction, byte power, bool usePID);
