@@ -44,7 +44,7 @@ task main()
    	moveWithDirection(18, -20);
 		StartTask(grabTask);
 		moveWithDirection(21, -7);
-		wait1Msec(2000);
+		wait1Msec(500);
 		moveWithDirection(21, 7);
 		wait1Msec(500);
 		rotateWithOrientation(27, 50);
@@ -52,7 +52,7 @@ task main()
 		moveWithDirection(76, 50);
 		wait1Msec(500);
 		rotateWithOrientation(180, 50);
-		releaseGoal_time();
+		//releaseGoal_time();
 		/*
 		wait1Msec(500);
 		moveWithDirection(60, 50);
