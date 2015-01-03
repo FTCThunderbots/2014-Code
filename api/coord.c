@@ -1,6 +1,7 @@
 #include "coord.h"
 
 #define COORD_INCLUDEGAURD
+#include "simplemovement.c"
 
 float x, z, orientation;
 
@@ -75,12 +76,20 @@ float readValues(char value) {
 
 
 void rotateWithOrientation(int degrees, byte power) {
+<<<<<<< HEAD
     rotateDegrees(degrees, power);
+=======
+    rotateDegrees(degrees, power, true);
+>>>>>>> working
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
+<<<<<<< HEAD
     driveInches(distance, power);
+=======
+    driveInches(distance, power, true);
+>>>>>>> working
     updateCoords(distance * sgn(power));
 }
 
@@ -92,7 +101,11 @@ void setCoords(float newX, float newZ, float newO) {
 
 void swingWithCoords(float degrees, byte direction, byte power) {
     float arcLength = (float)sqrt(648) * (degrees * (PI / 180));
+<<<<<<< HEAD
     swingDegrees(degrees, direction, power);
+=======
+    swingDegrees(degrees, direction, power, true);
+>>>>>>> working
     updateDirection(degrees * (sgn(direction) * sgn(power)));
     updateCoords(arcLength * sgn(direction) * sgn(power));
 }

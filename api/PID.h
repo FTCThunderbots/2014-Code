@@ -20,8 +20,8 @@ typedef struct {
     float control;
 } PID;
 
-void moveFor(int ticks, int speed);
-void swingFor(int ticks, int direction, int speed);
+void moveFor(int ticks, int speed, bool usePID);
+void swingFor(int ticks, int direction, int speed, bool usePID);
 
 void pid_zeroize(PID* pid);
 void pid_update(PID* pid, float curr_error, float dt);
