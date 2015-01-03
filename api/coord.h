@@ -2,6 +2,14 @@
 
 #warn "Coordinate functions are not finished. DO NOT USE."
 
+#ifndef SENSORS_INCLUDEGUARD
+#include "sensors.c"
+#endif
+
+#ifndef SIMPLEMOVEMENT_INCLUDEGUARD
+#include "simplemovement.c"
+#endif
+
 void updateDirection(float degrees);
 void updateCoords(float distance);
 void gotoCoords(float newX, float newZ, float newO);

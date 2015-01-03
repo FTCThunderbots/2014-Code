@@ -1,7 +1,6 @@
 // simplemovement.c
 // Contains very basic movement functions
 // All functions are wrappers of functions in movement
-
 #include "simplemovement.h"
 
 //look in header for functions that need implementations

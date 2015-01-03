@@ -5,6 +5,8 @@
 
 * Add prefix and suffix compatability to the debug stream
 * Add a move arc function
+* Add support for a setting_noEncoders macro, as well as twoMotors (and possibly noMotors)
+* ~~Add a configuration replacement script~~
 * Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
 * Rewrite the coordinate system to listen to the motors, instead of needing to be updated
 * Write machine learning code for autonomous

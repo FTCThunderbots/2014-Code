@@ -2,13 +2,14 @@
 
 float x, z, orientation;
 
-void setDefaultCoords() {
-	setDefaults();
-}
 static void setDefaults() {
 	x = 0.0;
 	z = 0.0;
 	orientation = 0.0;
+}
+
+void setDefaultCoords() {
+	setDefaults();
 }
 
 void updateDirection(float degrees) {
@@ -73,7 +74,7 @@ static float readValues(char value) {
 	else if (value == 'o')
 		return (orientation * 180 / PI);
 	else
-		return 0;
+		return 0; //error
 }
 
 float readCoordValue(char value) {
@@ -82,12 +83,12 @@ float readCoordValue(char value) {
 
 
 void rotateWithOrientation(int degrees, byte power) {
-    rotateDegrees(degrees, power);
+    rotateDegrees((float)degrees, power);
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
-    driveInches(distance, power);
+    driveInches((float)distance, power);
     updateCoords(distance * sgn(power));
 }
 

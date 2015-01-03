@@ -24,8 +24,6 @@
 #define setting_twoEncoders
 //USE DEFAULT CONFIG
 
-#define setting_twoEncoders
-
 #include "../api/api.c"
 
 task main()
@@ -36,35 +34,58 @@ task main()
 
     setInitial();       // Initialize the Compass and
     setDefaults();      // Coordinate system values
-
-    moveWithDirection(48, -25);
-    alignToInitial();
-    swingDegreesImp(105, 1, -50);
-    moveWithDirection(6, -25);
-    swingDegreesImp(90, 1, -50);
-    rotateDegreesImp(180, -50);
-
-    setInitial();
-
-    moveWithDirection(60, -50);
-    grabGoal_time();
-    waitDeciseconds(10);
-    rotateDegreesImp(20, 50);
-    waitDeciseconds(1);
-    moveWithDirection(108, 50);
-    rotateDegreesImp(180, 100);
-    releaseGoal_time();
-
-    alignToInitial();           // Align back to before the goal grab
-    rotateDegreesImp(20, -50);  // rotate -20 degrees
-    moveWithDirection(12, 50);  // move one foot, at power 50, while updating the coordinate system
-
-    setMovement(0, 0);
+	
+    moveWithDirection(60, 50);
+    wait1Msec(500);
+   	rotateWithOrientation(180, 50);
+   	wait1Msec(500);
+   	moveWithDirection(12, -50);
+   	wait1Msec(500);
+		grabGoal_time();
+		wait1Msec(500);
+		rotateWithOrientation(30, 50);
+		wait1Msec(500);
+		moveWithDirection(108, 50);
+		wait1Msec(500);
+		rotateWithOrientation(180, 50);
+		wait1Msec(500);
+		moveWithDirection(60, 50);
+		wait1Msec(500);
+		rotateWithOrientation(60, -50);
+		wait1Msec(500);
+		rotateWithOrientation(180, -50);
+		wait1Msec(500);
+		moveWithDirection(60, -50);
+		wait1Msec(500);
+		grabGoal_time();
+		wait1Msec(500);
+		rotateWithOrientation(30, 50);
+		wait1Msec(500);
+		moveWithDirection(24, 50);
+		wait1Msec(500);
+		rotateWithOrientation(30, -50);
+		wait1Msec(500);
+		moveWithDirection(48, 50);
+		wait1Msec(500);
+		rotateWithOrientation(90, 50);
+		wait1Msec(500);
+		moveWithDirection(24, 50);
+		wait1Msec(500);
+		rotateWithOrientation(90, 50);
+		wait1Msec(500);
+		releaseGoal_time();
+		wait1Msec(500);
+		moveWithDirection(12, 50);
+		rotateWithOrientation(180, 50);
+		rotateWithOrientation(180, 50);
+		rotateWithOrientation(180, 50);
+		rotateWithOrientation(180, 50);
 
     while (true) {
-		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
-		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
-		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
-		nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue(compass));
-	}
+			nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
+			nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
+			nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+			nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue[compass]);
+		}
+
 }

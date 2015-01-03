@@ -23,9 +23,6 @@
 #define INFRARED infrared
 #define setting_twoEncoders
 //USE DEFAULT CONFIG
-#define INFRARED infrared
-
-#define setting_twoEncoders
 
 #include "../api/api.c"
 
