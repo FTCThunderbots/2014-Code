@@ -83,7 +83,6 @@ float readCoordValue(char value) {
 
 
 void rotateWithOrientation(int degrees, byte power) {
-
     rotateDegrees(degrees, power, true);
     updateDirection(degrees * sgn(power));
 }

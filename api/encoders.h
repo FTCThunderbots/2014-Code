@@ -10,8 +10,6 @@
 #include "settings.c"
 #endif
 
-#ifndef setting_noEncoders //there are at least two encoders
-
 #define leftEnc1 nMotorEncoder[leftmotor_1]
 #define rightEnc1 nMotorEncoder[rightmotor_1]
 
@@ -21,11 +19,6 @@
 #else // only two encoders
 #define leftEnc2 nMotorEncoder[leftmotor_1]
 #define rightEnc2 nMotorEncoder[rightmotor_1]
-#else // there are no encoders on the robot
-#define leftEnc1 0
-#define rightEnc1 0
-#define leftEnc2 0
-#define rightEnc2 0
 #endif
 
 void resetEncoders();

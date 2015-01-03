@@ -3,6 +3,12 @@
 
 #include "sensors.h"
 
+int initialCompassReading = 0;
+
+int getCompassReading() {
+    return SensorValue[compass];
+}
+
 void initSensors() { //called by initializeAPI()
 	initCompass();
 	initIRSeeker();

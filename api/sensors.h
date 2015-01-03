@@ -7,9 +7,14 @@
 #include "Xander_Drivers\drivers\hitechnic-compass.h" // Compass sensor, if enabled
 #include "Xander_Drivers\drivers\hitechnic-irseeker-v2.h" // IR seeker
 
+#ifndef COORD_INCLUDEGUARD
+#include "coord.c"
+#endif
+
 void initSensors(); //called by initializeAPI()
 static void initCompass();
 static void initIRSeeker();
+
 
 #ifdef COMPASS
 int getHeading();

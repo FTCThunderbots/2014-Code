@@ -20,6 +20,7 @@
 * ~~Fix goal/backboard functions in teleop.c~~
 * Move for time/distance only and default power
 * Try to condense initializeAPI and initializeRobot
+* Delete 2013 config
 ###Autonomous
 * Add more documentation to files that dictate where to start, and the path of the program
 * Rewrite files to use distance instead of time:
