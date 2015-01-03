@@ -21,23 +21,49 @@
 #pragma config(Servo,  srvo_S1_C4_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C4_6,    servo6,               tServoNone)
 #define INFRARED infrared
-#define setting_twoEncoders
 //USE DEFAULT CONFIG
 
-
 #define setting_twoEncoders
+
 #include "../api/api.c"
 
-task main() {
-	//time based off ramp
-	initializeAPI();
-	initializeRobot();
-	waitForStart();
-	//driveSeconds(2.0, 100);
-	ClearTimer(T1);
-	int a = time1[T1];
-	while (time1[T1] < a + 1500) {
-		setMovement(100, 60);
+task main()
+{
+    initializeAPI();
+    initializeRobot();
+    waitForStart();
+
+    setInitial();       // Initialize the Compass and
+    setDefaults();      // Coordinate system values
+
+    moveWithDirection(48, -25);
+    alignToInitial();
+    swingDegreesImp(105, 1, -50);
+    moveWithDirection(6, -25);
+    swingDegreesImp(90, 1, -50);
+    rotateDegreesImp(180, -50);
+
+    setInitial();
+
+    moveWithDirection(60, -50);
+    grabGoal_time();
+    waitDeciseconds(10);
+    rotateDegreesImp(20, 50);
+    waitDeciseconds(1);
+    moveWithDirection(108, 50);
+    rotateDegreesImp(180, 100);
+    releaseGoal_time();
+
+    alignToInitial();           // Align back to before the goal grab
+    rotateDegreesImp(20, -50);  // rotate -20 degrees
+    moveWithDirection(12, 50);  // move one foot, at power 50, while updating the coordinate system
+
+    setMovement(0, 0);
+
+    while (true) {
+		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
+		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
+		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+		nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue(compass));
 	}
-	setMovement(0, 0);
 }

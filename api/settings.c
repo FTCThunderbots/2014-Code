@@ -58,6 +58,7 @@ const float STRAFE_POWER_WEIGHT = 1.0;
 // Motor Constants
 const byte MOTOR_MIN_POWER = 5; // don't burn out the motor by giving it too low a power that it can't move
 const byte MOTOR_MAX_POWER = 100; // conserve power? a global speed limit?
+const byte DEFAULT_MOVE_POWER = 100; // the power when power is not specified
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 5; //abs(joystick) cannot be in (0, min)

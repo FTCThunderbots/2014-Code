@@ -63,10 +63,10 @@ Now you may use any of the api methods outside of the api!
 #define setting_twoEncoders
 #define setting_twoMotors
 
-#define gyroSensor              msensor_S4_1
-#define sonarSensor             msensor_S4_2
-#define lightSensor		msensor_S4_3
-#define touchSensor             msensor_S4_4
+#define gyroSensor	msensor_S4_1
+#define sonarSensor	msensor_S4_2
+#define lightSensor	msensor_S4_3
+#define touchSensor	msensor_S4_4
 
 #include "api.c"
 

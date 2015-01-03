@@ -1,16 +1,15 @@
-#include "../api/api.c"
 #include "coord.h"
-
-#define COORD_INCLUDEGAURD
-
-#define PI      3.1415926535823
 
 float x, z, orientation;
 
-void setDefaults() {
+static void setDefaults() {
 	x = 0.0;
 	z = 0.0;
 	orientation = 0.0;
+}
+
+void setDefaultCoords() {
+	setDefaults();
 }
 
 void updateDirection(float degrees) {
@@ -53,11 +52,11 @@ void gotoCoords(float newX, float newZ, float newO) {
         while (false) {}                // empty loop just for fun! :D
     }
     else if (newZ < z) {
-        while (readValues('z') > newX)
+        while (readValues('z') > newZ)
             moveWithDirection(1, -25);   // Low and slow is the way to go!
     }
     else if (newZ > z) {
-        while (readValues('z') < newX)
+        while (readValues('z') < newZ)
             moveWithDirection(1, -25);
     }
 
@@ -67,23 +66,29 @@ void gotoCoords(float newX, float newZ, float newO) {
     setCoords(newX, newZ, newO);
 }
 
-float readValues(char value) {
+static float readValues(char value) {
 	if (value == 'x')
 		return x;
 	else if (value == 'z')
 		return z;
-	else
+	else if (value == 'o')
 		return (orientation * 180 / PI);
+	else
+		return 0;
+}
+
+float readCoordValue(char value) {
+	return readValues(value);
 }
 
 
 void rotateWithOrientation(int degrees, byte power) {
-    rotateDegrees(degrees, power);
+    rotateDegrees((float)degrees, power);
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
-    driveInches(distance, power);
+    driveInches((float)distance, power);
     updateCoords(distance * sgn(power));
 }
 
@@ -91,4 +96,11 @@ void setCoords(float newX, float newZ, float newO) {
     x = newX;
     z = newZ;
     orientation = newO;
+}
+
+void swingWithCoords(float degrees, byte direction, byte power) {
+    float arcLength = (float)sqrt(648) * (degrees * (PI / 180));
+    swingDegrees(degrees, direction, power);
+    updateDirection(degrees);
+    updateCoords(arcLength * sgn(direction) * sgn(power));
 }

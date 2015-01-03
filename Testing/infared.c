@@ -28,14 +28,7 @@
 
 #include "../api/api.c"
 
-void calculatePosition();
-
-task main()
-{
-	calculatePosition();
-}
-
-byte s_sub1(byte currentVal) {
+byte correctValues(byte currentVal) {
 	if (currentVal == 1)
 		return 9;
 	else if (currentVal == 2)
@@ -56,16 +49,4 @@ byte s_sub1(byte currentVal) {
 		return 7;
 
 	return 9;
-}
-
-void calculatePosition() {
-	byte currentVal = SensorValue(infrared);
-	byte sensor1 = s_sub1(SensorValue(infrared));
-	driveInches(36, -50);
-	byte sensor2 = s_sub1(SensorValue(infrared));
-	driveInches(36, -50);
-	byte sensor3 = s_sub1(SensorValue(infrared));
-	currentVal = s_sub1(abs(sensor1 + sensor2 + sensor3) / 3);
-	while (true)
-		nxtDisplayCenteredTextLine(0, "%d", currentVal);
 }

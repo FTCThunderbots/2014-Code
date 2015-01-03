@@ -3,40 +3,36 @@
 
 #General:
 
-* Write wait for distance functions
-* Write move/turn for distance functions
-* Add tick to measurement functions to the ruler system
 * Add prefix and suffix compatability to the debug stream
 * Add a move arc function
-* Add support for a setting_noEncoders macro, as well as twoMotors and noMotors
+* Add support for a setting_noEncoders macro, as well as twoMotors (and possibly noMotors)
+* ~~Add a configuration replacement script~~
+* Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
+* Rewrite the coordinate system to listen to the motors, instead of needing to be updated
+* Write machine learning code for autonomous
 
 #Code cleanup:
-* ~~Alphabetize includes list~~
-* ~~Move settings.c to root folder so it's easier to access~~
-* ~~Reorganize unused constants in settings.c~~
+###API
 * Rewrite or remove the debug stream system
-* ~~Fix include statements in encoders.h and simplemovement.h~~
-* ~~Implement differing up/down times for the grab motor~~
 * Implement grab_is_motor and related macros
-* ~~Examine legitimacy and neccessity of many of the functions in math.c~~
-* Ruler system?
+* Custom wait for start system
 * Rewrite setAutoDelay to be better
-* Re-implement the custom wait for start system
-* Delete sensors.c / sensors.h
-* (?) Add function files to a subfolder of /api/
-* ~~Clean up the mess that simplemovement has become~~
-* Fix goal/backboard functions in teleop.c
-
-* Add in new move functions with only time/distance and a default power
-
-#Post-Competition Cleanup:
-* ~~Add polarity for move seconds and move distance~~
+* ~~Fix goal/backboard functions in teleop.c~~
+* Move for time/distance only and default power
+* Try to condense initializeAPI and initializeRobot
+* Delete 2013 config
+###Autonomous
+* Add more documentation to files that dictate where to start, and the path of the program
+* Rewrite files to use distance instead of time:
+ * backOffRamp.c
+ * doubleFloorAuto.c
+ * floorAuto.c
+* Differentiate getGoal_Park and getGoal_Park2
+* Is updateAuto.c even used for anything?
 
 #Long term goals:
-* Remove all constants from encoder system and replace with only math, while still retaining full functionality.
-* Implement a PID controller to functions in simplemovement
-* Add ruler system
 * Write API wiki
+* Ruler system?
 
 --------------------
 ###Tutorial on how to edit this list:
@@ -51,3 +47,5 @@ and then they will be removed from the list.
 Ex.
 ####Long term goals:
 * ~~make the robot fly~~
+
+Just as a note, our robot does not actually fly. It will someday, but not today.
