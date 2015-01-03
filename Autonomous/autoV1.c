@@ -26,6 +26,7 @@
 #define setting_twoEncoders
 
 #include "../api/api.c"
+#include "../api/coord.c"
 
 task main()
 {

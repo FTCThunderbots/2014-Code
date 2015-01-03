@@ -1,6 +1,5 @@
 #include "coord.h"
 
-#define COORD_INCLUDEGAURD
 #include "simplemovement.c"
 
 float x, z, orientation;
