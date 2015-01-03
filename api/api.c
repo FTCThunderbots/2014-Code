@@ -76,3 +76,7 @@
 #ifndef TIMER_INCLUDEGUARD
 #include "timer.h"
 #endif
+
+#ifndef COORD_INCLUDEGAURD
+#include "coord.c"
+#endif
