@@ -28,7 +28,6 @@
 #define setting_twoEncoders
 task grabTask();
 #include "../api/api.c"
-#include "../api/coord.c"
 
 task main()
 {
