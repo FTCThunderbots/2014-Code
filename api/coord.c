@@ -1,5 +1,7 @@
 #include "coord.h"
 
+#include "simplemovement.c"
+
 float x, z, orientation;
 
 static void setDefaults() {
@@ -81,14 +83,13 @@ float readCoordValue(char value) {
 	return readValues(value);
 }
 
-
 void rotateWithOrientation(int degrees, byte power) {
     rotateDegrees(degrees, power, true);
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
-    driveInches(distance, power, true);
+    driveInches(distance, power, false);
     updateCoords(distance * sgn(power));
 }
 
