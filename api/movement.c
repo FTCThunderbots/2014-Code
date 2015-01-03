@@ -46,7 +46,7 @@ static void setMovement(byte forward, byte right, byte clockwise) {
 	for(int i = 0; i < 4; i++)
 		power[i] *= MOVE_POWER_SCALE;
 
-  // Finally, set the motor powers
+   // Finally, set the motor powers
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
 	#ifndef setting_twoMotors
