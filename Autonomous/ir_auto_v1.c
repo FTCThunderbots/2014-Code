@@ -32,7 +32,8 @@ task main()
 	int acS1, acS2, acS3, acS4, acS5;
 	HTIRS2setDSPMode(infrared, DSP_1200);
 	int irValues[3] = {0, 0, 0};
-	while (true) {
+	int rawIrValues[][] = {{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},};
+	/*while (true) {
 		HTIRS2readAllACStrength(infrared, acS1, acS2, acS3, acS4, acS5);
 		nxtDisplayCenteredTextLine(0, "Direction: %d", HTIRS2readACDir(infrared));
 		nxtDisplayCenteredTextLine(1, "Sensor 1: %d", acS1);
@@ -40,6 +41,29 @@ task main()
 		nxtDisplayCenteredTextLine(3, "Sensor 3: %d", acS3);
 		nxtDisplayCenteredTextLine(4, "Sensor 4: %d", acS4);
 		nxtDisplayCenteredTextLine(5, "Sensor 5: %d", acS5);
+	}*/
+	int currentPos = 1;
+	while (currentPos <= 3) {
+		nxtDisplayCenteredTextLine(0, "Pos: %d", currentPos);
+		int placeholder = currentPos;
+		while (currentPos == placeholder) {
+			HTIRS2readAllACStrength(infrared, acS1, acS2, acS3, acS4, acS5);
+			if (nNxtButtonPressed == 3) {
+				irValues[currentPos-1] = HTIRS2readACDir(infrared);
+				rawIrValues[currentPos-1][0] = acS1;
+				rawIrValues[currentPos-1][1] = acS2;
+				rawIrValues[currentPos-1][2] = acS3;
+				rawIrValues[currentPos-1][3] = acS4;
+				rawIrValues[currentPos-1][4] = acS5;
+			}
+			if (nNxtButtonPressed == 1)
+				currentPos++;
+			if (nNxtButtonPressed == 2)
+				currentPos--;
+		}
 	}
+	eraseDisplay();
+
+
 
 }
