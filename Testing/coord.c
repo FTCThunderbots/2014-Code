@@ -1,4 +1,3 @@
-#include "../api/api.c"
 #include "coord.h"
 
 #define COORD_INCLUDEGAURD
@@ -15,7 +14,7 @@ void setDefaults() {
 
 void updateDirection(float degrees) {
 	orientation = (180/PI)*orientation;
-	orientation = (orientation + degrees) % 360 - PI;
+	orientation = ((orientation + degrees) % 360.0) - PI;
 	orientation = degreesToRadians(orientation);
 }
 

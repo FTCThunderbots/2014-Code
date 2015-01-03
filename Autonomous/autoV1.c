@@ -30,11 +30,9 @@ task main()
 {
     initializeAPI();
     initializeRobot();
-    waitForStart();
+   	waitForStart();
+    setDefaultCoords();      // Coordinate system values
 
-    setInitial();       // Initialize the Compass and
-    setDefaults();      // Coordinate system values
-	
     moveWithDirection(60, 50);
     wait1Msec(500);
    	rotateWithOrientation(180, 50);
@@ -82,10 +80,9 @@ task main()
 		rotateWithOrientation(180, 50);
 
     while (true) {
-			nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
-			nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
-			nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
-			nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue[compass]);
-		}
-
+		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
+		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
+		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+		nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue[compass]);
+	}
 }

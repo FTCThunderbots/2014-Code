@@ -1,3 +1,6 @@
+// coord.h
+// Header file for coord.c
+
 #define COORD_INCLUDEGUARD
 
 #warn "Coordinate functions are not finished. DO NOT USE."

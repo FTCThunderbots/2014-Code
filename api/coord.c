@@ -13,8 +13,8 @@ void setDefaultCoords() {
 }
 
 void updateDirection(float degrees) {
-	orientation = (180/PI)*orientation;
-	orientation = (orientation + degrees) % 360 - PI;
+	orientation = (180.0/PI)*orientation;
+	orientation = (degrees + orientation) % 360;
 	orientation = degreesToRadians(orientation);
 }
 
@@ -83,12 +83,13 @@ float readCoordValue(char value) {
 
 
 void rotateWithOrientation(int degrees, byte power) {
-    rotateDegrees((float)degrees, power);
+
+    rotateDegrees(degrees, power, true);
     updateDirection(degrees * sgn(power));
 }
 
 void moveWithDirection(float distance, byte power) {
-    driveInches((float)distance, power);
+    driveInches(distance, power, true);
     updateCoords(distance * sgn(power));
 }
 
@@ -100,7 +101,7 @@ void setCoords(float newX, float newZ, float newO) {
 
 void swingWithCoords(float degrees, byte direction, byte power) {
     float arcLength = (float)sqrt(648) * (degrees * (PI / 180));
-    swingDegrees(degrees, direction, power);
-    updateDirection(degrees);
+    swingDegrees(degrees, direction, power, true);
+    updateDirection(degrees * (sgn(direction) * sgn(power)));
     updateCoords(arcLength * sgn(direction) * sgn(power));
 }
