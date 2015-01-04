@@ -1,7 +1,5 @@
 #include "coord.h"
 
-#include "simplemovement.c"
-
 float x, z, orientation;
 
 static void setDefaults() {
@@ -34,10 +32,7 @@ void gotoCoords(float newX, float newZ, float newO) {
     while (readValues('o') != 90) {     // very low tolerance
         rotateWithOrientation(1, 25);   // very slow, and low rotation to insure accuracy
     }
-    if (newX == x) {
-        while (false) {}                // empty loop just for fun! :D
-    }
-    else if (newX < x) {
+    if (newX < x) {
         while (readValues('x') > newX)
             moveWithDirection(1, -25);   // Low and slow is the way to go!
     }
@@ -49,11 +44,7 @@ void gotoCoords(float newX, float newZ, float newO) {
     while (readValues('o') != 0) {
         rotateWithOrientation(1, 25);
     }
-
-    if (newZ == z) {
-        while (false) {}                // empty loop just for fun! :D
-    }
-    else if (newZ < z) {
+    if (newZ < z) {
         while (readValues('z') > newZ)
             moveWithDirection(1, -25);   // Low and slow is the way to go!
     }

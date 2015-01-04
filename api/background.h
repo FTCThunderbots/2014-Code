@@ -3,10 +3,6 @@
 
 #define BACKGROUND_INCLUDEGUARD
 
-#ifndef DEBUG_INCLUDEGUARD
-#include "debug.c"
-#endif
-
 #ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif
