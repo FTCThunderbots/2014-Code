@@ -44,7 +44,7 @@ task main()
 {
 	eraseDisplay();
 	nMotorEncoder[grab] = 0;
-
+	
 	while (true) {
 		getJoystickSettings(joystick);
 		//setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
@@ -57,7 +57,7 @@ task main()
 			servo[backboard] = 128;
 		if (joy1Btn(3))
 			servo[backboard] = 250;
-
+		
 		/*
 		if (joy2Btn(2)) {
 			motor[sweep] = 100;
@@ -75,24 +75,24 @@ task main()
 			else if (joy2Btn(8))
 				motor[conveyor] = 100;
 		}*/
-	 if (joy2Btn(1) || joy2Btn(4))
-      motor[sweep] = 50;
-   else if (joy2Btn(5) || joy2Btn(2))
-      motor[sweep] = 100;
-   else if (joy2Btn(7))
-      motor[sweep] = -100;
-   else
-      motor[sweep]= 0;
-
+		if (joy2Btn(1) || joy2Btn(4))
+			motor[sweep] = 50;
+		else if (joy2Btn(5) || joy2Btn(2))
+			motor[sweep] = 100;
+		else if (joy2Btn(7))
+			motor[sweep] = -100;
+		else
+			motor[sweep]= 0;
+		
 		if (joy2Btn(3) || joy2Btn(4))
-      motor[conveyor] = 50;
-    else if (joy2Btn(6) || joy2Btn(2))
-      motor[conveyor] = 100;
-    else if (joy2Btn(8))
-      motor[conveyor] = -100;
-    else
-      motor[conveyor] = 0;
-
+			motor[conveyor] = 50;
+		else if (joy2Btn(6) || joy2Btn(2))
+			motor[conveyor] = 100;
+		else if (joy2Btn(8))
+			motor[conveyor] = -100;
+		else
+			motor[conveyor] = 0;
+		
 		/*nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
 		nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
 		nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);*/

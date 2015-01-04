@@ -24,9 +24,9 @@ void testCoords() {
 	gotoCoordinates(1, 0, 180);
 	gotoCoordinates(0, 0, 0);
 	gotoCoordinates(0, 1, 180);
-
+	
 	gotoCoordinates(0, 0, 0);
-
+	
 	x = getCoordinateValue(0);
 	z = getCoordinateValue(1);
 	orientation = getCoordinateValue(2);

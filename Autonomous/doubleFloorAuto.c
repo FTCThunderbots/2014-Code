@@ -41,15 +41,15 @@ task main() {
 		setMovement(100, 0);
 	}
 	setMovement(0, 0);
-
+	
 	a = time1[T1];
 	while (time1[T1] < a + 1500) {
 		setMovement(-35, 0);
 	}
 	setMovement(0, 0);
-
+	
 	wait1Msec(5000);
-
+	
 	a = time1[T1];
 	while (time1[T1] < a + 1000) {
 		setMovement(100, 0);

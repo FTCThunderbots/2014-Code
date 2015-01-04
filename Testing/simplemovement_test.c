@@ -34,60 +34,60 @@ void stopFor1Sec() {
 
 task main() {
 	initializeAPI();
-
+	
 	//drive:
 	//drive foward for a second
 	drive(100);
 	wait1Msec(1000);
 	STOP;
-
+	
 	//drive back
-        drive(-100);
-        wait1Msec(1000);
-        STOP;
-
+	drive(-100);
+	wait1Msec(1000);
+	STOP;
+	
 	//rotation:
 	//rotate for one second
 	rotate(100);
 	wait1Msec(1000);
 	STOP;
-
+	
 	//rotate back
-        rotate(-100);
-        wait1Msec(1000);
-        STOP;
-
+	rotate(-100);
+	wait1Msec(1000);
+	STOP;
+	
 	//strafe:
 	/*//strafe for one second
 	strafe(100);
 	wait1Msec(1000);
 	STOP;
-
+	
 	//strafe back
 	strafe(-100);
 	wait1Msec(1000);
 	STOP;*/
-
+	
 	//swing turn:
 	//swing left for a second
 	swing(-5, 100);
 	wait1Msec(1000);
 	STOP;
-
+	
 	//swing right for a second
-        swing(7, 100);
-        wait1Msec(1000);
-        STOP;
-
+	swing(7, 100);
+	wait1Msec(1000);
+	STOP;
+	
 	//go back
 	swing(-5, -100);
-        wait1Msec(1000);
-        STOP;
-
-        swing(7, -100);
-        wait1Msec(1000);
-        STOP;
-
+	wait1Msec(1000);
+	STOP;
+	
+	swing(7, -100);
+	wait1Msec(1000);
+	STOP;
+	
 	//diagonals: (should form a X pattern)
 	//not implemented (requires mecanum drive)
 	//Zach, please explain the moveDiagonal function!
@@ -95,7 +95,7 @@ task main() {
 	//in your comments you say that passing 0 will move straight foward
 	//STRAIGHT FOWARD IS NOT DIAGONAL!!!
 	//please explain this method.
-
+	
 	//rotating degrees with the compass sensor
 	//rotateDegWithCompass(90, 100);
 }

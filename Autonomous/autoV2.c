@@ -33,37 +33,37 @@ task grabTask();
 
 task main()
 {
-    initializeAPI();
-    initializeRobot();
-    //waitForStart();
-
-    //setInitial();       // Initialize the Compass and
-    setDefaultCoords();      // Coordinate system values
-
-    moveWithDirection(60, -50);
-    wait1Msec(500);
-    rotateWithOrientation(45, -50);
-    wait1Msec(500);
-    moveWithDirection(22, -50);
-    wait1Msec(500);
-    rotateWithOrientation(45, 50);
-    wait1Msec(500);
-    moveWithDirection(16, -25);
-    wait1Msec(500);
-    moveWithDirection(10, -15);
-    StartTask(grabTask);
-    moveWithDirection(9, -10, 1);
-    wait1Msec(500);
-    wait1Msec(500);
-    moveWithDirection(60, 50);
-    wait1Msec(500);
-    rotateWithOrientation(20, 50);
-    motor[conveyor] = 100;
-    wait1Msec(500);
-    moveWithDirection(45, 50);
-    wait1Msec(500);
-    motor[conveyor] = 0;
-    rotateWithOrientation(180, 50);
+	initializeAPI();
+	initializeRobot();
+	//waitForStart();
+	
+	//setInitial();       // Initialize the Compass and
+	setDefaultCoords();      // Coordinate system values
+	
+	moveWithDirection(60, -50);
+	wait1Msec(500);
+	rotateWithOrientation(45, -50);
+	wait1Msec(500);
+	moveWithDirection(22, -50);
+	wait1Msec(500);
+	rotateWithOrientation(45, 50);
+	wait1Msec(500);
+	moveWithDirection(16, -25);
+	wait1Msec(500);
+	moveWithDirection(10, -15);
+	StartTask(grabTask);
+	moveWithDirection(9, -10, 1);
+	wait1Msec(500);
+	wait1Msec(500);
+	moveWithDirection(60, 50);
+	wait1Msec(500);
+	rotateWithOrientation(20, 50);
+	motor[conveyor] = 100;
+	wait1Msec(500);
+	moveWithDirection(45, 50);
+	wait1Msec(500);
+	motor[conveyor] = 0;
+	rotateWithOrientation(180, 50);
 }
 
 task grabTask() {

@@ -32,14 +32,14 @@
 
 void initializeRobot(){
 	servo[bucket] = 102;
-  servo[pin] = 0;
+	servo[pin] = 0;
 }
 
 task main()
 {
 	short nxtFunction = 1;
 	nNxtExitClicks = 999999999;
-
+	
 	while (nxtFunction != 0){
 		if (nxtFunction == 1){
 			nxtDisplayCenteredTextLine(0, "Left hand drive");
@@ -62,7 +62,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
+		
 		if (nxtFunction == 2){
 			nxtDisplayCenteredTextLine(0, "Right hand drive");
 			if (nNxtButtonPressed == 3){
@@ -84,7 +84,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
+		
 		if (nxtFunction == 3){
 			nxtDisplayCenteredTextLine(0, "Flag");
 			if (nNxtButtonPressed == 3){
@@ -100,7 +100,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
+		
 		if (nxtFunction == 4){
 			nxtDisplayCenteredTextLine(0, "Sweeper");
 			if (nNxtButtonPressed == 3){
@@ -116,7 +116,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
+		
 		if (nxtFunction == 5){
 			nxtDisplayCenteredTextLine(0, "Lift");
 			if (nNxtButtonPressed == 3){
@@ -140,7 +140,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				nxtFunction = 0;
 		}
-
+		
 		if (nxtFunction == 6){
 			nxtDisplayCenteredTextLine(0, "Bucket");
 			if (nNxtButtonPressed == 3){
@@ -154,7 +154,7 @@ task main()
 			if (nNxtButtonPressed == 0)
 				servo[bucket] = 102;
 		}
-
+		
 		if (nxtFunction == 7){
 			nxtDisplayCenteredTextLine(0, "Pin");
 			if (nNxtButtonPressed == 3){

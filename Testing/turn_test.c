@@ -29,7 +29,7 @@
 task main()
 {
 	initializeAPI();
-
+	
 	rotateDegWithCompass(90,100);
 	wait1Msec(2000);
 	rotateDegWithCompass(720,100);

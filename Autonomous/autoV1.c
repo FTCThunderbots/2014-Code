@@ -32,66 +32,66 @@ task grabTask();
 
 task main()
 {
-    initializeAPI();
-    initializeRobot();
-   	waitForStart();
-    setDefaultCoords();      // Coordinate system values
-
-    moveWithDirection(60, -50);
-    wait1Msec(500);
-   	//rotateWithOrientation(180, 50);
-   	wait1Msec(500);
-   	moveWithDirection(18, -20);
-		StartTask(grabTask);
-		moveWithDirection(21, -7);
-		wait1Msec(500);
-		moveWithDirection(21, 7);
-		wait1Msec(500);
-		rotateWithOrientation(27, 50);
-		wait1Msec(500);
-		moveWithDirection(76, 50);
-		wait1Msec(500);
-		rotateWithOrientation(180, 50);
-		//releaseGoal_time();
-		/*
-		wait1Msec(500);
-		moveWithDirection(60, 50);
-		wait1Msec(500);
-		rotateWithOrientation(60, -50);
-		wait1Msec(500);
-		rotateWithOrientation(180, -50);
-		wait1Msec(500);
-		moveWithDirection(60, -50);
-		wait1Msec(500);
-		grabGoal_time();
-		wait1Msec(500);
-		rotateWithOrientation(30, 50);
-		wait1Msec(500);
-		moveWithDirection(24, 50);
-		wait1Msec(500);
-		rotateWithOrientation(30, -50);
-		wait1Msec(500);
-		moveWithDirection(48, 50);
-		wait1Msec(500);
-		rotateWithOrientation(90, 50);
-		wait1Msec(500);
-		moveWithDirection(24, 50);
-		wait1Msec(500);
-		rotateWithOrientation(90, 50);
-		wait1Msec(500);
-		releaseGoal_time();
-		wait1Msec(500);
-		moveWithDirection(12, 50);
-		rotateWithOrientation(180, 50);
-		rotateWithOrientation(180, 50);
-		rotateWithOrientation(180, 50);
-		rotateWithOrientation(180, 50);*/
-    /*while (true) {
-			nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
-			nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
-			nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
-			nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue[compass]);
-		}*/
+	initializeAPI();
+	initializeRobot();
+	waitForStart();
+	setDefaultCoords();      // Coordinate system values
+	
+	moveWithDirection(60, -50);
+	wait1Msec(500);
+	//rotateWithOrientation(180, 50);
+	wait1Msec(500);
+	moveWithDirection(18, -20);
+	StartTask(grabTask);
+	moveWithDirection(21, -7);
+	wait1Msec(500);
+	moveWithDirection(21, 7);
+	wait1Msec(500);
+	rotateWithOrientation(27, 50);
+	wait1Msec(500);
+	moveWithDirection(76, 50);
+	wait1Msec(500);
+	rotateWithOrientation(180, 50);
+	//releaseGoal_time();
+	/*
+	wait1Msec(500);
+	moveWithDirection(60, 50);
+	wait1Msec(500);
+	rotateWithOrientation(60, -50);
+	wait1Msec(500);
+	rotateWithOrientation(180, -50);
+	wait1Msec(500);
+	moveWithDirection(60, -50);
+	wait1Msec(500);
+	grabGoal_time();
+	wait1Msec(500);
+	rotateWithOrientation(30, 50);
+	wait1Msec(500);
+	moveWithDirection(24, 50);
+	wait1Msec(500);
+	rotateWithOrientation(30, -50);
+	wait1Msec(500);
+	moveWithDirection(48, 50);
+	wait1Msec(500);
+	rotateWithOrientation(90, 50);
+	wait1Msec(500);
+	moveWithDirection(24, 50);
+	wait1Msec(500);
+	rotateWithOrientation(90, 50);
+	wait1Msec(500);
+	releaseGoal_time();
+	wait1Msec(500);
+	moveWithDirection(12, 50);
+	rotateWithOrientation(180, 50);
+	rotateWithOrientation(180, 50);
+	rotateWithOrientation(180, 50);
+	rotateWithOrientation(180, 50);*/
+	/*while (true) {
+		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
+		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
+		nxtDisplayCenteredTextLine(2, "O is: %0.01f", readValues('o'));
+		nxtDisplayCenteredTextLine(3, "Compass: %d", SensorValue[compass]);
+	}*/
 }
 
 task grabTask() {

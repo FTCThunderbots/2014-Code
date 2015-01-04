@@ -43,7 +43,7 @@ void setSweeperJoystick() {
 	else if (joy2Btn(5) || joy2Btn(2))
 		motor[sweep] = -SWEEP_MOTOR_SPEED; // 100
 	else if (joy2Btn(7))
-  		motor[sweep] = SWEEP_MOTOR_SPEED; // -100
+		motor[sweep] = SWEEP_MOTOR_SPEED; // -100
 	else
 		motor[sweep]= 0;
 }

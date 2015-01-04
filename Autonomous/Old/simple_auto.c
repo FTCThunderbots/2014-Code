@@ -14,7 +14,7 @@ task main()
 {
 	waitForStart();
 	StartTask(nxtDebugger);
-
+	
 }
 
 void setMovementDrive(int power) {
@@ -36,7 +36,7 @@ void setMovementTurn(int power) {
 task nxtDebugger()
 {
 	while (true)
-	{
+		{
 		nxtDisplayCenteredTextLine(0, "Left Motor 1: %d", motor[leftmotor_1]);
 		nxtDisplayCenteredTextLine(1, "Left Motor 2: %d", motor[leftmotor_2]);
 		nxtDisplayCenteredTextLine(2, "Right Motor 1: %d", motor[rightmotor_1]);

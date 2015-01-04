@@ -59,8 +59,8 @@ void stopForASecond(void);
 task main()
 {
 	initializeAPI();
-  //initRuler(pruler);
-  //StartTask(measureEncoders);
+	//initRuler(pruler);
+	//StartTask(measureEncoders);
 	setMovement(100,0);
 	wait1Msec(2000);
 	stopForASecond();
@@ -82,18 +82,18 @@ task main()
 }
 
 void stopForASecond() {
-   waitSeconds(1);
-   //resetRuler(pruler);
+	waitSeconds(1);
+	//resetRuler(pruler);
 }
 
 /*
 task measureEncoders() {
-   while (true) {
-      leftEnc = getLeftTicks(pruler);
-      rightEnc = getRightTicks(pruler);
-      driveIn = getDriveTicks(pruler);
-      rotateIn = getRotateTicks(pruler);
-      swingIn = getSwingTicks(pruler);
-   }
+	while (true) {
+		leftEnc = getLeftTicks(pruler);
+		rightEnc = getRightTicks(pruler);
+		driveIn = getDriveTicks(pruler);
+		rotateIn = getRotateTicks(pruler);
+		swingIn = getSwingTicks(pruler);
+	}
 }
 */

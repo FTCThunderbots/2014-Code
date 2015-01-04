@@ -35,9 +35,9 @@ task monitorIRsensor(); // declare task
 // use that program's main task
 
 task monitorIRsensor() {
-   while (true) {
-      wait1Msec(100);
-      nxtDisplayCenteredBigTextLine(0, sensorValue[infrared]);
-      writeDebugStreamLine(sensorValue[infrared]);
-   }
+	while (true) {
+		wait1Msec(100);
+		nxtDisplayCenteredBigTextLine(0, sensorValue[infrared]);
+		writeDebugStreamLine(sensorValue[infrared]);
+	}
 }

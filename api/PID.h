@@ -11,13 +11,13 @@
 #endif
 
 typedef struct {
-    float windup_guard;
-    float proportional_gain;
-    float integral_gain;
-    float derivative_gain;
-    float prev_error;
-    float int_error;
-    float control;
+	float windup_guard;
+	float proportional_gain;
+	float integral_gain;
+	float derivative_gain;
+	float prev_error;
+	float int_error;
+	float control;
 } PID;
 
 
