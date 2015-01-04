@@ -84,6 +84,11 @@ void moveWithDirection(float distance, byte power) {
     updateCoords(distance * sgn(power));
 }
 
+void moveWithDirection(float distance, byte power, int stopSeconds) {
+    driveInches(distance, power, false, stopSeconds);
+    updateCoords(distance * sgn(power));
+}
+
 void setCoords(float newX, float newZ, float newO) {
     x = newX;
     z = newZ;

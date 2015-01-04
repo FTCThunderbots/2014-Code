@@ -51,6 +51,12 @@ void driveInches(float inches, byte power, bool usePID) {
 	halt();
 }
 
+void driveInches(float inches, byte power, bool usePID, int stopSeconds) {
+	drive(power);
+	moveFor(inchesToDriveTicks(inches), power, usePID, stopSeconds);
+	halt();
+}
+
 void rotateDegrees(float degrees, byte power, bool usePID) {
 	rotate(power);
 	moveFor(degreesToRotateTicks(degrees), power, usePID);
