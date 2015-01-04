@@ -6,11 +6,7 @@ A replacement for this program is:
 wc -l $(git ls-files)
 '''
 
-import os
 import common
-
-common.EXCLUDED_FOLDERS = (".git", "api\Xander_Drivers")
-common.EXCLUDED_FILES = ("","Batteries\\Battery Log 12-13-14.xlsx")
 
 def main():
 	lines = 0

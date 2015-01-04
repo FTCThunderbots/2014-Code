@@ -3,9 +3,9 @@
 
 import os
 
-EXCLUDED_FOLDERS = []
+EXCLUDED_FOLDERS = (".git", "api\Xander_Drivers", "Batteries", "Notebook")
 EXCLUDED_FILES = []
-ACCEPTED_EXTENSIONS = ['.c', '.h', '.py']
+ACCEPTED_EXTENSIONS = ('.c', '.h', '.py')
 
 #A generator that returns all the files in the repo matching a given set of conditions
 def getFiles(condition):
@@ -30,6 +30,6 @@ def filenameIsBanned(filename, dirname):
 	
 def isValidCode(file):
    return True in [file.endswith(ex) for ex in ACCEPTED_EXTENSIONS]
-	
-def noCondition(file):
-   return True #useful for accepting all files
+   
+def fileIsC(file):
+	return file.endswith(".c") or file.endswith(".h")
