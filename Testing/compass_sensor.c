@@ -67,7 +67,7 @@ void rotateDegreesImp(int degrees, byte power) {    // "Imp" stands for 'improve
 	
 	if ((start + checkDifference) == end) {
 		return;                                     // Jumps back to previous code if successful, retries if not.
-		} else {
+	} else {
 		int degOff = abs((start + checkDifference) - end);
 		int sgnPower = sgn((start + checkDifference) - end);
 		rotateDegreesImp(degOff, power * sgnPower);            // Recursive calling until value is achieved.

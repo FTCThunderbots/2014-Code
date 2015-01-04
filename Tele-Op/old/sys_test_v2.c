@@ -32,7 +32,7 @@ typedef enum {
 const string modeStrings[10] = {"Change power", "Left drive",
 	"Right drive", "Parallel Drive", "Rotational Drive",
 	"Sweep Motor", "Conveyor motor", "Backboard shield",
-"Goal hook", "Lift motor"};
+	"Goal hook", "Lift motor"};
 
 Mode nextMode(Mode m);
 Mode lastMode(Mode m);
@@ -69,8 +69,8 @@ task main()
 			else if (nNxtButtonPressed == 1)
 				setMovement(power, power);
 			else
-			setMovement(0, 0);
-				EndTimeSlice();
+				setMovement(0, 0);
+			EndTimeSlice();
 		}
 		
 		while (currentMode == RIGHT) {
@@ -139,14 +139,14 @@ task main()
 		
 		while (currentMode == GOALHOOK) {
 			if (nNxtButtonPressed == 2)
-				//motor[grab] = power;
+				motor[grab] = -GRAB_MOTOR_SPEED;
+			//motor[grab] = power;
 			//StartTask(releaseGoalTask);
-			motor[grab] = -GRAB_MOTOR_SPEED;
 			//releaseGoal();
 			else if (nNxtButtonPressed == 1)
-				//motor[grab] = -power;
+				motor[grab] = GRAB_MOTOR_SPEED;
+			//motor[grab] = -power;
 			//StartTask(grabGoalTask);
-			motor[grab] = GRAB_MOTOR_SPEED;
 			//grabGoal();
 			else
 				motor[grab] = 0;
