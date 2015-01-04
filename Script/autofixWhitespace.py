@@ -47,7 +47,6 @@ def main():
 				tabAdded = True
 				if singleIndentFlag:
 					keepSingleIndent = True # There is a block in a single indent
-				print("indent: ", line)
 			if '}' in line and not isPreceded(line, '}'): # Found the end of a block, decrease indent
 				indent = indent[:-1]
 				tabs -= 1
@@ -65,7 +64,6 @@ def main():
 				singleIndentFlag = True
 				if singleTabs == 1:
 					startTabs = tabs
-				print("singleindent: ", line)
 			elif not keepSingleIndent: # If the SINGLELOOP did not contain a block
 				singleIndentFlag = False
 				singleTabs = 0	
