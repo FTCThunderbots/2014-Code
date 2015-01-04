@@ -11,11 +11,13 @@ DEFINITIONS = ("setting_twoMotors", "setting_noMotors", "setting_twoEncoders",
 DEFAULT_CONFIG = "../Config/default_config.c"
 
 import os
+
+import common
 		
 def main():
 	defaultConfig = [line for line in getDefaultConfig()]
 	modified = 0
-	for file in getFiles():
+	for file in getFiles(fileIsC):
 		modified += replaceConfig(defaultConfig, file)
 	print("%d configurations have been replaced" % modified)
 		
@@ -23,7 +25,8 @@ def getDefaultConfig():
 	for line in open(DEFAULT_CONFIG):
 		if lineIsConfig(line):
 			yield line
-	
+
+'''	
 def getFiles():
 	for dirname, dirnames, filenames in os.walk('..'):
 		if not dirnameIsBanned(dirname):
@@ -31,7 +34,8 @@ def getFiles():
 				if not filenameIsBanned(file, dirname):
 					if file.endswith(".c"):
 						yield os.path.join(dirname, file)
-						
+'''
+			
 def replaceConfig(defaultConfig, filename):
 	fileobj = open(filename, 'r')
 	file = [line for line in fileobj]
@@ -54,14 +58,31 @@ def replaceConfig(defaultConfig, filename):
 		return 0
 		
 def lineIsConfig(line):
-	return line.startswith("#pragma") or True in [line.startswith("#define " + definition) for definition in DEFINITIONS]
-	#return true if the line starts with #pragma or if it's an accepted definition
-		
+	return line.startswith("#pragma") or lineIsDefine(line) #return true if the line starts with #pragma or if it's an accepted definition
+	
+def lineIsDefine(line):
+	for definition in DEFINITIONS:
+		if line.startswith("#define " + definition + " "):
+			return True
+		if line == "#define " + definition:
+			return True
+		if line == "#define " + definition + "\n":
+			return True
+	return False
+
+
+'''	
 def dirnameIsBanned(dirname):
 	dirname = dirname.lower()
 	return (True in ["".join(("\\",exFolder,"\\")).lower() in dirname or dirname.endswith("".join(("\\",exFolder)).lower()) for exFolder in EXCLUDED_FOLDERS])
 	
 def filenameIsBanned(filename, dirname):
+	filename = filename.lower()
+	dirname = dirname.lower()
 	return (True in [os.path.join(dirname, filename) == os.path.join("..",exFile) for exFile in EXCLUDED_FILES])
+'''
+
+def fileIsC(file):
+	return file.endswith(".c")
 	
 main()
