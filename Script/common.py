@@ -26,10 +26,17 @@ def dirnameIsBanned(dirname):
 def filenameIsBanned(filename, dirname):
    filename = filename.lower()
    dirname = dirname.lower()
-   return (True in [os.path.join(dirname, filename) == os.path.join("..",exFile) for exFile in EXCLUDED_FILES])
+   return (True in [os.path.join(dirname, filename) == os.path.join("..",exFile).lower() for exFile in EXCLUDED_FILES])
 	
 def isValidCode(file):
    return True in [file.endswith(ex) for ex in ACCEPTED_EXTENSIONS]
    
 def fileIsC(file):
 	return file.endswith(".c") or file.endswith(".h")
+	
+def countInstances(line, char):
+	sum = 0
+	for i in range(len(line)):
+		if line[i] == char:
+			sum += 1
+	return sum
