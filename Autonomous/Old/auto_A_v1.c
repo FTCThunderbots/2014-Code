@@ -30,8 +30,6 @@
 
 // This program will drive off the ramp, pick up a goal, and carry it to the parking zone
 
-
-
 task main() {
 	initializeAPI();
 	waitForStart();

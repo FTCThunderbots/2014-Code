@@ -64,6 +64,4 @@ task main()
 	}
 	eraseDisplay();
 	
-	
-	
 }

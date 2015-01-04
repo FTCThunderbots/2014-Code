@@ -48,8 +48,6 @@ string state = "";
 //#define rulersused 2
 #include "../api/api.c"
 
-
-
 //Ruler_t ruler;
 //pRuler_t pruler = &ruler;
 

@@ -24,8 +24,6 @@
 
 #define setting_twoEncoders
 
-
-
 #include "../api/api.c"
 
 byte correctValues(byte currentVal) {

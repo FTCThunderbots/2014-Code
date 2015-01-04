@@ -11,7 +11,6 @@ void initSensors(); //called by initializeAPI()
 static void initCompass();
 static void initIRSeeker();
 
-
 #ifdef COMPASS
 int getHeading();
 int getRelativeHeading();

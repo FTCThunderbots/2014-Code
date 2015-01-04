@@ -32,5 +32,4 @@ task main()
 {
 	initializeAPI(); //located in background.c
 	
-	
 }

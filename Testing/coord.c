@@ -75,7 +75,6 @@ float readValues(char value) {
 		return (orientation * 180 / PI);
 }
 
-
 void rotateWithOrientation(int degrees, byte power) {
 	rotateDegrees(degrees, power);
 	updateDirection(degrees * sgn(power));
