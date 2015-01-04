@@ -38,14 +38,7 @@ void moveFor(int ticks, int speed, bool usePID) { //speed is positive for rotati
 				wait10Msec(1);
 			}
 	} else //no PID
-		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
-			ClearTimer(T1);
-			int prev_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4;
-			while (time1[T1] < 500 && (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {}
-			int cur_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4;
-			if (abs(prev_location) > abs(cur_location) - 50)
-				break;
-		}
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {}
 	prev_time = 0;
 }
 
