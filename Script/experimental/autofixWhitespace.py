@@ -3,14 +3,14 @@
 # Code works perfectly as of 01/04/15 13:52
 # Checked by Daniel
 
-import common
+import commonExp
 
 SINGLELOOPS = ("if", "while", "for", "else", "else if") # What needs to be tabbed
 WS_CHARS = (' ', '\t') # The whitespace characters
 
 def main():
 	modified = 0 # A count of the modified files
-	for filename in common.getFiles(common.fileIsC): # All of the C code
+	for filename in commonExp.getFiles(commonExp.fileIsC): # All of the C code
 		indent = '' # Indent and singleindent start at nothing
 		singleindent = ''
 		corrected = [] # Holds the entire corrected file before write
