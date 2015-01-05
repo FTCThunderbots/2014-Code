@@ -40,7 +40,7 @@ void gotoCoords(float newX, float newZ, float newO) {
 		while (readValues('x') < newX)
 			moveWithDirection(1, -25);
 	}
-
+	
 	while (readValues('o') != 0) {
 		rotateWithOrientation(1, 25);
 	}
@@ -52,10 +52,10 @@ void gotoCoords(float newX, float newZ, float newO) {
 		while (readValues('z') < newZ)
 			moveWithDirection(1, -25);
 	}
-
+	
 	while (readValues('o') != newO)
 		rotateWithOrientation(1, 25);
-
+	
 	setCoords(newX, newZ, newO);
 }
 

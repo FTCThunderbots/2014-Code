@@ -9,7 +9,7 @@ ACCEPTED_EXTENSIONS = ('.c', '.h', '.py')
 
 #A generator that returns all the files in the repo matching a given set of conditions
 def getFiles(condition):
-   for dirname, dirnames, filenames in os.walk('../..'):
+   for dirname, dirnames, filenames in os.walk('..'):
       if not dirnameIsBanned(dirname):
          for file in filenames:
             if not filenameIsBanned(file, dirname):
