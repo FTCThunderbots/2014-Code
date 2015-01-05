@@ -24,6 +24,7 @@
 #define INFRARED infrared
 #define setting_twoEncoders
 //Configuration is current as of 1/01/15 4:54 PM
+
 //USE DEFAULT CONFIG
 
 #include "../api/api.c"
