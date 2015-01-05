@@ -7,10 +7,10 @@ import commonExp
 
 SINGLELOOPS = ("if", "while", "for", "else", "else if") # What needs to be tabbed
 WS_CHARS = (' ', '\t') # The whitespace characters
-
+FILES = ["test.c"]
 def main():
 	modified = 0 # A count of the modified files
-	for filename in commonExp.getFiles(commonExp.fileIsC): # All of the C code
+	for filename in FILES:#commonExp.getFiles(commonExp.fileIsC): # All of the C code
 		indent = '' # Indent and singleindent start at nothing
 		singleindent = ''
 		corrected = [] # Holds the entire corrected file before write
@@ -79,9 +79,13 @@ def main():
 		modified += 1 # All of that only corrected one file
 	print("%d files were corrected" % modified)
 	
-def isSingleLoop(line) :
+def isSingleLoop(line):
+        splitPoint = line.index('//') # We don't care about comments
+        line = line[:splitPoint]
+        if '#' in line:
+                return False
 	if ';' in line:
-		return False
+                return False
 	for loop in SINGLELOOPS:
 		if (loop + ' ') in line:
 			return True
