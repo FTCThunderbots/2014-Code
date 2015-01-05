@@ -80,20 +80,21 @@ def main():
 	print("%d files were corrected" % modified)
 	
 def isSingleLoop(line):
-        splitPoint = line.index('//') # We don't care about comments
-        line = line[:splitPoint]
-        if '#' in line:
-                return False
-	if ';' in line:
-                return False
-	for loop in SINGLELOOPS:
+   if '//' in line:
+      splitPoint = line.index('//') # We don't care about comments
+      line = line[:splitPoint]
+   if '#' in line:
+      return False
+   if ';' in line:
+      return False
+   for loop in SINGLELOOPS:
 		if (loop + ' ') in line:
 			return True
 		if (loop + '\n') in line:
 			return True
 		if (loop + "(") in line:
 			return True
-	return False
+   return False
 
 def isPreceded(line, char):
 	return False not in [line[i] in WS_CHARS for i in range(line.index(char))]
