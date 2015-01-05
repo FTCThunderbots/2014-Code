@@ -64,7 +64,7 @@ void moveFor(int ticks, int speed, bool usePID, int stopSeconds) { //speed is po
 				#endif
 				wait10Msec(1);
 			}
-		else { //we are driving 
+		else //we are driving
 			while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
 				pid_update(&pid, abs(rightEnc1) - abs(leftEnc1), time1(T1) - prev_time);
 				prev_time = time1(T1);
@@ -76,7 +76,7 @@ void moveFor(int ticks, int speed, bool usePID, int stopSeconds) { //speed is po
 				#endif
 				wait10Msec(1);
 			}
-		}
+
 	} else //no PID
 		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks) && time1[T1] < startTime + 1000*stopSeconds) {}
 	prev_time = 0;
