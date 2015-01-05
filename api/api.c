@@ -27,8 +27,8 @@
 #include "background.c"
 #endif
 
-//#ifndef COORD_INCLUDEGUARD
-//#include "coord.c"
+//#ifndef COORDINATES_INCLUDEGUARD
+//#include "coordinates.c"
 //#endif
 
 #ifndef ENCODERS_INCLUDEGUARD
@@ -68,5 +68,5 @@
 #endif
 
 #ifndef TIMER_INCLUDEGUARD
-#include "timer.h"
+#include "time.c"
 #endif
