@@ -31,8 +31,7 @@ task grabTask();
 #include "../api/api.c"
 #include "../api/coord.c"
 
-task main()
-{
+task main() {
 	initializeAPI();
 	initializeRobot();
 	//waitForStart();
