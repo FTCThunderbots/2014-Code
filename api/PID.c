@@ -9,7 +9,6 @@ void moveFor(int ticks, int speed, bool usePID) { //speed is positive for rotati
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
-	int startTime = time1[T1];
 	if (usePID) {
 		ClearTimer(T1);
 		PID pid;
@@ -47,9 +46,9 @@ void moveFor(int ticks, int speed, bool usePID, int stopSeconds) { //speed is po
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
+	ClearTimer(T1);
 	int startTime = time1[T1];
 	if (usePID) {
-		ClearTimer(T1);
 		PID pid;
 		pid_zeroize(&pid);
 		if (sgn(motor[leftmotor_1]) == sgn(motor[rightmotor_1])) //we are rotating

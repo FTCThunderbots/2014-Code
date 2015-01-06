@@ -36,10 +36,10 @@ task main()
 	initializeAPI();
 	initializeRobot();
 	//waitForStart();
-	
+
 	//setInitial();       // Initialize the Compass and
 	setDefaultCoords();      // Coordinate system values
-	
+
 	moveWithDirection(60, -50);
 	wait1Msec(500);
 	rotateWithOrientation(45, -50);
