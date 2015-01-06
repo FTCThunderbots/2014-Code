@@ -65,8 +65,7 @@ task main() {
 	rotateWithOrientation(180, 50);
 }
 
-task grabTask()
-{
+task grabTask() {
 	motor[grab] = GRAB_MOTOR_SPEED/2;
 	wait1Msec(GRAB_MOTOR_DOWN_TIME*2);
 	motor[grab] = 0;
