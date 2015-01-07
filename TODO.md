@@ -4,9 +4,10 @@
 #General:
 
 * Add a move arc function
-* Rename autoV1.c to be *much* more descriptive, and add documentation about where the robot needs to start
+* Add documentation about where the robot needs to start
 * Rewrite the coordinate system to listen to the motors, instead of needing to be updated
 * Write machine learning code for autonomous
+* Write autonomous sequencing program
 
 #Code cleanup:
 ###API
@@ -15,13 +16,11 @@
 * Try to condense initializeAPI and initializeRobot
 ###Autonomous
 * Add more documentation to files that dictate where to start, and the path of the program
+* Document start positions to a great degree of detail! They should be detailed enough that someone from another team could correctly operate the program after reading.
 * Rewrite files to use distance instead of time:
  * backOffRamp.c
  * doubleFloorAuto.c
  * floorAuto.c
-* Differentiate getGoal_Park and getGoal_Park2
-* Is updateAuto.c even used for anything?
-* Change autov1.c to use an array of actions instead of a long series of statements
 
 #Long term goals:
 * Write API wiki
