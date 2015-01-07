@@ -11,6 +11,11 @@ while (true)
 while (/*for example true*/false)
 	//lets see if this works
 #endif
+for (;;);
+	//should be no indent
+
+for (;;)
+	//should be indent
 
 /*
 * This is an example
