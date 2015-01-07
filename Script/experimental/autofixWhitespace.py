@@ -124,7 +124,7 @@ def isSingleLoop(line):
 		line = line[:splitPoint]
 	if '#' in line:
 		return False
-	if ';' in line:
+	if ';' in line and not "for" in line: # For loops have semicolons in them
 		return False
 	for loop in SINGLELOOPS:
 		if (loop + ' ') in line:
