@@ -41,7 +41,7 @@ const int stdPow = 50; // standard power
  *   leave at 0 for no delay or -1 to use the standard delay.
  */
 
-byte[11][4] actions = {{'d', 60, -stdPow, -1},
+byte actions[11][4] = {{'d', 60, -stdPow, -1},
 	{'r', 45, -stdPow, -1},
 	{'d', 22, -stdPow, -1},
 	{'r', 45, stdPow, -1},
@@ -51,7 +51,7 @@ byte[11][4] actions = {{'d', 60, -stdPow, -1},
 	{'d', 60, stdPow, -1},
 	{'r', 20, stdPow, 0}, //motor[conveyor] = 100
 	{'d', 0, 0, -1}, //pause
-	{'r', 180, stdPow, 0}}
+	{'r', 180, stdPow, 0}};
 
 task grabTask();
 
