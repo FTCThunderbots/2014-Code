@@ -27,9 +27,9 @@
 #include "background.c"
 #endif
 
-//#ifndef COORDINATES_INCLUDEGUARD
-//#include "coordinates.c"
-//#endif
+#ifndef COORDINATES_INCLUDEGUARD
+#include "coordinates.c"
+#endif
 
 #ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"
