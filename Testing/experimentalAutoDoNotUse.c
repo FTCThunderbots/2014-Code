@@ -29,9 +29,7 @@
 
 #include "../api/api.c"
 #include "../api/coord.c"
-
-const int stdDel = 500; // standard delay
-const int stdPow = 50; // standard power
+#include "../Testing/auto_instruction_reader.h"
 
 /* Format: {mode, distance, power, pause}
  * Mode: either 'd' or 'r', for either drive or rotate
@@ -41,17 +39,19 @@ const int stdPow = 50; // standard power
  *   leave at 0 for no delay or -1 to use the standard delay.
  */
 
-byte actions[11][4] = {{'d', 60, -stdPow, -1},
+byte actions[][4] = {{'d', 60, -stdPow, -1},
 	{'r', 45, -stdPow, -1},
 	{'d', 22, -stdPow, -1},
 	{'r', 45, stdPow, -1},
 	{'d', 16, -25, -1},
 	{'d', 10, -15, 0}, //start task after this
+	{'g', 0, 0, 1},
 	{'d', 9, -10, 10},
 	{'d', 60, stdPow, -1},
 	{'r', 20, stdPow, 0}, //motor[conveyor] = 100
 	{'d', 0, 0, -1}, //pause
-	{'r', 180, stdPow, 0}};
+	{'r', 180, stdPow, 0}
+};
 
 task grabTask();
 

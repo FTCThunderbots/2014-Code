@@ -29,7 +29,7 @@
 
 task grabTask();
 #include "../api/api.c"
-#include "../api/coord.c"
+//#include "../api/coord.c"
 
 task main() {
 	initializeAPI();

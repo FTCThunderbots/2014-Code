@@ -28,7 +28,7 @@
 //USE DEFAULT CONFIG
 
 #include "../api/api.c"
-#include "../api/coord.c"
+//#include "../api/coord.c"
 task grabTask();
 
 task main()
@@ -37,7 +37,7 @@ task main()
 	initializeRobot();
 	waitForStart();
 	setDefaultCoords();      // Coordinate system values
-	
+
 	moveWithDirection(60, -50);
 	wait1Msec(500);
 	//rotateWithOrientation(180, 50);
