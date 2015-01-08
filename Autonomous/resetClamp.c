@@ -36,4 +36,7 @@ task main()
 	wait1Msec(GRAB_MOTOR_DOWN_TIME*2);
 	motor[grab] = 0;
 	isGoalGrabbed = true;
+	motor[conveyor] = 100;
+	wait1Msec(5000);
+	motor[conveyor] = 0;
 }

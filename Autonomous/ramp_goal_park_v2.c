@@ -27,25 +27,24 @@
 
 //USE DEFAULT CONFIG
 
-task grabTask();
 #include "../api/api.c"
 //#include "../api/coord.c"
+bool afdasdfafd = true;
+task grabTask();
 
-task main() {
-	initializeAPI();
+task main()
+{
+	//initializeAPI();
 	initializeRobot();
-	//waitForStart();
-
-	//setInitial();       // Initialize the Compass and
 	setDefaultCoords();      // Coordinate system values
 
 	moveWithDirection(60, -50);
 	wait1Msec(500);
-	rotateWithOrientation(45, -50);
+	rotateWithOrientation(50, -50);
 	wait1Msec(500);
-	moveWithDirection(22, -50);
+	moveWithDirection(25, -50);
 	wait1Msec(500);
-	rotateWithOrientation(45, 50);
+	rotateWithOrientation(48, 50);
 	wait1Msec(500);
 	moveWithDirection(16, -25);
 	wait1Msec(500);
@@ -54,7 +53,7 @@ task main() {
 	moveWithDirection(9, -10, 1);
 	wait1Msec(500);
 	wait1Msec(500);
-	moveWithDirection(60, 50);
+	moveWithDirection(55, 50);
 	wait1Msec(500);
 	rotateWithOrientation(20, 50);
 	motor[conveyor] = 100;
