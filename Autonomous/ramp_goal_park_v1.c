@@ -29,16 +29,25 @@
 
 #include "../api/api.c"
 //#include "../api/coord.c"
+bool afdasdfafd = true;
 task grabTask();
 
 task main()
 {
-	initializeAPI();
+	//initializeAPI();
 	initializeRobot();
-	waitForStart();
 	setDefaultCoords();      // Coordinate system values
 
-	moveWithDirection(60, -50);
+	//moveWithDirection(60, -50);
+	StartTask(grabTask);
+	while(afdasdfafd) {}
+	/*resetEncoders();
+	motor[rightmotor_1] = 100;
+	ClearTimer(T1);
+	while (time1[T1] < 5000) {
+		nxtDisplayCenteredTextLine(0, "%d", nMotorEncoder[rightmotor_1]);
+	}
+	motor[rightmotor_1] = 0;*/
 	wait1Msec(500);
 	//rotateWithOrientation(180, 50);
 	wait1Msec(500);
@@ -54,6 +63,7 @@ task main()
 	wait1Msec(500);
 	rotateWithOrientation(180, 50);
 	//releaseGoal_time();
+
 	/*
 	wait1Msec(500);
 	moveWithDirection(60, 50);
