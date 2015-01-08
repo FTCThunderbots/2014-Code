@@ -44,7 +44,7 @@ task main()
 	wait1Msec(500);
 	moveWithDirection(25, -50);
 	wait1Msec(500);
-	rotateWithOrientation(48, 50);
+	rotateWithOrientation(47, 50);
 	wait1Msec(500);
 	moveWithDirection(16, -25);
 	wait1Msec(500);
