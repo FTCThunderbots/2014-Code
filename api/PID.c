@@ -5,7 +5,7 @@
 
 static int prev_time = 0;
 
-void moveFor(int ticks, int speed, bool usePID) { //speed is positive for rotating
+void moveFor(int ticks, int speed) { //speed is positive for rotating
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
@@ -42,7 +42,7 @@ void moveFor(int ticks, int speed, bool usePID) { //speed is positive for rotati
 	prev_time = 0;
 }
 
-void moveFor(int ticks, int speed, bool usePID, int stopSeconds) { //speed is positive for rotating
+void moveFor(int ticks, int speed, int stopSeconds) { //speed is positive for rotating
 	//this will work for rotating in place and linear driving (forwards and backwards)
 	//might also work for strafing
 	resetEncoders();
@@ -81,7 +81,7 @@ void moveFor(int ticks, int speed, bool usePID, int stopSeconds) { //speed is po
 	prev_time = 0;
 }
 
-void swingFor(int ticks, int direction, int speed, bool usePID) {
+void swingFor(int ticks, int direction, int speed) {
    resetEncoders();
    if (usePID) {
    	ClearTimer(T1);
