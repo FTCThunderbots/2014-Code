@@ -37,10 +37,7 @@ task main()
 	//initializeAPI();
 	initializeRobot();
 	setDefaultCoords();      // Coordinate system values
-
-	//moveWithDirection(60, -50);
-	StartTask(grabTask);
-	while(afdasdfafd) {}
+	moveWithDirection(60, -50);
 	/*resetEncoders();
 	motor[rightmotor_1] = 100;
 	ClearTimer(T1);
@@ -57,7 +54,7 @@ task main()
 	wait1Msec(500);
 	moveWithDirection(21, 7);
 	wait1Msec(500);
-	rotateWithOrientation(27, 50);
+	rotateWithOrientation(30, 50);
 	wait1Msec(500);
 	moveWithDirection(76, 50);
 	wait1Msec(500);
