@@ -64,3 +64,5 @@ const byte DEFAULT_MOVE_POWER = 100; // the power when power is not specified
 const int JOYSTICK_MIN_VALUE = 5; //abs(joystick) cannot be in (0, min)
 const int JOYSTICK_MAX_VALUE = 127; //abs(joystick) <= max
 const float JOYSTICK_LINEAR_WEIGHT = 2.5; // weight of the linear scale to the exponential scale
+
+bool usePID = false;
