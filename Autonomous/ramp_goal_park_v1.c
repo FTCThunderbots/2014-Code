@@ -58,7 +58,7 @@ task main()
 	wait1Msec(500);
 	moveWithDirection(76, 50);
 	wait1Msec(500);
-	rotateWithOrientation(180, 25+25);
+	rotateWithOrientation(180, 50);
 	//releaseGoal_time();
 	
 	/*
