@@ -7,15 +7,23 @@
 while (true);
 #else
 while (true)
-	//do nothing
+//do nothing
 while (/*for example true*/false)
-	//lets see if this works
+//lets see if this works
+
+
+while (/*for example true*/false);
+//that had better work.
+
+
+
 #endif
 for (;;);
-	//should be no indent
+//should be no indent
+
 
 for (;;)
-	//should be indent
+//should be indent
 
 /*
 * This is an example
