@@ -37,7 +37,7 @@ task main()
 	//initializeAPI();
 	initializeRobot();
 	setDefaultCoords();      // Coordinate system values
-
+	
 	moveWithDirection(60, -50);
 	wait1Msec(500);
 	rotateWithOrientation(50, -50);

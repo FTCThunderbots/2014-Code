@@ -33,9 +33,9 @@ task main()
 {
 	initializeRobot();
 	setDefaultCoords();
-
+	
 	gotoCoords(12, 48, 90);
-
+	
 	while (true) {
 		nxtDisplayCenteredTextLine(0, "X: %0.01f", readCoordValue('x'));
 		nxtDisplayCenteredTextLine(1, "Z: %0.01f", readCoordValue('z'));

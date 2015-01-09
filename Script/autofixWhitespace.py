@@ -3,7 +3,8 @@
 
 import common
 
-common.EXCLUDED_FILES = ("api\\pid.c", "Autonomous\\ramp_goal_park_v3.c")
+common.EXCLUDED_FILES = ("api/pid.c", "Autonomous/ramp_goal_park_v3.c",
+		"Testing/experimentalAutoDoNotUse.c", "Script/experimental/test.c")
 
 SINGLELOOPS = ("if", "while", "for", "else", "else if")
 WS_CHARS = (' ', '\t')
@@ -20,7 +21,7 @@ def main():
 			if '}' in line and isPreceded(line, '}'):
 				indent = indent[:-1]
 			i = 0
-			while line[i] in WS_CHARS:
+			while i < len(line) and line[i] in WS_CHARS:
 				i += 1
 			if not (lineAboveIsBlank and lineIsBlank(line)):
 				corrected.append(indent + singleindent + line[i:])
@@ -45,7 +46,7 @@ def main():
 		modified += 1
 	print("%d files were corrected" % modified)
 	
-def isSingleLoop(line) :
+def isSingleLoop(line):
 	for loop in SINGLELOOPS:
 		if ('\t' + loop + ' ') in line:
 			return True

@@ -60,7 +60,7 @@ task main()
 	wait1Msec(500);
 	rotateWithOrientation(180, 50);
 	//releaseGoal_time();
-
+	
 	/*
 	wait1Msec(500);
 	moveWithDirection(60, 50);

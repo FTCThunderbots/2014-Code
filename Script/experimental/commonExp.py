@@ -21,15 +21,19 @@ def getFiles(condition):
 						
 def dirnameIsBanned(dirname):
    dirname = dirname.lower()
-   return (True in [("\\"+exFolder+"\\").lower() in dirname or dirname.endswith(("\\"+exFolder).lower()) for exFolder in EXCLUDED_FOLDERS])
+   return (True in [(os.path.join(os.path.join("",correctFilepath(exFolder)),"").lower()) in dirname or dirname.endswith((os.path.join("", correctFilepath(exFolder)).lower())) for exFolder in EXCLUDED_FOLDERS])
+   #TODO: make this line less of a clusterfuck
 	
 def filenameIsBanned(filename, dirname):
    filename = filename.lower()
    dirname = dirname.lower()
-   return (True in [os.path.join(dirname, filename) == os.path.join("..",exFile).lower() for exFile in EXCLUDED_FILES])
-	
-def isValidCode(file):
-   return True in [file.endswith(ex) for ex in ACCEPTED_EXTENSIONS]
+   return (True in [os.path.join(dirname, filename) == os.path.join("..",correctFilepath(exFile)).lower() for exFile in EXCLUDED_FILES])
+   
+def correctFilepath(path):
+	final = ""
+	for word in path.split("/"):
+		final = os.path.join(final, word)
+	return final
    
 def fileIsC(file):
 	return file.endswith(".c") or file.endswith(".h")
