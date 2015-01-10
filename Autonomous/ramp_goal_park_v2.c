@@ -67,7 +67,7 @@ task main()
 	moveWithDirection(45, 50);
 	wait1Msec(500);
 	motor[conveyor] = 0;
-	rotateWithOrientation(180, 50);
+	rotateWithOrientation(160, 50);
 }
 
 task grabTask() {
