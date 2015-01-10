@@ -32,7 +32,7 @@
 task main()
 {
 	//used for checking battery level
-	//while (true) {}
+	while (true) {}
 	resetEncoders();
 	motor[leftmotor_1] = 75;
 	while (abs(leftEnc1) < 1440) {}
