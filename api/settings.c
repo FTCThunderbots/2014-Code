@@ -8,7 +8,7 @@
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35;
-const int GRAB_MOTOR_UP_TIME = 350;
+const int GRAB_MOTOR_UP_TIME = 300;
 const int GRAB_MOTOR_DOWN_TIME = 300;
 const int GRAB_MOTOR_DOWN_POS = 100;
 const int GRAB_MOTOR_UP_POS = 1;
