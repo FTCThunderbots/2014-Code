@@ -10,6 +10,8 @@
 #include "settings.c"
 #endif
 
+//#warn "LEFT ENCODER WIRE BROKE AT COMPETITION, MAY NOT WORK!"
+
 #ifndef setting_noEncoders
 
 #define leftEnc1 nMotorEncoder[leftmotor_1]
