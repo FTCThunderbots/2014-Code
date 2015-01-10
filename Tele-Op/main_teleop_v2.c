@@ -24,6 +24,7 @@
 #define INFRARED infrared
 #define setting_twoEncoders
 //Configuration is current as of 1/01/15 4:54 PM
+
 //USE DEFAULT CONFIG
 
 #include "../api/api.c"
@@ -34,7 +35,7 @@ static const bool DISPLAY_DEBUG_INFORMATION = false;
 
 task main()
 {
-	initializeAPI();
+	//initializeAPI();
 	initializeRobot();
 	eraseDisplay();
 	while (true) {
@@ -58,4 +59,5 @@ void displayDebugInfo() {
 		nxtDisplayCenteredTextLine(3, "right1: %d", motor[rightmotor_1]);
 		nxtDisplayCenteredTextLine(4, "right2: %d", motor[rightmotor_2]);
 	}
-}
+
+	}
