@@ -29,7 +29,7 @@
 
 #include "../api/api.c"
 //#include "../api/coord.c"
-bool afdasdfafd = true;
+bool foo = true;
 task grabTask();
 
 task main()
@@ -37,7 +37,7 @@ task main()
 	//initializeAPI();
 	initializeRobot();
 	setDefaultCoords();      // Coordinate system values
-	
+
 	moveWithDirection(60, -50);
 	wait1Msec(500);
 	rotateWithOrientation(50, -50);
