@@ -16,9 +16,9 @@ void initializeRobot() {
 
 void initializeAPI() {
 	//initDebugConsole();
-	initSensors();
-	StartTask(matchStartListener);
-	StartTask(background);
+	//initSensors();
+	//StartTask(matchStartListener);
+	//StartTask(background);
 }
 
 task background() {
