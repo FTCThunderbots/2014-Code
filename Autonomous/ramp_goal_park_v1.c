@@ -29,13 +29,14 @@
 
 #include "../api/api.c"
 //#include "../api/coord.c"
-bool afdasdfafd = true;
+bool foo = true;
 task grabTask();
 
 task main()
 {
 	//initializeAPI();
 	initializeRobot();
+	//waitForStart();
 	setDefaultCoords();      // Coordinate system values
 	moveWithDirection(60, -50);
 	/*resetEncoders();
@@ -56,11 +57,20 @@ task main()
 	wait1Msec(500);
 	rotateWithOrientation(30, 50);
 	wait1Msec(500);
-	moveWithDirection(76, 50);
+	moveWithDirection(80, 50);
 	wait1Msec(500);
-	rotateWithOrientation(180, 50);
+	if (foo) {
+		rotateWithOrientation(150, 50);
+		releaseGoal_time();
+		wait1Msec(500);
+		moveWithDirection(60, 100);
+	}
+	else {
+		rotateWithOrientation(180, 50);
+		releaseGoal_time();
+	}
 	//releaseGoal_time();
-	
+
 	/*
 	wait1Msec(500);
 	moveWithDirection(60, 50);

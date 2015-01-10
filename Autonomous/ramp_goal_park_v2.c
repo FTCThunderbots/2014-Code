@@ -29,7 +29,7 @@
 
 #include "../api/api.c"
 //#include "../api/coord.c"
-bool afdasdfafd = true;
+bool foo = true;
 task grabTask();
 
 task main()
