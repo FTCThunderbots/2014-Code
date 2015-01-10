@@ -31,7 +31,7 @@
 
 task main()
 {
-	motor[conveyor] = 75;
-	wait10Msec(1000);
-	motor[conveyor] = 0;
+	motor[leftmotor_1] = 75;
+	wait10Msec(50);
+	motor[leftmotor_1] = 0;
 }

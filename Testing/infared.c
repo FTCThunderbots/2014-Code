@@ -45,6 +45,11 @@ byte correctValues(byte currentVal) {
 		return 5;
 	else if (currentVal == 9)
 		return 7;
-	
+
 	return 9;
+}
+
+
+byte getIRReaderValue() {
+	ascii = { ascii1, ascii2, ascii3, ascii4, ascii5 };
 }
