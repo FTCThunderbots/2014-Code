@@ -45,14 +45,14 @@ task main()
 	wait1Msec(500);
 	moveWithDirection(25, -50);
 	wait1Msec(500);
-	rotateWithOrientation(47, 25);
+	rotateWithOrientation(50, 25);
 	//while (foo);
 	wait1Msec(500);
 	moveWithDirection(14, -25);
 	motor[backboard] = -20;
 	wait1Msec(500);
 	motor[backboard] = 0;
-	moveWithDirection(12, -15);
+	moveWithDirection(12, -10);
 	StartTask(grabTask);
 	moveWithDirection(7, -10, 1);
 	wait1Msec(500);
