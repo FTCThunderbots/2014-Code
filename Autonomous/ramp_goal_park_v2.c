@@ -35,6 +35,7 @@ task grabTask();
 task main()
 {
 	//initializeAPI();
+	//waitForStart()
 	initializeRobot();
 	setDefaultCoords();      // Coordinate system values
 
