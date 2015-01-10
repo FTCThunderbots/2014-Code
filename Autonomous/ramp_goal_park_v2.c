@@ -41,11 +41,11 @@ task main()
 
 	moveWithDirection(60, -50);
 	wait1Msec(500);
-	rotateWithOrientation(50, -50);
+	rotateWithOrientation(50, -25);
 	wait1Msec(500);
 	moveWithDirection(25, -50);
 	wait1Msec(500);
-	rotateWithOrientation(47, 50);
+	rotateWithOrientation(47, 25);
 	//while (foo);
 	wait1Msec(500);
 	moveWithDirection(14, -25);
