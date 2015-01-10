@@ -36,7 +36,7 @@ task main()
 {
 	//initializeAPI();
 	initializeRobot();
-	//waitForStart();
+	waitForStart();
 	setDefaultCoords();      // Coordinate system values
 	moveWithDirection(60, -50);
 	/*resetEncoders();
