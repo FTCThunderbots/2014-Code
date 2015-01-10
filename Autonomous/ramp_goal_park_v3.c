@@ -32,40 +32,45 @@
 bool foo = true;
 task grabTask();
 
+typedef enum {
+	RAMP,
+	FLOOR_ONE,
+	PARKING_ZONE,
+	FLOOR_TWO
+} Position;
+
 task main()
 {
+	Position currentPos = RAMP;
 	//initializeAPI();
-	//waitForStart();
 	initializeRobot();
+	//waitForStart();
 	setDefaultCoords();      // Coordinate system values
-
 	moveWithDirection(60, -50);
+	currentPos = FLOOR_ONE;
 	wait1Msec(500);
-	rotateWithOrientation(50, -50);
 	wait1Msec(500);
-	moveWithDirection(25, -50);
-	wait1Msec(500);
-	rotateWithOrientation(47, 50);
-	wait1Msec(500);
-	moveWithDirection(16, -25);
-	wait1Msec(500);
-	moveWithDirection(10, -15);
+	moveWithDirection(18, -20);
 	StartTask(grabTask);
-	moveWithDirection(9, -10, 1);
+	moveWithDirection(21, -7);
 	wait1Msec(500);
-	motor[conveyor] = 100;
-	wait1Msec(1500);
-	motor[conveyor] = 0;
+	moveWithDirection(21, 7);
 	wait1Msec(500);
-	moveWithDirection(55, 50);
+	rotateWithOrientation(30, 50);
 	wait1Msec(500);
-	rotateWithOrientation(20, 50);
-	motor[conveyor] = 100;
+	moveWithDirection(80, 50);
+	currentPos = PARKING_ZONE;
 	wait1Msec(500);
-	moveWithDirection(45, 50);
-	wait1Msec(500);
-	motor[conveyor] = 0;
-	rotateWithOrientation(180, 50);
+	if (foo) {
+		rotateWithOrientation(150, 50);
+		releaseGoal_time();
+		wait1Msec(500);
+		moveWithDirection(60, 100);
+	}
+	else {
+		rotateWithOrientation(180, 50);
+		releaseGoal_time();
+	}
 }
 
 task grabTask() {
