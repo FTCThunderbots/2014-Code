@@ -48,15 +48,15 @@ task main()
 	rotateWithOrientation(47, 50);
 	//while (foo);
 	wait1Msec(500);
-	moveWithDirection(16, -25);
-	motor[backboard] = -10;
+	moveWithDirection(14, -25);
+	motor[backboard] = -20;
 	wait1Msec(500);
 	motor[backboard] = 0;
-	moveWithDirection(10, -15);
+	moveWithDirection(12, -15);
 	StartTask(grabTask);
-	moveWithDirection(9, -10, 1);
+	moveWithDirection(7, -10, 1);
 	wait1Msec(500);
-	motor[conveyor] = 100;
+	motor[conveyor] = 75;
 	wait1Msec(1000);
 	moveWithDirection(55, 50);
 	wait1Msec(500);
@@ -67,7 +67,7 @@ task main()
 	moveWithDirection(45, 50);
 	wait1Msec(500);
 	motor[conveyor] = 0;
-	rotateWithOrientation(160, 50);
+	rotateWithOrientation(180, 50);
 }
 
 task grabTask() {
