@@ -36,6 +36,23 @@ int irStartingValues[] = {0, 0, 0};
 int irMiddleValues[] = {5, 5, 0};
 int irEndingValues[] = {5, 5, 0};
 
+byte sampleAverage(int samples) {
+	byte samplespace[samples];
+
+	for (int i = 0; i < samples; i++) {
+		samplespace[i] = SensorValue[infrared];
+		wait1Msec((int)(1 / samples * 100));
+	}
+	int total = 0;
+	for (int j = 0; j < samples; j++) {
+			total += samplespace[j];
+	}
+
+	total /= samples;
+
+	return (byte)total;
+}
+
 task main()
 {
 	//waitForStart();
@@ -43,16 +60,11 @@ task main()
 	moveWithDirection(28,-25);
 	wait10Msec(100);
 	rotateWithOrientation(90,25);
-	startingValue = SensorValue[infrared];
-	//moveWithDirection(14, 25);
-	middleValue = SensorValue[infrared];
-	//moveWithDirection(14, 25);
-	endingValue = SensorValue[infrared];
+	byte sampleAverage = getIRSampleAverage(100);
 	eraseDisplay();
 	while (foo) {
-			nxtDisplayCenteredTextLine(0, "%d", SensorValue[infrared]);
-	nxtDisplayCenteredTextLine(1, "%d", middleValue);
-	nxtDisplayCenteredTextLine(2, "%d", endingValue);
+		nxtDisplayCenteredTextLine(0, "%d", SensorValue[infrared]);
+		nxtDisplayCenteredTextLine(1, "%d", sampleAverage);
 	}
 }
 
