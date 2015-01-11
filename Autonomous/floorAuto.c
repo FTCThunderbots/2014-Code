@@ -33,12 +33,27 @@ task main() {
 	//time based off ramp
 	//initializeAPI();
 	initializeRobot();
-	waitForStart();
-	//driveSeconds(2.0, 100);
-	ClearTimer(T1);
-	int a = time1[T1];
-	while (time1[T1] < a + 1500) {
-		setMovement(100, 60);
+
+	StartTask(matchStartListener);
+	nNxtExitClicks = 3;
+	int delay = 0;
+	eraseDisplay();
+	while (nNxtButtonPressed != 3 && !matchHasStarted) {
+		if (nNxtButtonPressed == 1)
+			delay++;
+		if (nNxtButtonPressed == 2)
+			delay--;
+		if (delay < 0)
+			delay = 0;
+		if (nNxtButtonPressed == 0)
+			delay = (delay != 0) ? 0 : 15; //change to MAX_AUTO_DELAY macro
+
+		nxtDisplayCenteredTextLine(0, "%2.2f second delay", delay);
+		wait1Msec(300);
 	}
-	setMovement(0, 0);
+	eraseDisplay();
+	while (!matchHasStarted) {}
+
+	wait1Msec(delay*1000);
+	driveSeconds(1.5, 100);
 }
