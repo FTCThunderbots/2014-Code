@@ -33,23 +33,27 @@ bool foo = true;
 task grabTask();
 
 int irStartingValues[] = {0, 0, 0};
-int irMiddleValues[] = {0, 0, 0};
-int irEndingValues[] = {0, 0, 0};
+int irMiddleValues[] = {5, 5, 0};
+int irEndingValues[] = {5, 5, 0};
 
 task main()
 {
-	waitForStart();
+	//waitForStart();
 	int startingValue, middleValue, endingValue;
+	moveWithDirection(28,-25);
+	wait10Msec(100);
+	rotateWithOrientation(90,25);
 	startingValue = SensorValue[infrared];
-	moveWithDirection(14, 25);
+	//moveWithDirection(14, 25);
 	middleValue = SensorValue[infrared];
-	moveWithDirection(14, 25);
+	//moveWithDirection(14, 25);
 	endingValue = SensorValue[infrared];
 	eraseDisplay();
-	nxtDisplayCenteredTextLine(0, "%d", startingValue);
-	nxtDisplayCenteredTextLine(0, "%d", startingValue);
-	nxtDisplayCenteredTextLine(0, "%d", startingValue);
-	while (foo) {}
+	while (foo) {
+			nxtDisplayCenteredTextLine(0, "%d", SensorValue[infrared]);
+	nxtDisplayCenteredTextLine(1, "%d", middleValue);
+	nxtDisplayCenteredTextLine(2, "%d", endingValue);
+	}
 }
 
 task grabTask() {
