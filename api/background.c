@@ -8,29 +8,29 @@
 #endif
 
 void initializeRobot() {
-        halt();
-        resetEncoders();
-        nMotorEncoder[grab] = 1;
-        nMotorEncoder[backboard] = 1;
+	halt();
+	resetEncoders();
+	nMotorEncoder[grab] = 1;
+	nMotorEncoder[backboard] = 1;
 }
 
 void initializeAPI() {
-        initDebugConsole();
-        StartTask(background);
+	initSensors();
+	//StartTask(matchStartListener);
+	StartTask(background);
 }
 
 task background() {
-        while (true) {
-                updateDebugStream(); //debug.c
-                updateDebugConsole();
-                EndTimeSlice();
-        }
+	while (true) {
+		//updateDebugStream(); //debug.c
+		//updateDebugConsole();
+		EndTimeSlice();
+	}
 }
 
-static void suppressUnreferencedWarnings() {
-        int a = BACKBOARD_MOTOR_UP_POS;
-        int b = BACKBOARD_MOTOR_DOWN_POS;
-        a += b;
-        b += a;
-        StartTask(matchStartListener);
+static void suppressUnreferencedWarnings(int a) {
+	a = BACKBOARD_MOTOR_UP_POS;
+	a = BACKBOARD_MOTOR_DOWN_POS;
+	a = DEFAULT_MOVE_POWER;
+	StartTask(matchStartListener);
 }

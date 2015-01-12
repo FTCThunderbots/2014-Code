@@ -18,7 +18,7 @@ int setAutoDelay() {
 			delay = 0;
 		if (nNxtButtonPressed == 0)
 			delay = (delay != 0) ? 0 : 15; //change to MAX_AUTO_DELAY macro
-
+		
 		nxtDisplayCenteredTextLine(0, "%2.2f second delay", delay);
 		wait1Msec(300);
 	}
@@ -29,4 +29,8 @@ int setAutoDelay() {
 task matchStartListener() {
 	waitForStart();
 	matchHasStarted = true;
+}
+
+void waitStartAPI() {
+	while (!matchHasStarted) {}
 }

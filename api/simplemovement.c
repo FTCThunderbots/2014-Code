@@ -1,7 +1,6 @@
 // simplemovement.c
 // Contains very basic movement functions
 // All functions are wrappers of functions in movement
-
 #include "simplemovement.h"
 
 //look in header for functions that need implementations
@@ -49,6 +48,12 @@ void swingSeconds(float secs, byte direction, byte power) {
 void driveInches(float inches, byte power) {
 	drive(power);
 	moveFor(inchesToDriveTicks(inches), power);
+	halt();
+}
+
+void driveInches(float inches, byte power, int stopSeconds) {
+	drive(power);
+	moveFor(inchesToDriveTicks(inches), power, stopSeconds);
 	halt();
 }
 

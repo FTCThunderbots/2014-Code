@@ -6,14 +6,14 @@ static float inchesConvert(length_t PARAM, float input) {
 	float output;
 	if (PARAM == INCHES) {
 		return input;
-  } else if (PARAM == FEET) {
+	} else if (PARAM == FEET) {
 		output = input / 12;
-	} else if (PARAM == CENTIMETER){
+	} else if (PARAM == CENTIMETER) {
 		return input * 2.54;
-	}else if (PARAM == METER) {
+	} else if (PARAM == METER) {
 		return (input * 2.54) / 100;
 	}
-
+	
 	return 0;
 }
 

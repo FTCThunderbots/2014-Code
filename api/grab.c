@@ -28,7 +28,6 @@ void toggleGrab() {
 		grabGoal();
 }
 
-//deprecated: use grabGoal()
 void grabGoal_time() {
 	motor[grab] = GRAB_MOTOR_SPEED;
 	wait1Msec(GRAB_MOTOR_DOWN_TIME);

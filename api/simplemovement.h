@@ -27,10 +27,12 @@ void swing(byte direction, byte power);
 
 //movement for seconds with power
 void driveSeconds(float secs, byte power);
+
 void rotateSeconds(float secs, byte power);
 void swingSeconds(float secs, byte direction, byte power);
 
 //movement for inches with power
 void driveInches(float inches, byte power);
+void driveInches(float inches, byte power, int stopSeconds);
 void rotateDegrees(float degrees, byte power);
 void swingDegrees(float degrees, byte direction, byte power);

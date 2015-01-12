@@ -57,7 +57,7 @@ task main()
 	rotateDegreesImp(180, 100);
 	updateDirection(180);
 	releaseGoal_time();
-
+	
 	while (true) {
 		nxtDisplayCenteredTextLine(0, "X is: %0.01f", readValues('x'));
 		nxtDisplayCenteredTextLine(1, "Z is: %0.01f", readValues('z'));
@@ -66,9 +66,9 @@ task main()
 }
 
 void rotateDegreesImp(int degrees, byte power) {
-		if (power < 0)
-			degrees -= 3;
-		if (power > 0)
-			degrees -= 5;
-		rotateDegrees(degrees, power);
+	if (power < 0)
+		degrees -= 3;
+	if (power > 0)
+		degrees -= 5;
+	rotateDegrees(degrees, power);
 }

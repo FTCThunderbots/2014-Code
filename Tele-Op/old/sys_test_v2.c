@@ -49,7 +49,7 @@ task main()
 	nNxtExitClicks = 3;
 	waitRelease(3);
 	StartTask(cycleModes);
-
+	
 	while (power >= 0) {
 		while (currentMode == SETPOWER) {
 			while (nNxtButtonPressed == 2) {
@@ -62,16 +62,17 @@ task main()
 			}
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == LEFT) {
 			if (nNxtButtonPressed == 2)
 				setMovement(-power, -power);
 			else if (nNxtButtonPressed == 1)
 				setMovement(power, power);
-			else setMovement(0, 0);
+			else
+				setMovement(0, 0);
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == RIGHT) {
 			if (nNxtButtonPressed == 2)
 				setMovement(-power, power);
@@ -81,7 +82,7 @@ task main()
 				setMovement(0, 0);
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == DRIVE) {
 			if (nNxtButtonPressed == 2)
 				setMovement(-power, 0);
@@ -91,7 +92,7 @@ task main()
 				setMovement(0, 0);
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == ROTATE) {
 			if (nNxtButtonPressed == 2)
 				setMovement(0, -power);
@@ -101,7 +102,7 @@ task main()
 				setMovement(0, 0);
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == SWEEPER) {
 			if (nNxtButtonPressed == 2)
 				motor[sweep] = -power;
@@ -111,7 +112,7 @@ task main()
 				motor[sweep] = 0;
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == CONVEYOR) {
 			if (nNxtButtonPressed == 2)
 				motor[conveyor] = -power;
@@ -121,37 +122,37 @@ task main()
 				motor[conveyor] = 0;
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == BACKBOARD) {
 			if (nNxtButtonPressed == 2)
 				motor[backboard] = BACKBOARD_MOTOR_SPEED;
-				//StartTask(disengageBackboardTask);
-				//disengageBackboard();
+			//StartTask(disengageBackboardTask);
+			//disengageBackboard();
 			else if (nNxtButtonPressed == 1)
 				motor[backboard] = -BACKBOARD_MOTOR_SPEED;
-				//StartTask(engageBackboardTask);
-				//engageBackboard();
+			//StartTask(engageBackboardTask);
+			//engageBackboard();
 			else
 				motor[backboard] = 0;
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == GOALHOOK) {
 			if (nNxtButtonPressed == 2)
-				//motor[grab] = power;
-				//StartTask(releaseGoalTask);
 				motor[grab] = -GRAB_MOTOR_SPEED;
-				//releaseGoal();
+			//motor[grab] = power;
+			//StartTask(releaseGoalTask);
+			//releaseGoal();
 			else if (nNxtButtonPressed == 1)
-				//motor[grab] = -power;
-				//StartTask(grabGoalTask);
 				motor[grab] = GRAB_MOTOR_SPEED;
-				//grabGoal();
+			//motor[grab] = -power;
+			//StartTask(grabGoalTask);
+			//grabGoal();
 			else
 				motor[grab] = 0;
 			EndTimeSlice();
 		}
-
+		
 		while (currentMode == LIFT) {
 			if (nNxtButtonPressed == 2)
 				motor[grab] = power;
@@ -168,9 +169,9 @@ task cycleModes() {
 	while (true) {
 		nxtDisplayCenteredTextLine(0, modeStrings[currentMode]);
 		nxtDisplayCenteredTextLine(1, "Power: %d", power);
-      		nxtDisplayCenteredTextLine(2, "Exit: back x3"); // 21 characters, will this fit?
-      		nxtDisplayCenteredTextLine(3, "LeftEnc1: %d", leftEnc1);
-      		nxtDisplayCenteredTextLine(4, "RightEnc1: %d", rightEnc1);
+		nxtDisplayCenteredTextLine(2, "Exit: back x3"); // 21 characters, will this fit?
+		nxtDisplayCenteredTextLine(3, "LeftEnc1: %d", leftEnc1);
+		nxtDisplayCenteredTextLine(4, "RightEnc1: %d", rightEnc1);
 		if (nNxtButtonPressed == 3) {
 			currentMode = nextMode(currentMode);
 			waitRelease(3);

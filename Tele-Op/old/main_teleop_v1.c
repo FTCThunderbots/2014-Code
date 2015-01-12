@@ -28,29 +28,29 @@ task main() {
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovementFromJoystick(joystick.joy1_y1, joystick.joy1_x2);
-    setSweep();
-    setConvey();
+		setSweep();
+		setConvey();
 	}
 }
 
 void setSweep() {
-	 if (joy2Btn(1) || joy2Btn(4))
-      motor[sweep] = SWEEP_MOTOR_SLOW_SPEED;
-   else if (joy2Btn(5) || joy2Btn(2))
-      motor[sweep] = SWEEP_MOTOR_SPEED;
-   else if (joy2Btn(7))
-      motor[sweep] = -SWEEP_MOTOR_SPEED;
-   else
-      motor[sweep]= 0;
+	if (joy2Btn(1) || joy2Btn(4))
+		motor[sweep] = SWEEP_MOTOR_SLOW_SPEED;
+	else if (joy2Btn(5) || joy2Btn(2))
+		motor[sweep] = SWEEP_MOTOR_SPEED;
+	else if (joy2Btn(7))
+		motor[sweep] = -SWEEP_MOTOR_SPEED;
+	else
+		motor[sweep]= 0;
 }
 
 void setConvey() {
 	if (joy2Btn(3) || joy2Btn(4))
-	  motor[conveyor] = CONVEYOR_MOTOR_SLOW_SPEED;
+		motor[conveyor] = CONVEYOR_MOTOR_SLOW_SPEED;
 	else if (joy2Btn(6) || joy2Btn(2))
-	  motor[conveyor] = CONVEYOR_MOTOR_SPEED;
+		motor[conveyor] = CONVEYOR_MOTOR_SPEED;
 	else if (joy2Btn(8))
-	  motor[conveyor] = -CONVEYOR_MOTOR_SPEED;
+		motor[conveyor] = -CONVEYOR_MOTOR_SPEED;
 	else
 		motor[conveyor] = 0;
 }

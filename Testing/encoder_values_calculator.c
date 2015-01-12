@@ -24,12 +24,12 @@
 task main() {
 	//resets the encoders
 	//if we fail to do this none of the encoder functions will work
-  initializeAPI();
-  initializeRobot();
-  eraseDisplay();
-
-  swingSeconds(0.5, -1, 100);
-
-  while (true)
-  	nxtDisplayCenteredTextLine(0, "%d", abs(rightEnc1));
+	initializeAPI();
+	initializeRobot();
+	eraseDisplay();
+	
+	swingSeconds(0.5, -1, 100);
+	
+	while (true)
+		nxtDisplayCenteredTextLine(0, "%d", abs(rightEnc1));
 }

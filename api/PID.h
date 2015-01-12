@@ -11,21 +11,21 @@
 #endif
 
 typedef struct {
-    float windup_guard;
-    float proportional_gain;
-    float integral_gain;
-    float derivative_gain;
-    float prev_error;
-    float int_error;
-    float control;
+	float windup_guard;
+	float proportional_gain;
+	float integral_gain;
+	float derivative_gain;
+	float prev_error;
+	float int_error;
+	float control;
 } PID;
 
 void moveFor(int ticks, int speed);
+void moveFor(int ticks, int speed, int stopSeconds);
 void swingFor(int ticks, int direction, int speed);
 
 void pid_zeroize(PID* pid);
 void pid_update(PID* pid, float curr_error, float dt);
-
 
 #ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"

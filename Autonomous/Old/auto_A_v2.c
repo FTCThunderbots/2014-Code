@@ -32,24 +32,24 @@
 task getEncoders();
 
 task main() {
-   initializeAPI();
-   waitForStart();
-   StartTask(getEncoders);
-   /*driveInchesBW(12*10); // 10 feet = 12*10 inches
-   rotateDegreesCW(180); // could equally be -180*/
-   /*** Pick up the goal right here ***/
-
-   /*driveInchesFW(12*4); //just guessing here
-   rotateDegreesCW(30);
-   driveInchesFW(12*4); //still guessing*/
-   driveInchesFW(12*4);
+	initializeAPI();
+	waitForStart();
+	StartTask(getEncoders);
+	/*driveInchesBW(12*10); // 10 feet = 12*10 inches
+	rotateDegreesCW(180); // could equally be -180*/
+	/*** Pick up the goal right here ***/
+	
+	/*driveInchesFW(12*4); //just guessing here
+	rotateDegreesCW(30);
+	driveInchesFW(12*4); //still guessing*/
+	driveInchesFW(12*4);
 }
 
 task getEncoders() {
-   Ruler_t r;
-   initRuler(&r);
-   while(true) {
-   		nxtDisplayBigTextLine(0, "%d", (int)getDriveTicks(&r));
-   }
-
+	Ruler_t r;
+	initRuler(&r);
+	while(true) {
+		nxtDisplayBigTextLine(0, "%d", (int)getDriveTicks(&r));
+	}
+	
 }

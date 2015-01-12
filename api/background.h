@@ -3,10 +3,6 @@
 
 #define BACKGROUND_INCLUDEGUARD
 
-#ifndef DEBUG_INCLUDEGUARD
-#include "debug.c"
-#endif
-
 #ifndef MOVEMENT_INCLUDEGUARD
 #include "movement.c"
 #endif
@@ -19,4 +15,4 @@ void initializeRobot();
 void initializeAPI();
 task background();
 
-static void suppressUnreferencedWarnings();
+static void suppressUnreferencedWarnings(int a);

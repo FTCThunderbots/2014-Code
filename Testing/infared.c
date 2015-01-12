@@ -24,8 +24,6 @@
 
 #define setting_twoEncoders
 
-
-
 #include "../api/api.c"
 
 byte correctValues(byte currentVal) {
@@ -49,4 +47,9 @@ byte correctValues(byte currentVal) {
 		return 7;
 
 	return 9;
+}
+
+
+byte getIRReaderValue() {
+	ascii = { ascii1, ascii2, ascii3, ascii4, ascii5 };
 }

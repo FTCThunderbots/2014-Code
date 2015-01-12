@@ -10,6 +10,10 @@
 #include "settings.c"
 #endif
 
+//#warn "LEFT ENCODER WIRE BROKE AT COMPETITION, MAY NOT WORK!"
+
+#ifndef setting_noEncoders
+
 #define leftEnc1 nMotorEncoder[leftmotor_1]
 #define rightEnc1 nMotorEncoder[rightmotor_1]
 
@@ -19,6 +23,15 @@
 #else // only two encoders
 #define leftEnc2 nMotorEncoder[leftmotor_1]
 #define rightEnc2 nMotorEncoder[rightmotor_1]
+#endif
+
+#else //setting_noEncoders is defined
+
+#define leftEnc1 0
+#define rightEnc1 0
+#define leftEnc2 0
+#define rightEnc2 0
+
 #endif
 
 void resetEncoders();

@@ -24,37 +24,37 @@
 task main() {
 	//resets the encoders
 	//if we fail to do this none of the encoder functions will work
-  initializeAPI();
-  initializeRobot();
-  eraseDisplay();
-  //waitForStart();
-
-  //low level style
-  setMovement(10, 0);
-  moveFor(inchesToDriveTicks(36));
-  //should automatically halt in moveFor();
-  //moveFor() also resets the encoders as soon as it stops.
-  waitSeconds(1);
-
-  setMovement(0, 10);
-  moveFor(degreesToRotateTicks(180));
-  waitSeconds(1);
-
-  //high level style
-  driveInches(36, 10);
+	initializeAPI();
+	initializeRobot();
+	eraseDisplay();
+	//waitForStart();
+	
+	//low level style
+	setMovement(10, 0);
+	moveFor(inchesToDriveTicks(36));
+	//should automatically halt in moveFor();
+	//moveFor() also resets the encoders as soon as it stops.
 	waitSeconds(1);
-
-  rotateDegrees(180, -10);
-  waitSeconds(1);
-
-  //I think that we should only use the high level functions for swinging.
-  swingDegrees(90, 1, 10);
-  swingDegrees(90, 1, -10);
-  waitSeconds(1);
-
-  swingDegrees(90, -1, 10);
-  swingDegrees(90, -1, -10);
-  waitSeconds(1);
-
-  //should end up exactly where it started
+	
+	setMovement(0, 10);
+	moveFor(degreesToRotateTicks(180));
+	waitSeconds(1);
+	
+	//high level style
+	driveInches(36, 10);
+	waitSeconds(1);
+	
+	rotateDegrees(180, -10);
+	waitSeconds(1);
+	
+	//I think that we should only use the high level functions for swinging.
+	swingDegrees(90, 1, 10);
+	swingDegrees(90, 1, -10);
+	waitSeconds(1);
+	
+	swingDegrees(90, -1, 10);
+	swingDegrees(90, -1, -10);
+	waitSeconds(1);
+	
+	//should end up exactly where it started
 }

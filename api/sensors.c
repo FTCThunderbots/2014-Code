@@ -3,68 +3,38 @@
 
 #include "sensors.h"
 
-int initialCompassReading = 0;
-
-int getCompassReading() {
-    return SensorValue(compass);
+void initSensors() { //called by initializeAPI()
+	initCompass();
+	initIRSeeker();
 }
 
-int calculateAverageReading(int samples) {
-    int reading = getCompassReading();
-
-    for (int i = 0; i < samples; i++) {
-        reading += getCompassReading();
-    }
-
-    return round(reading / samples);
+#ifdef COMPASS
+static void initCompass() {
+	setCompassZero();
 }
 
-void alignToCompassZero() {
-    while (getCompassReading() != 0) {
-        rotateWithOrientation(1, 25);
-    }
+int getHeading() {
+	return HTMCreadHeading(COMPASS);
 }
 
-void alignToInitial() {
-    while (getCompassReading() != initialCompassReading) {
-        rotateWithOrientation(1, 25);
-    }
+int getRelativeHeading() {
+	return HTMCreadRelativeHeading(COMPASS);
 }
 
-void rotateDegreesImp(int degrees, byte power) {    // "Imp" stands for 'improved'
-    int start = getCompassReading();
-    int checkDifference = degrees * sgn(power);
-
-    rotateWithOrientation(degrees, power);
-
-    int end = getCompassReading();
-
-    if ((start + checkDifference) == end) {
-        return;                                     // Jumps back to previous code if successful, retries if not.
-    } else {
-        int degOff = abs((start + checkDifference) - end);
-        int sgnPower = sgn((start + checkDifference) - end);
-        rotateDegreesImp(degOff, power * sgnPower);            // Recursive calling until value is achieved.
-        return;
-    }
+int setCompassZero() {
+	HTMCsetTarget(COMPASS);
 }
+#else
+static void initCompass() {}
+#endif
 
-void swingDegreesImp(int degrees, byte direction, byte power) {
-    int start = getCompassReading();
-    int checkDifference = degrees * sgn(power) * sgn(direction);
-
-    swingWithCoords(degrees, direction, power);
-
-    if ((start + checkDifference) == getCompassReading()) {
-        return;
-    } else {
-        int degOff = abs((start + checkDifference) - getCompassReading());
-        int sgnPower = sgn((start + checkDifference) - getCompassReading());
-        swingDegreesImp(degOff, direction * sgnPower, power);
-        return;
-    }
+#ifdef INFRARED
+static void initIRSeeker() {
+	//HTIRS2setDSPMode(INFRARED, DSP_1200);
 }
-
-void setInitial() {
-    initialCompassReading = SensorValue(compass);
+int getIRpos() {
+	//return HTIRS2readDCDir(INFRARED);
 }
+#else
+static void initCompass() {}
+#endif

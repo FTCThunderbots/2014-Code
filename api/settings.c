@@ -4,12 +4,12 @@
 
 #define SETTINGS_INCLUDEGUARD
 
-#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
+//#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35;
 const int GRAB_MOTOR_UP_TIME = 300;
-const int GRAB_MOTOR_DOWN_TIME = 300;
+const int GRAB_MOTOR_DOWN_TIME = 325;
 const int GRAB_MOTOR_DOWN_POS = 100;
 const int GRAB_MOTOR_UP_POS = 1;
 #define grab_is_motor_enc //TODO: implement this!
@@ -58,8 +58,11 @@ const float STRAFE_POWER_WEIGHT = 1.0;
 // Motor Constants
 const byte MOTOR_MIN_POWER = 5; // don't burn out the motor by giving it too low a power that it can't move
 const byte MOTOR_MAX_POWER = 100; // conserve power? a global speed limit?
+const byte DEFAULT_MOVE_POWER = 100; // the power when power is not specified
 
 // Joysticks
 const int JOYSTICK_MIN_VALUE = 5; //abs(joystick) cannot be in (0, min)
 const int JOYSTICK_MAX_VALUE = 127; //abs(joystick) <= max
 const float JOYSTICK_LINEAR_WEIGHT = 2.5; // weight of the linear scale to the exponential scale
+
+bool usePID = false;

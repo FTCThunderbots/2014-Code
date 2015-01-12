@@ -26,7 +26,7 @@ task main()
 		int gyroRotation = HTGYROreadRot(gyroSensor);
 		int distanceInCM = USreadDist(sonarSensor);
 		int raw = LSvalRaw(lightSensor);
-    int nrm = LSvalNorm(lightSensor);
+		int nrm = LSvalNorm(lightSensor);
 		bool limitSWActive = TSreadState(touchSensor);
 		nxtDisplayCenteredTextLine(0, "%d", gyroRotation);
 		nxtDisplayCenteredTextLine(1, "%d", distanceInCM);
@@ -34,5 +34,5 @@ task main()
 		nxtDisplayCenteredTextLine(4, "%d", limitSWActive);
 		while (nNxtButtonPressed == 3) {}
 	}
-
+	
 }
