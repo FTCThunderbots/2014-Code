@@ -3,8 +3,6 @@
 
 #define TELEOP_INCLUDEGUARD
 
-void setBackboardAuto();
-void setGoalHookAuto();
 void setBackboardJoystick();
 void setGoalHookJoystick();
 void setSweeperJoystick();

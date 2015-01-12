@@ -4,7 +4,7 @@
 
 #define SETTINGS_INCLUDEGUARD
 
-#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
+//#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
 
 // Functional motor constants
 const byte GRAB_MOTOR_SPEED = 35;
