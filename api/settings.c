@@ -40,9 +40,6 @@ const float ENCODER_TICKS_PER_DEGREE = 4.0; //should be exact (1440/360)
 #define Ki 0.01
 #define Kd 1
 
-//Gyro sensor constants
-const int g_tolerance = 5;
-
 // Turn constant
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
