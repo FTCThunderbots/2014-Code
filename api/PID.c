@@ -38,13 +38,19 @@ void moveFor(int ticks, int speed) { //speed is positive for rotating
 				wait10Msec(1);
 			}
 	} else //no PID
-		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {}
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {
+			ClearTimer(T1);
+                        int prev_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4;
+                        while (time1[T1] < 500 && (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4 < abs(ticks)) {}
+                        int cur_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/4;
+                        if (abs(prev_location) > abs(cur_location) - 50)
+                                break;
+
+		}
 	prev_time = 0;
 }
 
-void moveFor(int ticks, int speed, int stopSeconds) { //speed is positive for rotating
-	//this will work for rotating in place and linear driving (forwards and backwards)
-	//might also work for strafing
+void moveFor(int ticks, int speed, int stopSeconds) { //DEPRACATED
 	resetEncoders();
 	ClearTimer(T1);
 	int startTime = time1[T1];
@@ -82,31 +88,45 @@ void moveFor(int ticks, int speed, int stopSeconds) { //speed is positive for ro
 }
 
 void swingFor(int ticks, int direction, int speed) {
-   resetEncoders();
-   if (usePID) {
-   	ClearTimer(T1);
-   	PID pid;
-   	pid_zeroize(&pid);
-   	#ifndef setting_twoEncoders
-   	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
-     	//BE WARNED, THIS HAS NOT BEEN TESTED!!! IT PROBABLY DOES NOT WORK!!!
-     	pid_update(&pid, (sgn(direction) == -1) ? rightEnc2 - rightEnc1 : leftEnc2 - leftEnc1, time1(T1) - prev_time);
-     	// ^^^ calculates pid based on which side is moving
-     	prev_time = time1(T1);
-     	if (sgn(direction) == -1) {
-       	motor[rightmotor_1] = -speed + sgn(speed)*pid.control;
-       	motor[rightmotor_2] = -speed - sgn(speed)*pid.control;
-     	} else {
-	     	motor[leftmotor_1] = speed + pid.control;
-     		motor[leftmotor_2] = speed - pid.control;
-     	}
-   	}
-   	#else
-   	while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+	resetEncoders();
+	if (usePID) {
+		ClearTimer(T1);
+		PID pid;
+		pid_zeroize(&pid);
+		#ifndef setting_twoEncoders
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
+			//BE WARNED, THIS HAS NOT BEEN TESTED!!! IT PROBABLY DOES NOT WORK!!!
+			pid_update(&pid, (sgn(direction) == -1) ? rightEnc2 - rightEnc1 : leftEnc2 - leftEnc1, time1(T1) - prev_time);
+			// ^^^ calculates pid based on which side is moving
+			prev_time = time1(T1);
+			if (sgn(direction) == -1) {
+				motor[rightmotor_1] = -speed + sgn(speed)*pid.control;
+				motor[rightmotor_2] = -speed - sgn(speed)*pid.control;
+		     	} else {
+			     	motor[leftmotor_1] = speed + pid.control;
+     				motor[leftmotor_2] = speed - pid.control;
+			}
+		}
+		#else
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
+			ClearTimer(T1);
+			int prev_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2;
+			while (time1[T1] < 500 && (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+			int cur_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2;
+			if (abs(prev_location) > abs(cur_location) - 50)
+				break;
+		}
 		#endif
-	 } else
-	   while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
-   prev_time = 0;
+	} else
+		while ((abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {
+			ClearTimer(T1);
+			int prev_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2;
+			while (time1[T1] < 500 && (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2 < abs(ticks)) {}
+			int cur_location = (abs(leftEnc1) + abs(leftEnc2) + abs(rightEnc1) + abs(rightEnc2))/2;
+			if (abs(prev_location) > abs(cur_location) - 50)
+				break;
+		}
+	prev_time = 0;
 }
 
 void pid_zeroize(PID* pid) {
