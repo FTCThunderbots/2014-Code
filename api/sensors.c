@@ -30,10 +30,10 @@ static void initCompass() {}
 
 #ifdef INFRARED
 static void initIRSeeker() {
-	HTIRS2setDSPMode(INFRARED, DSP_1200);
+	//HTIRS2setDSPMode(INFRARED, DSP_1200);
 }
 int getIRpos() {
-	return HTIRS2readDCDir(INFRARED);
+	//return HTIRS2readDCDir(INFRARED);
 }
 #else
 static void initCompass() {}

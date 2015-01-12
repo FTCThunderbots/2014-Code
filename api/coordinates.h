@@ -3,7 +3,7 @@
 
 #define COORD_INCLUDEGUARD
 
-#warn "Coordinate functions are not finished. DO NOT USE."
+//#warn "Coordinate functions are not finished. DO NOT USE."
 
 #ifndef SENSORS_INCLUDEGUARD
 #include "sensors.c"
