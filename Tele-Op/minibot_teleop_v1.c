@@ -50,14 +50,14 @@ task main()
 	motor[trigger] = 0;
 	*/
 	while (true) {
-	getJoystickSettings(joystick);
-	setMovement(-joystick.joy1_y1, joystick.joy1_x2);
-	if (joy1Btn(6)) {
-		setMovement(0,0);
-		motor[trigger] = TRIGGER_POWER;
-		wait1Msec(TRIGGER_TIME);
-		motor[trigger] = 0;
-		wait1Msec(COOLDOWN_TIME);
+		getJoystickSettings(joystick);
+		setMovement(-joystick.joy1_y1, joystick.joy1_x2);
+		if (joy1Btn(6)) {
+			setMovement(0,0);
+			motor[trigger] = TRIGGER_POWER;
+			wait1Msec(TRIGGER_TIME);
+			motor[trigger] = 0;
+			wait1Msec(COOLDOWN_TIME);
+		}
 	}
-}
 }
