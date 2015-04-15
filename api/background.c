@@ -10,8 +10,6 @@
 void initializeRobot() {
 	halt();
 	resetEncoders();
-	nMotorEncoder[grab] = 1;
-	nMotorEncoder[backboard] = 1;
 }
 
 void initializeAPI() {
@@ -26,11 +24,4 @@ task background() {
 		//updateDebugConsole();
 		EndTimeSlice();
 	}
-}
-
-static void suppressUnreferencedWarnings(int a) {
-	a = BACKBOARD_MOTOR_UP_POS;
-	a = BACKBOARD_MOTOR_DOWN_POS;
-	a = DEFAULT_MOVE_POWER;
-	StartTask(matchStartListener);
 }

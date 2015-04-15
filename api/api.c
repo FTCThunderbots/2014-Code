@@ -19,24 +19,18 @@
 #include "settings.c"
 #endif
 
+/*
 #ifndef BACKBOARD_INCLUDEGUARD
 #include "backboard.c"
 #endif
+*/
 
 #ifndef BACKGROUND_INCLUDEGUARD
 #include "background.c"
 #endif
 
-#ifndef COORDINATES_INCLUDEGUARD
-#include "coordinates.c"
-#endif
-
 #ifndef ENCODERS_INCLUDEGUARD
 #include "encoders.c"
-#endif
-
-#ifndef GRAB_INCLUDEGUARD
-#include "grab.c"
 #endif
 
 #ifndef MATH_INCLUDEGUARD
@@ -61,10 +55,6 @@
 
 #ifndef SIMPLEMOVEMENT_INCLUDEGUARD
 #include "simplemovement.c"
-#endif
-
-#ifndef TELEOP_INCLUDEGUARD
-#include "teleop.c"
 #endif
 
 #ifndef TIMER_INCLUDEGUARD

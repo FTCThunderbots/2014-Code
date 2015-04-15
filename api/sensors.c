@@ -4,37 +4,5 @@
 #include "sensors.h"
 
 void initSensors() { //called by initializeAPI()
-	initCompass();
-	initIRSeeker();
+	// pass for now
 }
-
-#ifdef COMPASS
-static void initCompass() {
-	setCompassZero();
-}
-
-int getHeading() {
-	return HTMCreadHeading(COMPASS);
-}
-
-int getRelativeHeading() {
-	return HTMCreadRelativeHeading(COMPASS);
-}
-
-int setCompassZero() {
-	HTMCsetTarget(COMPASS);
-}
-#else
-static void initCompass() {}
-#endif
-
-#ifdef INFRARED
-static void initIRSeeker() {
-	//HTIRS2setDSPMode(INFRARED, DSP_1200);
-}
-int getIRpos() {
-	//return HTIRS2readDCDir(INFRARED);
-}
-#else
-static void initCompass() {}
-#endif

@@ -8,15 +8,3 @@
 //#include "Xander_Drivers\drivers\hitechnic-irseeker-v2.h" // IR seeker
 
 void initSensors(); //called by initializeAPI()
-static void initCompass();
-static void initIRSeeker();
-
-#ifdef COMPASS
-int getHeading();
-int getRelativeHeading();
-int setCompassTarget();
-#endif
-
-#ifdef INFRARED
-int getIRpos();
-#endif
