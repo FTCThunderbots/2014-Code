@@ -44,14 +44,15 @@ void setMovementPower2(int power, int turn){
 
 task main()
 {
-	/*
-	motor[trigger] = 50;
+	setMovement(0, 0);
 	wait1Msec(1000);
-	motor[trigger] = 0;
-	*/
+	eraseDisplay();
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovement(-joystick.joy1_y1, joystick.joy1_x2);
+		nxtDisplayCenteredTextLine(3, "%d", joystick.joy1_y1);
+		nxtDisplayCenteredTextLine(4, "%d", joystick.joy1_x2);
+		//wait1Msec(500);
 		if (joy1Btn(6)) {
 			setMovement(0,0);
 			motor[trigger] = TRIGGER_POWER;
