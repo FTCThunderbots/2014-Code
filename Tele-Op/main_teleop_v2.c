@@ -31,7 +31,7 @@
 
 void displayDebugInfo();
 
-static const bool DISPLAY_DEBUG_INFORMATION = false;
+static const bool DISPLAY_DEBUG_INFORMATION = true;
 
 task main()
 {
@@ -40,11 +40,11 @@ task main()
 	eraseDisplay();
 	while (true) {
 		getJoystickSettings(joystick);
-		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
-		setGoalHookJoystick();
-		setBackboardJoystick();
+		//setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
+		//setGoalHookJoystick();
+		//setBackboardJoystick();
 		//setSweeperJoystick();
-		setConveyorJoystick();
+		//setConveyorJoystick();
 		displayDebugInfo();
 	}
 }
