@@ -45,7 +45,7 @@ const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the
 
 // Movement
 const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)
-const byte DRIVE_MAX_POWER = 100; //abs(power) <= max
+const byte DRIVE_MAX_POWER = 65; //abs(power) <= max
 const byte ROTATE_MIN_POWER = 20;
 const byte ROTATE_MAX_POWER = 100;
 const byte STRAFE_MIN_POWER = 0;
