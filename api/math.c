@@ -1,5 +1,16 @@
-// math.c
-// Contains all math methods and unit conversions
+/* math.c | Common math functions and unit conversions
+ * Copyright (C) 2015 Thunderbots-5604
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ */
 
 // See header file for methods that need to be implemented
 // Please do not add stuff that's included in robotc's default math library
