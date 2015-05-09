@@ -1,6 +1,16 @@
-//PID.h
-//header file for PID.c
-//This is where we code the PID.
+/* pid.h | Header file for pid.c
+ * Copyright (C) 2015 Thunderbots-5604
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ */
 
 #define PID_INCLUDEGUARD
 

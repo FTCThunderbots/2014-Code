@@ -1,7 +1,21 @@
-#Thunderbots-5604 Code
-----------------------------------------------------
-This is all of the Thunderbots Programming from the 2014-2015 FTC game Cascade Effect.
+# Thunderbots 2014-2015 Competition Code
 
-All of the code is open source. It is all free to use, as long as credit is properly given.
+This is all of the code used by the Thunderbots Robotics Team in the 2014-2015 FTC game "Cascade Effect." Additionally, the 'minibot' branch contains code that was used for our team's entry to the FTC Minibot Challenge, which we won! A video demo we created for the robot is available [here](https://www.youtube.com/watch?v=0UXArkS5QSM), and a youtube playlist containing all the submissions is available [here](https://www.youtube.com/playlist?list=PLEuGrYl8iBm6vrtFGTUxX9w_VH3BS_5CN).
 
-As a disclaimer this code has no warranty and is not guaranteed to work on your robot. The code is released as is.
+As this code was designed for a specific competition that has now expired, it is not likely to be maintained any further. Still, we welcome any contributions, and anyone may feel free to use the code for their own robot. Before looking too deep into the code here, you should check out our more recent work by browsing all of our repositories. They can all be found at [github.com/Thunderbots-5604](https://github.com/Thunderbots-5604/)
+
+This entire repository is open source, and is made available under the GNU General Public License v 3.0 (GPLv3). A full copy of the license is available as [the LICENSE file in this repository](https://github.com/Thunderbots-5604/2014-Code/blob/master/LICENSE), or at [the GNU license page](http://www.gnu.org/licenses/gpl.txt). A quick summary of the text is also available [here](https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29). 
+
+The license does provide a header that is recommended to be put at the top of every file in the repository. Some files in the repository here contain the header, but other files here may not, and they are all fully protected under the GPLv3 license. The header is provided as follows, and applies generically to all files in this repository, including other branches:
+
+> Copyright (C) 2014 Thunderbots-5604
+> 
+> This program is free software: you can redistribute it and/or modify
+> it under the terms of the GNU General Public License as published by
+> the Free Software Foundation, either version 3 of the License, or
+> (at your option) any later version.
+> 
+> This program is distributed in the hope that it will be useful,
+> but WITHOUT ANY WARRANTY; without even the implied warranty of
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> GNU General Public License for more details.
