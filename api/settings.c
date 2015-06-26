@@ -1,11 +1,11 @@
 /* settings.c | Common timing and power contstants
  * Copyright (C) 2015 Thunderbots-5604
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -17,6 +17,9 @@
 //#warn "(settings.c) Please set time and encoder vals for auto grabbing and auto backboard"
 
 // Functional motor constants
+
+
+
 const byte GRAB_MOTOR_SPEED = 35;
 const int GRAB_MOTOR_UP_TIME = 300;
 const int GRAB_MOTOR_DOWN_TIME = 325;
@@ -53,11 +56,14 @@ const float ENCODER_TICKS_PER_DEGREE = 4.0; //should be exact (1440/360)
 // Turn constant
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
+const bool SPEED_LIMIT = false;
+
 // Movement
 const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)
-const byte DRIVE_MAX_POWER = 100; //abs(power) <= max
+const byte DRIVE_MAX_POWER = SPEED_LIMIT ? 65 : 100; //abs(power) <= max
+#warn "Speed limit on"
 const byte ROTATE_MIN_POWER = 20;
-const byte ROTATE_MAX_POWER = 100;
+const byte ROTATE_MAX_POWER = SPEED_LIMIT ? 65 : 100;
 const byte STRAFE_MIN_POWER = 0;
 const byte STRAFE_MAX_POWER = 100;
 const float MOVE_POWER_SCALE = 1.0; //used for imposing speed limits

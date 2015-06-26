@@ -54,10 +54,10 @@ task main()
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
-		setGoalHookJoystick();
-		setBackboardJoystick();
+		//setGoalHookJoystick();
+		//setBackboardJoystick();
 		//setSweeperJoystick();
-		setConveyorJoystick();
+		//setConveyorJoystick();
 		displayDebugInfo();
 	}
 }
