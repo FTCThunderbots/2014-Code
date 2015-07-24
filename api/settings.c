@@ -56,12 +56,14 @@ const float ENCODER_TICKS_PER_DEGREE = 4.0; //should be exact (1440/360)
 // Turn constant
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
-const bool SPEED_LIMIT = false;
+#define SPEED_LIMIT 1 //1 is true, 0 is false
 
 // Movement
 const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)
-const byte DRIVE_MAX_POWER = SPEED_LIMIT ? 65 : 100; //abs(power) <= max
-#warn "Speed limit on"
+const byte DRIVE_MAX_POWER = (SPEED_LIMIT == 1) ? 65 : 100; //abs(power) <= max
+#if SPEED_LIMIT == 1
+#warn "Speed limit is on"
+#endif
 const byte ROTATE_MIN_POWER = 20;
 const byte ROTATE_MAX_POWER = SPEED_LIMIT ? 65 : 100;
 const byte STRAFE_MIN_POWER = 0;
