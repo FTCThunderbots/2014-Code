@@ -56,7 +56,7 @@ const float ENCODER_TICKS_PER_DEGREE = 4.0; //should be exact (1440/360)
 // Turn constant
 const byte TURN_CONSTANT = 0; //used for correcting any natural curvature of the robot while driving
 
-#define SPEED_LIMIT 1 //1 is true, 0 is false
+#define SPEED_LIMIT 0 //1 is true, 0 is false
 
 // Movement
 const byte DRIVE_MIN_POWER = 20; //abs(power) cannot be in (0, min)

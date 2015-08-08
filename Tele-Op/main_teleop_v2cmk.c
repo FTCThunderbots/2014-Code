@@ -56,6 +56,7 @@ task main()
 	while (true) {
 		getJoystickSettings(joystick);
 		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
+		setMovement(correctJoystickComposite(joystick.joy2_y1), correctJoystickComposite(joystick.joy2_x2));
 		setGoalHookJoystick();
 		setBackboardJoystick();
 		setSweeperJoystick();

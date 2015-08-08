@@ -44,35 +44,14 @@
 
 #include "../api/api.c"
 
-void displayDebugInfo();
-
-static const bool DISPLAY_DEBUG_INFORMATION = true;
-
 task main()
 {
-	//initializeAPI();
-	initializeRobot();
-	eraseDisplay();
-	while (true) {
-		getJoystickSettings(joystick);
-		setMovement(correctJoystickComposite(joystick.joy1_y1), correctJoystickComposite(joystick.joy1_x2));
-		setGoalHookJoystick();
-		setBackboardJoystick();
-		setSweeperJoystick();
-		setConveyorJoystick();
-		//displayDebugInfo();
-	}
+	waitForStart();
+	moveWithDirection(32, -50);
+	wait1Msec(500);
+	rotateWithOrientation(90, -25);
+	wait1Msec(500);
+	moveWithDirection(60, -75);
+
+
 }
-
-void displayDebugInfo() {
-	if (DISPLAY_DEBUG_INFORMATION) {
-		//nxtDisplayCenteredTextLine(5, "GRAB: %d", nMotorEncoder[grab]);
-		//nxtDisplayCenteredTextLine(6, "BACKBOARD: %d", servo[backboard]);
-		//nxtDisplayCenteredTextLine(0, "sweep: %d", motor[sweep]);
-		nxtDisplayCenteredTextLine(1, "left1: %d", motor[leftmotor_1]);
-		nxtDisplayCenteredTextLine(2, "left2: %d", motor[leftmotor_2]);
-		nxtDisplayCenteredTextLine(3, "right1: %d", motor[rightmotor_1]);
-		nxtDisplayCenteredTextLine(4, "right2: %d", motor[rightmotor_2]);
-	}
-
-	}

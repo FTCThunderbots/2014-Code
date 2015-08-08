@@ -1,17 +1,17 @@
 /* movement.c | Functions for driving/rotating/strafing the robot
  * Copyright (C) 2015 Thunderbots-5604
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  */
- 
+
 // Lifting code and other functional systems should be defined somewhere else
 // Wrappers such as drive and rotate should be placed in simplemovement.c
 
@@ -29,23 +29,23 @@ static void setMovement(byte forward, byte right, byte clockwise) {
 	forward = scaleTo(forward, &motorRange[0], &driveRange[0]);
 	right = scaleTo(right, &motorRange[0], &strafeRange[0]);
 	clockwise = scaleTo(clockwise, &motorRange[0], &rotateRange[0]);
-	
+
 	// multiply each power by its respective weight
 	forward *= DRIVE_POWER_WEIGHT;
 	right *= STRAFE_POWER_WEIGHT;
 	clockwise *= ROTATE_POWER_WEIGHT;
-	
+
 	// Straighten out the robot
 	clockwise += TURN_CONSTANT*sgn(forward);
-	
+
 	// Assign wheel powers based on the constituent vectors, then put it all into an array
 	float frontLeft = (forward + right + clockwise);
 	float frontRight = (-forward + right + clockwise);
 	float backLeft = (forward - right + clockwise);
 	float backRight = (-forward - right + clockwise);
-	
+
 	float power[4] = {frontLeft, frontRight, backLeft, backRight};
-	
+
 	// Scale all wheels to fit within the max power of a motor, while retaining the power ratios
 	byte max = arrAbsmax(power, 4);
 	if (max > MOTOR_MAX_POWER) {
@@ -53,11 +53,11 @@ static void setMovement(byte forward, byte right, byte clockwise) {
 		for (int i = 0; i < 4; i++)
 			power[i] /= scale;
 	}
-	
+
 	// Multiply all wheel powers by the common movement scale
 	for(int i = 0; i < 4; i++)
 	power[i] *= MOVE_POWER_SCALE;
-	
+
 	// Finally, set the motor powers
 	motor[leftmotor_1] = power[0];
 	motor[rightmotor_1] = power[1];
